@@ -13,5 +13,4 @@ it('renders "You have rendered properly"', () => {
 
     const element = rtl.render(<App />).queryByText(/You have rendered properly!/i);
     expect(element).toBeInTheDocument();
-
 })
