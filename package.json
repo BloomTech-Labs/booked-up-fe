@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An app for authors to share their work",
   "main": "index.jsx",
+  "engines": {
+    "node": "12.16.x"
+  },
   "scripts": {
     "build": "parcel build --public-url ./dist/ src/index.html",
     "start": "npm -s run build && babel-node server/index.jsx",
