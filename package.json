@@ -35,7 +35,16 @@
     "test": "jest",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "coverage": "yarn test --coverage --watchAll=false || true"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}", "**/*.js",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   },
   "browserslist": {
     "production": [
