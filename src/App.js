@@ -7,11 +7,11 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Switch>
-          
+          <Route exact path="/" component={() => <div>Home</div>} />
+          <Route path="/signup" component={() => <div>Sign Up</div>} />
+          <Route path="/login" component={() => <div>Log In</div>} />
         </Switch>
-          <div className="App">
-            <p>Hi, you are rendering!</p>
-          </div>
+  
       </BrowserRouter>
     </ThemeProvider>
     
