@@ -1,5 +1,6 @@
-export const SOMETHING_STUB = "SOMETHING_STUB";
+export const SOMETHING_FAN_STUB = "SOMETHING_STUB";
 
-export const somethingStub = () => dispatch => {
-  dispatch({ type: SOMETHING_STUB });
+export const somethingFanStub = passedMessage => dispatch => {
+  passedMessage += "fanAction.js, somethingFanStub, ";
+  dispatch({ type: SOMETHING_FAN_STUB, payload: passedMessage });
 };

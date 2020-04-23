@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import combinedReducers from "./Reducers/indexReducer";
 import thunk from "redux-thunk";
+import { StateTest } from "./StateTesting"; // This line can be deleted after testing state
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ const store = createStore(combinedReducers, applyMiddleware(thunk));
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <StateTest />
   </Provider>,
   document.getElementById("root")
 );
