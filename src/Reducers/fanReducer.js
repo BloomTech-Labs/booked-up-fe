@@ -1,4 +1,5 @@
 import { SOMETHING_STUB } from "../Actions/fanAction";
+import { initialState } from "./indexReducer";
 
 export const fanReducer = (state = initialState, action) => {
   switch (action.type) {

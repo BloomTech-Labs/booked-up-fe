@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import agentReducer from "./agentReducer";
-import authenticationReducer from "./authentication";
-import authorReducer from "./authorReducer";
-import fanReducer from "./fan";
+import { adminReducer } from "./adminReducer";
+import { agentReducer } from "./agentReducer";
+import { authenticationReducer } from "./authentication";
+import { authorReducer } from "./authorReducer";
+import { fanReducer } from "./fanReducer";
 
 export const initialState = {
   username: ""
