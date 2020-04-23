@@ -1,4 +1,5 @@
 import { SOMETHING_STUB } from "../Actions/adminAction";
+import { initialState } from "./indexReducer";
 
 export const adminReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,4 +1,5 @@
-import { SOMETHING_STUB } from "../Actions/authorizationAction";
+import { SOMETHING_STUB } from "../Actions/authenticationAction";
+import { initialState } from "./indexReducer";
 
 export const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {

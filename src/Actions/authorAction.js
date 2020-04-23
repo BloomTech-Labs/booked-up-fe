@@ -1,4 +1,3 @@
-import axios from "axios";
 export const SOMETHING_STUB = "SOMETHING_STUB";
 
 export const somethingStub = () => dispatch => {
