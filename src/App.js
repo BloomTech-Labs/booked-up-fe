@@ -7,11 +7,11 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Switch>
+          <Route exact path="/login" component={() => <div>Log In</div>} />
           <Route exact path="/" component={() => <div>Home</div>} />
-          <Route path="/signup" component={() => <div>Sign Up</div>} />
-          <Route path="/login" component={() => <div>Log In</div>} />
+          <PrivateRoute path="/dashboard" component={() => <div>Dashboard</div>} />
+          <Route exact path="/signup" component={() => <div>Sign Up</div>} />
         </Switch>
-  
       </BrowserRouter>
     </ThemeProvider>
     
