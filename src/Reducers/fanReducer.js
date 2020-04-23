@@ -1,6 +1,8 @@
+import { SOMETHING_STUB } from "../Actions/fanAction";
+
 export const fanReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "Something": {
+    case SOMETHING_STUB: {
       return state;
     }
     default: {
