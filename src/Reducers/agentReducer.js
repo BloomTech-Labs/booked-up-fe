@@ -1,6 +1,8 @@
+import { SOMETHING_STUB } from "../Actions/agentAction";
+
 export const agentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "Something": {
+    case SOMETHING_STUB: {
       return state;
     }
     default: {
