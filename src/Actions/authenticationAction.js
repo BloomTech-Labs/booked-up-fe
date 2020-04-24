@@ -1,4 +1,4 @@
-export const SOMETHING_AUTHENTICATION_STUB = "SOMETHING_STUB";
+export const SOMETHING_AUTHENTICATION_STUB = "SOMETHING_AUTHENTICATION_STUB";
 
 export const somethingAuthenticationStub = passedMessage => dispatch => {
   passedMessage += "authenticationAction.js, somethingAuthenticationStub, ";
