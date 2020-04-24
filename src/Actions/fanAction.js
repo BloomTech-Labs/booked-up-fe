@@ -1,4 +1,4 @@
-export const SOMETHING_FAN_STUB = "SOMETHING_STUB";
+export const SOMETHING_FAN_STUB = "SOMETHING_FAN_STUB";
 
 export const somethingFanStub = passedMessage => dispatch => {
   passedMessage += "fanAction.js, somethingFanStub, ";
