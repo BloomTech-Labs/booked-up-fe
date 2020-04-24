@@ -1,9 +1,13 @@
 import React from 'react';
+import { Router, Switch } from 'react-router-dom';
+import Login from './SharedComponents/login';
 
 function App() {
   return (
     <div className="App">
-        <p>Hi, you are rendering!</p>
+        <Switch>
+          <Route path="login" component={Login} />    
+        </Switch>
     </div>
   );
 }
