@@ -29,15 +29,17 @@ function ElevationScroll(props) {
 const useStyles = makeStyles(theme => ({
     logo: {
         height: "6em",
+        
     },
     logoContainer: {
         padding: 0,
+        marginTop: 0,
         "&:hover": {
             backgroundColor: "transparent"
         }
       },
     tabContainer: {
-        marginLeft: 'auto'
+        marginLeft: 'auto',
     },
     tab: {
         ...theme.typography.tab,
@@ -49,7 +51,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "15px",
         marginLeft: "15px",
         marginRight: "15px",
-        height: "45px",
+        height: "45px"
     },
 }))
 export default function Header(props) {
