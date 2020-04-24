@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { ThemeProvider } from "@material-ui/styles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import theme from "./utils/Theme"
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -17,7 +19,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
-    
+
   );
 }
 
