@@ -1,13 +1,31 @@
-import { SOMETHING_AUTHENTICATION_STUB } from "../Actions/authenticationAction";
+import {
+  CREATE_AUTHOR_ACCOUNT,
+  CREATE_AGENT_ACCOUNT,
+  CREATE_FAN_ACCOUNT,
+  USER_LOGON,
+  USER_LOGOUT
+} from "../Actions/authenticationAction";
 import { initialState } from "./indexReducer";
 
 export const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SOMETHING_AUTHENTICATION_STUB: {
-      console.log(
-        action.payload,
-        "authenticationReducer.js, SOMETHING_AUTHENTICATION_STUB"
-      );
+    case CREATE_AUTHOR_ACCOUNT: {
+      return state;
+    }
+
+    case CREATE_AGENT_ACCOUNT: {
+      return state;
+    }
+
+    case CREATE_FAN_ACCOUNT: {
+      return state;
+    }
+
+    case USER_LOGON: {
+      return state;
+    }
+
+    case USER_LOGOUT: {
       return state;
     }
     default: {
