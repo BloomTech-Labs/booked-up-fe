@@ -6,6 +6,8 @@ import PrivateRoute from "./utils/PrivateRoute.jsx";
 import theme from "./utils/Theme"
 import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx"
+import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
@@ -13,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={() => <div>Dashboard</div>} isAuthenticated={isAuthenticated}/>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} isAuthenticated={isAuthenticated}/>
           <Route exact path="/login" component={() => <div>Log In</div>} />
           <Route exact path="/" component={() => <div>Home</div>} /> 
           <Route exact path="/signup" component={() => <div>Sign Up</div>} />

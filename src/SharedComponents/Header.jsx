@@ -27,8 +27,15 @@ function ElevationScroll(props) {
 }
 
 const useStyles = makeStyles(theme => ({
+    toolbarMargin: {
+        ...theme.mixins.toolbar,
+    
+      },
     logo: {
-        height: "6em",
+        height: "4em",
+        borderRadius: "30px",
+        width: "8em",
+        marginLeft: "25%"
         
     },
     logoContainer: {
@@ -54,8 +61,54 @@ const useStyles = makeStyles(theme => ({
         height: "45px"
     },
 }))
+
+
 export default function Header(props) {
+    const [value, setValue] = useState(0);
     const classes = useStyles();
+
+    const handleChange = (e, value) => {
+        setValue(value)
+    }
+
+    useEffect(() => {
+      
+        switch(window.location.pathname) {
+          case "/": 
+            if(value !== 0) {
+              setValue(0)
+            }
+            break;
+          
+          case "/browse": 
+            if(value !== 1) {
+              setValue(1);
+            }
+            break;
+          
+          case "/dashboard": 
+            if(value !== 2) {
+              setValue(2)
+            }
+            break;
+          
+          case "/my-works": 
+            if(value!=3) {
+              setValue(3)
+            }
+            break;
+          
+          case "/content-library": 
+            if(value !== 4) {
+              setValue(4)
+            }
+          break;
+          
+          default:
+              break;
+        }
+    }, [value]);
+  
 return (
     <>
         <ElevationScroll>
@@ -64,22 +117,23 @@ return (
                     <Button component={Link} to="/" className={classes.logoContainer} disableRipple>
                         <img alt="Booked Up Logo" src={BookedUpLogo} className={classes.logo}/>
                     </Button>
-                    <Tabs  className={classes.tabContainer}>
+                    <Tabs  className={classes.tabContainer} onChange={handleChange} indicatorColor="primary">
                         <Tab className={classes.tab} component={Link} to="/" label="Home" />
                         <Tab className={classes.tab} component={Link} to="/browse" label="Browse" />
-                        <Tab className={classes.tab} component={Link}  to="/dasboard" label="Dashboard" />
+                        <Tab className={classes.tab} component={Link}  to="/dashboard" label="Dashboard" />
                         <Tab className={classes.tab} component={Link} to="/my-works" label="My Works" />
                         <Tab className={classes.tab} component={Link} to="/content-libary" label="Content Library" />
                     </Tabs>
-                    <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
+                    <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/signup">
                         Sign Up
                     </Button>
-                    <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
+                    <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/login">
                         Log In
                     </Button>
                 </Toolbar>
             </AppBar>
         </ElevationScroll>
+        <div className={classes.toolbarMargin}></div>
     </>
 )
 }
