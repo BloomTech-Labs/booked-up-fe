@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 export default function Footer(props) {
     const classes = useStyles();
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
             <BottomNavigation showLabels className={classes.navContainer}>
                 <BottomNavigationAction label="Browse"  className={classes.nav}/>

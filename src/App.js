@@ -9,13 +9,14 @@ import Footer from "./SharedComponents/Footer.jsx"
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 
 function App() {
+  
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={Dashboard} isAuthenticated={isAuthenticated}/>
+          <PrivateRoute path="/dashboard" component={Dashboard} isAuthenticated={isAuthenticated}/>
           <Route exact path="/login" component={() => <div>Log In</div>} />
           <Route exact path="/" component={() => <div>Home</div>} /> 
           <Route exact path="/signup" component={() => <div>Sign Up</div>} />
