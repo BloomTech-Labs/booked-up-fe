@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
         marginRight: "-.5em",
         marginLeft: "-.5em"
     },
+    title: {
+        padding: "1%",
+        color: theme.palette.secondary.main
+    },
     dashCon: {
         width: "80%",
         margin: "auto",
@@ -24,15 +28,18 @@ const useStyles = makeStyles(theme => ({
     dashNavCon: {
         display: "flex",
         border: "1px solid black",
+        height: "3em",
+        backgroundColor: theme.palette.primary.dark
     },
     dashNav: {
         ...theme.typography.tab,
         padding: ".5%",
-        paddingRight: "2%",
+        paddingRight: "1%",
         marginTop: 0,
         marginBottom: 0,
-        height: "1.5vw",
-        border: "1px solid black"
+        height: "3em",
+        border: "1px solid black",
+        backgroundColor: theme.palette.primary.main
     },
     content: {
         border: "1px solid black",
@@ -88,7 +95,7 @@ export default function Dashboard(props) {
     return(
         <div className={classes.container}>
             <div className={classes.dashCon}>
-                <Typography variant="h4">Dashboard</Typography>
+                <Typography variant="h4" className={classes.title}>Dashboard</Typography>
                 <div className={classes.dashboard}>
                     <Tabs value={value} onChange={handleChange} className={classes.dashNavCon} indicatorColor="primary">
                         <Tab className={classes.dashNav} component={Link} to="/dashboard/browse"label="Browse"/>

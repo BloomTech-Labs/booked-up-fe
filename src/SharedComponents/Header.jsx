@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/Booked-up-logo.jpg";
+import image from "../assets/image.jpg"
 
 function ElevationScroll(props) {
   
@@ -31,17 +32,22 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "4em"
       },
     logo: {
-        height: "4em",
-        borderRadius: "30px",
-        width: "8em",
-        marginLeft: "25%"
-        
+        height: "8em",
+        width: "12em",
+        paddingTop: "2%",
+        marginLeft: "5%"
     },
     logoContainer: {
+        width: "12%",
+        border: "3px solid black",
+        borderLeft: 0,
+        height: "5em",
+        overflow: "hidden",
         padding: 0,
-        marginTop: 0,
+        backgroundColor: "white",
+        borderRadius: "0 35px 35px 0px",
         "&:hover": {
-            backgroundColor: "transparent"
+            backgroundColor: "white"
         }
       },
     tabContainer: {
@@ -113,8 +119,10 @@ return (
         <ElevationScroll>
             <AppBar position="fixed">
                 <Toolbar disableGutters>
+                    
                     <Button component={Link} to="/" className={classes.logoContainer} disableRipple>
                         <img alt="Booked Up Logo" src={BookedUpLogo} className={classes.logo}/>
+                        <div className={classes.triangle}></div>
                     </Button>
                     <Tabs  className={classes.tabContainer} onChange={handleChange} indicatorColor="primary">
                         <Tab className={classes.tab} component={Link} to="/" label="Home" />
