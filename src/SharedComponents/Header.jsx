@@ -124,7 +124,7 @@ return (
                         <img alt="Booked Up Logo" src={BookedUpLogo} className={classes.logo}/>
                         <div className={classes.triangle}></div>
                     </Button>
-                    <Tabs  className={classes.tabContainer} onChange={handleChange} indicatorColor="primary">
+                    <Tabs value={value} className={classes.tabContainer} onChange={handleChange} indicatorColor="primary">
                         <Tab className={classes.tab} component={Link} to="/" label="Home" />
                         <Tab className={classes.tab} component={Link} to="/browse" label="Browse" />
                         <Tab className={classes.tab} component={Link}  to="/dashboard" label="Dashboard" />

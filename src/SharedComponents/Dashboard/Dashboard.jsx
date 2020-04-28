@@ -6,6 +6,7 @@ import PrivateRoute from "../../utils/PrivateRoute.jsx";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Portal from '@material-ui/core/Portal';
+import Browse from "../Browse/Browse.jsx";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -62,8 +63,7 @@ export default function Dashboard(props) {
               if(value !== 0) {
                 setValue(0)  
               }
-              setComponent(<p>Browse</p>)
-              console.log(component)
+              setComponent(<Browse />)
               break;
             
             case "/dashboard/content-library": 
