@@ -48,7 +48,7 @@ data = {
             last_name: "Loveless",
             account_type: 0
         }
-    ]
+    ],
 
     content_library = [
         {
