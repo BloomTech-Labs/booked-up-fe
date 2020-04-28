@@ -8,6 +8,7 @@ import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx"
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 
+
 function App() {
   
   const [isAuthenticated, setIsAuthenticated] = useState(true);
