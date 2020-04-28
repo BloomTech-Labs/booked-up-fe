@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <PrivateRoute exact path="/dashboard" component={() => <div>Dashboard</div>} isAuthenticated={isAuthenticated}/>
-          <Route exact path="/login" component={() => <div>Sign Up</div>} />
+          <Route exact path="/login" component={() => <div>Sign In</div>} />
           <Route exact path="/" component={() => <div>Home</div>} /> 
           <Route exact path="/signup" component={() => <div>Sign Up</div>} />
         </Switch>
