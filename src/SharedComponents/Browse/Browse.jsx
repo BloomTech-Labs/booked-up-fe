@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Input, Button, Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+import Carousel from 'react-material-ui-carousel';
+import { Input, Button, Select, MenuItem, FormControl, InputLabel, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
@@ -28,13 +29,16 @@ const useStyles = makeStyles(theme => ({
     worksContainer: {
         border: "1px solid black",
         width: "95%",
-        height: "20%",
+        height: "22.5%",
         margin: "auto",
-        padding: "1%"
+        padding: 0,
+        display: "flex",
+        alignItems: "center"
     },
     works: {
         border: "1px solid black",
-        width: "20%"
+        width: "20%",
+        height: "11.25em"
     },
     title: {
         marginLeft: "2%"
@@ -48,6 +52,14 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "1%",
         backgroundColor: theme.palette.secondary.main,
         color: "white"
+    },
+    featuredContainer: {
+        width: "80%",
+        height: "30%",
+        margin: "auto"
+    },
+    bottomMargin: {
+        marginBottom: "3em"
     }
 }))
 
@@ -87,15 +99,39 @@ export default function Browse(props) {
             </div>
             <h2 className={classes.title}>Featured</h2>
             
-            <div className={classes.worksContainer}>
-
+            
+                <Carousel className={classes.featuredContainer}>
                 {content_library.map((cl, i) => (
                     <div key={i} className={classes.works}>
                         <p>{cl.title}</p>
                         <p>{cl.description}</p>
                     </div>
                 ))}
-            </div>
+                </Carousel>
+            
+            <h2 className={classes.title}>New Releases</h2>
+            
+            
+            <Carousel indicators={false} className={classes.worksContainer}>
+            {content_library.map((cl, i) => (
+                <div key={i} className={classes.works}>
+                    <p>{cl.title}</p>
+                    <p>{cl.description}</p>
+                </div>
+            ))}
+            </Carousel>
+            <h2 className={classes.title}>Most Popular</h2>
+            
+            
+            <Carousel indicators={false} className={classes.worksContainer}>
+            {content_library.map((cl, i) => (
+                <div key={i} className={classes.works}>
+                    <p>{cl.title}</p>
+                    <p>{cl.description}</p>
+                </div>
+            ))}
+            </Carousel>
+            <div className={classes.bottomMargin}></div>
         </>
     )
 }
