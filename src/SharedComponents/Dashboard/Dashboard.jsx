@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Portal from '@material-ui/core/Portal';
 import Browse from "../Browse/Browse.jsx";
 
+
 const useStyles = makeStyles(theme => ({
     container: {
         backgroundColor: theme.palette.secondary.light,
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         padding: "1%",
-        color: theme.palette.secondary.main
+        color: theme.palette.secondary.main,
     },
     dashCon: {
         width: "80%",
@@ -44,7 +45,8 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         border: "1px solid black",
-        height: "80vh"
+        height: "75vh",
+        overflowY: "scroll"
     }
 }))
 
