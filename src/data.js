@@ -1,5 +1,5 @@
-data = {
-    authors = [
+export const data = {
+    authors: [
         {
             ID: 1,
             first_name: "John",
@@ -13,7 +13,7 @@ data = {
         }
     ],
 
-    agent = [
+    agent: [
         {
             ID: 1,
             first_name: "Jake",
@@ -28,7 +28,7 @@ data = {
         }
     ],
 
-    fan = [
+    fan: [
         {
             ID: 1,
             first_name: "Frank",
@@ -41,7 +41,7 @@ data = {
         }
     ],
 
-    admin = [
+    admin: [
         {
             ID: 1,
             first_name: "Nathan",
@@ -50,11 +50,13 @@ data = {
         }
     ],
 
-    content_library = [
+    content_library: [
         {
             ID: 1,
             title: "The Future of Us",
-            description: "When the world enters WWWIII a couple has to deal with the downfall of the world and survive it"
+            description: "When the world enters WWWIII a couple has to deal with the downfall of the world and survive it",
+            genre: "Science Fiction",
+            author: "TestAuthor"
         }
     ]
 }

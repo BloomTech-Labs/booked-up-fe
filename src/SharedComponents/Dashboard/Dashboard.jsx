@@ -54,6 +54,7 @@ export default function Dashboard(props) {
     const classes = useStyles();
     const [value, setValue] = useState(0);
     const [component, setComponent] = useState("")
+    
 
     const handleChange = (e, value) => {
         setValue(value);
@@ -97,7 +98,7 @@ export default function Dashboard(props) {
     return(
         <div className={classes.container}>
             <div className={classes.dashCon}>
-                <Typography variant="h4" className={classes.title}>Dashboard</Typography>
+                <Typography variant="h4" className={classes.title}>Dashboard</Typography> 
                 <div className={classes.dashboard}>
                     <Tabs value={value} onChange={handleChange} className={classes.dashNavCon} indicatorColor="primary">
                         <Tab className={classes.dashNav} component={Link} to="/dashboard/browse"label="Browse"/>
