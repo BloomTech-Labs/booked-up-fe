@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import PrivateRoute from "../../utils/PrivateRoute.jsx";
+import { Link } from "react-router-dom";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 
 const useStyles = makeStyles(theme => ({
@@ -48,10 +46,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard(props) {
+export default function DashboardTest(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState("");
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -60,34 +57,26 @@ export default function Dashboard(props) {
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/browse":
-        if (value !== 0) {
-          setValue(0);
-        }
-        setComponent(<p>Browse</p>);
-        console.log(component);
+        if (value !== 0) setValue(0);
+        console.log(value);
+        console.log(window.location.pathname);
         break;
 
       case "/dashboard/content-library":
-        if (value !== 1) {
-          setValue(1);
-        }
-        setComponent(<p>Content Library</p>);
+        if (value !== 1) setValue(1);
+        console.log(value);
+        console.log(window.location.pathname);
         break;
-
       case "/dashboard/my-works":
-        if (value !== 2) {
-          setValue(2);
-        }
-        setComponent(<p>My Works</p>);
+        if (value !== 2) setValue(2);
+        console.log(value);
+        console.log(window.location.pathname);
         break;
-
       case "/dashboard/messages":
-        if (value !== 3) {
-          setValue(3);
-        }
-        setComponent(<p>My Messages</p>);
+        if (value !== 3) setValue(3);
+        console.log(value);
+        console.log(window.location.pathname);
         break;
-
       default:
         break;
     }
@@ -131,7 +120,7 @@ export default function Dashboard(props) {
               label="My Messages"
             />
           </Tabs>
-          <div className={classes.content}>{component}</div>
+          <div className={classes.content}>{value === 2 && <MyWorks />}</div>
         </div>
       </div>
     </div>
