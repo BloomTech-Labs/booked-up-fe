@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Input, Button, Select, MenuItem, FormControl, InputLabel, Paper } from '@material-ui/core';
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import {data} from "../../data.js"
 
-const content_library = [
-    {
-        ID: 1,
-        title: "The Future of Us",
-        description: "When the world enters WWWIII a couple has to deal with the downfall of the world and survive it"
-    }
-]
+
+const content_library = data.content_library
 
 const useStyles = makeStyles(theme => ({
     searchContainer: {
-        padding: "1%"
+        padding: "1%",
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "flex-end"
+    },
+    searchBar: {
+        width: "25%",
+        marginRight: "1%",
+        marginLeft: "2%"
     },
     formControl: {
         marginLeft: ".5%"
@@ -45,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         ...theme.typography.estimate,
-        padding: ".25em",
+        padding: ".275em",
         borderRadius: 0,
         
         border: "1px solid black",
@@ -60,33 +64,57 @@ const useStyles = makeStyles(theme => ({
     },
     bottomMargin: {
         marginBottom: "3em"
+    },
+    resultsContainer: {
+        width: "95%",
+        margin: "auto"
     }
 }))
 
 
 export default function Browse(props) {
     const [works, setWorks] = useState([{id: 0, title: "", description: ""}])
-    const [filter, setFilter] = useState("")
-    const [value, setValue] = useState("all")
+    const [filter, setFilter] = useState("all")
+    const [value, setValue] = useState("")
+    const [filteredWork, setFilteredWork] = useState()
     const classes = useStyles()
 
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setValue(e.target.value)
+        console.log(value)
+    }
+
     const handleChange = (e) => {
-        setValue(e.target.value);
+        e.preventDefault();
+        setFilter(e.target.value);
+        console.log(filter)
       };
     
-
+    const handleSubmit = e => {
+        e.preventDefault();
+        setFilteredWork(content_library.filter(work => {
+            if(filter==="all") {
+                return work.title.toLowerCase().includes(value.toLowerCase()) || work.description.toLowerCase().includes(value.toLowerCase()) || work.genre.toLowerCase().includes(value.toLowerCase()) || work.author.toLowerCase().includes(value.toLowerCase())
+            }
+            else{
+                return work[`${filter}`].toLowerCase().includes(value.toLowerCase())
+            }
+        }))
+        console.log(filteredWork)
+    }
     return(
         <>
             <div className={classes.searchContainer}>
                 
-                <Input placeholder="Search"/>
+                <TextField id="standard-search" label="Search" type="search" value={value} onChange={handleSearch} className={classes.searchBar}/>
                 <FormControl className={classes.formControl}>
                     <Select
                         labelId="search-filter-label"
                         id="search-filter"
                         className={classes.filter}
-                        value={value}
+                        value={filter}
                         onChange={handleChange}
                     >
                         <MenuItem value={"all"}>All</MenuItem>
@@ -95,7 +123,7 @@ export default function Browse(props) {
                         <MenuItem value={"genre"}>Genre</MenuItem>
                     </Select>
                 </FormControl>
-                <Button className={classes.button}>Go</Button>
+                <Button className={classes.button} onClick={handleSubmit}>Go</Button>
             </div>
             <h2 className={classes.title}>Featured</h2>
             
@@ -109,6 +137,8 @@ export default function Browse(props) {
                 ))}
                 </Carousel>
             
+            {!filteredWork && (
+                <div>
             <h2 className={classes.title}>New Releases</h2>
             
             
@@ -131,6 +161,17 @@ export default function Browse(props) {
                 </div>
             ))}
             </Carousel>
+            </div>)}
+            {filteredWork && (<div className={classes.resultsContainer}>
+                <h2 className={classes.title}>Search Results</h2>
+                    {filteredWork.map((cl, i) => (
+                        <div key={i} className={classes.works}>
+                            <p>{cl.title}</p>
+                            <p>{cl.description}</p>
+                        </div>
+                    ))}
+            </div>)}
+
             <div className={classes.bottomMargin}></div>
         </>
     )
