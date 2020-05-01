@@ -13,6 +13,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
+  toolbarMargin: {
+    marginBottom: "4em"
+  },
   appBar: {
     top: "auto",
     bottom: 0
@@ -48,30 +51,36 @@ const useStyles = makeStyles(theme => ({
 export default function Footer(props) {
   const classes = useStyles();
   return (
-    <AppBar className={classes.appBar}>
-      <Toolbar className={classes.toolBar}>
-        <BottomNavigation showLabels className={classes.navContainer}>
-          <BottomNavigationAction label="Browse" className={classes.nav} />
-          <BottomNavigationAction label="Support" className={classes.nav} />
-          <BottomNavigationAction label="Contact Us" className={classes.nav} />
-        </BottomNavigation>
-        <BottomNavigation showLabels className={classes.navContainer}>
-          <BottomNavigationAction
-            label="@2020 Booked Up"
-            className={classes.nav}
-          />
-          <p className={classes.div}>|</p>
-          <BottomNavigationAction
-            label="Terms of Service"
-            className={classes.nav}
-          />
-          <p className={classes.div}>|</p>
-          <BottomNavigationAction
-            label="Privacy Policy"
-            className={classes.nav}
-          />
-        </BottomNavigation>
-      </Toolbar>
-    </AppBar>
+    <>
+      <div className={classes.toolbarMargin}></div>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.toolBar}>
+          <BottomNavigation showLabels className={classes.navContainer}>
+            <BottomNavigationAction label="Browse" className={classes.nav} />
+            <BottomNavigationAction label="Support" className={classes.nav} />
+            <BottomNavigationAction
+              label="Contact Us"
+              className={classes.nav}
+            />
+          </BottomNavigation>
+          <BottomNavigation showLabels className={classes.navContainer}>
+            <BottomNavigationAction
+              label="@2020 Booked Up"
+              className={classes.nav}
+            />
+            <p className={classes.div}>|</p>
+            <BottomNavigationAction
+              label="Terms of Service"
+              className={classes.nav}
+            />
+            <p className={classes.div}>|</p>
+            <BottomNavigationAction
+              label="Privacy Policy"
+              className={classes.nav}
+            />
+          </BottomNavigation>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 }
