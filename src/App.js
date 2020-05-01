@@ -6,8 +6,6 @@ import theme from "./utils/Theme";
 import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx";
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
-import DashboardTest from "./SharedComponents/Dashboard/DashboardTest";
-import MyWorks from "./Author/MyWorks/MyWorks";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -18,7 +16,7 @@ function App() {
         <Switch>
           <PrivateRoute
             path="/dashboard"
-            component={DashboardTest}
+            component={Dashboard}
             isAuthenticated={isAuthenticated}
           />
           <Route exact path="/login" component={() => <div>Log In</div>} />

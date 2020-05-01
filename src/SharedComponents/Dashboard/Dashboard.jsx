@@ -78,7 +78,7 @@ export default function Dashboard(props) {
         if (value !== 2) {
           setValue(2);
         }
-        setComponent(<p>My Works</p>);
+        setComponent(<MyWorks />);
         break;
 
       case "/dashboard/messages":
