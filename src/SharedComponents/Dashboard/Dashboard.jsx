@@ -7,6 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
+import Browse from "../Browse/Browse.jsx";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -44,9 +45,11 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     border: "1px solid black",
-    height: "80vh"
+    height: "80vh",
+    overflowY: "scroll"
   }
 }));
+
 
 export default function Dashboard(props) {
   const classes = useStyles();
@@ -58,28 +61,34 @@ export default function Dashboard(props) {
   };
 
   useEffect(() => {
-    switch (window.location.pathname) {
-      case "/dashboard/browse":
-        if (value !== 0) {
-          setValue(0);
-        }
-        setComponent(<p>Browse</p>);
-        console.log(component);
-        break;
-
-      case "/dashboard/content-library":
-        if (value !== 1) {
-          setValue(1);
-        }
-        setComponent(<p>Content Library</p>);
-        break;
-
-      case "/dashboard/my-works":
-        if (value !== 2) {
-          setValue(2);
-        }
-        setComponent(<MyWorks />);
-        break;
+        switch(window.location.pathname) {
+            case "/dashboard/browse": 
+              if(value !== 0) {
+                setValue(0)  
+              }
+              setComponent(<Browse />)
+              break;
+            
+            case "/dashboard/content-library": 
+              if(value !== 1) {
+                setValue(1);
+              }
+              setComponent(<p>Content Library</p>)
+              break;
+            
+            case "/dashboard/my-works":
+              if (value !== 2) {
+                setValue(2);
+              }
+              setComponent(<MyWorks />);
+              break;
+            
+            case "/dashboard/messages": 
+              if(value !== 3) {
+                setValue(3);
+              }
+              setComponent(<p>My Messages</p>)
+              break;
 
       case "/dashboard/messages":
         if (value !== 3) {
@@ -92,6 +101,7 @@ export default function Dashboard(props) {
         break;
     }
   }, [value]);
+
 
   return (
     <div className={classes.container}>
