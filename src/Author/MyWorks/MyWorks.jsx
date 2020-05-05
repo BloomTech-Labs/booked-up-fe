@@ -13,9 +13,6 @@ import ViewModuleOutlinedIcon from "@material-ui/icons/ViewModuleOutlined";
 import ViewStreamOutlinedIcon from "@material-ui/icons/ViewStreamOutlined";
 import ViewWeekOutlinedIcon from "@material-ui/icons/ViewWeekOutlined";
 import PublishOutlinedIcon from "@material-ui/icons/PublishOutlined";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import OpenInBrowserOutlinedIcon from "@material-ui/icons/OpenInBrowserOutlined";
 import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
 import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
@@ -60,8 +57,6 @@ const useStyles = makeStyles(theme => ({
     marginRight: "35px"
   }
 }));
-
-const userData = data;
 
 export default function MyWorks(props) {
   const [selected, setSelected] = useState("grid");

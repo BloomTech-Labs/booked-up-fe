@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -31,6 +36,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: "5px",
     fontWeight: "bold",
     textAlign: "center"
+  },
+  buttonGroup: {
+    justifyContent: "center"
+  },
+  button: {
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   }
 }));
 
@@ -47,7 +60,17 @@ export default function GridDisplay(props) {
               Placeholder Image
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
-            <div className={classes.title}>{work.title}</div>
+            <ButtonGroup className={classes.buttonGroup}>
+              <IconButton className={classes.button}>
+                <ImportContactsOutlinedIcon />
+              </IconButton>
+              <IconButton className={classes.button}>
+                <EditOutlinedIcon />
+              </IconButton>
+              <IconButton className={classes.button}>
+                <DeleteForeverOutlinedIcon />
+              </IconButton>
+            </ButtonGroup>
           </Grid>
         </>
       ))}
