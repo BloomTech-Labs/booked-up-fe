@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
+import EditingButtons from "./EditingButtons";
 
 const useStyles = makeStyles(theme => ({
   grid: {
+    display: "flex",
     justifyContent: "center"
   },
   gridItem: {
@@ -22,7 +19,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
-    height: "100px"
+    height: "100px",
+    padding: "2px"
   },
   authorOverlay: {
     position: "absolute",
@@ -38,15 +36,6 @@ const useStyles = makeStyles(theme => ({
   description: {
     marginTop: "5px",
     textAlign: "center"
-  },
-  buttonGroup: {
-    justifyContent: "center",
-    alignContent: "flex-end"
-  },
-  button: {
-    "&:hover": {
-      backgroundColor: "transparent"
-    }
   }
 }));
 
@@ -65,17 +54,7 @@ export default function RowDisplay(props) {
             </div>
             <div className={classes.title}>{work.title}</div>
             <div className={classes.description}>{work.description}</div>
-            <ButtonGroup className={classes.buttonGroup}>
-              <IconButton className={classes.button}>
-                <ImportContactsOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <EditOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <DeleteForeverOutlinedIcon />
-              </IconButton>
-            </ButtonGroup>
+            <EditingButtons />
           </Grid>
         </>
       ))}

@@ -55,6 +55,11 @@ const useStyles = makeStyles(theme => ({
     marginTop: "35px",
     marginLeft: "35px",
     marginRight: "35px"
+  },
+  iconButton: {
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   }
 }));
 
@@ -69,7 +74,7 @@ export default function MyWorks(props) {
     <>
       <div className={classes.toolbar}>
         <div className={classes.leftToolbarButton}>
-          <IconButton>
+          <IconButton className={classes.iconButton}>
             <PublishOutlinedIcon />
           </IconButton>
         </div>
@@ -105,10 +110,10 @@ export default function MyWorks(props) {
           </ToggleButtonGroup>
         </div>
         <ButtonGroup>
-          <IconButton>
+          <IconButton className={classes.iconButton}>
             <SortOutlinedIcon />
           </IconButton>
-          <IconButton>
+          <IconButton className={classes.iconButton}>
             <FilterListOutlinedIcon />
           </IconButton>
         </ButtonGroup>

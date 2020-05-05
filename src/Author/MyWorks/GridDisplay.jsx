@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
+import EditingButtons from "./EditingButtons";
 
 const useStyles = makeStyles(theme => ({
   grid: {
+    display: "flex",
     justifyContent: "center"
   },
   gridItem: {
@@ -22,7 +19,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
-    height: "100px"
+    height: "100px",
+    padding: "2px"
   },
   authorOverlay: {
     position: "absolute",
@@ -35,19 +33,16 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     textAlign: "center"
   },
-  buttonGroup: {
-    justifyContent: "center"
-  },
-  button: {
-    "&:hover": {
-      backgroundColor: "transparent"
-    }
+  description: {
+    marginTop: "5px",
+    textAlign: "center"
   }
 }));
 
 export default function GridDisplay(props) {
   const [works, setWorks] = useState(props.authorWorks);
   const classes = useStyles();
+  const classname = "grid";
 
   return (
     <Grid container className={classes.grid} spacing={2}>
@@ -58,17 +53,7 @@ export default function GridDisplay(props) {
               Placeholder Image
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
-            <ButtonGroup className={classes.buttonGroup}>
-              <IconButton className={classes.button}>
-                <ImportContactsOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <EditOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <DeleteForeverOutlinedIcon />
-              </IconButton>
-            </ButtonGroup>
+            <EditingButtons />
           </Grid>
         </>
       ))}

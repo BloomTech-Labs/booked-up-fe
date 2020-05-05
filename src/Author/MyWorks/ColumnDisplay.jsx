@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from "@material-ui/core/IconButton";
+import EditingButtons from "./EditingButtons";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
@@ -28,8 +29,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     color: "white",
     height: "100px",
-    display: "flex",
     padding: "2px",
+    display: "flex",
     justifyContent: "center"
   },
   authorOverlay: {
@@ -46,15 +47,6 @@ const useStyles = makeStyles(theme => ({
   description: {
     marginTop: "5px",
     textAlign: "center"
-  },
-  buttonGroup: {
-    justifyContent: "center",
-    alignContent: "flex-end"
-  },
-  button: {
-    "&:hover": {
-      backgroundColor: "transparent"
-    }
   }
 }));
 
@@ -79,17 +71,7 @@ export default function ColumnDisplay(props) {
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
             </Grid>
-            <ButtonGroup className={classes.buttonGroup}>
-              <IconButton className={classes.button}>
-                <ImportContactsOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <EditOutlinedIcon />
-              </IconButton>
-              <IconButton className={classes.button}>
-                <DeleteForeverOutlinedIcon />
-              </IconButton>
-            </ButtonGroup>
+            <EditingButtons />
           </Grid>
         </>
       ))}
