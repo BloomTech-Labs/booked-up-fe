@@ -120,7 +120,9 @@ export default function MyWorks(props) {
       <div className={classes.contentArea}>
         {selected === "grid" && <GridDisplay authorWorks={data.author_works} />}
         {selected === "row" && <RowDisplay authorWorks={data.author_works} />}
-        {selected === "column" && <ColumnDisplay />}
+        {selected === "column" && (
+          <ColumnDisplay authorWorks={data.author_works} />
+        )}
       </div>
     </>
   );

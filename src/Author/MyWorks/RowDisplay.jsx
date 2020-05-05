@@ -9,8 +9,6 @@ import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutline
 
 const useStyles = makeStyles(theme => ({
   grid: {
-    display: "flex",
-    flexDirection: "row",
     justifyContent: "center"
   },
   gridItem: {
