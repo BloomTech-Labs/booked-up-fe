@@ -40,9 +40,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function GridDisplay(props) {
-  const [works, setWorks] = useState(props.authorWorks);
+  const [works] = useState(props.authorWorks);
   const classes = useStyles();
-  const classname = "grid";
 
   return (
     <Grid container className={classes.grid} spacing={2}>

@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import IconButton from "@material-ui/core/IconButton";
 import EditingButtons from "./EditingButtons";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -44,6 +39,11 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     textAlign: "center"
   },
+  genre: {
+    marginTop: "10px",
+    fontStyle: "italic",
+    textAlign: "center"
+  },
   description: {
     marginTop: "5px",
     textAlign: "center"
@@ -51,14 +51,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ColumnDisplay(props) {
-  const [works, setWorks] = useState(props.authorWorks);
+  const [works] = useState(props.authorWorks);
   const classes = useStyles();
 
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map(work => (
         <>
-          <Grid item direction="column" xs={12} className={classes.gridItem}>
+          <Grid item xs={12} className={classes.gridItem}>
             <div className={classes.placeholderImage}>
               Placeholder Image
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
@@ -67,6 +67,9 @@ export default function ColumnDisplay(props) {
             </div>
             <Grid item xs={6} sm={3} className={classes.title}>
               {work.title}
+            </Grid>
+            <Grid item xs={6} sm={3} className={classes.genre}>
+              {work.genre}
             </Grid>
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}

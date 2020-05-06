@@ -33,6 +33,12 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     textAlign: "center"
   },
+  genre: {
+    marginTop: "10px",
+    marginBottom: "10px",
+    fontStyle: "italic",
+    textAlign: "center"
+  },
   description: {
     marginTop: "5px",
     textAlign: "center"
@@ -40,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function RowDisplay(props) {
-  const [works, setWorks] = useState(props.authorWorks);
+  const [works] = useState(props.authorWorks);
   const classes = useStyles();
 
   return (
@@ -53,6 +59,7 @@ export default function RowDisplay(props) {
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
             <div className={classes.title}>{work.title}</div>
+            <div className={classes.genre}>{work.genre}</div>
             <div className={classes.description}>{work.description}</div>
             <EditingButtons />
           </Grid>
