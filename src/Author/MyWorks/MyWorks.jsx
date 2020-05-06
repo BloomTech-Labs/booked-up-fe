@@ -151,6 +151,10 @@ export default function MyWorks(props) {
     }
   };
 
+  const handleFilterClose = value => {
+    setFilterClicked(false);
+  };
+
   const classes = useStyles();
 
   return (
@@ -161,7 +165,12 @@ export default function MyWorks(props) {
           sortClicked={sortClicked}
         />
       )}
-      {filterClicked === true && <FilterDialog />}
+      {filterClicked === true && (
+        <FilterDialog
+          handleFilterClose={handleFilterClose}
+          filterClicked={filterClicked}
+        />
+      )}
       <div className={classes.toolbar}>
         <div className={classes.leftToolbarButton}>
           <Tooltip title="Upload New Work">

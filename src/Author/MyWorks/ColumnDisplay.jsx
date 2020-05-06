@@ -46,7 +46,8 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     marginTop: "5px",
-    textAlign: "center"
+    textAlign: "center",
+    marginRight: "10px"
   }
 }));
 

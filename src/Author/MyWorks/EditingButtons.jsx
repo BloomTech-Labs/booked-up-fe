@@ -14,8 +14,7 @@ const useStyles = makeStyles(theme => ({
     border: `2px solid ${theme.palette.secondary.light}`,
     background: `${theme.palette.primary.light}`,
     marginTop: "10px",
-    borderRadius: "10px",
-    marginLeft: "10px"
+    borderRadius: "10px"
   },
   button: {
     "&:hover": {
