@@ -6,6 +6,8 @@ import theme from "./utils/Theme";
 import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx";
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
+import SignIn from "./SharedComponents/loginForm";
+import SignUp from "./SharedComponents/SingupForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -14,14 +16,10 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute
-            path="/dashboard"
-            component={Dashboard}
-            isAuthenticated={isAuthenticated}
-          />
-          <Route exact path="/login" component={() => <div>Log In</div>} />
-          <Route exact path="/" component={() => <div>Home</div>} />
-          <Route exact path="/signup" component={() => <div>Sign Up</div>} />
+          <PrivateRoute path="/dashboard" component={Dashboard} isAuthenticated={isAuthenticated}/>
+          <Route exact path="/login" component={SignIn} />
+          <Route exact path="/" component={() => <div>Home</div>} /> 
+          <Route exact path="/signup" component={SignUp} />
         </Switch>
         <Footer />
       </BrowserRouter>

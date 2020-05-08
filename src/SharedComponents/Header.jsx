@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import BookedUpLogo from "../assets/Booked-up-logo.jpg";
+import BookedUpLogo from "../assets/new-logo.jpg";
 import image from "../assets/image.jpg";
 
 function ElevationScroll(props) {
@@ -31,22 +31,20 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: "8em",
-    width: "12em",
+    width: "11em",
     paddingTop: "2%",
-    marginLeft: "5%"
+    marginLeft: "1%",
   },
   logoContainer: {
-    width: "12%",
-    border: "3px solid black",
+    width: "10%",
+    border: "1px silver",
     borderLeft: 0,
     height: "5em",
     overflow: "hidden",
     padding: 0,
-    backgroundColor: "white",
-    borderRadius: "0 35px 35px 0px",
-    "&:hover": {
-      backgroundColor: "white"
-    }
+    backgroundColor: "Silver",
+    borderRadius: "0 35px 35px 0",
+    boxShadow: '0 0 0.3rem 0.2rem LightGrey',
   },
   tabContainer: {
     marginLeft: "auto"
@@ -58,10 +56,10 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     ...theme.typography.estimate,
-    borderRadius: "15px",
+    borderRadius: "20px",
     marginLeft: "15px",
     marginRight: "15px",
-    height: "45px"
+    height: "35px"
   }
 }));
 
@@ -94,7 +92,7 @@ export default function Header(props) {
         break;
 
       case "/my-works":
-        if (value != 3) {
+        if (value !== 3) {
           setValue(3);
         }
         break;
