@@ -1,4 +1,4 @@
-export const genre = {
+export const genreData = {
   state: [
     {
       FriendlyName: "Biography",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import EditingButtons from "./EditingButtons";
+import EditingButtons from "../EditingButtons";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -45,7 +45,7 @@ export default function GridDisplay(props) {
 
   return (
     <Grid container className={classes.grid} spacing={2}>
-      {works.map(work => (
+      {works.map((work, index) => (
         <>
           <Grid item xs={2} className={classes.gridItem}>
             <div className={classes.placeholderImage}>

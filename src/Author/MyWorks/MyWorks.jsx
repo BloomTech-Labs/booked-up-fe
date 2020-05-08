@@ -5,9 +5,9 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
-import GridDisplay from "./GridDisplay";
-import RowDisplay from "./RowDisplay";
-import ColumnDisplay from "./ColumnDisplay";
+import GridDisplay from "./ContentViews/GridDisplay";
+import RowDisplay from "./ContentViews/RowDisplay";
+import ColumnDisplay from "./ContentViews/ColumnDisplay";
 import { data } from "../../data";
 import ViewModuleOutlinedIcon from "@material-ui/icons/ViewModuleOutlined";
 import ViewStreamOutlinedIcon from "@material-ui/icons/ViewStreamOutlined";
@@ -17,8 +17,8 @@ import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
 import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import SortDialog from "./SortDialog";
-import FilterDialog from "./FilterDialog";
+import SortDialog from "./Dialogs/SortDialog";
+import FilterDialog from "./Dialogs/FilterDialog";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
