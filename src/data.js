@@ -62,7 +62,7 @@ export const data = {
   author_works: [
     {
       ID: 1,
-      author: "Derrek Glen",
+      author: "Derek Glynn",
       title: "We are geeks",
       description:
         "What happens when multiple react developers get together for fun?  It's not what you would suspect"
@@ -93,6 +93,44 @@ export const data = {
 
     {
       ID: 5,
+      author: "Christian Auld",
+      title: "Why Postgres is my Favorite Back-End Database",
+      description:
+        "From ease deployment to ease of use, Postgres is one of the best back-end database systems that is free"
+    },
+    {
+      ID: 6,
+      author: "Derek Glynn",
+      title: "We are geeks",
+      description:
+        "What happens when multiple react developers get together for fun?  It's not what you would suspect"
+    },
+
+    {
+      ID: 7,
+      author: "Nathan Loveless",
+      title: "My Thru-hiking Adventures",
+      description:
+        "Join me as I recount the adventures (and misadventures) of hiking The Long Trail, its mostly nonfiction, promise"
+    },
+
+    {
+      ID: 8,
+      author: "Daniel Cruz",
+      title: "The woes of Back-end Postgres",
+      description: "First hand account of why I hate Postgres and deploying it"
+    },
+
+    {
+      ID: 9,
+      author: "Shafi Masoumi",
+      title: "Authentication for Experts",
+      description:
+        "Need experience in authentication is React, look no further than this book, filled with hundreds of pro tips"
+    },
+
+    {
+      ID: 10,
       author: "Christian Auld",
       title: "Why Postgres is my Favorite Back-End Database",
       description:
