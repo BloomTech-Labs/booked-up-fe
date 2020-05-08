@@ -62,8 +62,9 @@ export const data = {
   author_works: [
     {
       ID: 1,
-      author: "Derek Glynn",
+      author: "Derrek Glen",
       title: "We are geeks",
+      genre: "Technology",
       description:
         "What happens when multiple react developers get together for fun?  It's not what you would suspect"
     },
@@ -72,6 +73,7 @@ export const data = {
       ID: 2,
       author: "Nathan Loveless",
       title: "My Thru-hiking Adventures",
+      genre: "Nature",
       description:
         "Join me as I recount the adventures (and misadventures) of hiking The Long Trail, its mostly nonfiction, promise"
     },
@@ -80,6 +82,7 @@ export const data = {
       ID: 3,
       author: "Daniel Cruz",
       title: "The woes of Back-end Postgres",
+      genre: "SQL Databases",
       description: "First hand account of why I hate Postgres and deploying it"
     },
 
@@ -87,6 +90,7 @@ export const data = {
       ID: 4,
       author: "Shafi Masoumi",
       title: "Authentication for Experts",
+      genre: "Securtiy",
       description:
         "Need experience in authentication is React, look no further than this book, filled with hundreds of pro tips"
     },
@@ -95,6 +99,7 @@ export const data = {
       ID: 5,
       author: "Christian Auld",
       title: "Why Postgres is my Favorite Back-End Database",
+      genre: "SQL Databases",
       description:
         "From ease deployment to ease of use, Postgres is one of the best back-end database systems that is free"
     },
@@ -102,6 +107,7 @@ export const data = {
       ID: 6,
       author: "Derek Glynn",
       title: "We are geeks",
+      genre: "Technology",
       description:
         "What happens when multiple react developers get together for fun?  It's not what you would suspect"
     },
@@ -110,6 +116,7 @@ export const data = {
       ID: 7,
       author: "Nathan Loveless",
       title: "My Thru-hiking Adventures",
+      genre: "Nature",
       description:
         "Join me as I recount the adventures (and misadventures) of hiking The Long Trail, its mostly nonfiction, promise"
     },
@@ -118,6 +125,7 @@ export const data = {
       ID: 8,
       author: "Daniel Cruz",
       title: "The woes of Back-end Postgres",
+      genre: "SQL Databases",
       description: "First hand account of why I hate Postgres and deploying it"
     },
 
@@ -125,6 +133,7 @@ export const data = {
       ID: 9,
       author: "Shafi Masoumi",
       title: "Authentication for Experts",
+      genre: "Securtiy",
       description:
         "Need experience in authentication is React, look no further than this book, filled with hundreds of pro tips"
     },
@@ -133,9 +142,9 @@ export const data = {
       ID: 10,
       author: "Christian Auld",
       title: "Why Postgres is my Favorite Back-End Database",
+      genre: "SQL Databases",
       description:
         "From ease deployment to ease of use, Postgres is one of the best back-end database systems that is free"
     }
   ]
 };
-

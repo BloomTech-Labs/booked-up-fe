@@ -120,7 +120,7 @@ export default function Dashboard(props) {
         }
         setComponent(<p>My Messages</p>);
         break;
-
+        
       default:
         break;
     }
