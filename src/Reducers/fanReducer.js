@@ -1,4 +1,4 @@
-import { SOMETHING_FAN_STUB } from "../Actions/fanAction";
+import { SOMETHING_FAN_STUB } from "../actions/fanAction";
 import { initialState } from "./indexReducer";
 
 export const fanReducer = (state = initialState, action) => {

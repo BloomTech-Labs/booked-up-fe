@@ -4,7 +4,7 @@ import {
   CREATE_FAN_ACCOUNT,
   USER_LOGON,
   USER_LOGOUT
-} from "../Actions/authenticationAction";
+} from "../actions/authenticationAction";
 import { initialState } from "./indexReducer";
 
 export const authenticationReducer = (state = initialState, action) => {

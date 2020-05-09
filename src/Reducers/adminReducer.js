@@ -1,4 +1,4 @@
-import { SOMETHING_ADMIN_STUB } from "../Actions/adminAction";
+import { SOMETHING_ADMIN_STUB } from "../actions/adminAction";
 import { initialState } from "./indexReducer";
 
 export const adminReducer = (state = initialState, action) => {

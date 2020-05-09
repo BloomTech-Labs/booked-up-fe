@@ -1,4 +1,4 @@
-import { SOMETHING_AUTHOR_STUB } from "../Actions/authorAction";
+import { SOMETHING_AUTHOR_STUB } from "../actions/authorAction";
 import { initialState } from "./indexReducer";
 
 export const authorReducer = (state = initialState, action) => {

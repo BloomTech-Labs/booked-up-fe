@@ -1,4 +1,4 @@
-import { SOMETHING_AGENT_STUB } from "../Actions/agentAction";
+import { SOMETHING_AGENT_STUB } from "../actions/agentAction";
 import { initialState } from "./indexReducer";
 
 export const agentReducer = (state = initialState, action) => {
