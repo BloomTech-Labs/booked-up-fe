@@ -18,12 +18,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    
-  },
-  
   container: {
+    display: "flex",
     marginRight: "-.5em",
     marginLeft: "-.5em"
   },
@@ -33,8 +29,7 @@ const useStyles = makeStyles(theme => ({
     borderRight: "1px solid black",
     marginTop: "4.34em",
     marginBottom: "4.33em",
-    height: "83.9vh",
-    width: "10em"
+    width: "10em",
   },
   title: {
     padding: "1%",
@@ -78,7 +73,7 @@ const useStyles = makeStyles(theme => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState("");
+  const [component, setComponent] = useState(<Browse />);
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -86,7 +81,7 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     switch (window.location.pathname) {
-      case "/dashboard/browse":
+      case "/dashboard":
         if (value !== 0) {
           setValue(0);
         }
@@ -120,7 +115,7 @@ export default function Dashboard(props) {
         }
         setComponent(<p>My Messages</p>);
         break;
-        
+
       default:
         break;
     }
