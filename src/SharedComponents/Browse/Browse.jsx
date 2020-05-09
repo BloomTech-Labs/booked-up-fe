@@ -236,10 +236,11 @@ export default function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={<a className={classes.prev}>&#10094;</a>}
+            arrowLeft={<a className={classes.prev} data-testid='new-left'>&#10094;</a>}
             arrowRight={<a className={classes.next}>&#10095;</a>}
             addArrowClickHandler
             infinite
+            
           >
             {content_library.map((cl, i) => (
               <div key={i} className={classes.placeholderImage}>
@@ -258,17 +259,18 @@ export default function Browse(props) {
             className={classes.worksContainer}
             slidesPerPage={5}
             arrowLeft={
-              <a class="prev" className={classes.prev}>
+              <a className={classes.prev}>
                 &#10094;
               </a>
             }
             arrowRight={
-              <a class="next" className={classes.next}>
+              <a className={classes.next} data-testid='pop-right'>
                 &#10095;
               </a>
             }
             addArrowClickHandler
             infinite
+            
           >
             {content_library.map((cl, i) => (
               <div key={i} className={classes.placeholderImage}>
@@ -304,3 +306,4 @@ export default function Browse(props) {
     </>
   );
 }
+

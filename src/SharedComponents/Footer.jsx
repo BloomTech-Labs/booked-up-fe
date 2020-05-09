@@ -66,12 +66,10 @@ export default function Footer(props) {
               label="@2020 Booked Up"
               className={classes.nav}
             />
-            <p className={classes.div}>|</p>
             <BottomNavigationAction
               label="Terms of Service"
               className={classes.nav}
             />
-            <p className={classes.div}>|</p>
             <BottomNavigationAction
               label="Privacy Policy"
               className={classes.nav}

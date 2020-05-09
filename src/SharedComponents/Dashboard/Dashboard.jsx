@@ -127,74 +127,27 @@ export default function Dashboard(props) {
   }, [value]);
 
   return (
-    // <div className={classes.container}>
-    //   <div className={classes.dashCon}>
-    //     <Typography variant="h4" className={classes.title}>
-    //       Dashboard
-    //     </Typography>
-    //     <div className={classes.dashboard}>
-    //       <Tabs
-    //         value={value}
-    //         onChange={handleChange}
-    //         className={classes.dashNavCon}
-    //         indicatorColor="primary"
-    //       >
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/browse"
-    //           label="Browse"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/content-library"
-    //           label="Content Library"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/my-works"
-    //           label="My Works"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/messages"
-    //           label="My Messages"
-    //         />
-    //       </Tabs>
-    //       <div className={classes.content}>{component}</div>
-    //     </div>
-    //   </div>
-    // </div>
-
     <div className={classes.container}>
     <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper
         }}
         anchor="left"
+        data-testid='sidebar'
       >
         <div className={classes.toolbar} />
         <Divider />
         <List onClick={handleChange}>
-          {/* {['Browse', 'Favorites', 'My Works'].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              {/* <ListItemText primary={text} />
-            </ListItem>
-          // ))} */}
-          <ListItem component={Link} to="/dashboard/browse" className={classes.listItem}>
-            <ListItemText  primary="Browse" />
+          <ListItem component={Link} to="/dashboard" className={classes.listItem}>
+            <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
           </ListItem>
           <ListItem component={Link} to="/dashboard/content-library" className={classes.listItem}>
-            <ListItemText primary="Favorites" />
+            <ListItemText primary="Favorites" data-testid='sidebar-fav' />
           </ListItem>
           <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
-            <ListItemText primary="My Works" />
+            <ListItemText primary="My Works" data-testid='sidebar-works'/>
           </ListItem>
         </List>
         <Divider />
