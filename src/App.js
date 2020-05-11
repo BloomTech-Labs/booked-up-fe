@@ -7,7 +7,7 @@ import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx";
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import SignIn from "./SharedComponents/loginForm";
-import SignUp from "./SharedComponents/SingupForm";
+import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -23,7 +23,7 @@ function App() {
           />
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/" component={() => <div>Home</div>} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signup" component={SignUpForm} />
         </Switch>
         <Footer />
       </BrowserRouter>

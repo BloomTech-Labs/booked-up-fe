@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { useForm, Controller } from "react-hook-form";
+import { createAuthorAccount } from "../actions/authenticationAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -46,21 +49,34 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(12)
+  },
+  error: {
+    color: "red"
+  },
+  signIn: {
+    display: "flex",
+    justifyContent: "flex-center"
   }
 }));
 
-export default function SignUp(props) {
+const SignUpForm = props => {
   const classes = useStyles();
-  const [creds, setCreds] = useState({});
-  const [userType, setUserType] = useState("");
+  const { register, errors, handleSubmit, control } = useForm();
 
-  const onSubmit = e => {
+  const onSubmit = (data, e) => {
     e.preventDefault();
-    props.signup(creds, props.history);
-  };
-
-  const handleChangeUserType = event => {
-    setUserType(event.target.value);
+    props.createAuthorAccount(
+      {
+        ID: "",
+        user_type: data.userType,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        display_name: data.username,
+        email: data.email,
+        password: data.password
+      },
+      props
+    );
   };
 
   return (
@@ -68,38 +84,51 @@ export default function SignUp(props) {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.side} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper} component="main" maxWidth="xs">
+        <div className={classes.paper} component="main">
           <Avatar className={classes.avatar}>
             <AccountCircleIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate onSubmit={onSubmit}>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Grid item xs={6}>
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-outlined-label">
                   User Type
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  value={userType}
-                  onChange={handleChangeUserType}
-                  label="User type"
-                  color="secondary"
-                >
-                  <MenuItem value={"agent"}>Agent</MenuItem>
-                  <MenuItem value={"author"}>Author</MenuItem>
-                  <MenuItem value={"fan"}>Fan</MenuItem>
-                </Select>
+                <Controller
+                  as={
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      label="User type"
+                      color="secondary"
+                    >
+                      <MenuItem value={"agent"}>Agent</MenuItem>
+                      <MenuItem value={"author"}>Author</MenuItem>
+                      <MenuItem value={"fan"}>Fan</MenuItem>
+                    </Select>
+                  }
+                  name="userType"
+                  rules={{ required: "You must select a user type" }}
+                  control={control}
+                  defaultValue=""
+                />
+                {errors.userType && (
+                  <div className={classes.error}>{errors.userType.message}</div>
+                )}
               </FormControl>
             </Grid>
 
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
+                  type="text"
                   name="firstName"
                   variant="outlined"
                   required
@@ -107,57 +136,109 @@ export default function SignUp(props) {
                   id="firstName"
                   label="First Name"
                   color="secondary"
+                  htmlFor="firstName"
+                  autoComplete="fname"
+                  inputRef={register({
+                    required: "First name is required",
+                    message: "First name is required"
+                  })}
                   autoFocus
                 />
+                {errors.firstName && (
+                  <div className={classes.error}>
+                    {errors.firstName.message}
+                  </div>
+                )}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  type="text"
+                  name="lastName"
                   variant="outlined"
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
                   color="secondary"
+                  htmlFor="lastName"
                   autoComplete="lname"
+                  inputRef={register({
+                    required: "Last name is required",
+                    message: "Last name is required"
+                  })}
                 />
+                {errors.lastName && (
+                  <div className={classes.error}>{errors.lastName.message}</div>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  type="text"
+                  name="username"
                   variant="outlined"
                   required
                   fullWidth
                   id="username"
                   label="User Name"
-                  name="username"
                   color="secondary"
+                  htmlFor="username"
                   autoComplete="username"
+                  inputRef={register({
+                    required: "Username is required",
+                    message: "Username is required"
+                  })}
                 />
+                {errors.username && (
+                  <div className={classes.error}>{errors.username.message}</div>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  type="text"
+                  name="email"
                   variant="outlined"
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
-                  name="email"
                   color="secondary"
+                  htmlFor="email"
                   autoComplete="email"
+                  inputRef={register({
+                    required: "You must provide an Email",
+                    pattern: {
+                      value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      message: "Please provide a valid Email!"
+                    }
+                  })}
                 />
+                {errors.email && (
+                  <div className={classes.error}>{errors.email.message}</div>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  type="password"
+                  name="password"
                   variant="outlined"
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
                   id="password"
+                  label="Password"
                   color="secondary"
+                  htmlFor="password"
                   autoComplete="current-password"
+                  inputRef={register({
+                    required: "You must provide a password",
+                    minLength: {
+                      value: 8,
+                      message: "Minimum Length is 8"
+                    }
+                  })}
                 />
+                {errors.password && (
+                  <div className={classes.error}>{errors.password.message}</div>
+                )}
               </Grid>
             </Grid>
             <Button
@@ -169,7 +250,7 @@ export default function SignUp(props) {
             >
               Sign Up
             </Button>
-            <Grid container justify="flex-center">
+            <Grid container className={classes.signIn}>
               <Grid item>
                 <Link href="/login" variant="body2">
                   Already have an account? Sign in
@@ -181,8 +262,10 @@ export default function SignUp(props) {
       </Grid>
     </Grid>
   );
-}
+};
 
 const mapStateToProps = state => ({
-  user = state.user
+  user: state.user
 });
+
+export default connect(mapStateToProps, { createAuthorAccount })(SignUpForm);

@@ -4,7 +4,15 @@ export const CREATE_FAN_ACCOUNT = "CREATE_FAN_ACCOUNT";
 export const USER_LOGON = "USER_LOGON";
 export const USER_LOGOUT = "USER_LOGOUT";
 
-export const createAuthorAccount = data => dispatch => {
+export const createAuthorAccount = (data, props) => dispatch => {
+  console.log(
+    "NL: authenticationAction.js: createAuthorAccount: ",
+    "Data: ",
+    data,
+    "Props: ",
+    props
+  );
+
   dispatch({ type: CREATE_AUTHOR_ACCOUNT, payload: data });
 };
 
