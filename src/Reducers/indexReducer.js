@@ -6,7 +6,22 @@ import { authorReducer } from "./authorReducer";
 import { fanReducer } from "./fanReducer";
 
 export const initialState = {
-  username: ""
+  user: {
+    ID: "",
+    user_type: "",
+    first_name: "",
+    last_name: "",
+    display_name: "",
+    email: "",
+    city: "",
+    state: "",
+    country: "",
+    avatar_url: "",
+    password: ""
+  },
+
+  contentLibrary: [],
+  authorContent: []
 };
 
 // This is the combineReducers, so we can split reducer files into smaller, more manageable pieces.

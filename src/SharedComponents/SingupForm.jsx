@@ -182,3 +182,7 @@ export default function SignUp(props) {
     </Grid>
   );
 }
+
+const mapStateToProps = state => ({
+  user = state.user
+});
