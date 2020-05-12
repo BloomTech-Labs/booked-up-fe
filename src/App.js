@@ -6,7 +6,7 @@ import theme from "./utils/Theme";
 import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx";
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
-import SignIn from "./SharedComponents/loginForm";
+import SignIn from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
