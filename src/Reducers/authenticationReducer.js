@@ -1,5 +1,5 @@
 import {
-  CREATE_AUTHOR_ACCOUNT,
+  CREATE_ACCOUNT,
   CREATE_AGENT_ACCOUNT,
   CREATE_FAN_ACCOUNT,
   USER_LOGON,
@@ -9,7 +9,7 @@ import { initialState } from "./indexReducer";
 
 export const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_AUTHOR_ACCOUNT: {
+    case CREATE_ACCOUNT: {
       return state;
     }
 

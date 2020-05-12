@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
-import { createAuthorAccount } from "../actions/authenticationAction";
+import { createAccount } from "../actions/authenticationAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -65,7 +65,7 @@ const SignUpForm = props => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    props.createAuthorAccount(
+    props.createAccount(
       {
         ID: "",
         user_type: data.userType,
@@ -230,9 +230,10 @@ const SignUpForm = props => {
                   autoComplete="current-password"
                   inputRef={register({
                     required: "You must provide a password",
-                    minLength: {
-                      value: 8,
-                      message: "Minimum Length is 8"
+                    pattern: {
+                      value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                      message:
+                        "Your password must contain Must contain 8 characters - one uppercase, one lowercase, one number, one special"
                     }
                   })}
                 />
@@ -268,4 +269,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { createAuthorAccount })(SignUpForm);
+export default connect(mapStateToProps, { createAccount })(SignUpForm);
