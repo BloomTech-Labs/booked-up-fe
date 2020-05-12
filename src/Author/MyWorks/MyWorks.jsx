@@ -5,20 +5,20 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
-import GridDisplay from "./GridDisplay";
-import RowDisplay from "./RowDisplay";
-import ColumnDisplay from "./ColumnDisplay";
+import GridDisplay from "./ContentViews/GridDisplay";
+import RowDisplay from "./ContentViews/RowDisplay";
+import ColumnDisplay from "./ContentViews/ColumnDisplay";
 import { data } from "../../data";
 import ViewModuleOutlinedIcon from "@material-ui/icons/ViewModuleOutlined";
 import ViewStreamOutlinedIcon from "@material-ui/icons/ViewStreamOutlined";
 import ViewWeekOutlinedIcon from "@material-ui/icons/ViewWeekOutlined";
 import PublishOutlinedIcon from "@material-ui/icons/PublishOutlined";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import OpenInBrowserOutlinedIcon from "@material-ui/icons/OpenInBrowserOutlined";
 import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
 import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import Tooltip from "@material-ui/core/Tooltip";
+import SortDialog from "./Dialogs/SortDialog";
+import FilterDialog from "./Dialogs/FilterDialog";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -58,25 +58,126 @@ const useStyles = makeStyles(theme => ({
     marginTop: "35px",
     marginLeft: "35px",
     marginRight: "35px"
+  },
+  iconButton: {
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   }
 }));
 
-const userData = data;
-
 export default function MyWorks(props) {
+  const [users, setUsers] = useState(data);
   const [selected, setSelected] = useState("grid");
+  const [sortClicked, setSortClicked] = useState(false);
+  const [filterClicked, setFilterClicked] = useState(false);
 
   const handleSelect = (event, selected) => {
     setSelected(selected);
   };
+
+  const handleSort = () => {
+    setSortClicked(true);
+  };
+
+  const handleFilter = () => {
+    setFilterClicked(true);
+  };
+
+  const handleSortClose = value => {
+    setSortClicked(false);
+
+    let sortedData = users.author_works;
+
+    if (value !== null) {
+      switch (value) {
+        case "Title: A to Z": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.title < b.title) return -1;
+            else if (a.title > b.title) return 1;
+            return 0;
+          });
+          return;
+        }
+        case "Title: Z to A": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.title < b.title) return 1;
+            else if (a.title > b.title) return -1;
+            return 0;
+          });
+          return;
+        }
+        case "Author: A to Z": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.author < b.author) return -1;
+            else if (a.author > b.author) return 1;
+            return 0;
+          });
+          return;
+        }
+        case "Author: Z to A": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.author < b.author) return 1;
+            else if (a.author > b.author) return -1;
+            return 0;
+          });
+          return;
+        }
+        case "Genre: A to Z": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.genre < b.genre) return -1;
+            else if (a.genre > b.genre) return 1;
+            return 0;
+          });
+          return;
+        }
+        case "Genre: Z to A": {
+          sortedData = users.author_works.sort(function(a, b) {
+            if (a.genre < b.genre) return 1;
+            else if (a.genre > b.genre) return -1;
+            return 0;
+          });
+          return;
+        }
+        case "Popularity": {
+          console.log(`NL: MyWorks.js: handleSortClose: value=${value}`);
+          return;
+        }
+        default:
+          return;
+      }
+
+      setUsers({ author_works: sortedData });
+    }
+  };
+
+  const handleFilterClose = value => {
+    setFilterClicked(false);
+  };
+
   const classes = useStyles();
+
   return (
     <>
+      {sortClicked === true && (
+        <SortDialog
+          handleSortClose={handleSortClose}
+          sortClicked={sortClicked}
+        />
+      )}
+      {filterClicked === true && (
+        <FilterDialog
+          handleFilterClose={handleFilterClose}
+          filterClicked={filterClicked}
+        />
+      )}
       <div className={classes.toolbar}>
         <div className={classes.leftToolbarButton}>
-          <IconButton>
-            <PublishOutlinedIcon />
-          </IconButton>
+          <Tooltip title="Upload New Work">
+            <IconButton className={classes.iconButton}>
+              <PublishOutlinedIcon />
+            </IconButton>
+          </Tooltip>
         </div>
         <div className={classes.rightToolbarButtonGroup}>
           <ToggleButtonGroup
@@ -86,36 +187,46 @@ export default function MyWorks(props) {
             onChange={handleSelect}
             aria-label="Text Alignment"
           >
-            <ToggleButton
-              value="grid"
-              className={classes.iconButton}
-              aria-label="grid"
-            >
-              <ViewModuleOutlinedIcon />
-            </ToggleButton>
-            <ToggleButton
-              value="row"
-              className={classes.iconButton}
-              aria-label="row"
-            >
-              <ViewWeekOutlinedIcon />
-            </ToggleButton>
-            <ToggleButton
-              value="column"
-              className={classes.iconButton}
-              aria-label="column"
-            >
-              <ViewStreamOutlinedIcon />
-            </ToggleButton>
+            <Tooltip title="Grid">
+              <ToggleButton
+                value="grid"
+                className={classes.iconButton}
+                aria-label="grid"
+              >
+                <ViewModuleOutlinedIcon />
+              </ToggleButton>
+            </Tooltip>
+            <Tooltip title="Row">
+              <ToggleButton
+                value="row"
+                className={classes.iconButton}
+                aria-label="row"
+              >
+                <ViewWeekOutlinedIcon />
+              </ToggleButton>
+            </Tooltip>
+            <Tooltip title="Column">
+              <ToggleButton
+                value="column"
+                className={classes.iconButton}
+                aria-label="column"
+              >
+                <ViewStreamOutlinedIcon />
+              </ToggleButton>
+            </Tooltip>
           </ToggleButtonGroup>
         </div>
         <ButtonGroup>
-          <IconButton>
-            <SortOutlinedIcon />
-          </IconButton>
-          <IconButton>
-            <FilterListOutlinedIcon />
-          </IconButton>
+          <Tooltip title="Sort">
+            <IconButton onClick={handleSort} className={classes.iconButton}>
+              <SortOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Filter">
+            <IconButton onClick={handleFilter} className={classes.iconButton}>
+              <FilterListOutlinedIcon />
+            </IconButton>
+          </Tooltip>
         </ButtonGroup>
         <div className={classes.searchGroup}>
           <SearchOutlinedIcon />
@@ -123,9 +234,13 @@ export default function MyWorks(props) {
         </div>
       </div>
       <div className={classes.contentArea}>
-        {selected === "grid" && <GridDisplay authorWorks={data.author_works} />}
-        {selected === "row" && <RowDisplay authorWorks={data.author_works} />}
-        {selected === "column" && <ColumnDisplay />}
+        {selected === "grid" && (
+          <GridDisplay authorWorks={users.author_works} />
+        )}
+        {selected === "row" && <RowDisplay authorWorks={users.author_works} />}
+        {selected === "column" && (
+          <ColumnDisplay authorWorks={users.author_works} />
+        )}
       </div>
     </>
   );

@@ -9,7 +9,6 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import SignIn from "./SharedComponents/loginForm";
 import SignUp from "./SharedComponents/SingupForm";
 
-
 function App() {
   
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -29,5 +28,6 @@ function App() {
 
   );
 }
+
 
 export default App;

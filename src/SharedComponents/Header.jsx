@@ -110,7 +110,6 @@ export default function Header(props) {
 
   return (
     <>
-
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar disableGutters>
