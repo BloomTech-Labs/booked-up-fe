@@ -21,17 +21,9 @@ export const createAccount = (data, props) => dispatch => {
 
 export const userLogon = data => dispatch => {
   console.log("NL: authenticationAction.js: userLogon: ", "Data: ", data);
-  axios
-  .post("https://bookedup-pt9.herokuapp.com/api/auth/login", {
-
-  })
+  axios.post("https://bookedup-pt9.herokuapp.com/api/auth/login", {});
   dispatch({ type: USER_LOGON, payload: data });
 };
-
-axiosWithAuth
-.post("Get content library") {
-  // do that
-}
 
 export const userLogout = data => dispatch => {
   dispatch({ type: USER_LOGOUT, payload: data });
