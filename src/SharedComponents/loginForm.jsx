@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LoginForm = props => {
+export const LoginForm = props => {
   const classes = useStyles();
   const { register, errors, handleSubmit, control } = useForm();
 

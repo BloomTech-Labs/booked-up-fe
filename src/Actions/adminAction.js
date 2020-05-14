@@ -1,6 +1,12 @@
-export const SOMETHING_ADMIN_STUB = "SOMETHING_ADMIN_STUB";
+import axios from "axios";
 
-export const somethingAdminStub = passedMessage => dispatch => {
-  passedMessage += "adminAction.js, somethingAdminStub, ";
-  dispatch({ type: SOMETHING_ADMIN_STUB, payload: passedMessage });
+export const GET_USERS = "GET_USERS";
+
+export const getUsers = data => dispatch => {
+  axios
+    .get("https://bookedup-pt9.herokuapp.com/api/users", data)
+    .then(res => {
+      dispatch({ type: GET_USERS, payload: res.data });
+    })
+    .catch(err => console.log(err.message));
 };

@@ -4,6 +4,8 @@ import {
   USER_LOGOUT
 } from "../actions/authenticationAction";
 
+import { GET_USERS } from "../actions/adminAction";
+
 const initialState = {
   user: {
     id: "",
@@ -21,7 +23,8 @@ const initialState = {
   message: "",
 
   contentLibrary: [],
-  authorContent: []
+  authorContent: [],
+  userAccounts: []
 };
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -42,6 +45,10 @@ function reducer(state = initialState, action) {
     }
 
     case USER_LOGOUT: {
+      return state;
+    }
+
+    case GET_USERS: {
       return state;
     }
     default: {
