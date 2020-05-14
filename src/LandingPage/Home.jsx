@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
   },
   pageInfo: {
     paddingTop: '3%',
-    //boxShadow: '-0.1rem 0.1rem 0.9rem 0rem',
   }
 }));
 
@@ -109,7 +108,7 @@ const AgentAtuhorInfo = [
 const sidebar = {
   title: 'About',
   description:
-    'This app is helping litrary agents and authors to connect.',
+    'Booked up is an easy and user-friendly place for both parties to connect a way for literary agents to leave feedback, a way for authors to post their work and One-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to literary agents',
   social: [
     { name: 'Twitter', icon: TwitterIcon },
     { name: 'Facebook', icon: FacebookIcon },
@@ -141,21 +140,11 @@ export default function HomePage(props) {
                 <h2>Vision</h2>
               </Typography>
               <Divider />             
-              <Typography className={classes.pageInfo}>Please type your Vision here please have some info 
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              
+              <Typography className={classes.pageInfo}>
+              Product vision on business point of view. 
+              The Product vision describes the purpose of a Product, 
+              the intention with which the Product is being created and what it aims to achieve for customers and users. 
+              The Product vision describes a future state of the Product and what problems it tries to resolve or what ambitions it tries to fulfill.
               </Typography>
             </Grid>
             <Grid item xs={10} md={6}>
@@ -163,21 +152,10 @@ export default function HomePage(props) {
                 <h2>Misison</h2>
               </Typography>
               <Divider />             
-              <Typography className={classes.pageInfo}>Please your Mission here please have some info 
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              You should type in some marketing info here please have some info
-              
+              <Typography className={classes.pageInfo}>
+              Product mission on business point of view. A mission statement articulates a company's purpose. 
+              It announces to the world at large why your company/product exists. 
+              Every business should have a mission statement as a way of unifying the business.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
