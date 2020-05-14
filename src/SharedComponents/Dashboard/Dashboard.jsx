@@ -5,24 +5,23 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import PrivateRoute from "../../utils/PrivateRoute.jsx";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Drawer from "@material-ui/core/Drawer"
+import Drawer from "@material-ui/core/Drawer";
 import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    
+    display: "flex"
   },
-  
+
   container: {
     marginRight: "-.5em",
     marginLeft: "-.5em"
@@ -120,7 +119,7 @@ export default function Dashboard(props) {
         }
         setComponent(<p>My Messages</p>);
         break;
-        
+
       default:
         break;
     }
@@ -170,11 +169,11 @@ export default function Dashboard(props) {
     // </div>
 
     <div className={classes.container}>
-    <Drawer
+      <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper
         }}
         anchor="left"
       >
@@ -184,22 +183,34 @@ export default function Dashboard(props) {
           {/* {['Browse', 'Favorites', 'My Works'].map((text, index) => (
             <ListItem button key={text}>
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              {/* <ListItemText primary={text} />
+          {/* <ListItemText primary={text} />
             </ListItem>
           // ))} */}
-          <ListItem component={Link} to="/dashboard/browse" className={classes.listItem}>
-            <ListItemText  primary="Browse" />
+          <ListItem
+            component={Link}
+            to="/dashboard/browse"
+            className={classes.listItem}
+          >
+            <ListItemText primary="Browse" />
           </ListItem>
-          <ListItem component={Link} to="/dashboard/content-library" className={classes.listItem}>
+          <ListItem
+            component={Link}
+            to="/dashboard/content-library"
+            className={classes.listItem}
+          >
             <ListItemText primary="Favorites" />
           </ListItem>
-          <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
+          <ListItem
+            component={Link}
+            to="/dashboard/my-works"
+            className={classes.listItem}
+          >
             <ListItemText primary="My Works" />
           </ListItem>
         </List>
         <Divider />
       </Drawer>
       <div className={classes.content}>{component}</div>
-      </div>
+    </div>
   );
 }

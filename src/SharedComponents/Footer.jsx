@@ -14,7 +14,7 @@ import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
-        marginBottom: "4em"
+    marginBottom: "4em"
   },
   appBar: {
     top: "auto",
@@ -52,14 +52,16 @@ export default function Footer(props) {
   const classes = useStyles();
   return (
     <>
-
-    <div className={classes.toolbarMargin}></div>
+      <div className={classes.toolbarMargin}></div>
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <BottomNavigation showLabels className={classes.navContainer}>
             <BottomNavigationAction label="Browse" className={classes.nav} />
             <BottomNavigationAction label="Support" className={classes.nav} />
-            <BottomNavigationAction label="Contact Us" className={classes.nav} />
+            <BottomNavigationAction
+              label="Contact Us"
+              className={classes.nav}
+            />
           </BottomNavigation>
           <BottomNavigation showLabels className={classes.navContainer}>
             <BottomNavigationAction

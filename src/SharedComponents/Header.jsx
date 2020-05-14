@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     height: "8em",
     width: "11em",
     paddingTop: "2%",
-    marginLeft: "1%",
+    marginLeft: "1%"
   },
   logoContainer: {
     width: "10%",
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     backgroundColor: "Silver",
     borderRadius: "0 35px 35px 0",
-    boxShadow: '0 0 0.3rem 0.2rem LightGrey',
+    boxShadow: "0 0 0.3rem 0.2rem LightGrey"
   },
   tabContainer: {
     marginLeft: "auto"
