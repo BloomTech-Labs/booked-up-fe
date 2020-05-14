@@ -19,6 +19,8 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
 import SortDialog from "./Dialogs/SortDialog";
 import FilterDialog from "./Dialogs/FilterDialog";
+import UploadModal from "./UploadModal.jsx";
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -71,7 +73,16 @@ export default function MyWorks(props) {
   const [selected, setSelected] = useState("grid");
   const [sortClicked, setSortClicked] = useState(false);
   const [filterClicked, setFilterClicked] = useState(false);
+  const [selectModal, setSelectModal] = useState(false);
+  const [open, setOpen] = useState(false);
 
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
   const handleSelect = (event, selected) => {
     setSelected(selected);
   };
@@ -172,8 +183,8 @@ export default function MyWorks(props) {
         />
       )}
       <div className={classes.toolbar}>
-        <div className={classes.leftToolbarButton}>
-          <Tooltip title="Upload New Work">
+        <div className={classes.leftToolbarButton} onClick={handleOpen}>
+          <Tooltip title="Upload New Work" >
             <IconButton className={classes.iconButton}>
               <PublishOutlinedIcon />
             </IconButton>
@@ -233,6 +244,16 @@ export default function MyWorks(props) {
           <TextField id="search" className={classes.searchBar} label="Search" />
         </div>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div>
+        <UploadModal />
+        </div>
+      </Modal>
       <div className={classes.contentArea}>
         {selected === "grid" && (
           <GridDisplay authorWorks={users.author_works} />
