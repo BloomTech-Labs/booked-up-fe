@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -24,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function UploadModal(props) {
+function UploadModal(props) {
   const classes = useStyles();
   const [work, setWork] = useState({ title: "", body: [] });
   const [uploadWork, setUploadWork] = useState({
@@ -32,7 +31,7 @@ export default function UploadModal(props) {
     content_url: "",
     user_id: 0
   });
-  const [cloudinary, setCloudinary] = useState({
+  const [cloudinary] = useState({
     URL: "https://api.cloudinary.com/v1_1/dzmxxuygs/upload",
     preset: "gcwzl9u1"
   });
@@ -146,3 +145,17 @@ export default function UploadModal(props) {
     </Card>
   );
 }
+
+
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+      authorContent: state.authorContent
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(UploadModal)

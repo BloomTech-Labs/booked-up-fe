@@ -6,15 +6,13 @@ import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/new-logo.jpg";
-import image from "../assets/image.jpg";
 import MessageIcon from '@material-ui/icons/Message';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import { connect } from "react-redux";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -38,6 +36,10 @@ const logout = () => {
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     marginBottom: "4em"
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between"
   },
   logo: {
     height: "8em",
@@ -66,6 +68,10 @@ const useStyles = makeStyles(theme => ({
     minWidth: 10,
     marginLeft: "25px"
   },
+  loggedTab: {
+    marginRight: "15em"
+
+  },
   button: {
     ...theme.typography.estimate,
     borderRadius: "15px",
@@ -86,13 +92,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Header(props) {
+function Header(props) {
   const [value, setValue] = useState(0);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false)
   const [rc2, setRc2] = useState(false)
-
+  const [logged, setLogged] = useState(false);
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget)
@@ -127,7 +133,7 @@ export default function Header(props) {
         break;
 
       case "/messages":
-        if (value != 3) {
+        if (value !== 3) {
           setValue(3);
         }
         break;
@@ -148,7 +154,7 @@ export default function Header(props) {
 
       <ElevationScroll>
         <AppBar position="fixed">
-          <Toolbar disableGutters>
+          <Toolbar disableGutters className={classes.toolbar}>
             <Button
               component={Link}
               to="/"
@@ -168,20 +174,20 @@ export default function Header(props) {
               onChange={handleChange}
               indicatorColor="primary"
             >
-              <Tab
+              {logged === false && (<Tab
                 className={classes.tab}
                 component={Link}
                 to="/"
                 label="Home"
-              />
-              
+              />)}
+              {logged === true && (<div className={classes.loggedTab}>
               <Tab
                 className={classes.tab}
                 component={Link}
-                to="/dashboard"
+                to="/dashboard/profile"
                 label="Dashboard"
               />
-              {rc2 === true && (
+              {/* // {rc2 === true && (
                 <Tab
                 className={classes.tab}
                 component={Link}
@@ -189,15 +195,15 @@ export default function Header(props) {
                 label={<MessageIcon/>}
               />
               
-              )}
+              )} */}
               <Tab
               aria-owns={anchorEl ? "account-menu" : undefined} aria-haspopup={anchorEl ? "true": undefined}
                 className={classes.tab}
                 onClick={e => handleClick(e)}
                 label={<AccountCircleIcon/>}
-              />
+              /></div>)}
             </Tabs>
-            <Button
+            {logged === false && (<div><Button
               variant="contained"
               color="secondary"
               className={classes.button}
@@ -214,7 +220,7 @@ export default function Header(props) {
               to="/login"
             >
               Log In
-            </Button>
+            </Button></div>)}
             <Menu id="account-menu" classes={{paper: classes.menuTab}} anchorEl={anchorEl} open={open} onClose={handleClose} elevation={0}>
                 <MenuItem component={Link} to="/dashboard/profile">
                     <AccountCircleIcon/>
@@ -234,3 +240,16 @@ export default function Header(props) {
     </>
   );
 }
+
+
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(Header)

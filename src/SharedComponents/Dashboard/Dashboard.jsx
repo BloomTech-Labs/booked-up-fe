@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
-import Typography from "@material-ui/core/Typography";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import PrivateRoute from "../../utils/PrivateRoute.jsx";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Link } from "react-router-dom";
+// import PrivateRoute from "../../utils/PrivateRoute.jsx";
 import Drawer from "@material-ui/core/Drawer";
-import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
 import Profile from "../../Author/Profile/Profile.jsx";
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { connect } from "react-redux";
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -71,15 +66,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard(props) {
+function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState(<Browse />);
   const [rc2, setRc2] = useState(false);
 
-  const handleChange = (e, value) => {
-    setValue(value);
-  };
+  // const handleChange = (e, value) => {
+  //   setValue(value);
+  // };
 
   useEffect(() => {
     switch (window.location.pathname) {
@@ -136,26 +131,29 @@ export default function Dashboard(props) {
       >
         <div className={classes.toolbar} />
         <Divider />
-
-          {rc2 === true && (
+          <List>
+          {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard" className={classes.listItem}>
               <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
             </ListItem>
-          )}
+          )} */}
           
-          <ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
+          {props.type.toLowerCase().includes("author") && (<ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
             <ListItemText primary="My Profile" data-testid='sidebar-profile' />
-          </ListItem>
-          {rc2 === true && (
+          </ListItem>)}
+          {props.type.toLowerCase().includes("fan") && (<ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
+            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
+          </ListItem>)}
+          {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
               <ListItemText primary="Favorites" data-testid='sidebar-fav' />
             </ListItem>
-          )}
+          )} */}
           
-          <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
+          {props.type.toLowerCase().includes("author") && (<ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
             <ListItemText primary="My Works" data-testid='sidebar-works'/>
 
-          </ListItem>
+          </ListItem>)}
         </List>
         <Divider />
       </Drawer>
@@ -163,3 +161,17 @@ export default function Dashboard(props) {
     </div>
   );
 }
+
+
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+      type: state.user.type
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(Dashboard)
