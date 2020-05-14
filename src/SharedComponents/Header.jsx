@@ -28,6 +28,13 @@ function ElevationScroll(props) {
   });
 }
 
+
+const logout = () => {
+  localStorage.clear();
+  alert("Thank you! Please come back soon!");
+};
+
+
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     marginBottom: "4em"
@@ -73,7 +80,8 @@ const useStyles = makeStyles(theme => ({
   },
   menuTab: {
     border: "1px solid black",
-    height: "14%",
+    height: "10%",
+    width: "7em"
     
   }
 }));
@@ -83,6 +91,8 @@ export default function Header(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false)
+  const [rc2, setRc2] = useState(false)
+
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget)
@@ -171,12 +181,15 @@ export default function Header(props) {
                 to="/dashboard"
                 label="Dashboard"
               />
-              <Tab
+              {rc2 === true && (
+                <Tab
                 className={classes.tab}
                 component={Link}
                 to="/messages"
                 label={<MessageIcon/>}
               />
+              
+              )}
               <Tab
               aria-owns={anchorEl ? "account-menu" : undefined} aria-haspopup={anchorEl ? "true": undefined}
                 className={classes.tab}
@@ -203,13 +216,14 @@ export default function Header(props) {
               Log In
             </Button>
             <Menu id="account-menu" classes={{paper: classes.menuTab}} anchorEl={anchorEl} open={open} onClose={handleClose} elevation={0}>
-                <MenuItem >
+                <MenuItem component={Link} to="/dashboard/profile">
                     <AccountCircleIcon/>
                   </MenuItem>
+                {rc2 === true && (
                 <MenuItem component={Link} to="/account-settings" >
                     Account Settings
-                  </MenuItem>
-                  <MenuItem component={Link} >
+                  </MenuItem>)}
+                  <MenuItem onClick={logout} >
                     Logout
                   </MenuItem>
               </Menu>

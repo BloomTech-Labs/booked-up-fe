@@ -9,6 +9,7 @@ import Drawer from "@material-ui/core/Drawer"
 import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
+import Profile from "../../Author/Profile/Profile.jsx";
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -74,6 +75,7 @@ export default function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState(<Browse />);
+  const [rc2, setRc2] = useState(false);
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -88,25 +90,25 @@ export default function Dashboard(props) {
         setComponent(<Browse />);
         break;
 
-      case "/dashboard/content-library":
+      case "/dashboard/profile":
         if (value !== 1) {
           setValue(1);
         }
-        setComponent(<p>Content Library</p>);
+        setComponent(<Profile />);
         break;
 
-      case "/dashboard/my-works":
+      case "/dashboard/favorites":
         if (value !== 2) {
           setValue(2);
         }
-        setComponent(<MyWorks />);
+        setComponent(<p>Favorites</p>);
         break;
 
-      case "/dashboard/messages":
+      case "/dashboard/my-works":
         if (value !== 3) {
           setValue(3);
         }
-        setComponent(<p>My Messages</p>);
+        setComponent(<MyWorks />);
         break;
 
       case "/dashboard/messages":
@@ -135,12 +137,21 @@ export default function Dashboard(props) {
         <div className={classes.toolbar} />
         <Divider />
         <List onClick={handleChange}>
-          <ListItem component={Link} to="/dashboard" className={classes.listItem}>
-            <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
+          {rc2 === true && (
+              <ListItem component={Link} to="/dashboard" className={classes.listItem}>
+              <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
+            </ListItem>
+          )}
+          
+          <ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
+            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
           </ListItem>
-          <ListItem component={Link} to="/dashboard/content-library" className={classes.listItem}>
-            <ListItemText primary="Favorites" data-testid='sidebar-fav' />
-          </ListItem>
+          {rc2 === true && (
+              <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
+              <ListItemText primary="Favorites" data-testid='sidebar-fav' />
+            </ListItem>
+          )}
+          
           <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
             <ListItemText primary="My Works" data-testid='sidebar-works'/>
           </ListItem>
