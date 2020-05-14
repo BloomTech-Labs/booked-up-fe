@@ -10,13 +10,13 @@ import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
 import Profile from "../../Author/Profile/Profile.jsx";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     borderRight: "1px solid black",
     marginTop: "4.34em",
     marginBottom: "4.33em",
-    width: "10em",
+    width: "10em"
   },
   title: {
     padding: "1%",
@@ -132,29 +132,44 @@ export default function Dashboard(props) {
           paper: classes.drawerPaper
         }}
         anchor="left"
-        data-testid='sidebar'
+        data-testid="sidebar"
       >
         <div className={classes.toolbar} />
         <Divider />
-
+        <List>
           {rc2 === true && (
-              <ListItem component={Link} to="/dashboard" className={classes.listItem}>
-              <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
+            <ListItem
+              component={Link}
+              to="/dashboard"
+              className={classes.listItem}
+            >
+              <ListItemText primary="Browse" data-testid="sidebar-browse" />
             </ListItem>
           )}
-          
-          <ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
-            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
+
+          <ListItem
+            component={Link}
+            to="/dashboard/profile"
+            className={classes.listItem}
+          >
+            <ListItemText primary="My Profile" data-testid="sidebar-profile" />
           </ListItem>
           {rc2 === true && (
-              <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
-              <ListItemText primary="Favorites" data-testid='sidebar-fav' />
+            <ListItem
+              component={Link}
+              to="/dashboard/favorites"
+              className={classes.listItem}
+            >
+              <ListItemText primary="Favorites" data-testid="sidebar-fav" />
             </ListItem>
           )}
-          
-          <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
-            <ListItemText primary="My Works" data-testid='sidebar-works'/>
 
+          <ListItem
+            component={Link}
+            to="/dashboard/my-works"
+            className={classes.listItem}
+          >
+            <ListItemText primary="My Works" data-testid="sidebar-works" />
           </ListItem>
         </List>
         <Divider />

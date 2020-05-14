@@ -24,7 +24,7 @@ function App() {
           />
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signup" component={SignUpForm} />
         </Switch>
         <Footer />
       </BrowserRouter>
