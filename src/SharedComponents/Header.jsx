@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   logoContainer: {
     width: "12%",
-    border: "3px solid black",
+    border: "1px solid silver",
     borderLeft: 0,
     height: "5em",
     overflow: "hidden",
