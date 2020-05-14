@@ -11,18 +11,24 @@ export const createAccount = (data, props) => dispatch => {
   axios
     .post("https://bookedup-pt9.herokuapp.com/api/auth/register", data)
     .then(res => {
-      localStorage.setItem("token", res.data.payload.password);
-      data.id = res.data;
-      dispatch({ type: CREATE_ACCOUNT, payload: data });
-      props.history.push("/dashboard");
+      dispatch({ type: CREATE_ACCOUNT, payload: res.data });
+      props.history.push("/login");
     })
     .catch(err => console.log(err.message));
 };
 
-export const userLogon = data => dispatch => {
-  console.log("NL: authenticationAction.js: userLogon: ", "Data: ", data);
-  axios.post("https://bookedup-pt9.herokuapp.com/api/auth/login", {});
-  dispatch({ type: USER_LOGON, payload: data });
+export const userLogon = (data, props) => dispatch => {
+  axios
+    .post("https://bookedup-pt9.herokuapp.com/api/auth/login", {
+      email: data.email,
+      password: data.password
+    })
+    .then(res => {
+      localStorage.setItem("token", res.data.Token);
+      dispatch({ type: USER_LOGON, payload: res.data });
+      props.history.push("/dashboard");
+    })
+    .catch(err => console.log(err));
 };
 
 export const userLogout = data => dispatch => {

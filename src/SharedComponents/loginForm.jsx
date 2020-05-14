@@ -52,17 +52,20 @@ const LoginForm = props => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    props.userLogon({
-      username: data.username,
-      password: data.password
-    });
+    props.userLogon(
+      {
+        email: data.username,
+        password: data.password
+      },
+      props
+    );
   };
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.side} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} mdn={5} component={Paper} elevation={6} square>
         <div boxShadow={5} className={classes.paper}>
           <Avatar className={classes.avatar}>
             <AccountCircleIcon />
@@ -148,7 +151,8 @@ const LoginForm = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  message: state.message
 });
 
 export default connect(mapStateToProps, { userLogon })(LoginForm);
