@@ -13,19 +13,21 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-  toolbarMargin: {
-    marginBottom: "4em"
+
+  footerContainer: {
+    marginBottom: 0
   },
-  appBar: {
-    top: "auto",
-    bottom: 0
+  footer: {
+    backgroundColor: theme.palette.secondary.dark,
+    width: "100%",
   },
   toolBar: {
     backgroundColor: theme.palette.secondary.dark,
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    width: "100%",
   },
   navContainer: {
     backgroundColor: theme.palette.secondary.dark,
@@ -52,8 +54,8 @@ export default function Footer(props) {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.toolbarMargin}></div>
-      <AppBar className={classes.appBar}>
+    <footer className={classes.footerContaier}>
+
         <Toolbar className={classes.toolBar}>
           <BottomNavigation showLabels className={classes.navContainer}>
             <BottomNavigationAction label="Browse" className={classes.nav} />
@@ -67,20 +69,19 @@ export default function Footer(props) {
             <BottomNavigationAction
               label="@2020 Booked Up"
               className={classes.nav}
-            />
-            <p className={classes.div}>|</p>
+            /> 
             <BottomNavigationAction
               label="Terms of Service"
               className={classes.nav}
             />
-            <p className={classes.div}>|</p>
             <BottomNavigationAction
               label="Privacy Policy"
               className={classes.nav}
             />
           </BottomNavigation>
         </Toolbar>
-      </AppBar>
+      </footer>
     </>
   );
 }
+

@@ -9,20 +9,18 @@ import Drawer from "@material-ui/core/Drawer";
 import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import Profile from "../../Author/Profile/Profile.jsx";
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
-  },
-
   container: {
+    display: "flex",
     marginRight: "-.5em",
     marginLeft: "-.5em"
   },
@@ -32,8 +30,7 @@ const useStyles = makeStyles(theme => ({
     borderRight: "1px solid black",
     marginTop: "4.34em",
     marginBottom: "4.33em",
-    height: "83.9vh",
-    width: "10em"
+    width: "10em",
   },
   title: {
     padding: "1%",
@@ -77,7 +74,8 @@ const useStyles = makeStyles(theme => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState("");
+  const [component, setComponent] = useState(<Browse />);
+  const [rc2, setRc2] = useState(false);
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -85,32 +83,32 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     switch (window.location.pathname) {
-      case "/dashboard/browse":
+      case "/dashboard":
         if (value !== 0) {
           setValue(0);
         }
         setComponent(<Browse />);
         break;
 
-      case "/dashboard/content-library":
+      case "/dashboard/profile":
         if (value !== 1) {
           setValue(1);
         }
-        setComponent(<p>Content Library</p>);
+        setComponent(<Profile />);
         break;
 
-      case "/dashboard/my-works":
+      case "/dashboard/favorites":
         if (value !== 2) {
           setValue(2);
         }
-        setComponent(<MyWorks />);
+        setComponent(<p>Favorites</p>);
         break;
 
-      case "/dashboard/messages":
+      case "/dashboard/my-works":
         if (value !== 3) {
           setValue(3);
         }
-        setComponent(<p>My Messages</p>);
+        setComponent(<MyWorks />);
         break;
 
       case "/dashboard/messages":
@@ -126,48 +124,6 @@ export default function Dashboard(props) {
   }, [value]);
 
   return (
-    // <div className={classes.container}>
-    //   <div className={classes.dashCon}>
-    //     <Typography variant="h4" className={classes.title}>
-    //       Dashboard
-    //     </Typography>
-    //     <div className={classes.dashboard}>
-    //       <Tabs
-    //         value={value}
-    //         onChange={handleChange}
-    //         className={classes.dashNavCon}
-    //         indicatorColor="primary"
-    //       >
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/browse"
-    //           label="Browse"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/content-library"
-    //           label="Content Library"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/my-works"
-    //           label="My Works"
-    //         />
-    //         <Tab
-    //           className={classes.dashNav}
-    //           component={Link}
-    //           to="/dashboard/messages"
-    //           label="My Messages"
-    //         />
-    //       </Tabs>
-    //       <div className={classes.content}>{component}</div>
-    //     </div>
-    //   </div>
-    // </div>
-
     <div className={classes.container}>
       <Drawer
         className={classes.drawer}
@@ -176,36 +132,29 @@ export default function Dashboard(props) {
           paper: classes.drawerPaper
         }}
         anchor="left"
+        data-testid='sidebar'
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List onClick={handleChange}>
-          {/* {['Browse', 'Favorites', 'My Works'].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-          {/* <ListItemText primary={text} />
+
+          {rc2 === true && (
+              <ListItem component={Link} to="/dashboard" className={classes.listItem}>
+              <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
             </ListItem>
-          // ))} */}
-          <ListItem
-            component={Link}
-            to="/dashboard/browse"
-            className={classes.listItem}
-          >
-            <ListItemText primary="Browse" />
+          )}
+          
+          <ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
+            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
           </ListItem>
-          <ListItem
-            component={Link}
-            to="/dashboard/content-library"
-            className={classes.listItem}
-          >
-            <ListItemText primary="Favorites" />
-          </ListItem>
-          <ListItem
-            component={Link}
-            to="/dashboard/my-works"
-            className={classes.listItem}
-          >
-            <ListItemText primary="My Works" />
+          {rc2 === true && (
+              <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
+              <ListItemText primary="Favorites" data-testid='sidebar-fav' />
+            </ListItem>
+          )}
+          
+          <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
+            <ListItemText primary="My Works" data-testid='sidebar-works'/>
+
           </ListItem>
         </List>
         <Divider />

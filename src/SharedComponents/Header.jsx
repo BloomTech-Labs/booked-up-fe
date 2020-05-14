@@ -12,6 +12,9 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/new-logo.jpg";
 import image from "../assets/image.jpg";
+import MessageIcon from '@material-ui/icons/Message';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -25,19 +28,27 @@ function ElevationScroll(props) {
   });
 }
 
+
+const logout = () => {
+  localStorage.clear();
+  alert("Thank you! Please come back soon!");
+};
+
+
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     marginBottom: "4em"
   },
   logo: {
     height: "8em",
-    width: "11em",
+    width: "100%",
     paddingTop: "2%",
     marginLeft: "1%"
+
   },
   logoContainer: {
-    width: "10%",
-    border: "1px silver",
+    width: "12%",
+    border: "3px solid black",
     borderLeft: 0,
     height: "5em",
     overflow: "hidden",
@@ -45,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "Silver",
     borderRadius: "0 35px 35px 0",
     boxShadow: "0 0 0.3rem 0.2rem LightGrey"
+
   },
   tabContainer: {
     marginLeft: "auto"
@@ -56,21 +68,44 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     ...theme.typography.estimate,
-    borderRadius: "20px",
+    borderRadius: "15px",
     marginLeft: "15px",
     marginRight: "15px",
-    height: "35px"
+    height: "45px"
+  },
+  
+  blankTab: {
+    border: "1px solid black",
+    height: "20px",
+  },
+  menuTab: {
+    border: "1px solid black",
+    height: "10%",
+    width: "7em"
+    
   }
 }));
 
 export default function Header(props) {
   const [value, setValue] = useState(0);
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false)
+  const [rc2, setRc2] = useState(false)
+
+
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget)
+    setOpen(true)
+  }
 
   const handleChange = (e, value) => {
     setValue(value);
   };
-
+  const handleClose = e => {
+    setAnchorEl(null)
+    setOpen(false)
+  }
   useEffect(() => {
     switch (window.location.pathname) {
       case "/":
@@ -91,13 +126,13 @@ export default function Header(props) {
         }
         break;
 
-      case "/my-works":
-        if (value !== 3) {
+      case "/messages":
+        if (value != 3) {
           setValue(3);
         }
         break;
 
-      case "/content-library":
+      case "/account-settings":
         if (value !== 4) {
           setValue(4);
         }
@@ -110,6 +145,7 @@ export default function Header(props) {
 
   return (
     <>
+
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar disableGutters>
@@ -138,29 +174,27 @@ export default function Header(props) {
                 to="/"
                 label="Home"
               />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/browse"
-                label="Browse"
-              />
+              
               <Tab
                 className={classes.tab}
                 component={Link}
                 to="/dashboard"
                 label="Dashboard"
               />
-              <Tab
+              {rc2 === true && (
+                <Tab
                 className={classes.tab}
                 component={Link}
-                to="/my-works"
-                label="My Works"
+                to="/messages"
+                label={<MessageIcon/>}
               />
+              
+              )}
               <Tab
+              aria-owns={anchorEl ? "account-menu" : undefined} aria-haspopup={anchorEl ? "true": undefined}
                 className={classes.tab}
-                component={Link}
-                to="/content-libary"
-                label="Content Library"
+                onClick={e => handleClick(e)}
+                label={<AccountCircleIcon/>}
               />
             </Tabs>
             <Button
@@ -181,6 +215,18 @@ export default function Header(props) {
             >
               Log In
             </Button>
+            <Menu id="account-menu" classes={{paper: classes.menuTab}} anchorEl={anchorEl} open={open} onClose={handleClose} elevation={0}>
+                <MenuItem component={Link} to="/dashboard/profile">
+                    <AccountCircleIcon/>
+                  </MenuItem>
+                {rc2 === true && (
+                <MenuItem component={Link} to="/account-settings" >
+                    Account Settings
+                  </MenuItem>)}
+                  <MenuItem onClick={logout} >
+                    Logout
+                  </MenuItem>
+              </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
