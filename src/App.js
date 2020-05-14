@@ -12,7 +12,7 @@ import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
   
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated] = useState(true);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -25,7 +25,7 @@ function App() {
           />
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/" component={Home} /> 
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signup" component={SignUpForm} />
 
         </Switch>
         <Footer />

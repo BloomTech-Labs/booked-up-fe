@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
+import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import {
   TextField,
@@ -7,14 +7,10 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
-  Paper
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import Typography from "@material-ui/core/Typography";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import { data } from "../../data.js";
+import { connect } from "react-redux";
 
 const content_library = data.author_works;
 
@@ -142,8 +138,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Browse(props) {
-  const [works, setWorks] = useState([{ id: 0, title: "", description: "" }]);
+function Browse(props) {
+  // const [works, setWorks] = useState([{ id: 0, title: "", description: "" }]);
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
@@ -236,8 +232,8 @@ export default function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={<a className={classes.prev} data-testid='new-left'>&#10094;</a>}
-            arrowRight={<a className={classes.next}>&#10095;</a>}
+            arrowLeft={<button className={classes.prev} data-testid='new-left'>&#10094;</button>}
+            arrowRight={<button className={classes.next}>&#10095;</button>}
             addArrowClickHandler
             infinite
             
@@ -259,14 +255,14 @@ export default function Browse(props) {
             className={classes.worksContainer}
             slidesPerPage={5}
             arrowLeft={
-              <a className={classes.prev}>
+              <button className={classes.prev}>
                 &#10094;
-              </a>
+              </button>
             }
             arrowRight={
-              <a className={classes.next} data-testid='pop-right'>
+              <button className={classes.next} data-testid='pop-right'>
                 &#10095;
-              </a>
+              </button>
             }
             addArrowClickHandler
             infinite
@@ -307,3 +303,14 @@ export default function Browse(props) {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(Browse)
