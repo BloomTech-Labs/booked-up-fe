@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import PrivateRoute from "../../utils/PrivateRoute.jsx";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Drawer from "@material-ui/core/Drawer"
+import Drawer from "@material-ui/core/Drawer";
 import Portal from "@material-ui/core/Portal";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
@@ -125,7 +125,7 @@ export default function Dashboard(props) {
 
   return (
     <div className={classes.container}>
-    <Drawer
+      <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -136,7 +136,7 @@ export default function Dashboard(props) {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List onClick={handleChange}>
+
           {rc2 === true && (
               <ListItem component={Link} to="/dashboard" className={classes.listItem}>
               <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
@@ -154,11 +154,12 @@ export default function Dashboard(props) {
           
           <ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
             <ListItemText primary="My Works" data-testid='sidebar-works'/>
+
           </ListItem>
         </List>
         <Divider />
       </Drawer>
       <div className={classes.content}>{component}</div>
-      </div>
+    </div>
   );
 }

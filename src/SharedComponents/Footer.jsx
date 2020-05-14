@@ -13,6 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
+
   footerContainer: {
     marginBottom: 0
   },
@@ -54,11 +55,15 @@ export default function Footer(props) {
   return (
     <>
     <footer className={classes.footerContaier}>
+
         <Toolbar className={classes.toolBar}>
           <BottomNavigation showLabels className={classes.navContainer}>
             <BottomNavigationAction label="Browse" className={classes.nav} />
             <BottomNavigationAction label="Support" className={classes.nav} />
-            <BottomNavigationAction label="Contact Us" className={classes.nav} />
+            <BottomNavigationAction
+              label="Contact Us"
+              className={classes.nav}
+            />
           </BottomNavigation>
           <BottomNavigation showLabels className={classes.navContainer}>
             <BottomNavigationAction
