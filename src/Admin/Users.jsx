@@ -17,17 +17,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-useEffect(() => {
-    props.getUsers();
-}
-
 export const Users = props => {
   const classes = useStyles();
-  return <div className={classes.toolbar}></div>;
+
+  useEffect(() => {
+    props.getUsers();
+  });
+
+  return (
+    <>
+      <div className={classes.toolbar}></div>
+      <UsersDisplay users={userAccounts} />
+    </>
+  );
 };
 
 const mapStateToProps = state => ({
-    user: state.user,
-  });
-  
+  userAccounts: state.userAccounts
+});
+
 export default connect(mapStateToProps, { getUsers })(Users);

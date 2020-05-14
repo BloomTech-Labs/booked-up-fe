@@ -49,7 +49,7 @@ function reducer(state = initialState, action) {
     }
 
     case GET_USERS: {
-      return state;
+      return { ...state, users: action.payload.userAccounts };
     }
     default: {
       return state;
