@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-import { userLogon } from "../actions/authenticationAction";
+import { userLogon } from "../Actions/authenticationAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 export const LoginForm = props => {
   const classes = useStyles();
-  const { register, errors, handleSubmit, control } = useForm();
+const { register, errors, handleSubmit, /*control*/ } = useForm();
 
   const onSubmit = (data, e) => {
     e.preventDefault();

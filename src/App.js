@@ -11,7 +11,7 @@ import SignIn from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated] = useState(true);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

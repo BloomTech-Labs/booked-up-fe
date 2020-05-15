@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import TitleSearch from "./FilterDialogComponents/TitleSearch";
 import AuthorSearch from "./FilterDialogComponents/AuthorSearch";
 import DateRange from "./FilterDialogComponents/DateRange";
 import Genre from "./FilterDialogComponents/Genre";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({}));
+// const useStyles = makeStyles(theme => ({}));
 
 export default function FilterDialog(props) {
-  const handleListItemClick = value => {
-    props.handleFilterClose(value);
-  };
+  // const handleListItemClick = value => {
+  //   props.handleFilterClose(value);
+  // };
 
   const handleTitleSearchChange = value => {};
   const handleAuthorSearchChange = value => {};
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     <Dialog

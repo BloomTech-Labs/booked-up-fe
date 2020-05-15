@@ -73,7 +73,6 @@ export default function MyWorks(props) {
   const [selected, setSelected] = useState("grid");
   const [sortClicked, setSortClicked] = useState(false);
   const [filterClicked, setFilterClicked] = useState(false);
-  const [selectModal, setSelectModal] = useState(false);
   const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -158,7 +157,7 @@ export default function MyWorks(props) {
           return;
       }
 
-      setUsers({ author_works: sortedData });
+      // setUsers({ author_works: sortedData });
     }
   };
 

@@ -83,7 +83,7 @@ const AgentAtuhorInfo = [
   {
     title: 'Agents',
     description:
-      'You can sign up as an agent and you can search good books and meet thier authors.',
+      'You can sign up as an agent and you can search good books and meet their authors.',
     image: 'https://images.pexels.com/photos/684385/pexels-photo-684385.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
     imageText: 'Image Text',
   },
@@ -108,7 +108,7 @@ const AgentAtuhorInfo = [
 const sidebar = {
   title: 'About',
   description:
-    'Booked up is an easy and user-friendly place for both parties to connect a way for literary agents to leave feedback, a way for authors to post their work and One-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to literary agents',
+    'Booked up is an easy and user-friendly place for both parties to connect, a way for literary agents to leave feedback, a way for authors to post their work and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to literary agents',
   social: [
     { name: 'Twitter', icon: TwitterIcon },
     { name: 'Facebook', icon: FacebookIcon },
@@ -149,7 +149,7 @@ export default function HomePage(props) {
             </Grid>
             <Grid item xs={10} md={6}>
               <Typography variant="h6" gutterBottom>
-                <h2>Misison</h2>
+                <h2>Mission</h2>
               </Typography>
               <Divider />             
               <Typography className={classes.pageInfo}>

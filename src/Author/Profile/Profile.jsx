@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Profile(props) {
+function Profile(props) {
   const classes = useStyles();
 
   return (
@@ -77,3 +77,16 @@ export default function Profile(props) {
     </Card>
   );
 }
+
+
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(Profile)
