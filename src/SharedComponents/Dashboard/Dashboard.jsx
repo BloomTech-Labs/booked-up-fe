@@ -6,12 +6,11 @@ import Drawer from "@material-ui/core/Drawer";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Browse from "../Browse/Browse.jsx";
 import Profile from "../../Author/Profile/Profile.jsx";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
-import ListItemText from '@material-ui/core/ListItemText';
-
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     borderRight: "1px solid black",
     marginTop: "4.34em",
     marginBottom: "4.33em",
-    width: "10em",
+    width: "10em"
   },
   title: {
     padding: "1%",
@@ -69,47 +68,35 @@ const useStyles = makeStyles(theme => ({
 function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState(<Browse />);
+  const [component, setComponent] = useState(<Profile />);
   const [rc2, setRc2] = useState(false);
 
-  // const handleChange = (e, value) => {
-  //   setValue(value);
-  // };
+
 
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
-        if (value !== 0) {
-          setValue(0);
-        }
-        setComponent(<Browse />);
+        
+        setComponent(<Profile />);
         break;
 
       case "/dashboard/profile":
-        if (value !== 1) {
-          setValue(1);
-        }
+        
         setComponent(<Profile />);
         break;
 
       case "/dashboard/favorites":
-        if (value !== 2) {
-          setValue(2);
-        }
+        
         setComponent(<p>Favorites</p>);
         break;
 
       case "/dashboard/my-works":
-        if (value !== 3) {
-          setValue(3);
-        }
+        
         setComponent(<MyWorks />);
         break;
 
       case "/dashboard/messages":
-        if (value !== 3) {
-          setValue(3);
-        }
+        
         setComponent(<p>My Messages</p>);
         break;
 
@@ -127,33 +114,60 @@ function Dashboard(props) {
           paper: classes.drawerPaper
         }}
         anchor="left"
-        data-testid='sidebar'
+        data-testid="sidebar"
       >
         <div className={classes.toolbar} />
         <Divider />
-          <List>
+        <List >
           {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard" className={classes.listItem}>
               <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
             </ListItem>
           )} */}
-          
-          {props.type.toLowerCase().includes("author") && (<ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
-            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
-          </ListItem>)}
-          {props.type.toLowerCase().includes("fan") && (<ListItem component={Link} to="/dashboard/profile" className={classes.listItem}>
-            <ListItemText primary="My Profile" data-testid='sidebar-profile' />
-          </ListItem>)}
+
+          {props.type.toLowerCase().includes("author") && (
+            <ListItem
+              component={Link}
+              to="/dashboard"
+              className={classes.listItem}
+              value={<Profile />}
+              onClick={() => setComponent(<Profile />)}
+            >
+              <ListItemText
+                primary="My Profile"
+                data-testid="sidebar-profile"
+              />
+            </ListItem>
+          )}
+          {props.type.toLowerCase().includes("fan") && (
+            <ListItem
+              component={Link}
+              to="/dashboard"
+              className={classes.listItem}
+              onClick={() => setComponent(<Profile />)}
+            >
+              <ListItemText
+                primary="My Profile"
+                data-testid="sidebar-profile"
+              />
+            </ListItem>
+          )}
           {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
               <ListItemText primary="Favorites" data-testid='sidebar-fav' />
             </ListItem>
           )} */}
-          
-          {props.type.toLowerCase().includes("author") && (<ListItem component={Link} to="/dashboard/my-works" className={classes.listItem}>
-            <ListItemText primary="My Works" data-testid='sidebar-works'/>
 
-          </ListItem>)}
+          {props.type.toLowerCase().includes("author") && (
+            <ListItem
+              component={Link}
+              to="/dashboard/my-works"
+              className={classes.listItem}
+              onClick={() => setComponent(<MyWorks />)}
+            >
+              <ListItemText primary="My Works" data-testid="sidebar-works" />
+            </ListItem>
+          )}
         </List>
         <Divider />
       </Drawer>
@@ -162,16 +176,12 @@ function Dashboard(props) {
   );
 }
 
-
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-      type: state.user.type
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged,
+    type: state.user.type
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(Dashboard)
+export default connect(mapStateToProps, {})(Dashboard);

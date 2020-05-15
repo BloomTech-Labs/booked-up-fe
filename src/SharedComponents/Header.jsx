@@ -112,42 +112,42 @@ function Header(props) {
     setAnchorEl(null)
     setOpen(false)
   }
-  useEffect(() => {
-    switch (window.location.pathname) {
-      case "/":
-        if (value !== 0) {
-          setValue(0);
-        }
-        break;
+  // useEffect(() => {
+  //   switch (window.location.pathname) {
+  //     case "/":
+  //       if (value !== 0) {
+  //         setValue(0);
+  //       }
+  //       break;
 
-      case "/browse":
-        if (value !== 1) {
-          setValue(1);
-        }
-        break;
+  //     case "/browse":
+  //       if (value !== 1) {
+  //         setValue(1);
+  //       }
+  //       break;
 
-      case "/dashboard":
-        if (value !== 2) {
-          setValue(2);
-        }
-        break;
+  //     case "/dashboard":
+  //       if (value !== 0) {
+  //         setValue(0);
+  //       }
+  //       break;
 
-      case "/messages":
-        if (value !== 3) {
-          setValue(3);
-        }
-        break;
+  //     // case "/messages":
+  //     //   if (value !== 3) {
+  //     //     setValue(3);
+  //     //   }
+  //     //   break;
 
-      case "/account-settings":
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
+  //     // case "/account-settings":
+  //     //   if (value !== 4) {
+  //     //     setValue(4);
+  //     //   }
+  //     //   break;
 
-      default:
-        break;
-    }
-  }, [value]);
+  //     default:
+  //       break;
+  //   }
+  // }, [value]);
 
   return (
     <>
