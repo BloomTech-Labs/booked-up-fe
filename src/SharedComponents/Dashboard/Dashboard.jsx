@@ -68,47 +68,28 @@ const useStyles = makeStyles(theme => ({
 function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState(<Browse />);
+  const [component, setComponent] = useState(<Profile />);
   const [rc2, setRc2] = useState(false);
-
-  // const handleChange = (e, value) => {
-  //   setValue(value);
-  // };
 
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
-        if (value !== 0) {
-          setValue(0);
-        }
-        setComponent(<Browse />);
+        setComponent(<Profile />);
         break;
 
       case "/dashboard/profile":
-        if (value !== 1) {
-          setValue(1);
-        }
         setComponent(<Profile />);
         break;
 
       case "/dashboard/favorites":
-        if (value !== 2) {
-          setValue(2);
-        }
         setComponent(<p>Favorites</p>);
         break;
 
       case "/dashboard/my-works":
-        if (value !== 3) {
-          setValue(3);
-        }
         setComponent(<MyWorks />);
         break;
 
       case "/dashboard/messages":
-        if (value !== 3) {
-          setValue(3);
-        }
         setComponent(<p>My Messages</p>);
         break;
       case "/dashboard/admin":
@@ -145,8 +126,10 @@ function Dashboard(props) {
           {props.type.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
-              to="/dashboard/profile"
+              to="/dashboard"
               className={classes.listItem}
+              value={<Profile />}
+              onClick={() => setComponent(<Profile />)}
             >
               <ListItemText
                 primary="My Profile"
@@ -157,8 +140,9 @@ function Dashboard(props) {
           {props.type.toLowerCase().includes("fan") && (
             <ListItem
               component={Link}
-              to="/dashboard/profile"
+              to="/dashboard"
               className={classes.listItem}
+              onClick={() => setComponent(<Profile />)}
             >
               <ListItemText
                 primary="My Profile"
@@ -177,6 +161,7 @@ function Dashboard(props) {
               component={Link}
               to="/dashboard/my-works"
               className={classes.listItem}
+              onClick={() => setComponent(<MyWorks />)}
             >
               <ListItemText primary="My Works" data-testid="sidebar-works" />
             </ListItem>
