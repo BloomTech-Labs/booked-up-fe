@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getUsers } from "../actions/adminAction";
+import UsersDisplay from "./UsersDisplay";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -27,7 +28,7 @@ export const Users = props => {
   return (
     <>
       <div className={classes.toolbar}></div>
-      <UsersDisplay users={userAccounts} />
+      <UsersDisplay users={props.userAccounts} />
     </>
   );
 };

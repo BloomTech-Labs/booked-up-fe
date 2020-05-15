@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-import { userLogon } from "../Actions/authenticationAction";
+import { userLogon, adminLogon } from "../actions/authenticationAction";
+import { setAdmin } from "../actions/adminAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -47,18 +48,34 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const LoginForm = props => {
+  const [checked, setChecked] = useState(false);
   const classes = useStyles();
-const { register, errors, handleSubmit, /*control*/ } = useForm();
+  const { register, errors, handleSubmit /*control*/ } = useForm();
+
+  const handleChange = value => {
+    setChecked(!checked);
+  };
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    props.userLogon(
-      {
-        email: data.username,
-        password: data.password
-      },
-      props
-    );
+    if (checked) {
+      props.setAdmin(checked);
+      props.adminLogon(
+        {
+          email: data.username,
+          password: data.password
+        },
+        props
+      );
+    } else {
+      props.userLogon(
+        {
+          login: data.username,
+          password: data.password
+        },
+        props
+      );
+    }
   };
 
   return (
@@ -127,6 +144,17 @@ const { register, errors, handleSubmit, /*control*/ } = useForm();
               control={<Checkbox value="remember" color="secondary" />}
               label="Remember me"
             />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="admin"
+                  color="secondary"
+                  checked={checked}
+                  onChange={handleChange}
+                />
+              }
+              label="Admin Account"
+            />
             <Button
               type="submit"
               fullWidth
@@ -152,7 +180,10 @@ const { register, errors, handleSubmit, /*control*/ } = useForm();
 
 const mapStateToProps = state => ({
   user: state.user,
-  message: state.message
+  message: state.message,
+  admin: state.admin
 });
 
-export default connect(mapStateToProps, { userLogon })(LoginForm);
+export default connect(mapStateToProps, { userLogon, adminLogon, setAdmin })(
+  LoginForm
+);

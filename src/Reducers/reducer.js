@@ -1,10 +1,11 @@
 import {
   CREATE_ACCOUNT,
   USER_LOGON,
+  ADMIN_LOGON,
   USER_LOGOUT
-} from "../Actions/authenticationAction";
+} from "../actions/authenticationAction";
 
-import { GET_USERS } from "../actions/adminAction";
+import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 
 const initialState = {
   user: {
@@ -22,6 +23,7 @@ const initialState = {
   },
 
   message: "",
+  isAdmin: false,
   isLogged: false,
   contentLibrary: [],
   authorContent: [],
@@ -46,11 +48,23 @@ function reducer(state = initialState, action) {
       };
     }
 
+    case ADMIN_LOGON: {
+      return {
+        ...state,
+        userType: action.payload.userType,
+        message: action.payload.message
+      };
+    }
+
     case USER_LOGOUT: {
       return {
         ...state,
-      isLogged: false
-    };
+        isLogged: false
+      };
+    }
+
+    case SET_ADMIN: {
+      return { ...state, isAdmin: action.payload.data };
     }
 
     case GET_USERS: {

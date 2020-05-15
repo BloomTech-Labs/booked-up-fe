@@ -106,14 +106,14 @@ function Dashboard(props) {
         break;
 
       case "/dashboard/messages":
-        if (value !== 4) {
-          setValue(4);
+        if (value !== 3) {
+          setValue(3);
         }
         setComponent(<p>My Messages</p>);
         break;
       case "/dashboard/admin":
-        if (value !== 5) {
-          setValue(5);
+        if (value !== 4) {
+          setValue(4);
         }
         setComponent(<Users />);
         break;
