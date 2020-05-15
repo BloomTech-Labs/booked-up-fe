@@ -12,6 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -72,7 +73,6 @@ function Dashboard(props) {
   const [rc2, setRc2] = useState(false);
 
 
-
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
@@ -118,7 +118,8 @@ function Dashboard(props) {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List >
+          <List>
+
           {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard" className={classes.listItem}>
               <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
@@ -168,6 +169,7 @@ function Dashboard(props) {
               <ListItemText primary="My Works" data-testid="sidebar-works" />
             </ListItem>
           )}
+
         </List>
         <Divider />
       </Drawer>
@@ -175,6 +177,7 @@ function Dashboard(props) {
     </div>
   );
 }
+
 
 const mapStateToProps = state => {
   return {
@@ -185,3 +188,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {})(Dashboard);
+

@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   logoContainer: {
     width: "12%",
-    border: "3px solid black",
+    border: "1px solid silver",
     borderLeft: 0,
     height: "5em",
     overflow: "hidden",
@@ -112,6 +112,7 @@ function Header(props) {
     setAnchorEl(null)
     setOpen(false)
   }
+
   // useEffect(() => {
   //   switch (window.location.pathname) {
   //     case "/":
@@ -148,6 +149,7 @@ function Header(props) {
   //       break;
   //   }
   // }, [value]);
+
 
   return (
     <>
@@ -253,3 +255,4 @@ export default connect (
   mapStateToProps,
   {}
 )(Header)
+
