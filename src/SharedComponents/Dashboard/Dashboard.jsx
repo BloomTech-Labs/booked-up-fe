@@ -93,9 +93,10 @@ function Dashboard(props) {
         setComponent(<p>My Messages</p>);
         break;
       case "/dashboard/admin":
-        if (value !== 4) {
-          setValue(4);
-        }
+        console.log(
+          "NL: Dashboard.js: useEffect(): case /dashboard/admin: Value: ",
+          value
+        );
         setComponent(<Users />);
         break;
       default:
@@ -123,7 +124,7 @@ function Dashboard(props) {
             </ListItem>
           )} */}
 
-          {props.type.toLowerCase().includes("author") && (
+          {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
               to="/dashboard"
@@ -137,7 +138,7 @@ function Dashboard(props) {
               />
             </ListItem>
           )}
-          {props.type.toLowerCase().includes("fan") && (
+          {props.user.userType.toLowerCase().includes("fan") && (
             <ListItem
               component={Link}
               to="/dashboard"
@@ -156,7 +157,7 @@ function Dashboard(props) {
             </ListItem>
           )} */}
 
-          {props.type.toLowerCase().includes("author") && (
+          {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
               to="/dashboard/my-works"
@@ -166,11 +167,14 @@ function Dashboard(props) {
               <ListItemText primary="My Works" data-testid="sidebar-works" />
             </ListItem>
           )}
-          {props.type.toLowerCase().includes("admin") && (
+          {props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
               to="/dashboard/admin"
               className={classes.listItem}
+              onClick={() =>
+                setComponent(<Users userAccounts={props.userAccounts} />)
+              }
             >
               <ListItemText primary="Admin" data-testid="sidebar-admin" />
             </ListItem>
@@ -186,8 +190,7 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    isLogged: state.isLogged,
-    type: state.user.type
+    userAccounts: state.userAccounts
   };
 };
 

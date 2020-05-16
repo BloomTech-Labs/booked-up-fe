@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { userLogon, adminLogon } from "../actions/authenticationAction";
+import { getUsers } from "../actions/adminAction";
 import { setAdmin } from "../actions/adminAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -67,6 +68,7 @@ export const LoginForm = props => {
         },
         props
       );
+      props.getUsers();
     } else {
       props.userLogon(
         {
@@ -184,6 +186,9 @@ const mapStateToProps = state => ({
   admin: state.admin
 });
 
-export default connect(mapStateToProps, { userLogon, adminLogon, setAdmin })(
-  LoginForm
-);
+export default connect(mapStateToProps, {
+  userLogon,
+  adminLogon,
+  setAdmin,
+  getUsers
+})(LoginForm);

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getUsers } from "../actions/adminAction";
 import UsersDisplay from "./UsersDisplay";
+import { setSeconds } from "date-fns/esm";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -19,16 +20,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Users = props => {
+  // We need this because the state hasn't changed yet so it will not initiate
+  // mapStateToProps until something has changed.  We set the current display list
+  // of userAccounts to local state and when we need to do something redux state
+  // will overwrite the props.userAccounts
+  const [users, setUserse] = useState(props.userAccounts);
   const classes = useStyles();
-
-  useEffect(() => {
-    props.getUsers();
-  });
 
   return (
     <>
       <div className={classes.toolbar}></div>
-      <UsersDisplay users={props.userAccounts} />
+      <UsersDisplay userAccounts={users} />
     </>
   );
 };

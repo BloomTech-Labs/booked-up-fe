@@ -1,6 +1,7 @@
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import jwt_decode from "jwt-decode";
+import { getUsers } from "./adminAction";
 
 export const CREATE_ACCOUNT = "CREATE_AUTHOR_ACCOUNT";
 export const CREATE_AGENT_ACCOUNT = "CREATE_AGENT_ACCOUNT";
@@ -46,7 +47,9 @@ export const adminLogon = (data, props) => dispatch => {
         type: ADMIN_LOGON,
         payload: {
           message: res.data.message,
-          userType: decoded.userType[0]
+          user: {
+            userType: decoded.userType[0]
+          }
         }
       });
       props.history.push("/dashboard");
