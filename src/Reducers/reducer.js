@@ -1,28 +1,32 @@
 import {
   CREATE_ACCOUNT,
   USER_LOGON,
+  ADMIN_LOGON,
   USER_LOGOUT
-} from "../Actions/authenticationAction";
+} from "../actions/authenticationAction";
+
+import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 
 const initialState = {
   user: {
     id: "",
-    user_type: "",
-    first_name: "",
-    last_name: "",
-    display_name: "",
+    userType: "",
+    firstName: "",
+    lastName: "",
+    displayName: "",
     email: "",
     country: "",
     city: "",
     state: "",
-    created_at: "",
-    type: "author"
+    createdAt: ""
   },
 
   message: "",
+  isAdmin: false,
   isLogged: false,
   contentLibrary: [],
-  authorContent: []
+  authorContent: [],
+  userAccounts: []
 };
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -43,11 +47,27 @@ function reducer(state = initialState, action) {
       };
     }
 
+    case ADMIN_LOGON: {
+      return {
+        ...state,
+        user: action.payload.user,
+        message: action.payload.message
+      };
+    }
+
     case USER_LOGOUT: {
       return {
         ...state,
-      isLogged: false
-    };
+        isLogged: false
+      };
+    }
+
+    case SET_ADMIN: {
+      return { ...state, isAdmin: action.payload.data };
+    }
+
+    case GET_USERS: {
+      return { ...state, userAccounts: action.payload };
     }
     default: {
       return state;
