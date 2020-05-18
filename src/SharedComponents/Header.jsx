@@ -176,13 +176,13 @@ function Header(props) {
               onChange={handleChange}
               indicatorColor="primary"
             >
-              {logged === false && (<Tab
+              {props.isLogged === false && (<Tab
                 className={classes.tab}
                 component={Link}
                 to="/"
                 label="Home"
               />)}
-              {logged === true && (<div className={classes.loggedTab}>
+              {props.isLogged === true && (<div className={classes.loggedTab}>
               <Tab
                 className={classes.tab}
                 component={Link}
@@ -205,7 +205,7 @@ function Header(props) {
                 label={<AccountCircleIcon/>}
               /></div>)}
             </Tabs>
-            {logged === false && (<div><Button
+            {props.isLogged === false && (<div><Button
               variant="contained"
               color="secondary"
               className={classes.button}

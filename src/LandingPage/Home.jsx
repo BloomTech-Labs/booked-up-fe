@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 const mainPost = {
   title: 'Booked Up',
   description:
-    "Best application where you can write your history and meet the most famous agnets to publish your writens",
+    "Bringing agents and authors together",
   image: 'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
   imgText: 'main image description',
   linkText: 'Continue reading…',
@@ -83,14 +83,14 @@ const AgentAtuhorInfo = [
   {
     title: 'Agents',
     description:
-      'You can sign up as an agent and you can search good books and meet their authors.',
+      'Sign up as an agent to search for exciting new books and meet their authors.',
     image: 'https://images.pexels.com/photos/684385/pexels-photo-684385.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
     imageText: 'Image Text',
   },
   {
     title: 'Authors',
     description:
-      'You can sign up as an author so that you can upload your books and search agents.',
+      'Sign up as an author to upload your works to showcase and/or gain valuable experience.',
     image: 'https://images.pexels.com/photos/4348078/pexels-photo-4348078.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     imageText: 'Image Text',
   },
@@ -98,7 +98,7 @@ const AgentAtuhorInfo = [
   {
     title: 'Fans',
     description:
-      'You can sign up as a fan for free and search your favorite authors and books.',
+      'Sign up as a fan for free and search for your favorite authors and books.',
     image: 'https://t4.ftcdn.net/jpg/02/92/63/29/240_F_292632949_xldRUMB4rIT2aSC2kHWHj0C9mMhEwyik.jpg',
     imageText: 'Image Text',
   },
@@ -108,7 +108,7 @@ const AgentAtuhorInfo = [
 const sidebar = {
   title: 'About',
   description:
-    'Booked up is an easy and user-friendly place for both parties to connect, a way for literary agents to leave feedback, a way for authors to post their work and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to literary agents',
+    'Booked up is an easy and user-friendly place for agents and authors to connect - a way for authors to post their work, a way for literary agents to leave feedback,  and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to agents.',
   social: [
     { name: 'Twitter', icon: TwitterIcon },
     { name: 'Facebook', icon: FacebookIcon },
@@ -141,10 +141,7 @@ export default function HomePage(props) {
               </Typography>
               <Divider />             
               <Typography className={classes.pageInfo}>
-              Product vision on business point of view. 
-              The Product vision describes the purpose of a Product, 
-              the intention with which the Product is being created and what it aims to achieve for customers and users. 
-              The Product vision describes a future state of the Product and what problems it tries to resolve or what ambitions it tries to fulfill.
+              Becoming a new author is often a daunting experience. Agents receive so many works that it’s impossible to read them all. We at Booked Up have a dream that agents and authors will be empowered to come together in a safe environment to create win-win opportunities.
               </Typography>
             </Grid>
             <Grid item xs={10} md={6}>
@@ -153,9 +150,7 @@ export default function HomePage(props) {
               </Typography>
               <Divider />             
               <Typography className={classes.pageInfo}>
-              Product mission on business point of view. A mission statement articulates a company's purpose. 
-              It announces to the world at large why your company/product exists. 
-              Every business should have a mission statement as a way of unifying the business.
+              Our mission is to provide a platform for authors to feel encouraged to create and showcase their work while allowing agents a safe anonymous experience that allows them to find hidden gems.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
