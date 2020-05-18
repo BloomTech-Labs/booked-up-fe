@@ -151,6 +151,20 @@ function Dashboard(props) {
               />
             </ListItem>
           )}
+          
+          {props.user.userType.toLowerCase().includes("agent") && (
+            <ListItem
+              component={Link}
+              to="/dashboard"
+              className={classes.listItem}
+              onClick={() => setComponent(<Profile />)}
+            >
+              <ListItemText
+                primary="My Profile"
+                data-testid="sidebar-profile"
+              />
+            </ListItem>
+          )}
           {/* {rc2 === true && (
               <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
               <ListItemText primary="Favorites" data-testid='sidebar-fav' />

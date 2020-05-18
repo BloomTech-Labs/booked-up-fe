@@ -50,7 +50,7 @@ export default function GridDisplay(props) {
           <Grid item xs={2} className={classes.gridItem}>
             <div className={classes.placeholderImage}>
               Placeholder Image
-              <div className={classes.authorOverlay}>{work.author}</div>
+              <div className={classes.authorOverlay}>{work.title}</div>
             </div>
             <EditingButtons />
           </Grid>

@@ -21,6 +21,7 @@ import SortDialog from "./Dialogs/SortDialog";
 import FilterDialog from "./Dialogs/FilterDialog";
 import UploadModal from "./UploadModal.jsx";
 import Modal from '@material-ui/core/Modal';
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -68,8 +69,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MyWorks(props) {
-  const [users, setUsers] = useState(data);
+function MyWorks(props) {
+  const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [sortClicked, setSortClicked] = useState(false);
   const [filterClicked, setFilterClicked] = useState(false);
@@ -97,12 +98,12 @@ export default function MyWorks(props) {
   const handleSortClose = value => {
     setSortClicked(false);
 
-    let sortedData = users.author_works;
+    let sortedData = works;
 
     if (value !== null) {
       switch (value) {
         case "Title: A to Z": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.title < b.title) return -1;
             else if (a.title > b.title) return 1;
             return 0;
@@ -110,7 +111,7 @@ export default function MyWorks(props) {
           return;
         }
         case "Title: Z to A": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.title < b.title) return 1;
             else if (a.title > b.title) return -1;
             return 0;
@@ -118,7 +119,7 @@ export default function MyWorks(props) {
           return;
         }
         case "Author: A to Z": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.author < b.author) return -1;
             else if (a.author > b.author) return 1;
             return 0;
@@ -126,7 +127,7 @@ export default function MyWorks(props) {
           return;
         }
         case "Author: Z to A": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.author < b.author) return 1;
             else if (a.author > b.author) return -1;
             return 0;
@@ -134,7 +135,7 @@ export default function MyWorks(props) {
           return;
         }
         case "Genre: A to Z": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.genre < b.genre) return -1;
             else if (a.genre > b.genre) return 1;
             return 0;
@@ -142,7 +143,7 @@ export default function MyWorks(props) {
           return;
         }
         case "Genre: Z to A": {
-          sortedData = users.author_works.sort(function(a, b) {
+          sortedData = works.sort(function(a, b) {
             if (a.genre < b.genre) return 1;
             else if (a.genre > b.genre) return -1;
             return 0;
@@ -255,13 +256,27 @@ export default function MyWorks(props) {
       </Modal>
       <div className={classes.contentArea}>
         {selected === "grid" && (
-          <GridDisplay authorWorks={users.author_works} />
+          <GridDisplay authorWorks={works} />
         )}
-        {selected === "row" && <RowDisplay authorWorks={users.author_works} />}
+        {selected === "row" && <RowDisplay authorWorks={works} />}
         {selected === "column" && (
-          <ColumnDisplay authorWorks={users.author_works} />
+          <ColumnDisplay authorWorks={works} />
         )}
       </div>
     </>
   );
 }
+
+
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+      authorContent: state.authorContent
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {}
+)(MyWorks)
