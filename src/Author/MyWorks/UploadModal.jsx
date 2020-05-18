@@ -9,7 +9,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-
+import {axiosWithAuth} from "../../utils/axiosWithAuth.jsx";
 const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
@@ -67,7 +67,7 @@ function UploadModal(props) {
           title: work.title,
           content_url: res.data.secure_url
         });
-        axios({
+        axiosWithAuth()({
           url: "bookedup-pt9.herokuapp.com/api/author-content",
           method: "POST",
           data: uploadWork

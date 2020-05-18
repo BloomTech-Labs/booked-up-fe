@@ -40,11 +40,11 @@ function Profile(props) {
       <CardHeader
         avatar={
           <Avatar aria-label="User" className={classes.avatar}>
-            D
+            {props.user.displayName.charAt(0).toUpperCase()}
           </Avatar>
         }
         title={<Typography variant="h5">Profile</Typography>}
-        subheader="Username"
+        subheader={props.user.displayName}
         className={classes.title}
       />
       <CardContent className={classes.content}>
@@ -54,24 +54,21 @@ function Profile(props) {
           className={classes.container}
           spacing={2}
         >
-          <Grid item xs={12}>
-            <p className={classes.item}>Username</p>
-          </Grid>
             <Grid item xs={6}>
-            <p className={classes.firstName}>First Name</p>
+            <p className={classes.firstName}>First Name: {props.user.firstName}</p>
             </Grid>
             <Grid item xs={6}>
-            <p className={classes.lastName}>Last Name</p>
+            <p className={classes.lastName}>Last Name: {props.user.lastName}</p>
             </Grid>
-          <Grid item xs={2}>
-          <p className={classes.item}>City</p>
+          {/* <Grid item xs={2}>
+          <p className={classes.item}>City: {props.user.city}</p>
           </Grid>
           <Grid item xs={2}>
-          <p className={classes.item}>State</p>
+          <p className={classes.item}>State: {props.user.state}</p>
           </Grid>
           <Grid item xs={2}>
-          <p className={classes.item}>Country</p>
-          </Grid>
+          <p className={classes.item}>Country: {props.user.country}</p>
+          </Grid> */}
         </Grid>
       </CardContent>
     </Card>
