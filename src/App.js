@@ -7,7 +7,7 @@ import Header from "./SharedComponents/Header.jsx";
 import Footer from "./SharedComponents/Footer.jsx";
 import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
-import SignIn from "./SharedComponents/loginForm";
+import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             component={Dashboard}
             isAuthenticated={isAuthenticated}
           />
-          <Route exact path="/login" component={SignIn} />
+          <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUpForm} />
         </Switch>

@@ -38,8 +38,8 @@ function UploadModal(props) {
 
   useEffect(() => {
     setUploadWork({
-      ...uploadWork
-      /*user_id: Grab from state */
+      ...uploadWork,
+      user_id: props.user.id
     });
   }, []);
 
@@ -54,24 +54,19 @@ function UploadModal(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/X-WWW-form-urlencoded"
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Methods': "POST, GET, OPTIONS, PUT, PATCH",
-        // 'Access-Control-Allow-Headers': "Origin, Content-Type, Accept, Authorization"
       },
       data: formData
     })
       .then(res => {
         console.log(res);
-        setUploadWork({
-          ...uploadWork,
-          title: work.title,
-          content_url: res.data.secure_url
-        });
-        axiosWithAuth()({
-          url: "bookedup-pt9.herokuapp.com/api/author-content",
-          method: "POST",
-          data: uploadWork
-        })
+        var submitData = {
+          user_id: uploadWork.user_id,
+          content_url: res.data.secure_url,
+          title: work.title
+        }
+        console.log(submitData)
+        axiosWithAuth()
+          .post("https://bookedup-pt9.herokuapp.com/api/author-content", submitData)
           .then(res => {
             console.log(res);
           })
