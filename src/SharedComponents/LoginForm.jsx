@@ -24,14 +24,14 @@ const useStyles = makeStyles(theme => ({
   side: {
     backgroundColor: "GhostWhite",
     backgroundSize: "cover",
-    backgroundPosition: "center",
-    border: "1px solid black"
+    backgroundPosition: "center"
   },
   paper: {
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+
   },
   avatar: {
     margin: theme.spacing(1),
@@ -85,6 +85,7 @@ export const LoginForm = props => {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.side} />
+
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper} component="main">
           <Avatar className={classes.avatar}>
