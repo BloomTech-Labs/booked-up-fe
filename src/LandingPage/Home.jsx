@@ -110,15 +110,14 @@ const sidebar = {
   description:
     'Booked up is an easy and user-friendly place for agents and authors to connect - a way for authors to post their work, a way for literary agents to leave feedback,  and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to agents.',
   social: [
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
+    { id: 1, name: 'Twitter', icon: TwitterIcon },
+    { id: 2, name: 'Facebook', icon: FacebookIcon },
   ],
 };
 
 export default function HomePage(props) {
   const classes = useStyles();
   const { description, social, title } = sidebar;
-
   return (
     <Fragment>
       <CssBaseline />
@@ -129,15 +128,15 @@ export default function HomePage(props) {
            
               </Typography>
           <Grid container spacing={4}>
-            {AgentAtuhorInfo.map((post) => (
-              <Details key={post.title} post={post} />
+            {AgentAtuhorInfo.map((post, index) => (
+              <Details key={index} post={post} />
             ))}
           </Grid>
 
           <Grid container spacing={5} className={classes.mainGrid} >
             <Grid item xs={10} md={6}>
               <Typography variant="h6" gutterBottom>
-                <h2>Vision</h2>
+                Vision
               </Typography>
               <Divider />             
               <Typography className={classes.pageInfo}>
@@ -146,7 +145,7 @@ export default function HomePage(props) {
             </Grid>
             <Grid item xs={10} md={6}>
               <Typography variant="h6" gutterBottom>
-                <h2>Mission</h2>
+                Mission
               </Typography>
               <Divider />             
               <Typography className={classes.pageInfo}>
@@ -164,7 +163,7 @@ export default function HomePage(props) {
                 Social
              </Typography>
               {social.map((network) => (
-                <Link display="block" variant="body1" href="#" color="secondary" key={network}>
+                <Link display="block" variant="body1" href="#" color="secondary" key={network.id}>
                   <Grid container direction="row" spacing={1} alignItems="center">
                     <Grid item className={classes.social}>
                       <network.icon />

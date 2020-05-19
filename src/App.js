@@ -11,7 +11,6 @@ import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
-  const [isAuthenticated] = useState(true);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -20,7 +19,6 @@ function App() {
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}
-            isAuthenticated={isAuthenticated}
           />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />

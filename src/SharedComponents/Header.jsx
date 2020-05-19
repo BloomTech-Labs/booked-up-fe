@@ -99,7 +99,7 @@ function Header(props) {
   const history = useHistory();
 
   const logout = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     props.userLogout();
     history.push('/')
     

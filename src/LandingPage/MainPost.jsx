@@ -55,7 +55,6 @@ export default function MainPost(props) {
             <Typical
             steps={['Booked Up', 1000,'', 500]}
             loop={Infinity}
-            wrapper="h4"
               />  
             </Typography>
             <Typography variant="h6" color="inherit" paragraph>

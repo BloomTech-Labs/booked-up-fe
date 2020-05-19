@@ -7,7 +7,6 @@ const PrivateRoute = ({component: Component, isAuthenticated, ...otherProps}) =>
             <Route {...otherProps}
             render={(props) => {
                 if(localStorage.getItem('token')) {
-                // if(isAuthenticated) {
                     return <Component />;
                 } 
                 else {
