@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   side: {
     backgroundColor: "GhostWhite",
     backgroundSize: "cover",
-    backgroundPosition: "center"
+    backgroundPosition: "center",
+    border: "1px solid black"
   },
   paper: {
     margin: theme.spacing(8, 4),

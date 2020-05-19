@@ -10,6 +10,8 @@ import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import {axiosWithAuth} from "../../utils/axiosWithAuth.jsx";
+import { useHistory } from 'react-router-dom';
+
 const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 function UploadModal(props) {
   const classes = useStyles();
   const [work, setWork] = useState({ title: "", body: [] });
+  const history = useHistory();
   const [uploadWork, setUploadWork] = useState({
     title: "",
     content_url: "",
@@ -69,6 +72,7 @@ function UploadModal(props) {
           .post("https://bookedup-pt9.herokuapp.com/api/author-content", submitData)
           .then(res => {
             console.log(res);
+            history.push("/dashboard/my-works")
           })
           .catch(err => {
             console.log(err);

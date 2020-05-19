@@ -51,9 +51,8 @@ export default function RowDisplay(props) {
 
   return (
     <Grid container className={classes.grid} spacing={2}>
-      {works.map(work => (
-        <>
-          <Grid item xs={2} className={classes.gridItem}>
+      {works.map((work, index) => (
+          <Grid item xs={2} key={index} className={classes.gridItem}>
             <div className={classes.placeholderImage}>
               Placeholder Image
               <div className={classes.authorOverlay}>{work.author}</div>
@@ -61,9 +60,8 @@ export default function RowDisplay(props) {
             <div className={classes.title}>{work.title}</div>
             <div className={classes.genre}>{work.genre}</div>
             <div className={classes.description}>{work.description}</div>
-            <EditingButtons />
+            <EditingButtons book={work.content_url}/>
           </Grid>
-        </>
       ))}
     </Grid>
   );

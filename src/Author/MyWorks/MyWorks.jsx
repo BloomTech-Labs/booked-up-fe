@@ -60,7 +60,8 @@ const useStyles = makeStyles(theme => ({
   contentArea: {
     marginTop: "35px",
     marginLeft: "35px",
-    marginRight: "35px"
+    marginRight: "35px",
+    
   },
   iconButton: {
     "&:hover": {
