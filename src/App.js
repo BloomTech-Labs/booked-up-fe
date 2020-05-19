@@ -12,6 +12,8 @@ import SignUpForm from "./SharedComponents/SignUpForm";
 
 function App() {
   const [isAuthenticated] = useState(true);
+
+  console.log("NL: App.js: App: App Loaded");
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
