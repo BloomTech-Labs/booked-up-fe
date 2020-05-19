@@ -13,6 +13,8 @@ import BookedUpLogo from "../assets/new-logo.jpg";
 import MessageIcon from '@material-ui/icons/Message';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { connect } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { userLogout } from "../actions/authenticationAction";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -26,11 +28,6 @@ function ElevationScroll(props) {
   });
 }
 
-
-const logout = () => {
-  localStorage.clear();
-  alert("Thank you! Please come back soon!");
-};
 
 
 const useStyles = makeStyles(theme => ({
@@ -99,6 +96,14 @@ function Header(props) {
   const [open, setOpen] = useState(false)
   const [rc2, setRc2] = useState(false)
   const [logged, setLogged] = useState(false);
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    props.userLogout();
+    history.push('/')
+    
+  };
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget)
@@ -253,6 +258,6 @@ const mapStateToProps = state => {
 
 export default connect (
   mapStateToProps,
-  {}
+  {userLogout}
 )(Header)
 
