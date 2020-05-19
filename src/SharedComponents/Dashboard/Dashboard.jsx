@@ -68,13 +68,25 @@ const useStyles = makeStyles(theme => ({
 function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [component, setComponent] = useState(<Profile />);
+  const [component, setComponent] = useState();
   const [rc2, setRc2] = useState(false);
-
+  useEffect(() => {
+    if(props.user.userType.toLowerCase().includes("admin")) {
+      setComponent(<Users userAccounts={props.userAccounts} />)
+    }
+    else {
+      setComponent(<Profile />);
+    }
+  },[]);
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
-        setComponent(<Profile />);
+        if(props.user.userType.toLowerCase().includes("admin")) {
+          setComponent(<Users userAccounts={props.userAccounts} />)
+        }
+        else {
+          setComponent(<Profile />);
+        }
         break;
 
       case "/dashboard/profile":
@@ -139,6 +151,20 @@ function Dashboard(props) {
             </ListItem>
           )}
           {props.user.userType.toLowerCase().includes("fan") && (
+            <ListItem
+              component={Link}
+              to="/dashboard"
+              className={classes.listItem}
+              onClick={() => setComponent(<Profile />)}
+            >
+              <ListItemText
+                primary="My Profile"
+                data-testid="sidebar-profile"
+              />
+            </ListItem>
+          )}
+
+          {props.user.userType.toLowerCase().includes("agent") && (
             <ListItem
               component={Link}
               to="/dashboard"
