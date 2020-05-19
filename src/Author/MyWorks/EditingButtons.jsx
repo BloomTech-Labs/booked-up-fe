@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from "@material-ui/core/IconButton";
@@ -24,10 +24,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EditingButtons(props) {
+  const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
   const classes = useStyles();
   return (
     <ButtonGroup className={classes.buttonGroup}>
-      <Tooltip title="Open Book">
+      <Tooltip title="Open Book" onClick={handleOpen}>
         <IconButton className={classes.button}>
           <ImportContactsOutlinedIcon />
         </IconButton>
@@ -43,5 +52,8 @@ export default function EditingButtons(props) {
         </IconButton>
       </Tooltip>
     </ButtonGroup>
+    
   );
 }
+
+

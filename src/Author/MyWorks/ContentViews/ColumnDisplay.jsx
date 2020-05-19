@@ -57,9 +57,8 @@ export default function ColumnDisplay(props) {
 
   return (
     <Grid container className={classes.grid} spacing={2}>
-      {works.map(work => (
-        <>
-          <Grid item xs={12} className={classes.gridItem}>
+      {works.map((work, index) => (
+          <Grid item xs={12} key={index} className={classes.gridItem}>
             <div className={classes.placeholderImage}>
               Placeholder Image
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
@@ -75,9 +74,9 @@ export default function ColumnDisplay(props) {
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
             </Grid>
-            <EditingButtons />
+            <EditingButtons book={work.content_url}/>
           </Grid>
-        </>
+        
       ))}
     </Grid>
   );

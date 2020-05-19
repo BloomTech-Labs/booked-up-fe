@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
+import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 
 const useStyles = makeStyles(theme => ({
   grid: {
-    display: "flex",
-    justifyContent: "center"
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: "15%"
   },
   gridItem: {
     border: "1px solid black",
     margin: "10px",
     borderRadius: "5px",
-    backgroundColor: "#c3c5ef"
+    backgroundColor: "#c3c5ef",
+    width: "90%"
   },
   placeholderImage: {
     position: "relative",
@@ -46,16 +49,16 @@ export default function GridDisplay(props) {
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
-        <>
-          <Grid item xs={2} className={classes.gridItem}>
+          <Grid item xs={2} key={index} className={classes.gridItem}>
             <div className={classes.placeholderImage}>
               Placeholder Image
               <div className={classes.authorOverlay}>{work.title}</div>
             </div>
             <EditingButtons />
           </Grid>
-        </>
       ))}
     </Grid>
   );
 }
+
+

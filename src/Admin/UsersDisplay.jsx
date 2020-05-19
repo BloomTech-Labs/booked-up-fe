@@ -47,6 +47,9 @@ const UsersDisplay = props => {
                 {user.email}
               </Grid>
               <Grid item xs={6} sm={3} className={classes.standard}>
+                {user.userType}
+              </Grid>
+              <Grid item xs={6} sm={3} className={classes.standard}>
                 {user.city}
               </Grid>
               <Grid item xs={6} sm={3} className={classes.standard}>
