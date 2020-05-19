@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/new-logo.jpg";
-import MessageIcon from '@material-ui/icons/Message';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MessageIcon from "@material-ui/icons/Message";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { userLogout } from "../actions/authenticationAction";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -25,13 +27,6 @@ function ElevationScroll(props) {
     elevation: trigger ? 4 : 0
   });
 }
-
-
-const logout = () => {
-  localStorage.clear();
-  alert("Thank you! Please come back soon!");
-};
-
 
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
@@ -46,7 +41,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     paddingTop: "2%",
     marginLeft: "1%"
-
   },
   logoContainer: {
     width: "12%",
@@ -58,7 +52,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "Silver",
     borderRadius: "0 35px 35px 0",
     boxShadow: "0 0 0.3rem 0.2rem LightGrey"
-
   },
   tabContainer: {
     marginLeft: "auto"
@@ -70,7 +63,6 @@ const useStyles = makeStyles(theme => ({
   },
   loggedTab: {
     marginRight: "15em"
-
   },
   button: {
     ...theme.typography.estimate,
@@ -79,16 +71,15 @@ const useStyles = makeStyles(theme => ({
     marginRight: "15px",
     height: "45px"
   },
-  
+
   blankTab: {
     border: "1px solid black",
-    height: "20px",
+    height: "20px"
   },
   menuTab: {
     border: "1px solid black",
     height: "10%",
     width: "7em"
-    
   }
 }));
 
@@ -96,22 +87,28 @@ function Header(props) {
   const [value, setValue] = useState(0);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false)
-  const [rc2, setRc2] = useState(false)
-  const [logged, setLogged] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [rc2, setRc2] = useState(false);
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    props.userLogout();
+    history.push("/");
+  };
 
   const handleClick = e => {
-    setAnchorEl(e.currentTarget)
-    setOpen(true)
-  }
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
 
   const handleChange = (e, value) => {
     setValue(value);
   };
   const handleClose = e => {
-    setAnchorEl(null)
-    setOpen(false)
-  }
+    setAnchorEl(null);
+    setOpen(false);
+  };
 
   // useEffect(() => {
   //   switch (window.location.pathname) {
@@ -150,10 +147,8 @@ function Header(props) {
   //   }
   // }, [value]);
 
-
   return (
     <>
-
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar disableGutters className={classes.toolbar}>
@@ -176,20 +171,16 @@ function Header(props) {
               onChange={handleChange}
               indicatorColor="primary"
             >
-              {props.isLogged === false && (<Tab
-                className={classes.tab}
-                component={Link}
-                to="/"
-                label="Home"
-              />)}
-              {props.isLogged === true && (<div className={classes.loggedTab}>
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/dashboard/profile"
-                label="Dashboard"
-              />
-              {/* // {rc2 === true && (
+              {props.isLogged ? (
+                <div className={classes.loggedTab}>
+                  <Tab
+                    className={classes.tab}
+                    component={Link}
+                    to="/dashboard/profile"
+                    label="Dashboard"
+                  />
+                  {/* // {rc2 === true && (
+
                 <Tab
                 className={classes.tab}
                 component={Link}
@@ -198,43 +189,61 @@ function Header(props) {
               />
               
               )} */}
-              <Tab
-              aria-owns={anchorEl ? "account-menu" : undefined} aria-haspopup={anchorEl ? "true": undefined}
-                className={classes.tab}
-                onClick={e => handleClick(e)}
-                label={<AccountCircleIcon/>}
-              /></div>)}
+                  <Tab
+                    aria-owns={anchorEl ? "account-menu" : undefined}
+                    aria-haspopup={anchorEl ? "true" : undefined}
+                    className={classes.tab}
+                    onClick={e => handleClick(e)}
+                    label={<AccountCircleIcon />}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Tab
+                    className={classes.tab}
+                    component={Link}
+                    to="/"
+                    label="Home"
+                  />
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    component={Link}
+                    to="/signup"
+                  >
+                    Sign Up
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    component={Link}
+                    to="/login"
+                  >
+                    Log In
+                  </Button>
+                </div>
+              )}
             </Tabs>
-            {props.isLogged === false && (<div><Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              component={Link}
-              to="/signup"
+            <Menu
+              id="account-menu"
+              classes={{ paper: classes.menuTab }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              elevation={0}
             >
-              Sign Up
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              component={Link}
-              to="/login"
-            >
-              Log In
-            </Button></div>)}
-            <Menu id="account-menu" classes={{paper: classes.menuTab}} anchorEl={anchorEl} open={open} onClose={handleClose} elevation={0}>
-                <MenuItem component={Link} to="/dashboard/profile">
-                    <AccountCircleIcon/>
-                  </MenuItem>
-                {rc2 === true && (
-                <MenuItem component={Link} to="/account-settings" >
-                    Account Settings
-                  </MenuItem>)}
-                  <MenuItem onClick={logout} >
-                    Logout
-                  </MenuItem>
-              </Menu>
+              <MenuItem component={Link} to="/dashboard/profile">
+                <AccountCircleIcon />
+              </MenuItem>
+              {rc2 === true && (
+                <MenuItem component={Link} to="/account-settings">
+                  Account Settings
+                </MenuItem>
+              )}
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -243,16 +252,11 @@ function Header(props) {
   );
 }
 
-
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(Header)
-
+export default connect(mapStateToProps, { userLogout })(Header);

@@ -19,7 +19,7 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "90vh"
+    height: "90vh",
   },
   side: {
     backgroundColor: "GhostWhite",
@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+
   },
   avatar: {
     margin: theme.spacing(1),
@@ -84,13 +85,14 @@ export const LoginForm = props => {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.side} />
-      <Grid item xs={12} sm={8} mdn={5} component={Paper} elevation={6} square>
-        <div boxShadow={5} className={classes.paper}>
+
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper} component="main">
           <Avatar className={classes.avatar}>
             <AccountCircleIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form
             className={classes.form}
