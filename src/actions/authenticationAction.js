@@ -29,6 +29,7 @@ export const userLogon = (data, props) => dispatch => {
       localStorage.setItem("token", res.data.Token);
       dispatch({ type: USER_LOGON, payload: res.data });
       props.history.push("/dashboard");
+
       //loadState();
     })
     .catch(err => console.log(err));
@@ -53,6 +54,7 @@ export const adminLogon = (data, props) => dispatch => {
         }
       });
       props.history.push("/dashboard");
+
       //loadState();
     })
     .catch(err => console.log(err));
