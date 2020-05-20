@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { useForm, Controller } from "react-hook-form";
 import { createAccount } from "../actions/authenticationAction";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "GhostWhite",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    border: "1px solid black"
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -60,6 +59,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const SignUpForm = props => {
   const classes = useStyles();
   const { register, errors, handleSubmit, control } = useForm();
@@ -79,6 +79,7 @@ const SignUpForm = props => {
     );
   };
 
+  
   return (
     <>
       <Grid container component="main" className={classes.root}>
@@ -262,7 +263,7 @@ const SignUpForm = props => {
               </Button>
               <Grid container className={classes.signIn}>
                 <Grid item>
-                  <Link href="/login" variant="body2">
+                  <Link to="/login" style={{ color: '#808080' }}>
                     Already have an account? Sign in
                   </Link>
                 </Grid>
