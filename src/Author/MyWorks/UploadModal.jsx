@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { uploadContent } from "../../actions/authorAction";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -9,8 +9,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-import {axiosWithAuth} from "../../utils/axiosWithAuth.jsx";
-import { useHistory } from 'react-router-dom';
+import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -52,37 +52,9 @@ function UploadModal(props) {
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
-    axios({
-      url: cloudinary.URL,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/X-WWW-form-urlencoded"
-      },
-      data: formData
-    })
-      .then(res => {
-        console.log(res);
-        var submitData = {
-          user_id: uploadWork.user_id,
-          content_url: res.data.secure_url,
-          title: work.title
-        }
-        console.log(submitData)
-        axiosWithAuth()
-          .post("https://bookedup-pt9.herokuapp.com/api/author-content", submitData)
-          .then(res => {
-            console.log(res);
-            history.push("/dashboard/my-works")
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    props.uploadContent(props, formData, cloudinary, uploadWork, work);
   };
-  
+
   const handleChange = e => {
     setWork({
       ...work,
@@ -145,16 +117,12 @@ function UploadModal(props) {
   );
 }
 
-
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-      authorContent: state.authorContent
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged,
+    authorContent: state.authorContent
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(UploadModal)
+export default connect(mapStateToProps, { uploadContent })(UploadModal);
