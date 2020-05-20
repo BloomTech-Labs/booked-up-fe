@@ -6,6 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
+import { UPLOAD_CONTENT } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -69,6 +70,13 @@ function reducer(state = initialState, action) {
 
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
+    }
+
+    case UPLOAD_CONTENT: {
+      return {
+        ...state,
+        authorContent: [...state.authorContent, action.payload]
+      };
     }
     default: {
       return state;
