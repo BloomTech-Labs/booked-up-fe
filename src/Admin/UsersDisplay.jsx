@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const UsersDisplay = props => {
   const classes = useStyles();
+  console.log(props.userAccounts);
 
   return (
     <>
@@ -47,7 +48,7 @@ const UsersDisplay = props => {
                 {user.email}
               </Grid>
               <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.userType}
+                {user.user_type}
               </Grid>
               <Grid item xs={6} sm={3} className={classes.standard}>
                 {user.city}
