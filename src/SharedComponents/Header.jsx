@@ -180,6 +180,7 @@ function Header(props) {
                     label="Dashboard"
                   />
                   {/* // {rc2 === true && (
+
                 <Tab
                 className={classes.tab}
                 component={Link}

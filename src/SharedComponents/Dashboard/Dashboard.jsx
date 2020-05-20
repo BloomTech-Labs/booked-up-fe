@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Users } from "../../Admin/Users";
 import Drawer from "@material-ui/core/Drawer";
 import MyWorks from "../../Author/MyWorks/MyWorks";
-import Browse from "../Browse/Browse.jsx";
 import Profile from "../../Author/Profile/Profile.jsx";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -71,20 +70,18 @@ function Dashboard(props) {
   const [component, setComponent] = useState();
   const [rc2, setRc2] = useState(false);
   useEffect(() => {
-    if(props.user.userType.toLowerCase().includes("admin")) {
-      setComponent(<Users userAccounts={props.userAccounts} />)
-    }
-    else {
+    if (props.user.userType.toLowerCase().includes("admin")) {
+      setComponent(<Users userAccounts={props.userAccounts} />);
+    } else {
       setComponent(<Profile />);
     }
-  },[]);
+  }, []);
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
-        if(props.user.userType.toLowerCase().includes("admin")) {
-          setComponent(<Users userAccounts={props.userAccounts} />)
-        }
-        else {
+        if (props.user.userType.toLowerCase().includes("admin")) {
+          setComponent(<Users userAccounts={props.userAccounts} />);
+        } else {
           setComponent(<Profile />);
         }
         break;
@@ -103,13 +100,6 @@ function Dashboard(props) {
 
       case "/dashboard/messages":
         setComponent(<p>My Messages</p>);
-        break;
-      case "/dashboard/admin":
-        console.log(
-          "NL: Dashboard.js: useEffect(): case /dashboard/admin: Value: ",
-          value
-        );
-        setComponent(<Users />);
         break;
       default:
         break;
@@ -130,12 +120,6 @@ function Dashboard(props) {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {/* {rc2 === true && (
-              <ListItem component={Link} to="/dashboard" className={classes.listItem}>
-              <ListItemText  primary="Browse" data-testid='sidebar-browse'/>
-            </ListItem>
-          )} */}
-
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
@@ -177,11 +161,6 @@ function Dashboard(props) {
               />
             </ListItem>
           )}
-          {/* {rc2 === true && (
-              <ListItem component={Link} to="/dashboard/favorites" className={classes.listItem}>
-              <ListItemText primary="Favorites" data-testid='sidebar-fav' />
-            </ListItem>
-          )} */}
 
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
@@ -191,18 +170,6 @@ function Dashboard(props) {
               onClick={() => setComponent(<MyWorks />)}
             >
               <ListItemText primary="My Works" data-testid="sidebar-works" />
-            </ListItem>
-          )}
-          {props.user.userType.toLowerCase().includes("admin") && (
-            <ListItem
-              component={Link}
-              to="/dashboard/admin"
-              className={classes.listItem}
-              onClick={() =>
-                setComponent(<Users userAccounts={props.userAccounts} />)
-              }
-            >
-              <ListItemText primary="Admin" data-testid="sidebar-admin" />
             </ListItem>
           )}
         </List>

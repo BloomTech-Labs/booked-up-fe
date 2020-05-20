@@ -1,7 +1,5 @@
 import axios from "axios";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import jwt_decode from "jwt-decode";
-import { getUsers } from "./adminAction";
 
 export const CREATE_ACCOUNT = "CREATE_AUTHOR_ACCOUNT";
 export const CREATE_AGENT_ACCOUNT = "CREATE_AGENT_ACCOUNT";
@@ -16,6 +14,7 @@ export const createAccount = (data, props) => dispatch => {
     .then(res => {
       dispatch({ type: CREATE_ACCOUNT, payload: res.data });
       props.history.push("/login");
+      //loadState();
     })
     .catch(err => console.log(err.message));
 };
@@ -30,6 +29,8 @@ export const userLogon = (data, props) => dispatch => {
       localStorage.setItem("token", res.data.Token);
       dispatch({ type: USER_LOGON, payload: res.data });
       props.history.push("/dashboard");
+
+      //loadState();
     })
     .catch(err => console.log(err));
 };
@@ -53,6 +54,8 @@ export const adminLogon = (data, props) => dispatch => {
         }
       });
       props.history.push("/dashboard");
+
+      //loadState();
     })
     .catch(err => console.log(err));
 };
