@@ -20,7 +20,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import SortDialog from "./Dialogs/SortDialog";
 import FilterDialog from "./Dialogs/FilterDialog";
 import UploadModal from "./UploadModal.jsx";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -60,8 +60,7 @@ const useStyles = makeStyles(theme => ({
   contentArea: {
     marginTop: "35px",
     marginLeft: "35px",
-    marginRight: "35px",
-    
+    marginRight: "35px"
   },
   iconButton: {
     "&:hover": {
@@ -70,20 +69,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MyWorks(props) {
+export const MyWorks = props => {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [sortClicked, setSortClicked] = useState(false);
   const [filterClicked, setFilterClicked] = useState(false);
   const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleSelect = (event, selected) => {
     setSelected(selected);
   };
@@ -185,7 +184,7 @@ function MyWorks(props) {
       )}
       <div className={classes.toolbar}>
         <div className={classes.leftToolbarButton} onClick={handleOpen}>
-          <Tooltip title="Upload New Work" >
+          <Tooltip title="Upload New Work">
             <IconButton className={classes.iconButton}>
               <PublishOutlinedIcon />
             </IconButton>
@@ -252,32 +251,24 @@ function MyWorks(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-        <UploadModal />
+          <UploadModal />
         </div>
       </Modal>
       <div className={classes.contentArea}>
-        {selected === "grid" && (
-          <GridDisplay authorWorks={works} />
-        )}
+        {selected === "grid" && <GridDisplay authorWorks={works} />}
         {selected === "row" && <RowDisplay authorWorks={works} />}
-        {selected === "column" && (
-          <ColumnDisplay authorWorks={works} />
-        )}
+        {selected === "column" && <ColumnDisplay authorWorks={works} />}
       </div>
     </>
   );
-}
-
+};
 
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-      authorContent: state.authorContent
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged,
+    authorContent: state.authorContent
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(MyWorks)
+export default connect(mapStateToProps, {})(MyWorks);
