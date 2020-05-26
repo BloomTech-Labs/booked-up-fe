@@ -6,6 +6,8 @@ import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined"
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
+import WorkView from "./WorkView/WorkView.jsx";
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
@@ -35,6 +37,7 @@ export default function EditingButtons(props) {
     };
   const classes = useStyles();
   return (
+    <>
     <ButtonGroup className={classes.buttonGroup}>
       <Tooltip title="Open Book" onClick={handleOpen}>
         <IconButton className={classes.button}>
@@ -52,7 +55,17 @@ export default function EditingButtons(props) {
         </IconButton>
       </Tooltip>
     </ButtonGroup>
-    
+    <Modal
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="work-title"
+    aria-describedby="work-description"
+  >
+    <div>
+    <WorkView work={props.work} />
+    </div>
+  </Modal>
+  </>
   );
 }
 

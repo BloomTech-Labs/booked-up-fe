@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
+import Browse from "../Browse/Browse.jsx";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -73,7 +74,7 @@ function Dashboard(props) {
     if (props.user.userType.toLowerCase().includes("admin")) {
       setComponent(<Users userAccounts={props.userAccounts} />);
     } else {
-      setComponent(<Profile />);
+      setComponent(<Browse />);
     }
   }, []);
   useEffect(() => {
@@ -82,7 +83,7 @@ function Dashboard(props) {
         if (props.user.userType.toLowerCase().includes("admin")) {
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
-          setComponent(<Profile />);
+          setComponent(<Browse />);
         }
         break;
 
@@ -120,56 +121,44 @@ function Dashboard(props) {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {props.user.userType.toLowerCase().includes("author") && (
+          {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
               to="/dashboard"
               className={classes.listItem}
+              data-testid="sidebar-browse"
+              onClick={() => setComponent(<Browse />)}
+            >
+              <ListItemText primary="Browse"  />
+            </ListItem>
+          )}
+          {!props.user.userType.toLowerCase().includes("admin") && (
+            <ListItem
+              component={Link}
+              to="/dashboard/profile"
+              className={classes.listItem}
+              data-testid="sidebar-profile"
               value={<Profile />}
               onClick={() => setComponent(<Profile />)}
             >
               <ListItemText
                 primary="My Profile"
-                data-testid="sidebar-profile"
+                
               />
             </ListItem>
+            
           )}
-          {props.user.userType.toLowerCase().includes("fan") && (
-            <ListItem
-              component={Link}
-              to="/dashboard"
-              className={classes.listItem}
-              onClick={() => setComponent(<Profile />)}
-            >
-              <ListItemText
-                primary="My Profile"
-                data-testid="sidebar-profile"
-              />
-            </ListItem>
-          )}
-
-          {props.user.userType.toLowerCase().includes("agent") && (
-            <ListItem
-              component={Link}
-              to="/dashboard"
-              className={classes.listItem}
-              onClick={() => setComponent(<Profile />)}
-            >
-              <ListItemText
-                primary="My Profile"
-                data-testid="sidebar-profile"
-              />
-            </ListItem>
-          )}
-
+  
+          
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
               to="/dashboard/my-works"
               className={classes.listItem}
+              data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}
             >
-              <ListItemText primary="My Works" data-testid="sidebar-works" />
+              <ListItemText primary="My Works"  />
             </ListItem>
           )}
         </List>
