@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getUsers } from "../actions/adminAction";
 import UsersDisplay from "./UsersDisplay";
-import { setSeconds } from "date-fns/esm";
+// import { setSeconds } from "date-fns/esm";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {

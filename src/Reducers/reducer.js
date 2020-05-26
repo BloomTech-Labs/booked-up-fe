@@ -11,7 +11,7 @@ import { UPLOAD_CONTENT } from "../actions/authorAction";
 const initialState = {
   user: {
     id: "",
-    userType: "",
+    userType: "author",
     firstName: "",
     lastName: "",
     displayName: "",
@@ -53,7 +53,8 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload.user,
-        message: action.payload.message
+        message: action.payload.message,
+        isLogged: true
       };
     }
 
