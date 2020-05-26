@@ -204,6 +204,7 @@ function MyWorks(props) {
                 value="grid"
                 className={classes.iconButton}
                 aria-label="grid"
+                
               >
                 <ViewModuleOutlinedIcon />
               </ToggleButton>
@@ -242,7 +243,7 @@ function MyWorks(props) {
         </ButtonGroup>
         <div className={classes.searchGroup}>
           <SearchOutlinedIcon />
-          <TextField id="search" className={classes.searchBar} label="Search" />
+          <TextField id="search" className={classes.searchBar} label="Search" data-testid="work-search"/>
         </div>
       </div>
       <Modal

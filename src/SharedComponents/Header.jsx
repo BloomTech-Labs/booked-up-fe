@@ -78,8 +78,8 @@ const useStyles = makeStyles(theme => ({
   },
   menuTab: {
     border: "1px solid black",
-    height: "10%",
-    width: "7em"
+    height: "13.5%",
+    width: "11em"
   }
 }));
 
@@ -232,16 +232,16 @@ function Header(props) {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-              elevation={0}
+              // elevation={0}
             >
               <MenuItem component={Link} to="/dashboard/profile">
                 <AccountCircleIcon />
               </MenuItem>
-              {rc2 === true && (
+              
                 <MenuItem component={Link} to="/account-settings">
                   Account Settings
                 </MenuItem>
-              )}
+              
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </Toolbar>

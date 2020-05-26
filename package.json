@@ -20,6 +20,7 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.1",
     "react-material-ui-carousel": "^1.4.3",
+    "react-pdf": "^4.1.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
@@ -55,6 +56,7 @@
     "moduleNameMapper": {
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/src/__mocks__/fileMock.js"
+
     },
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
