@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
-import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -47,18 +46,21 @@ export default function GridDisplay(props) {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.grid} spacing={2}>
+    <Grid
+      container
+      data-testid="grid-display"
+      className={classes.grid}
+      spacing={2}
+    >
       {works.map((work, index) => (
-          <Grid item xs={2} key={index} className={classes.gridItem}>
-            <div className={classes.placeholderImage}>
-              Placeholder Image
-              <div className={classes.authorOverlay}>{work.title}</div>
-            </div>
-            <EditingButtons work={work}/>
-          </Grid>
+        <Grid item xs={2} key={index} className={classes.gridItem}>
+          <div className={classes.placeholderImage}>
+            Placeholder Image
+            <div className={classes.authorOverlay}>{work.title}</div>
+          </div>
+          <EditingButtons work={work} />
+        </Grid>
       ))}
     </Grid>
   );
 }
-
-

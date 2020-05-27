@@ -50,18 +50,23 @@ export default function RowDisplay(props) {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.grid} spacing={2}>
+    <Grid
+      container
+      data-testid="row-display"
+      className={classes.grid}
+      spacing={2}
+    >
       {works.map((work, index) => (
-          <Grid item xs={2} key={index} className={classes.gridItem}>
-            <div className={classes.placeholderImage}>
-              Placeholder Image
-              <div className={classes.authorOverlay}>{work.author}</div>
-            </div>
-            <div className={classes.title}>{work.title}</div>
-            <div className={classes.genre}>{work.genre}</div>
-            <div className={classes.description}>{work.description}</div>
-            <EditingButtons book={work.content_url}/>
-          </Grid>
+        <Grid item xs={2} key={index} className={classes.gridItem}>
+          <div className={classes.placeholderImage}>
+            Placeholder Image
+            <div className={classes.authorOverlay}>{work.author}</div>
+          </div>
+          <div className={classes.title}>{work.title}</div>
+          <div className={classes.genre}>{work.genre}</div>
+          <div className={classes.description}>{work.description}</div>
+          <EditingButtons book={work.content_url} />
+        </Grid>
       ))}
     </Grid>
   );

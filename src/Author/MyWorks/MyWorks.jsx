@@ -171,19 +171,27 @@ export const MyWorks = props => {
   return (
     <>
       {sortClicked === true && (
-        <SortDialog
-          handleSortClose={handleSortClose}
-          sortClicked={sortClicked}
-        />
+        <div data-testid="sort-dialog">
+          <SortDialog
+            handleSortClose={handleSortClose}
+            sortClicked={sortClicked}
+          />
+        </div>
       )}
       {filterClicked === true && (
-        <FilterDialog
-          handleFilterClose={handleFilterClose}
-          filterClicked={filterClicked}
-        />
+        <div data-testid="filter-dialog">
+          <FilterDialog
+            handleFilterClose={handleFilterClose}
+            filterClicked={filterClicked}
+          />
+        </div>
       )}
-      <div className={classes.toolbar}>
-        <div className={classes.leftToolbarButton} onClick={handleOpen}>
+      <div className={classes.toolbar} data-testid="toolbar">
+        <div
+          className={classes.leftToolbarButton}
+          data-testid="upload-button"
+          onClick={handleOpen}
+        >
           <Tooltip title="Upload New Work">
             <IconButton className={classes.iconButton}>
               <PublishOutlinedIcon />
@@ -193,6 +201,7 @@ export const MyWorks = props => {
         <div className={classes.rightToolbarButtonGroup}>
           <ToggleButtonGroup
             value={selected}
+            data-testid="toggle-button-group"
             exclusive
             className={classes.rightButtonGroup}
             onChange={handleSelect}
@@ -201,9 +210,9 @@ export const MyWorks = props => {
             <Tooltip title="Grid">
               <ToggleButton
                 value="grid"
+                data-testid="grid-button"
                 className={classes.iconButton}
                 aria-label="grid"
-                
               >
                 <ViewModuleOutlinedIcon />
               </ToggleButton>
@@ -211,6 +220,7 @@ export const MyWorks = props => {
             <Tooltip title="Row">
               <ToggleButton
                 value="row"
+                data-testid="row-button"
                 className={classes.iconButton}
                 aria-label="row"
               >
@@ -220,6 +230,7 @@ export const MyWorks = props => {
             <Tooltip title="Column">
               <ToggleButton
                 value="column"
+                data-testid="column-button"
                 className={classes.iconButton}
                 aria-label="column"
               >
@@ -228,25 +239,39 @@ export const MyWorks = props => {
             </Tooltip>
           </ToggleButtonGroup>
         </div>
-        <ButtonGroup>
+        <ButtonGroup data-testid="sort-filter-button-group">
           <Tooltip title="Sort">
-            <IconButton onClick={handleSort} className={classes.iconButton}>
+            <IconButton
+              data-testid="sort-button"
+              onClick={handleSort}
+              className={classes.iconButton}
+            >
               <SortOutlinedIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Filter">
-            <IconButton onClick={handleFilter} className={classes.iconButton}>
+          <Tooltip title="filter">
+            <IconButton
+              data-testid="filt-button"
+              onClick={handleFilter}
+              className={classes.iconButton}
+            >
               <FilterListOutlinedIcon />
             </IconButton>
           </Tooltip>
         </ButtonGroup>
         <div className={classes.searchGroup}>
           <SearchOutlinedIcon />
-          <TextField id="search" className={classes.searchBar} label="Search" data-testid="work-search"/>
+          <TextField
+            id="search"
+            className={classes.searchBar}
+            label="Search"
+            data-testid="work-search"
+          />
         </div>
       </div>
       <Modal
         open={open}
+        data-testid="upload-modal"
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
