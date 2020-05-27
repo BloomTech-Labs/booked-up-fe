@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -27,7 +27,8 @@ const initialState = {
   isLogged: false,
   contentLibrary: [],
   authorContent: [],
-  userAccounts: []
+  userAccounts: [],
+  currentWork: {}
 };
 
 function reducer(state = initialState, action) {
@@ -78,6 +79,13 @@ function reducer(state = initialState, action) {
         ...state,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+
+    case SET_WORK: {
+      return {
+        ...state,
+        currentWork: action.payload
+      }
     }
     default: {
       return state;

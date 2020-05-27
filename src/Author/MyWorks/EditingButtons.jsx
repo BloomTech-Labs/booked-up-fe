@@ -8,7 +8,10 @@ import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutline
 import Tooltip from "@material-ui/core/Tooltip";
 import WorkView from "./WorkView/WorkView.jsx";
 import Modal from '@material-ui/core/Modal';
-
+import Popper from '@material-ui/core/Popper';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { setWork } from "../../actions/authorAction";
+import { connect } from "react-redux";
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
     display: "flex",
@@ -25,21 +28,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EditingButtons(props) {
-  const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
+function EditingButtons(props) {
+ 
+  const handleClick = () => {
+      props.setWork(props.work)
+      window.location.replace(`/dashboard/book`)
     };
   const classes = useStyles();
   return (
     <>
     <ButtonGroup className={classes.buttonGroup}>
-      <Tooltip title="Open Book" onClick={handleOpen}>
+      <Tooltip title="Open Book" component={Link} onClick={handleClick}>
         <IconButton className={classes.button}>
           <ImportContactsOutlinedIcon />
         </IconButton>
@@ -55,18 +54,17 @@ export default function EditingButtons(props) {
         </IconButton>
       </Tooltip>
     </ButtonGroup>
-    <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="work-title"
-    aria-describedby="work-description"
-  >
-    <div>
-    <WorkView work={props.work} />
-    </div>
-  </Modal>
   </>
   );
 }
 
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    isLogged: state.isLogged,
+    currentWork: state.currentWork
+  };
+};
+
+export default connect(mapStateToProps, { setWork })(EditingButtons);
