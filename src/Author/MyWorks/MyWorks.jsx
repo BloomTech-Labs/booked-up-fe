@@ -213,6 +213,7 @@ export const MyWorks = props => {
                 data-testid="grid-button"
                 className={classes.iconButton}
                 aria-label="grid"
+                
               >
                 <ViewModuleOutlinedIcon />
               </ToggleButton>

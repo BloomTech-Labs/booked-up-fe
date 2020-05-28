@@ -1,6 +1,7 @@
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const UPLOAD_CONTENT = "UPLOAD_CONTENT";
+export const SET_WORK = "SET_WORK";
 
 export const uploadContent = (
   props,
@@ -40,4 +41,9 @@ export const uploadContent = (
     .catch(err => {
       console.log(err);
     });
+};
+
+export const setWork = data => dispatch => {
+  console.log(data)
+  dispatch({ type: SET_WORK, payload: data });
 };

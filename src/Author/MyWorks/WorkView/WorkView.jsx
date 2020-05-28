@@ -12,56 +12,48 @@ import { useHistory } from "react-router-dom";
 import { Document, Page } from "react-pdf";
 import axios from "axios";
 import { pdfjs } from 'react-pdf';
+
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    position: "absolute",
-    left: "35%",
-    top: "20%",
-    width: 400,
+    margin: 0,
+    width: "95%",
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(1, 2, 1),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  pageContent: {
+      width: "90em",
   }
 }));
 
 function Workview(props) {
   const classes = useStyles();
   const [pages, setPages] = useState({numPages: null, pageNum: 1})
-  const [work, setWork] = useState()
+  const [link, setLink] = useState()
 
-  useEffect(() => {
-      console.log(props.work.content_url)
-      axios
-        .get(props.work.content_url)
-        .then(res => {
-            setWork(res)
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-  }, [])
-
+ 
   const loadSuccess = ({ numPages }) => {
     setPages({
+        ...pages,
       numPages
     });
     
   };
   return (
-    <Card className={classes.paper}>
-      <CardHeader title={<Typography variant="h5">{props.work.title}</Typography>} />
-      <CardContent>
-        <Document file={work} onLoadSuccess={loadSuccess}>
-            <Page pageNumber={pages.pageNum} />
+    <div className={classes.paper}>
+      <Typography variant="h5">{props.work.title}</Typography>
+      
+      <p>Page {pages.pageNum} of {pages.numPages}</p>
+        <Document file={props.work.content_url} onLoadSuccess={loadSuccess}>
+            <Page width={1400} pageNumber={pages.pageNum} className={classes.pageContent}/>
         </Document>
-        
-        <p>Page {pages.pageNum} of {pages.numPages}</p>
-      </CardContent>
-    </Card>
+     
+    </div>
   );
 }
 
@@ -69,7 +61,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     isLogged: state.isLogged,
-    authorContent: state.authorContent
+    work: state.currentWork
+
   };
 };
 
