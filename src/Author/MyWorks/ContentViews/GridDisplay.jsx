@@ -53,13 +53,13 @@ export default function GridDisplay(props) {
       spacing={2}
     >
       {works.map((work, index) => (
-        <Grid item xs={2} key={index} className={classes.gridItem}>
-          <div className={classes.placeholderImage}>
-            Placeholder Image
-            <div className={classes.authorOverlay}>{work.title}</div>
-          </div>
-          <EditingButtons work={work} />
-        </Grid>
+          <Grid item xs={2} key={index} className={classes.gridItem}>
+            <div className={classes.placeholderImage}>
+              Placeholder Image
+              <div className={classes.authorOverlay}>{work.title}</div>
+            </div>
+            <EditingButtons work={work}/>
+          </Grid>
       ))}
     </Grid>
   );

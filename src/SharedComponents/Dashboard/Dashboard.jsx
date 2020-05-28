@@ -11,6 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
+import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx"
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   content: {
-    marginTop: "5%",
+    marginTop: "3%",
     width: "80%",
     marginLeft: "15%",
     marginBottom: "15%"
@@ -69,7 +70,7 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState();
-  const [rc2, setRc2] = useState(false);
+  
   useEffect(() => {
     if (props.user.userType.toLowerCase().includes("admin")) {
       setComponent(<Users userAccounts={props.userAccounts} />);
@@ -101,6 +102,9 @@ function Dashboard(props) {
 
       case "/dashboard/messages":
         setComponent(<p>My Messages</p>);
+        break;
+      case "/dashboard/book":
+        setComponent(<WorkView />);
         break;
       default:
         break;
@@ -172,7 +176,8 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    userAccounts: state.userAccounts
+    userAccounts: state.userAccounts,
+    currentWork: state.currentWork
   };
 };
 
