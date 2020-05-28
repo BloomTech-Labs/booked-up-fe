@@ -7,6 +7,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import { setWork } from "../../actions/authorAction";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -21,8 +23,14 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-export default function OpenWorkModal(props) {
+function OpenWorkModal(props) {
     const classes = useStyles();
+
+
+    const handleReadClick = () => {
+        props.setWork(props.work)
+        window.location.replace(`/dashboard/book`)
+      };
     return(
         <Card className={classes.paper}>
       <CardHeader title={<Typography variant="h5">{props.work.title}</Typography>} />
@@ -42,7 +50,7 @@ export default function OpenWorkModal(props) {
             <Button variant="contained" color="secondary">
               Add to Favorites
             </Button>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" onClick={handleReadClick}>
               Read Now
             </Button>
           </Grid>
@@ -51,3 +59,14 @@ export default function OpenWorkModal(props) {
     </Card>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+      user: state.user,
+      isLogged: state.isLogged,
+      currentWork: state.currentWork
+    };
+  };
+  
+  export default connect(mapStateToProps, { setWork })(OpenWorkModal);
+  
