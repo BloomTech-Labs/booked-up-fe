@@ -141,6 +141,7 @@ const useStyles = makeStyles(theme => ({
 function Browse(props) {
   const classes = useStyles();
   const [works, setWorks] = useState([{}]);
+  const [selWork, setSelWork] = useState({});
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
@@ -237,7 +238,9 @@ function Browse(props) {
         className={classes.featuredContainer}
       >
         {works.map((cl, i) => (
-          <div key={i} className={classes.placeholderImage} onClick={handleOpen}>
+          <div key={i} className={classes.placeholderImage} onClick={() => (
+            setSelWork(cl),
+            setOpen(true))}>
             <div className={classes.works}>
               <p className={classes.work}>{cl.title}</p>
               <p className={classes.work}>{cl.description}</p>
@@ -261,7 +264,9 @@ function Browse(props) {
             
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={handleOpen}>
+              <div key={i} className={classes.placeholderImage} onClick={() => (
+                setSelWork(cl),
+                setOpen(true))}>
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -291,7 +296,9 @@ function Browse(props) {
             
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={handleOpen}>
+              <div key={i} className={classes.placeholderImage} onClick={() => (
+                setSelWork(cl),
+                setOpen(true))}>
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -308,7 +315,9 @@ function Browse(props) {
           <h2 className={classes.title}>Search Results</h2>
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
-              <div className={classes.placeholderImage} onClick={handleOpen}>
+              <div className={classes.placeholderImage} onClick={() => (
+            setSelWork(cl),
+            setOpen(true))}>
                 <div className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -326,7 +335,7 @@ function Browse(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-        <OpenWorkModal />
+        <OpenWorkModal work={selWork}/>
         </div>
       </Modal>
       <div className={classes.bottomMargin}></div>
