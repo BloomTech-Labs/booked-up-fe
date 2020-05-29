@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import {
@@ -9,10 +9,10 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { data } from "../../data.js";
 import { connect } from "react-redux";
-
-const content_library = data.author_works;
+import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
+import Modal from '@material-ui/core/Modal';
+import OpenWorkModal from "./OpenWorkModal.jsx";
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -139,11 +139,34 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Browse(props) {
-  // const [works, setWorks] = useState([{ id: 0, title: "", description: "" }]);
+  const classes = useStyles();
+  const [works, setWorks] = useState([{}]);
+  const [selWork, setSelWork] = useState({});
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
-  const classes = useStyles();
+  
+  const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://bookedup-pt9.herokuapp.com/api/author-content")
+      .then(res => {
+        console.log(res)
+        setWorks(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   const handleSearch = e => {
     e.preventDefault();
@@ -160,7 +183,7 @@ function Browse(props) {
   const handleSubmit = e => {
     e.preventDefault();
     setFilteredWork(
-      content_library.filter(work => {
+      works.filter(work => {
         if (filter === "all") {
           return (
             work.title.toLowerCase().includes(value.toLowerCase()) ||
@@ -214,8 +237,10 @@ function Browse(props) {
         dots
         className={classes.featuredContainer}
       >
-        {content_library.map((cl, i) => (
-          <div key={i} className={classes.placeholderImage}>
+        {works.map((cl, i) => (
+          <div key={i} className={classes.placeholderImage} onClick={() => (
+            setSelWork(cl),
+            setOpen(true))}>
             <div className={classes.works}>
               <p className={classes.work}>{cl.title}</p>
               <p className={classes.work}>{cl.description}</p>
@@ -238,8 +263,10 @@ function Browse(props) {
             infinite
             
           >
-            {content_library.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage}>
+            {works.map((cl, i) => (
+              <div key={i} className={classes.placeholderImage} onClick={() => (
+                setSelWork(cl),
+                setOpen(true))}>
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -268,8 +295,10 @@ function Browse(props) {
             infinite
             
           >
-            {content_library.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage}>
+            {works.map((cl, i) => (
+              <div key={i} className={classes.placeholderImage} onClick={() => (
+                setSelWork(cl),
+                setOpen(true))}>
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -286,7 +315,9 @@ function Browse(props) {
           <h2 className={classes.title}>Search Results</h2>
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
-              <div className={classes.placeholderImage}>
+              <div className={classes.placeholderImage} onClick={() => (
+            setSelWork(cl),
+            setOpen(true))}>
                 <div className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -297,7 +328,16 @@ function Browse(props) {
           ))}
         </div>
       )}
-
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div>
+        <OpenWorkModal work={selWork}/>
+        </div>
+      </Modal>
       <div className={classes.bottomMargin}></div>
     </>
   );
