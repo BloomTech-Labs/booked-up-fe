@@ -20,6 +20,7 @@ function App() {
             path="/dashboard"
             component={Dashboard}
           />
+          <Route path="/" component={SignUpForm} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUpForm} />
