@@ -49,6 +49,9 @@ function UploadModal(props) {
             <Button variant="contained" color="secondary" onClick={onDel}>
               Delete
             </Button>
+            <Button variant="contained" color="secondary" onClick={() => props.close()}>
+              Cancel
+            </Button>
       </CardContent>
     </Card>
   );
