@@ -267,7 +267,7 @@ function MyWorks(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-          <UploadModal />
+          <UploadModal uploadClose={handleClose}/>
         </div>
       </Modal>
       <Modal
