@@ -11,7 +11,7 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 
 const useStyles = makeStyles(theme => ({
@@ -145,39 +145,37 @@ function Browse(props) {
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
-  
+
   const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
       .then(res => {
-        console.log(res)
-        setWorks(res.data)
+        console.log(res);
+        setWorks(res.data);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }, [])
+        console.log(err);
+      });
+  }, []);
 
   const handleSearch = e => {
     e.preventDefault();
     setValue(e.target.value);
-    console.log(value);
   };
 
   const handleChange = e => {
     e.preventDefault();
     setFilter(e.target.value);
-    console.log(filter);
   };
 
   const handleSubmit = e => {
@@ -237,9 +235,11 @@ function Browse(props) {
         className={classes.featuredContainer}
       >
         {works.map((cl, i) => (
-          <div key={i} className={classes.placeholderImage} onClick={() => (
-            setSelWork(cl),
-            setOpen(true))}>
+          <div
+            key={i}
+            className={classes.placeholderImage}
+            onClick={() => (setSelWork(cl), setOpen(true))}
+          >
             <div className={classes.works}>
               <p className={classes.work}>{cl.title}</p>
               <p className={classes.work}>{cl.description}</p>
@@ -266,9 +266,11 @@ function Browse(props) {
             infinite
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={() => (
-                setSelWork(cl),
-                setOpen(true))}>
+              <div
+                key={i}
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -293,9 +295,11 @@ function Browse(props) {
             infinite
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={() => (
-                setSelWork(cl),
-                setOpen(true))}>
+              <div
+                key={i}
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
                 <div key={i} className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -312,9 +316,10 @@ function Browse(props) {
           <h2 className={classes.title}>Search Results</h2>
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
-              <div className={classes.placeholderImage} onClick={() => (
-            setSelWork(cl),
-            setOpen(true))}>
+              <div
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
                 <div className={classes.works}>
                   <p className={classes.work}>{cl.title}</p>
                   <p className={classes.work}>{cl.description}</p>
@@ -332,7 +337,7 @@ function Browse(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-        <OpenWorkModal work={selWork}/>
+          <OpenWorkModal work={selWork} />
         </div>
       </Modal>
       <div className={classes.bottomMargin}></div>

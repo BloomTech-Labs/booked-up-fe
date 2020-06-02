@@ -124,17 +124,5 @@ export const browseTests = {
     }
   ],
 
-  visibilityEventTests: [
-    {
-      Component: Browse,
-      entry: "/browse",
-      description: "brings up searches on search button",
-      eventType: EventTypes.MOUSE_EVENT,
-      eventAction: EventActions.MOUSE_LEFT_CLICK,
-      componentQueryType: QueryTypes.BY_TEXT,
-      testQueryType: QueryTypes.BY_TEXT,
-      componentId: "Go",
-      queryId: "Search Results"
-    }
-  ]
+  visibilityEventTests: []
 };
