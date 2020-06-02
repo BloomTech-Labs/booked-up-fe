@@ -31,7 +31,7 @@ export const uploadContent = (
         )
         .then(res => {
           console.log(res);
-          dispatch({ type: UPLOAD_CONTENT, payload: res.data });
+          dispatch({ type: UPLOAD_CONTENT, payload: res.data.newContent });
           props.history.push("/dashboard/my-works");
         })
         .catch(err => {
