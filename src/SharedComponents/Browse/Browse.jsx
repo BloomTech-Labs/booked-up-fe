@@ -6,7 +6,7 @@ import {
   Button,
   Select,
   MenuItem,
-  FormControl,
+  FormControl
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { data } from "../../data.js";
@@ -173,7 +173,6 @@ function Browse(props) {
         }
       })
     );
-    console.log(filteredWork);
   };
   return (
     <>
@@ -232,11 +231,14 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={<button className={classes.prev} data-testid='new-left'>&#10094;</button>}
+            arrowLeft={
+              <button className={classes.prev} data-testid="new-left">
+                &#10094;
+              </button>
+            }
             arrowRight={<button className={classes.next}>&#10095;</button>}
             addArrowClickHandler
             infinite
-            
           >
             {content_library.map((cl, i) => (
               <div key={i} className={classes.placeholderImage}>
@@ -254,19 +256,14 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={
-              <button className={classes.prev}>
-                &#10094;
-              </button>
-            }
+            arrowLeft={<button className={classes.prev}>&#10094;</button>}
             arrowRight={
-              <button className={classes.next} data-testid='pop-right'>
+              <button className={classes.next} data-testid="pop-right">
                 &#10095;
               </button>
             }
             addArrowClickHandler
             infinite
-            
           >
             {content_library.map((cl, i) => (
               <div key={i} className={classes.placeholderImage}>
@@ -305,12 +302,9 @@ function Browse(props) {
 
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(Browse)
+export default connect(mapStateToProps, {})(Browse);
