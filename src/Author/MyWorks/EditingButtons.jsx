@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function EditingButtons(props) {
- 
   const handleClick = () => {
       props.setWork(props.work)
       window.location.replace(`/dashboard/book`)
