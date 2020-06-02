@@ -60,7 +60,7 @@ export default function RowDisplay(props) {
             <div className={classes.title}>{work.title}</div>
             <div className={classes.genre}>{work.genre}</div>
             <div className={classes.description}>{work.description}</div>
-            <EditingButtons book={work.content_url}/>
+            <EditingButtons book={work.content_url} handleDelOpen={props.handleDelOpen}/>
           </Grid>
       ))}
     </Grid>

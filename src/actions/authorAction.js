@@ -47,3 +47,15 @@ export const setWork = data => dispatch => {
   console.log(data)
   dispatch({ type: SET_WORK, payload: data });
 };
+
+export const delContent = data => dispatch => {
+  console.log(data)
+  axiosWithAuth()
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${data.id}`)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

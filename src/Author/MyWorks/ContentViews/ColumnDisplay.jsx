@@ -74,7 +74,7 @@ export default function ColumnDisplay(props) {
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
             </Grid>
-            <EditingButtons book={work.content_url}/>
+            <EditingButtons book={work.content_url} handleDelOpen={props.handleDelOpen}/>
           </Grid>
         
       ))}
