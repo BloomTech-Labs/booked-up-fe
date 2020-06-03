@@ -4,7 +4,7 @@ export const UPLOAD_CONTENT = "UPLOAD_CONTENT";
 export const SET_WORK = "SET_WORK";
 export const TASK_START = "TASK_START";
 export const TASK_FAIL = "TASK_FAIL";
-
+export const DEL_WORK = "DEL_WORK"
 
 export const taskStart = () => dispatch => {
   dispatch({ type: TASK_START })
@@ -62,7 +62,9 @@ export const delContent = data => dispatch => {
   axiosWithAuth()
     .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${data.id}`)
     .then(res => {
+      dispatch({ type: DEL_WORK, payload: data.id})
         console.log(res)
+        window.location.reload();
     })
     .catch(err => {
       console.log(err)

@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -91,6 +91,14 @@ function reducer(state = initialState, action) {
         isLoading: false,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+    case DEL_WORK : {
+      return {
+        ...state,
+        authorContent: state.authorContent.filter((work) => {
+          return work.id !== action.payload
+        })
+      }
     }
     case TASK_FAIL: {
       return {
