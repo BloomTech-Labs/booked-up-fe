@@ -2,6 +2,13 @@ import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const UPLOAD_CONTENT = "UPLOAD_CONTENT";
 export const SET_WORK = "SET_WORK";
+export const UPLOAD_START = "UPLOAD_START";
+export const UPLOAD_FAIL = "UPLOAD_FAIL";
+
+
+export const uploadStart = () => dispatch => {
+  dispatch({ type: UPLOAD_START })
+}
 
 export const uploadContent = (
   props,
@@ -32,9 +39,10 @@ export const uploadContent = (
         .then(res => {
           console.log(res);
           dispatch({ type: UPLOAD_CONTENT, payload: res.data.newContent });
-          window.location.reload()
+          window.location.reload();
         })
         .catch(err => {
+          dispatch({ type: UPLOAD_FAIL, payload: err.message })
           console.log(err);
         });
     })

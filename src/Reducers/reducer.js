@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, UPLOAD_START, UPLOAD_FAIL } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -23,8 +23,10 @@ const initialState = {
   },
 
   message: "",
+  error: "",
   isAdmin: false,
   isLogged: false,
+  isLoading: false,
   contentLibrary: [],
   authorContent: [],
   userAccounts: [],
@@ -73,12 +75,26 @@ function reducer(state = initialState, action) {
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
     }
-
+    case UPLOAD_START: {
+      return {
+        ...state,
+        error: "",
+        isLoading: true
+      }
+    }
     case UPLOAD_CONTENT: {
       return {
         ...state,
+        isLoading: false,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+    case UPLOAD_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      }
     }
 
     case SET_WORK: {

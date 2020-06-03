@@ -46,6 +46,7 @@ function OpenWorkModal(props) {
             
             <Grid item xs={6}>
               <p>Description</p>
+              
             </Grid>
             <Button variant="contained" color="secondary">
               Add to Favorites

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { uploadContent } from "../../actions/authorAction";
+import { uploadContent, uploadStart } from "../../actions/authorAction";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import { useHistory } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -52,6 +53,7 @@ function UploadModal(props) {
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
+    props.uploadStart();
     props.uploadContent(props, formData, cloudinary, uploadWork, work);
   };
 
@@ -107,9 +109,18 @@ function UploadModal(props) {
                 onChange={handleChange}
               /> */}
             {/* </Grid> */}
+            {props.isLoading === true && (
+              <Grid item xs={12}>
+                <ClipLoader 
+                size={50}
+                loading={props.isLoading}
+              />
+              </Grid>
+            )}
             <Button type="submit" variant="contained" color="secondary">
               Upload
             </Button>
+            
           </Grid>
         </form>
       </CardContent>
@@ -121,8 +132,9 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     isLogged: state.isLogged,
+    isLoading: state.isLoading,
     authorContent: state.authorContent
   };
 };
 
-export default connect(mapStateToProps, { uploadContent })(UploadModal);
+export default connect(mapStateToProps, { uploadContent, uploadStart })(UploadModal);
