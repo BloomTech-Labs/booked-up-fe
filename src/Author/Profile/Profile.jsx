@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
-      marginBottom: "20%"
+    marginBottom: "20%"
   },
   title: {
     borderBottom: "1px solid black",
@@ -20,15 +20,15 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.light
   },
   item: {
-    textAlign: 'center',
+    textAlign: "center"
   },
   firstName: {
-      textAlign: "right",
-      paddingRight: "3%"
+    textAlign: "right",
+    paddingRight: "3%"
   },
   lastName: {
-      textAlign: "left",
-      paddingLeft: "3%"
+    textAlign: "left",
+    paddingLeft: "3%"
   }
 }));
 
@@ -54,12 +54,14 @@ function Profile(props) {
           className={classes.container}
           spacing={2}
         >
-            <Grid item xs={6}>
-            <p className={classes.firstName}>First Name: {props.user.firstName}</p>
-            </Grid>
-            <Grid item xs={6}>
+          <Grid item xs={6} data-testid="first-name">
+            <p className={classes.firstName}>
+              First Name: {props.user.firstName}
+            </p>
+          </Grid>
+          <Grid item xs={6}>
             <p className={classes.lastName}>Last Name: {props.user.lastName}</p>
-            </Grid>
+          </Grid>
           {/* <Grid item xs={2}>
           <p className={classes.item}>City: {props.user.city}</p>
           </Grid>
@@ -75,15 +77,11 @@ function Profile(props) {
   );
 }
 
-
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(Profile)
+export default connect(mapStateToProps, {})(Profile);
