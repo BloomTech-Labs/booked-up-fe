@@ -57,16 +57,25 @@ export const setWork = data => dispatch => {
   dispatch({ type: SET_WORK, payload: data });
 };
 
-export const delContent = data => dispatch => {
-  console.log(data)
-  axiosWithAuth()
-    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${data.id}`)
+export const delContent = (work) => dispatch => {
+  console.log(work)
+  axios
+    .delete(`${work.content_url}`)
     .then(res => {
-      dispatch({ type: DEL_WORK, payload: data.id})
+      console.log(res)
+      axiosWithAuth()
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}`)
+    .then(res => {
+      dispatch({ type: DEL_WORK, payload: work.id})
         console.log(res)
         window.location.reload();
     })
     .catch(err => {
       console.log(err)
     })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  
 }

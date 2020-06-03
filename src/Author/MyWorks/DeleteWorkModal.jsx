@@ -28,16 +28,13 @@ const useStyles = makeStyles(theme => ({
 function UploadModal(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [cloudinary] = useState({
-    URL: "https://api.cloudinary.com/v1_1/dzmxxuygs/upload",
-    preset: "gcwzl9u1"
-  });
+  const [work, setWork] = useState(props.work)
 
   
   const onDel = e => {
-    console.log(props.work)
+    console.log(work)
     e.preventDefault();
-    props.delContent(props.work);
+    props.delContent(work);
   };
 
   
