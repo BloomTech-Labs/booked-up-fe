@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK, UPLOAD_START, UPLOAD_FAIL } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -38,7 +38,8 @@ function reducer(state = initialState, action) {
     case CREATE_ACCOUNT: {
       return {
         ...state,
-        message: action.payload.message
+        message: action.payload.message,
+        isLoading: false
       };
     }
 
@@ -48,7 +49,8 @@ function reducer(state = initialState, action) {
         user: action.payload.User,
         authorContent: action.payload.AuthorContent,
         contentLibrary: action.payload.ContentLibrary,
-        isLogged: true
+        isLogged: true,
+        isLoading: false
       };
     }
 
@@ -57,7 +59,8 @@ function reducer(state = initialState, action) {
         ...state,
         user: action.payload.user,
         message: action.payload.message,
-        isLogged: true
+        isLogged: true,
+        isLoading: false
       };
     }
 
@@ -75,7 +78,7 @@ function reducer(state = initialState, action) {
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
     }
-    case UPLOAD_START: {
+    case TASK_START: {
       return {
         ...state,
         error: "",
@@ -89,7 +92,7 @@ function reducer(state = initialState, action) {
         authorContent: [...state.authorContent, action.payload]
       };
     }
-    case UPLOAD_FAIL: {
+    case TASK_FAIL: {
       return {
         ...state,
         error: action.payload,

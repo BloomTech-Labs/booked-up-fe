@@ -2,12 +2,12 @@ import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const UPLOAD_CONTENT = "UPLOAD_CONTENT";
 export const SET_WORK = "SET_WORK";
-export const UPLOAD_START = "UPLOAD_START";
-export const UPLOAD_FAIL = "UPLOAD_FAIL";
+export const TASK_START = "TASK_START";
+export const TASK_FAIL = "TASK_FAIL";
 
 
-export const uploadStart = () => dispatch => {
-  dispatch({ type: UPLOAD_START })
+export const taskStart = () => dispatch => {
+  dispatch({ type: TASK_START })
 }
 
 export const uploadContent = (
@@ -29,7 +29,8 @@ export const uploadContent = (
       var submitData = {
         user_id: uploadWork.user_id,
         content_url: res.data.secure_url,
-        title: work.title
+        title: work.title,
+        description: work.description
       };
       axiosWithAuth()
         .post(
@@ -42,7 +43,7 @@ export const uploadContent = (
           window.location.reload();
         })
         .catch(err => {
-          dispatch({ type: UPLOAD_FAIL, payload: err.message })
+          dispatch({ type: TASK_FAIL, payload: err.message })
           console.log(err);
         });
     })

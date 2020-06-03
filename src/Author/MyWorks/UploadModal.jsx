@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { uploadContent, uploadStart } from "../../actions/authorAction";
+import { uploadContent, taskStart } from "../../actions/authorAction";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 function UploadModal(props) {
   const classes = useStyles();
-  const [work, setWork] = useState({ title: "", body: [] });
+  const [work, setWork] = useState({ title: "", body: [], description: "" });
   const history = useHistory();
   const [uploadWork, setUploadWork] = useState({
     title: "",
@@ -53,7 +53,7 @@ function UploadModal(props) {
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
-    props.uploadStart();
+    props.taskStart();
     props.uploadContent(props, formData, cloudinary, uploadWork, work);
   };
 
@@ -94,7 +94,7 @@ function UploadModal(props) {
                 onChange={handleChange}
               />
             </Grid>
-            {/* <Grid item xs={6}>
+            <Grid item xs={6}>
               <p>Description</p>
             </Grid>
             <Grid item xs={6}>
@@ -107,8 +107,8 @@ function UploadModal(props) {
                 className={classes.description}
                 value={work.description}
                 onChange={handleChange}
-              /> */}
-            {/* </Grid> */}
+              />
+            </Grid>
             {props.isLoading === true && (
               <Grid item xs={12}>
                 <ClipLoader 
@@ -137,4 +137,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { uploadContent, uploadStart })(UploadModal);
+export default connect(mapStateToProps, { uploadContent, taskStart })(UploadModal);
