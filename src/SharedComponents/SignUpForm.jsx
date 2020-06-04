@@ -16,6 +16,9 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Paper from "@material-ui/core/Paper";
+import { taskStart } from "../actions/authorAction"
+import { ClipLoader } from "react-spinners";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -269,6 +272,14 @@ const SignUpForm = props => {
                 </Grid>
               </Grid>
             </form>
+            {props.isLoading === true && (
+              <Grid item xs={12}>
+                <ClipLoader 
+                size={50}
+                loading={props.isLoading}
+              />
+              </Grid>
+            )}
           </div>
         </Grid>
       </Grid>
@@ -277,7 +288,8 @@ const SignUpForm = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  isLoading: state.isLoading
 });
 
-export default connect(mapStateToProps, { createAccount })(SignUpForm);
+export default connect(mapStateToProps, { createAccount, taskStart })(SignUpForm);

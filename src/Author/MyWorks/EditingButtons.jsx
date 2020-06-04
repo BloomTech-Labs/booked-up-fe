@@ -10,7 +10,7 @@ import WorkView from "./WorkView/WorkView.jsx";
 import Modal from '@material-ui/core/Modal';
 import Popper from '@material-ui/core/Popper';
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { setWork } from "../../actions/authorAction";
+import { setWork, delContent } from "../../actions/authorAction";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +48,7 @@ function EditingButtons(props) {
           <EditOutlinedIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Delete Book">
+      <Tooltip title="Delete Book" onClick={() => (props.setWork(props.work), props.handleDelOpen())}>
         <IconButton className={classes.button}>
           <DeleteForeverOutlinedIcon />
         </IconButton>
@@ -67,4 +67,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setWork })(EditingButtons);
+export default connect(mapStateToProps, { setWork, delContent })(EditingButtons);

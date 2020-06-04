@@ -20,6 +20,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import SortDialog from "./Dialogs/SortDialog";
 import FilterDialog from "./Dialogs/FilterDialog";
 import UploadModal from "./UploadModal.jsx";
+import DeleteWorkModal from "./DeleteWorkModal.jsx";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 
@@ -69,12 +70,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const MyWorks = props => {
+function MyWorks(props) {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [sortClicked, setSortClicked] = useState(false);
   const [filterClicked, setFilterClicked] = useState(false);
   const [open, setOpen] = useState(false);
+  const [delOpen, setDelOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -83,6 +85,15 @@ export const MyWorks = props => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDelOpen = () => {
+    setDelOpen(true);
+  };
+
+  const handleDelClose = () => {
+    setDelOpen(false);
+  };
+
   const handleSelect = (event, selected) => {
     setSelected(selected);
   };
@@ -171,27 +182,19 @@ export const MyWorks = props => {
   return (
     <>
       {sortClicked === true && (
-        <div data-testid="sort-dialog">
-          <SortDialog
-            handleSortClose={handleSortClose}
-            sortClicked={sortClicked}
-          />
-        </div>
+        <SortDialog
+          handleSortClose={handleSortClose}
+          sortClicked={sortClicked}
+        />
       )}
       {filterClicked === true && (
-        <div data-testid="filter-dialog">
-          <FilterDialog
-            handleFilterClose={handleFilterClose}
-            filterClicked={filterClicked}
-          />
-        </div>
+        <FilterDialog
+          handleFilterClose={handleFilterClose}
+          filterClicked={filterClicked}
+        />
       )}
-      <div className={classes.toolbar} data-testid="toolbar">
-        <div
-          className={classes.leftToolbarButton}
-          data-testid="upload-button"
-          onClick={handleOpen}
-        >
+      <div className={classes.toolbar}>
+        <div className={classes.leftToolbarButton} onClick={handleOpen}>
           <Tooltip title="Upload New Work">
             <IconButton className={classes.iconButton}>
               <PublishOutlinedIcon />
@@ -201,7 +204,6 @@ export const MyWorks = props => {
         <div className={classes.rightToolbarButtonGroup}>
           <ToggleButtonGroup
             value={selected}
-            data-testid="toggle-button-group"
             exclusive
             className={classes.rightButtonGroup}
             onChange={handleSelect}
@@ -210,10 +212,8 @@ export const MyWorks = props => {
             <Tooltip title="Grid">
               <ToggleButton
                 value="grid"
-                data-testid="grid-button"
                 className={classes.iconButton}
                 aria-label="grid"
-                
               >
                 <ViewModuleOutlinedIcon />
               </ToggleButton>
@@ -221,7 +221,6 @@ export const MyWorks = props => {
             <Tooltip title="Row">
               <ToggleButton
                 value="row"
-                data-testid="row-button"
                 className={classes.iconButton}
                 aria-label="row"
               >
@@ -231,7 +230,6 @@ export const MyWorks = props => {
             <Tooltip title="Column">
               <ToggleButton
                 value="column"
-                data-testid="column-button"
                 className={classes.iconButton}
                 aria-label="column"
               >
@@ -240,22 +238,14 @@ export const MyWorks = props => {
             </Tooltip>
           </ToggleButtonGroup>
         </div>
-        <ButtonGroup data-testid="sort-filter-button-group">
+        <ButtonGroup>
           <Tooltip title="Sort">
-            <IconButton
-              data-testid="sort-button"
-              onClick={handleSort}
-              className={classes.iconButton}
-            >
+            <IconButton onClick={handleSort} className={classes.iconButton}>
               <SortOutlinedIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="filter">
-            <IconButton
-              data-testid="filt-button"
-              onClick={handleFilter}
-              className={classes.iconButton}
-            >
+          <Tooltip title="Filter">
+            <IconButton onClick={handleFilter} className={classes.iconButton}>
               <FilterListOutlinedIcon />
             </IconButton>
           </Tooltip>
@@ -272,29 +262,37 @@ export const MyWorks = props => {
       </div>
       <Modal
         open={open}
-        data-testid="upload-modal"
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
         <div>
-          <UploadModal />
+          <UploadModal uploadClose={handleClose}/>
         </div>
       </Modal>
+      <Modal
+        open={delOpen}
+        onClose={handleDelClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <DeleteWorkModal work={props.currentWork} close={handleDelClose}/>
+      </Modal>
       <div className={classes.contentArea}>
-        {selected === "grid" && <GridDisplay authorWorks={works} />}
-        {selected === "row" && <RowDisplay authorWorks={works} />}
-        {selected === "column" && <ColumnDisplay authorWorks={works} />}
+        {selected === "grid" && <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
+        {selected === "row" && <RowDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
+        {selected === "column" && <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
       </div>
     </>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
     user: state.user,
     isLogged: state.isLogged,
-    authorContent: state.authorContent
+    authorContent: state.authorContent,
+    currentWork: state.currentWork
   };
 };
 

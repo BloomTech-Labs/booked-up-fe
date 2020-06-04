@@ -16,6 +16,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Paper from "@material-ui/core/Paper";
+import { taskStart } from "../actions/authorAction"
+import { ClipLoader } from "react-spinners";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,6 +61,7 @@ export const LoginForm = props => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
+    props.taskStart();
     if (checked) {
       props.setAdmin(checked);
       props.adminLogon(
@@ -174,6 +177,14 @@ export const LoginForm = props => {
               </Grid>
             </Grid>
           </form>
+          {props.isLoading === true && (
+              <Grid item xs={12}>
+                <ClipLoader 
+                size={50}
+                loading={props.isLoading}
+              />
+              </Grid>
+            )}
         </div>
       </Grid>
     </Grid>
@@ -183,12 +194,14 @@ export const LoginForm = props => {
 const mapStateToProps = state => ({
   user: state.user,
   message: state.message,
-  admin: state.admin
+  admin: state.admin,
+  isLoading: state.isLoading
 });
 
 export default connect(mapStateToProps, {
   userLogon,
   adminLogon,
   setAdmin,
-  getUsers
+  getUsers,
+  taskStart
 })(LoginForm);
