@@ -11,8 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
-import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
-
+import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx"
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -70,7 +69,7 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState();
-
+  
   useEffect(() => {
     if (props.user.userType.toLowerCase().includes("admin")) {
       setComponent(<Users userAccounts={props.userAccounts} />);
@@ -120,7 +119,7 @@ function Dashboard(props) {
           paper: classes.drawerPaper
         }}
         anchor="left"
-        data-testid="main-sidebar"
+        data-testid="sidebar"
       >
         <div className={classes.toolbar} />
         <Divider />
@@ -133,7 +132,7 @@ function Dashboard(props) {
               data-testid="sidebar-browse"
               onClick={() => setComponent(<Browse />)}
             >
-              <ListItemText primary="Browse" />
+              <ListItemText primary="Browse"  />
             </ListItem>
           )}
           {!props.user.userType.toLowerCase().includes("admin") && (
@@ -145,10 +144,15 @@ function Dashboard(props) {
               value={<Profile />}
               onClick={() => setComponent(<Profile />)}
             >
-              <ListItemText primary="My Profile" />
+              <ListItemText
+                primary="My Profile"
+                
+              />
             </ListItem>
+            
           )}
-
+  
+          
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
@@ -157,7 +161,7 @@ function Dashboard(props) {
               data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}
             >
-              <ListItemText primary="My Works" />
+              <ListItemText primary="My Works"  />
             </ListItem>
           )}
         </List>
