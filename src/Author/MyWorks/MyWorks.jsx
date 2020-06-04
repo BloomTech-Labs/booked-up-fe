@@ -22,265 +22,39 @@ import FilterDialog from "./Dialogs/FilterDialog";
 import UploadModal from "./UploadModal.jsx";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
+import FullToolbar from "./ToolbarComponents/FullToolbar";
 
 const useStyles = makeStyles(theme => ({
-  toolbar: {
-    display: "flex",
-    backgroundColor: theme.palette.secondary.light,
-    margin: theme.spacing(2, 0),
-    marginLeft: "2px",
-    marginRight: "2px",
-    marginTop: "2px",
-    marginBottom: "2px",
-    border: `2px solid ${theme.palette.secondary.dark}`,
-    borderRadius: "10px"
-  },
-  leftToolbarButton: {
-    marginRight: "25px"
-  },
-  rightToolbarButtonGroup: {
-    backgroundColor: theme.palette.secondary.light,
-    marginRight: "25px",
-    paddingTop: "2px"
-  },
-  rightButtonGroup: {
-    backgroundColor: theme.palette.secondary.light,
-    marginRight: "25px"
-  },
-  searchGroup: {
-    display: "flex",
-    alignItems: "center",
-    textAlign: "middle",
-    marginLeft: "100px"
-  },
-  searchBar: {
-    marginLeft: "10px",
-    marginBottom: "5px"
-  },
   contentArea: {
     marginTop: "35px",
     marginLeft: "35px",
     marginRight: "35px"
-  },
-  iconButton: {
-    "&:hover": {
-      backgroundColor: "transparent"
-    }
   }
 }));
 
 export const MyWorks = props => {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
-  const [sortClicked, setSortClicked] = useState(false);
-  const [filterClicked, setFilterClicked] = useState(false);
-  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const applySortedData = data => {
+    console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
+    setWorks(data);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleSelect = (event, selected) => {
+  const setView = selected => {
     setSelected(selected);
-  };
-
-  const handleSort = () => {
-    setSortClicked(true);
-  };
-
-  const handleFilter = () => {
-    setFilterClicked(true);
-  };
-
-  const handleSortClose = value => {
-    setSortClicked(false);
-
-    let sortedData = works;
-
-    if (value !== null) {
-      switch (value) {
-        case "Title: A to Z": {
-          sortedData = works.sort(function(a, b) {
-            if (a.title < b.title) return -1;
-            else if (a.title > b.title) return 1;
-            return 0;
-          });
-          return;
-        }
-        case "Title: Z to A": {
-          sortedData = works.sort(function(a, b) {
-            if (a.title < b.title) return 1;
-            else if (a.title > b.title) return -1;
-            return 0;
-          });
-          return;
-        }
-        case "Author: A to Z": {
-          sortedData = works.sort(function(a, b) {
-            if (a.author < b.author) return -1;
-            else if (a.author > b.author) return 1;
-            return 0;
-          });
-          return;
-        }
-        case "Author: Z to A": {
-          sortedData = works.sort(function(a, b) {
-            if (a.author < b.author) return 1;
-            else if (a.author > b.author) return -1;
-            return 0;
-          });
-          return;
-        }
-        case "Genre: A to Z": {
-          sortedData = works.sort(function(a, b) {
-            if (a.genre < b.genre) return -1;
-            else if (a.genre > b.genre) return 1;
-            return 0;
-          });
-          return;
-        }
-        case "Genre: Z to A": {
-          sortedData = works.sort(function(a, b) {
-            if (a.genre < b.genre) return 1;
-            else if (a.genre > b.genre) return -1;
-            return 0;
-          });
-          return;
-        }
-        case "Popularity": {
-          console.log(`NL: MyWorks.js: handleSortClose: value=${value}`);
-          return;
-        }
-        default:
-          return;
-      }
-
-      // setUsers({ author_works: sortedData });
-    }
-  };
-
-  const handleFilterClose = value => {
-    setFilterClicked(false);
   };
 
   const classes = useStyles();
 
   return (
     <>
-      {sortClicked === true && (
-        <div data-testid="sort-dialog">
-          <SortDialog
-            handleSortClose={handleSortClose}
-            sortClicked={sortClicked}
-          />
-        </div>
-      )}
-      {filterClicked === true && (
-        <div data-testid="filter-dialog">
-          <FilterDialog
-            handleFilterClose={handleFilterClose}
-            filterClicked={filterClicked}
-          />
-        </div>
-      )}
-      <div className={classes.toolbar} data-testid="toolbar">
-        <div
-          className={classes.leftToolbarButton}
-          data-testid="upload-button"
-          onClick={handleOpen}
-        >
-          <Tooltip title="Upload New Work">
-            <IconButton className={classes.iconButton}>
-              <PublishOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        </div>
-        <div className={classes.rightToolbarButtonGroup}>
-          <ToggleButtonGroup
-            value={selected}
-            data-testid="toggle-button-group"
-            exclusive
-            className={classes.rightButtonGroup}
-            onChange={handleSelect}
-            aria-label="Text Alignment"
-          >
-            <Tooltip title="Grid">
-              <ToggleButton
-                value="grid"
-                data-testid="grid-button"
-                className={classes.iconButton}
-                aria-label="grid"
-                
-              >
-                <ViewModuleOutlinedIcon />
-              </ToggleButton>
-            </Tooltip>
-            <Tooltip title="Row">
-              <ToggleButton
-                value="row"
-                data-testid="row-button"
-                className={classes.iconButton}
-                aria-label="row"
-              >
-                <ViewWeekOutlinedIcon />
-              </ToggleButton>
-            </Tooltip>
-            <Tooltip title="Column">
-              <ToggleButton
-                value="column"
-                data-testid="column-button"
-                className={classes.iconButton}
-                aria-label="column"
-              >
-                <ViewStreamOutlinedIcon />
-              </ToggleButton>
-            </Tooltip>
-          </ToggleButtonGroup>
-        </div>
-        <ButtonGroup data-testid="sort-filter-button-group">
-          <Tooltip title="Sort">
-            <IconButton
-              data-testid="sort-button"
-              onClick={handleSort}
-              className={classes.iconButton}
-            >
-              <SortOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="filter">
-            <IconButton
-              data-testid="filt-button"
-              onClick={handleFilter}
-              className={classes.iconButton}
-            >
-              <FilterListOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        </ButtonGroup>
-        <div className={classes.searchGroup}>
-          <SearchOutlinedIcon />
-          <TextField
-            id="search"
-            className={classes.searchBar}
-            label="Search"
-            data-testid="work-search"
-          />
-        </div>
-      </div>
-      <Modal
-        open={open}
-        data-testid="upload-modal"
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <div>
-          <UploadModal />
-        </div>
-      </Modal>
+      <FullToolbar
+        works={props.authorContent}
+        applySortedData={applySortedData}
+        setView={setView}
+      />
+
       <div className={classes.contentArea}>
         {selected === "grid" && <GridDisplay authorWorks={works} />}
         {selected === "row" && <RowDisplay authorWorks={works} />}
