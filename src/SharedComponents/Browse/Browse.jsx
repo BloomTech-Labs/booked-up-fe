@@ -146,7 +146,7 @@ function Browse(props) {
         setWorks(res.data);
       })
       .catch(err => {
-        console.log(err);
+        /*console.log(err);*/
       });
   }, []);
 
