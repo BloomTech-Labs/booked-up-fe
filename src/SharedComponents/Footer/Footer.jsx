@@ -4,13 +4,12 @@ import { makeStyles } from "@material-ui/styles";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-
   footerContainer: {
     marginBottom: 0
   },
   footer: {
     backgroundColor: theme.palette.secondary.dark,
-    width: "100%",
+    width: "100%"
   },
   toolBar: {
     backgroundColor: theme.palette.secondary.dark,
@@ -18,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "100%"
   },
   navContainer: {
     backgroundColor: theme.palette.secondary.dark,
@@ -45,10 +44,10 @@ export default function Footer(props) {
   const classes = useStyles();
   return (
     <>
-    <footer className={classes.footerContaier}>
-
+      <footer className={classes.footerContaier}>
         <Toolbar className={classes.toolBar}>
           <BottomNavigation showLabels className={classes.navContainer}>
+            <BottomNavigationAction label="Support" className={classes.nav} />;
             <BottomNavigationAction label="Browse" className={classes.nav} />
             <BottomNavigationAction label="Support" className={classes.nav} />
             <BottomNavigationAction
@@ -60,7 +59,7 @@ export default function Footer(props) {
             <BottomNavigationAction
               label="@2020 Booked Up"
               className={classes.nav}
-            /> 
+            />
             <BottomNavigationAction
               label="Terms of Service"
               className={classes.nav}
@@ -75,4 +74,3 @@ export default function Footer(props) {
     </>
   );
 }
-
