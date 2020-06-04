@@ -10,6 +10,8 @@ import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 import IndexRoute from "./utils/IndexRoute.jsx";
+import Settings from "./SharedComponents/AccountSettings/Settings.jsx";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -23,6 +25,9 @@ function App() {
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUpForm} />
+          <PrivateRoute 
+            path="/settings" 
+            component={Settings} />
           <IndexRoute  exact path="/index.html"  />
         </Switch>
         <Footer />

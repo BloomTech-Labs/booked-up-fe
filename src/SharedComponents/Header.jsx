@@ -15,6 +15,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../actions/authenticationAction";
+import Settings from "./AccountSettings/Settings.jsx"
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -238,10 +239,9 @@ function Header(props) {
                 <AccountCircleIcon />
               </MenuItem>
               
-                <MenuItem component={Link} to="/account-settings">
+                <MenuItem component={Link} to="/settings">
                   Account Settings
-                </MenuItem>
-              
+                </MenuItem>            
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </Toolbar>
