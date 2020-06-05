@@ -37,9 +37,9 @@ function MyWorks(props) {
         setView={setView}
       />
       <div className={classes.contentArea}>
-        {selected === "grid" && <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
-        {selected === "row" && <RowDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
-        {selected === "column" && <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
+        {selected === "grid" && <GridDisplay authorWorks={works} /*handleDelOpen={handleDelOpen}*//>}
+        {selected === "row" && <RowDisplay authorWorks={works} /*handleDelOpen={handleDelOpen}*//>}
+        {selected === "column" && <ColumnDisplay authorWorks={works} /*handleDelOpen={handleDelOpen}*//>}
       </div>
     </>
   );
