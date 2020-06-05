@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -22,8 +22,12 @@ const useStyles = makeStyles(theme => ({
       boxShadow: "0.1rem 0.05rem 0.5rem 0.1rem",
     },
     item: {
-      textAlign: 'center',
-    },
+        textAlign: 'left',
+        width: "100%",
+        borderRadius: "3px",
+        padding: "10px",
+        border: "0.5px solid black"
+      },
     content: {
         display: "flex"
     },
@@ -36,6 +40,20 @@ const useStyles = makeStyles(theme => ({
 
 function ChangePass(props)  {
     const classes = useStyles();
+
+    const [passValue, setPassValue] = useState({
+        ...props.user
+    });
+
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setPassValue({
+            ...passValue,
+            [e.target.name]: e.target.value
+        })
+        
+    }
 
     return (
       <Card className={classes.root}>
@@ -50,9 +68,15 @@ function ChangePass(props)  {
             className={classes.container}
             spacing={2}
           >
-             <Grid item xs={6}>
-            <p className={classes.item}>Password {props.user.password}</p>
-            </Grid>
+             <Grid className={classes.formInfo} item xs={3} >
+            <p >New Password</p>
+            <input className={classes.item}
+            type="text"
+             name="password"
+             value={passValue.password}
+             onChange={handleChange}>
+             </input>
+             </Grid>
     </Grid>
       </CardContent>
       <Divider />

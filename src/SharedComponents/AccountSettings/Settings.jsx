@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: "4.65%",
     marginBottom: "4.7em",
     width: "15%",
-    boxShadow: "0.1rem 0.3rem 0.8rem 0.05rem"
+    boxShadow: "0.1rem 0.3rem 0.8rem 0.05rem",
+    hieght: "50px"
   },
   title: {
     padding: "1%",
