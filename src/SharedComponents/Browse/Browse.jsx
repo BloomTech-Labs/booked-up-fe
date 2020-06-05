@@ -146,18 +146,20 @@ function Browse(props) {
         setWorks(res.data);
       })
       .catch(err => {
-        /*console.log(err);*/
+        console.log(err);
       });
   }, []);
 
   const handleSearch = e => {
     e.preventDefault();
     setValue(e.target.value);
+    console.log(value);
   };
 
   const handleChange = e => {
     e.preventDefault();
     setFilter(e.target.value);
+    console.log(filter);
   };
 
   const handleSubmit = e => {
@@ -176,6 +178,7 @@ function Browse(props) {
         }
       })
     );
+    console.log(filteredWork);
   };
   return (
     <>

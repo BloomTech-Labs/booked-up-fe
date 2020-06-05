@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
 
 const initialState = {
   user: {
@@ -23,8 +23,10 @@ const initialState = {
   },
 
   message: "",
+  error: "",
   isAdmin: false,
   isLogged: false,
+  isLoading: false,
   contentLibrary: [],
   authorContent: [],
   userAccounts: [],
@@ -36,7 +38,8 @@ function reducer(state = initialState, action) {
     case CREATE_ACCOUNT: {
       return {
         ...state,
-        message: action.payload.message
+        message: action.payload.message,
+        isLoading: false
       };
     }
 
@@ -46,7 +49,8 @@ function reducer(state = initialState, action) {
         user: action.payload.User,
         authorContent: action.payload.AuthorContent,
         contentLibrary: action.payload.ContentLibrary,
-        isLogged: true
+        isLogged: true,
+        isLoading: false
       };
     }
 
@@ -55,7 +59,8 @@ function reducer(state = initialState, action) {
         ...state,
         user: action.payload.user,
         message: action.payload.message,
-        isLogged: true
+        isLogged: true,
+        isLoading: false
       };
     }
 
@@ -73,12 +78,34 @@ function reducer(state = initialState, action) {
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
     }
-
+    case TASK_START: {
+      return {
+        ...state,
+        error: "",
+        isLoading: true
+      }
+    }
     case UPLOAD_CONTENT: {
       return {
         ...state,
+        isLoading: false,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+    case DEL_WORK : {
+      return {
+        ...state,
+        authorContent: state.authorContent.filter((work) => {
+          return work.id !== action.payload
+        })
+      }
+    }
+    case TASK_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      }
     }
 
     case SET_WORK: {

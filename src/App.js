@@ -10,6 +10,8 @@ import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
 import IndexRoute from "./utils/IndexRoute.jsx";
+
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
