@@ -2,6 +2,11 @@ import { dashboardTests } from "../__testData__/dashboardTestData";
 import { myWorksTests } from "../__testData__/myWorksTestData";
 import { browseTests } from "../__testData__/browseTestData";
 import { fullRenderedComponent } from "../__testData__/fullRenderedComponent";
+import { contentViewGroupTests } from "../__testData__/ContentViewGroupData";
+import { fullToolbarTests } from "../__testData__/fullToolbarData";
+import { searchGroupTests } from "../__testData__/searchGroupData";
+import { sortFilterGroupTests } from "../__testData__/sortFilterGroupData";
+import { uploadContentGroupTests } from "../__testData__/uploadContentGroupData";
 import {
   renderFullComponent,
   testVisibility,
@@ -24,13 +29,23 @@ Go to each __testData__ file to see how the data is used for testing
 let visibilityArray = [
   ...dashboardTests.visibilityTests,
   ...myWorksTests.visibilityTests,
-  ...browseTests.visibilityTests
+  ...browseTests.visibilityTests,
+  ...contentViewGroupTests.visibilityTests,
+  ...fullToolbarTests.visibilityTests,
+  ...searchGroupTests.visibilityTests,
+  ...sortFilterGroupTests.visibilityTests,
+  ...uploadContentGroupTests.visibilityTests
 ];
 
 let visibilityEventTests = [
   ...dashboardTests.visibilityEventTests,
   ...myWorksTests.visibilityEventTests,
-  ...browseTests.visibilityEventTests
+  ...browseTests.visibilityEventTests,
+  ...contentViewGroupTests.visibilityEventTests,
+  ...fullToolbarTests.visibilityEventTests,
+  ...searchGroupTests.visibilityEventTests,
+  ...sortFilterGroupTests.visibilityEventTests,
+  ...uploadContentGroupTests.visibilityEventTests
 ];
 
 describe("Component rendering", () => {

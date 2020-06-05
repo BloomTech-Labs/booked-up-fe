@@ -156,7 +156,7 @@ export const myWorksTests = {
     {
       Component: MyWorks,
       entry: "/my-works",
-      description: "Renders Icon Button on click",
+      description: "Renders Column Icon Button on click",
       eventType: EventTypes.MOUSE_EVENT,
       eventAction: EventActions.MOUSE_LEFT_CLICK,
       componentQueryType: QueryTypes.BY_ID,

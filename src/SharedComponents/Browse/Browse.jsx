@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import Modal from '@material-ui/core/Modal';
 import OpenWorkModal from "./OpenWorkModal.jsx";
+import RenderWork from "./RenderWork.jsx";
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -78,25 +79,6 @@ const useStyles = makeStyles(theme => ({
     height: "11.25em",
     width: "100%",
     border: "1px solid black"
-  },
-  works: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "black",
-    alignItems: "center",
-    border: "1px solid black",
-    width: "100%",
-    height: "11.25em",
-    opacity: "0",
-    "&:hover": {
-      transparency: "0%",
-      opacity: ".5",
-      border: "1px dashed white"
-    }
-  },
-  work: {
-    width: "90%",
-    margin: "auto"
   },
   prev: {
     cursor: "pointer",
@@ -238,14 +220,12 @@ function Browse(props) {
         className={classes.featuredContainer}
       >
         {works.map((cl, i) => (
-          <div key={i} className={classes.placeholderImage} onClick={() => (
-            setSelWork(cl),
-            setOpen(true))}>
-            <div className={classes.works}>
-              <p className={classes.work}>{cl.title}</p>
-              <p className={classes.work}>{cl.description}</p>
-              <p className={classes.work}>{cl.author}</p>
-            </div>
+          <div
+            key={i}
+            className={classes.placeholderImage}
+            onClick={() => (setSelWork(cl), setOpen(true))}
+          >
+            <RenderWork cl={cl} i={i} />
           </div>
         ))}
       </Carousel>
@@ -264,14 +244,12 @@ function Browse(props) {
             
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={() => (
-                setSelWork(cl),
-                setOpen(true))}>
-                <div key={i} className={classes.works}>
-                  <p className={classes.work}>{cl.title}</p>
-                  <p className={classes.work}>{cl.description}</p>
-                  <p className={classes.work}>{cl.author}</p>
-                </div>
+              <div
+                key={i}
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
+                <RenderWork cl={cl} i={i} />
               </div>
             ))}
           </Carousel>
@@ -296,14 +274,12 @@ function Browse(props) {
             
           >
             {works.map((cl, i) => (
-              <div key={i} className={classes.placeholderImage} onClick={() => (
-                setSelWork(cl),
-                setOpen(true))}>
-                <div key={i} className={classes.works}>
-                  <p className={classes.work}>{cl.title}</p>
-                  <p className={classes.work}>{cl.description}</p>
-                  <p className={classes.work}>{cl.author}</p>
-                </div>
+              <div
+                key={i}
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
+                <RenderWork cl={cl} i={i} />
               </div>
             ))}
           </Carousel>
@@ -315,14 +291,11 @@ function Browse(props) {
           <h2 className={classes.title}>Search Results</h2>
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
-              <div className={classes.placeholderImage} onClick={() => (
-            setSelWork(cl),
-            setOpen(true))}>
-                <div className={classes.works}>
-                  <p className={classes.work}>{cl.title}</p>
-                  <p className={classes.work}>{cl.description}</p>
-                  <p className={classes.work}>{cl.author}</p>
-                </div>
+              <div
+                className={classes.placeholderImage}
+                onClick={() => (setSelWork(cl), setOpen(true))}
+              >
+                <RenderWork cl={cl} i={i} />
               </div>
             </div>
           ))}
