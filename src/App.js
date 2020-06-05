@@ -18,11 +18,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route exact path="/login" component={LoginForm} />
+          <PrivateRoute path="/dashboard/" component={Dashboard} />
+          <Route exact path="/login/" component={LoginForm} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/signup" component={SignUpForm} />
-          <IndexRoute exact path="/index.html" />
+          <Route exact path="/signup/" component={SignUpForm} />
+          {/* <IndexRoute exact path="/index.html" /> */}
         </Switch>
         <Footer />
       </BrowserRouter>
