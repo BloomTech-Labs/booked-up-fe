@@ -9,7 +9,6 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
-import IndexRoute from "./utils/IndexRoute.jsx";
 
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
           <Route exact path="/login/" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup/" component={SignUpForm} />
-          {/* <IndexRoute exact path="/index.html" /> */}
         </Switch>
         <Footer />
       </BrowserRouter>
