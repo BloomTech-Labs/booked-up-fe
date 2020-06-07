@@ -48,7 +48,7 @@ function EditingButtons(props) {
           <EditOutlinedIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Delete Book" onClick={() => (props.setWork(props.work) /*props.handleDelOpen()*/)}>
+      <Tooltip title="Delete Book" onClick={() => (props.setWork(props.work) props.handleDelOpen())}>
         <IconButton className={classes.button}>
           <DeleteForeverOutlinedIcon />
         </IconButton>
