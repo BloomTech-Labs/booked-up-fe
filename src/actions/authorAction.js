@@ -60,7 +60,11 @@ export const setWork = data => dispatch => {
 export const delContent = (work) => dispatch => {
   console.log(work)
   axios
-    .delete(`${work.content_url}`)
+    .delete(`${work.content_url}`, {
+      headers: {
+        "Access-Control-Allow-Methods": "DELETE"
+      }
+    })
     .then(res => {
       console.log(res)
       axiosWithAuth()
