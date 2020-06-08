@@ -62,7 +62,9 @@ export const delContent = (work) => dispatch => {
   axios
     .delete(`${work.content_url}`, {
       headers: {
-        "Access-Control-Allow-Methods": "DELETE"
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin',
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"
       }
     })
     .then(res => {
