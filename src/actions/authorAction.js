@@ -59,16 +59,14 @@ export const setWork = data => dispatch => {
 
 export const delContent = (work) => dispatch => {
   console.log(work)
-  axios
-    .delete(`${work.content_url}`, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Origin',
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"
-      }
-    })
-    .then(res => {
-      console.log(res)
+  axios({
+    method: "DELETE",
+    url: `${work.content_url}`,
+    headers: {
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"
+    }
+  })
+    .then(() => {
       axiosWithAuth()
     .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}`)
     .then(res => {

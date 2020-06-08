@@ -53,7 +53,7 @@ function MyWorks(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <DeleteWorkModal work={props.currentWork} />
+        <DeleteWorkModal work={props.currentWork} close={handleDelClose}/>
       </Modal>
       <div className={classes.contentArea}>
         {selected === "grid" && <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen}/>}
