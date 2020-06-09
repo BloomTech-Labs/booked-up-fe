@@ -29,7 +29,7 @@ function UploadModal(props) {
       ...uploadWork,
       user_id: props.user.id
     });
-  }, []);
+  }, [props.user.id, uploadWork]);
 
   const onSubmit = e => {
     var file = work.body[0];

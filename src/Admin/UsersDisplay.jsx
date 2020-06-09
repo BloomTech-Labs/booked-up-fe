@@ -29,7 +29,7 @@ const UsersDisplay = props => {
   const classes = useStyles();
   let userArray = [];
   props.userAccounts.map(user => {
-    userArray = [...userArray, Object.values(user)];
+    return (userArray = [...userArray, Object.values(user)]);
   });
 
   console.log(userArray);

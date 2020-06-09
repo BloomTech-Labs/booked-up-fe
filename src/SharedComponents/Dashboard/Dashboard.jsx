@@ -76,7 +76,7 @@ function Dashboard(props) {
     } else {
       setComponent(<Browse />);
     }
-  }, []);
+  }, [props.user.userType, props.userAccounts]);
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/":
@@ -108,7 +108,7 @@ function Dashboard(props) {
       default:
         break;
     }
-  }, [value]);
+  }, [value, props.user.userType, props.userAccounts]);
 
   return (
     <div className={classes.container}>
