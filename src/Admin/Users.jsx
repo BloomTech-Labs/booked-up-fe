@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../actions/adminAction";
 import UsersDisplay from "./UsersDisplay";
@@ -10,15 +9,12 @@ export const Users = props => {
   // mapStateToProps until something has changed.  We set the current display list
   // of userAccounts to local state and when we need to do something redux state
   // will overwrite the props.userAccounts
-  const [users, setUserse] = useState(props.userAccounts);
+  const [users] = useState(props.userAccounts);
   const classes = sharedToolbarStyles();
 
   return (
     <>
       <div className={classes.toolbar}></div>
-      {/* {users.map(property => (
-        <UsersDisplay property={property} />
-      ))} */}
       <UsersDisplay userAccounts={users} />
     </>
   );

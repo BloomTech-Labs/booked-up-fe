@@ -32,6 +32,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "react-app-rewired": "^2.1.6",
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/plugin-transform-runtime": "^7.10.0",
@@ -51,8 +52,8 @@
     "redux-mock-store": "^1.5.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "jest --watchAll",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",

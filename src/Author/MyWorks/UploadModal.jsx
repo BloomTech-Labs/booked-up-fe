@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { uploadContent, taskStart } from "../../actions/authorAction";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,15 +8,12 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
-import { useHistory } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
 
 function UploadModal(props) {
   const classes = sharedPaperStyles();
   const [work, setWork] = useState({ title: "", body: [], description: "" });
-  const history = useHistory();
   const [uploadWork, setUploadWork] = useState({
     title: "",
     content_url: "",
