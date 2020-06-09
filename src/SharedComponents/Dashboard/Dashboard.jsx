@@ -5,13 +5,14 @@ import { Users } from "../../Admin/Users";
 import Drawer from "@material-ui/core/Drawer";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Profile from "../../Author/Profile/Profile.jsx";
+import Favorites from "../Favorites/Favorites.jsx";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
-import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx"
+import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -69,7 +70,7 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState();
-  
+
   useEffect(() => {
     if (props.user.userType.toLowerCase().includes("admin")) {
       setComponent(<Users userAccounts={props.userAccounts} />);
@@ -92,7 +93,7 @@ function Dashboard(props) {
         break;
 
       case "/dashboard/favorites/":
-        setComponent(<p>Favorites</p>);
+        setComponent(<Favorites />);
         break;
 
       case "/dashboard/my-works/":
@@ -125,15 +126,26 @@ function Dashboard(props) {
         <Divider />
         <List>
           {!props.user.userType.toLowerCase().includes("admin") && (
-            <ListItem
-              component={Link}
-              to="/dashboard/"
-              className={classes.listItem}
-              data-testid="sidebar-browse"
-              onClick={() => setComponent(<Browse />)}
-            >
-              <ListItemText primary="Browse"  />
-            </ListItem>
+            <>
+              <ListItem
+                component={Link}
+                to="/dashboard/"
+                className={classes.listItem}
+                data-testid="sidebar-browse"
+                onClick={() => setComponent(<Browse />)}
+              >
+                <ListItemText primary="Browse" />
+              </ListItem>
+              <ListItem
+                component={Link}
+                to="/dashboard/favorites"
+                className={classes.listItem}
+                data-testid="sidebar-favorites"
+                onClick={() => setComponent(<Favorites />)}
+              >
+                <ListItemText primary="Favorites" />
+              </ListItem>
+            </>
           )}
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
@@ -144,15 +156,10 @@ function Dashboard(props) {
               value={<Profile />}
               onClick={() => setComponent(<Profile />)}
             >
-              <ListItemText
-                primary="My Profile"
-                
-              />
+              <ListItemText primary="My Profile" />
             </ListItem>
-            
           )}
-  
-          
+
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
@@ -161,7 +168,7 @@ function Dashboard(props) {
               data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}
             >
-              <ListItemText primary="My Works"  />
+              <ListItemText primary="My Works" />
             </ListItem>
           )}
         </List>

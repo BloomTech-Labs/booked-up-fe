@@ -6,7 +6,6 @@ import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined"
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import WorkView from "./WorkView/WorkView.jsx";
 import Modal from '@material-ui/core/Modal';
 import Popper from '@material-ui/core/Popper';
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -29,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EditingButtons(props) {
+function ReadingButtons(props) {
   const handleClick = () => {
       props.setWork(props.work)
       window.location.replace(`/dashboard/book/`)
@@ -41,16 +40,6 @@ function EditingButtons(props) {
       <Tooltip title="Open Book" onClick={handleClick}>
         <IconButton className={classes.button}>
           <ImportContactsOutlinedIcon />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Edit Properties">
-        <IconButton className={classes.button}>
-          <EditOutlinedIcon />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Delete Book" onClick={() => (props.setWork(props.work), props.handleDelOpen())}>
-        <IconButton className={classes.button}>
-          <DeleteForeverOutlinedIcon />
         </IconButton>
       </Tooltip>
     </ButtonGroup>
@@ -67,4 +56,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setWork, delContent })(EditingButtons);
+export default connect(mapStateToProps, { setWork })(ReadingButtons);

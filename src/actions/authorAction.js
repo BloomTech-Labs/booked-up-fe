@@ -58,16 +58,8 @@ export const setWork = data => dispatch => {
 };
 
 export const delContent = (work) => dispatch => {
-  console.log(work)
-  axios({
-    method: "DELETE",
-    url: `${work.content_url}`,
-    headers: {
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE"
-    }
-  })
-    .then(() => {
-      axiosWithAuth()
+  
+  axiosWithAuth()
     .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}`)
     .then(res => {
       dispatch({ type: DEL_WORK, payload: work.id})
@@ -76,10 +68,5 @@ export const delContent = (work) => dispatch => {
     })
     .catch(err => {
       console.log(err)
-    })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  
+    }) 
 }
