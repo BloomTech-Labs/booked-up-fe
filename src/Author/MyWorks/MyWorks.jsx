@@ -5,6 +5,8 @@ import RowDisplay from "./ContentViews/RowDisplay";
 import ColumnDisplay from "./ContentViews/ColumnDisplay";
 import { connect } from "react-redux";
 import FullToolbar from "./ToolbarComponents/FullToolbar";
+import DeleteWorkModal from "./DeleteWorkModal.jsx";
+import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles(theme => ({
   contentArea: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 function MyWorks(props) {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
+  const [delOpen, setDelOpen] = useState(false);
 
   const applySortedData = data => {
     console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
@@ -25,6 +28,14 @@ function MyWorks(props) {
 
   const setView = selected => {
     setSelected(selected);
+  };
+
+  const handleDelOpen = () => {
+    setDelOpen(true);
+  };
+
+  const handleDelClose = () => {
+    setDelOpen(false);
   };
 
   const classes = useStyles();
@@ -36,6 +47,14 @@ function MyWorks(props) {
         applySortedData={applySortedData}
         setView={setView}
       />
+      <Modal
+        open={delOpen}
+        onClose={handleDelClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <DeleteWorkModal work={props.currentWork} close={handleDelClose}/>
+      </Modal>
       <div className={classes.contentArea}>
         {/* {selected === "grid" && (
           <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} />

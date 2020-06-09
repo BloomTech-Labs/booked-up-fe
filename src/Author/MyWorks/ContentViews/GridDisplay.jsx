@@ -56,7 +56,7 @@ export default function GridDisplay(props) {
               Placeholder Image
               <div className={classes.authorOverlay}>{work.title}</div>
             </div>
-            <EditingButtons work={work} handleDelOpen={props.handleDelOpen}/>
+            <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
           </Grid>
       ))}
     </Grid>

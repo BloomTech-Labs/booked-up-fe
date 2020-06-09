@@ -16,7 +16,7 @@ function OpenWorkModal(props) {
 
   const handleReadClick = () => {
     props.setWork(props.work);
-    window.location.replace(`/dashboard/book`);
+    window.location.replace(`/dashboard/book/`);
   };
   return (
     <Card className={classes.paper}>
