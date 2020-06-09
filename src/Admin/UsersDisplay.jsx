@@ -27,56 +27,25 @@ const useStyles = makeStyles(theme => ({
 
 const UsersDisplay = props => {
   const classes = useStyles();
-  console.log(props.userAccounts);
+  let userArray = [];
+  props.userAccounts.map(user => {
+    userArray = [...userArray, Object.values(user)];
+  });
+
+  console.log(userArray);
 
   return (
     <>
       <Grid container className={classes.grid} spacing={2}>
-        {props.userAccounts.map(user => (
-          <>
-            <Grid item xs={12} className={classes.gridItem}>
+        {userArray.map(user => (
+          <Grid item xs={12} className={classes.gridItem}>
+            {user.map(property => (
               <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.first_name}
+                {property}
               </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.last_name}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.display_name}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.email}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.user_type}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.city}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.state}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.country}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.id}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.avatar_url}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.email_verification}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.password_reset}
-              </Grid>
-              <Grid item xs={6} sm={3} className={classes.standard}>
-                {user.created_at}
-              </Grid>
-              <EditingButtons />
-            </Grid>
-          </>
+            ))}
+            <EditingButtons />
+          </Grid>
         ))}
       </Grid>
     </>

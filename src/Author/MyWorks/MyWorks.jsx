@@ -53,10 +53,10 @@ function MyWorks(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <DeleteWorkModal work={props.currentWork} close={handleDelClose}/>
+        <DeleteWorkModal work={props.currentWork} close={handleDelClose} />
       </Modal>
       <div className={classes.contentArea}>
-        {/* {selected === "grid" && (
+        {selected === "grid" && (
           <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
         )}
         {selected === "row" && (
@@ -64,7 +64,7 @@ function MyWorks(props) {
         )}
         {selected === "column" && (
           <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
-        )} */}
+        )}
       </div>
     </>
   );

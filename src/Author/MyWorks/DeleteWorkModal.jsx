@@ -11,10 +11,10 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import { useHistory } from "react-router-dom";
-import { useStyles } from "../SharedComponents/materialUIShared";
+import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
 
 function UploadModal(props) {
-  const classes = useStyles();
+  const classes = sharedPaperStyles();
   const history = useHistory();
   const [work, setWork] = useState(props.work);
 
