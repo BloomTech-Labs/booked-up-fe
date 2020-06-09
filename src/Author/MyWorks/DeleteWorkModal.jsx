@@ -11,44 +11,37 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: "absolute",
-    left: "35%",
-    top: "20%",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
-  }
-}));
+import { useStyles } from "../SharedComponents/materialUIShared";
 
 function UploadModal(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [work, setWork] = useState(props.work)
+  const [work, setWork] = useState(props.work);
 
-  
   const onDel = e => {
-    console.log(work)
+    console.log(work);
     e.preventDefault();
     props.delContent(work);
   };
 
-  
   return (
     <Card className={classes.paper}>
       <CardHeader title={<Typography variant="h5">New Book</Typography>} />
       <CardContent>
-        <p>Are you sure you would like to delete? This action can not be reversed.</p>
-            <Button variant="contained" color="secondary" onClick={onDel}>
-              Delete
-            </Button>
-            <Button variant="contained" color="secondary" onClick={() => props.close()}>
-              Cancel
-            </Button>
+        <p>
+          Are you sure you would like to delete? This action can not be
+          reversed.
+        </p>
+        <Button variant="contained" color="secondary" onClick={onDel}>
+          Delete
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => props.close()}
+        >
+          Cancel
+        </Button>
       </CardContent>
     </Card>
   );
