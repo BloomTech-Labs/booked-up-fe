@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value] = useState(0);
   const [component, setComponent] = useState();
 
   useEffect(() => {
@@ -77,7 +77,7 @@ function Dashboard(props) {
     } else {
       setComponent(<Browse />);
     }
-  }, []);
+  }, [props.user.userType, props.userAccounts]);
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/":
@@ -109,7 +109,7 @@ function Dashboard(props) {
       default:
         break;
     }
-  }, [value]);
+  }, [value, props.user.userType, props.userAccounts]);
 
   return (
     <div className={classes.container}>

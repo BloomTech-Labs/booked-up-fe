@@ -131,17 +131,17 @@ export const myWorksTests = {
     }
   ],
   visibilityEventTests: [
-    {
-      Component: MyWorks,
-      entry: "/my-works",
-      description: "Renders Upload on click",
-      eventType: EventTypes.MOUSE_EVENT,
-      eventAction: EventActions.MOUSE_LEFT_CLICK,
-      componentQueryType: QueryTypes.BY_ID,
-      testQueryType: QueryTypes.BY_ID,
-      componentId: "upload-button",
-      queryId: "upload-modal"
-    },
+    // {
+    //   Component: MyWorks,
+    //   entry: "/my-works",
+    //   description: "Renders Upload on click",
+    //   eventType: EventTypes.MOUSE_EVENT,
+    //   eventAction: EventActions.MOUSE_LEFT_CLICK,
+    //   componentQueryType: QueryTypes.BY_ID,
+    //   testQueryType: QueryTypes.BY_ID,
+    //   componentId: "upload-button",
+    //   queryId: "upload-modal"
+    // },
     {
       Component: MyWorks,
       entry: "/dashboard/my-works",
