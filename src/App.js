@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
@@ -9,7 +9,6 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
-
 
 function App() {
   return (

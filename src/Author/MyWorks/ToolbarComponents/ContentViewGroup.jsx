@@ -5,10 +5,6 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ViewModuleOutlinedIcon from "@material-ui/icons/ViewModuleOutlined";
 import ViewStreamOutlinedIcon from "@material-ui/icons/ViewStreamOutlined";
-import GridDisplay from "../ContentViews/GridDisplay";
-import RowDisplay from "../ContentViews/RowDisplay";
-import ColumnDisplay from "../ContentViews/ColumnDisplay";
-import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
 import ViewWeekOutlinedIcon from "@material-ui/icons/ViewWeekOutlined";
 
 const useStyles = makeStyles(theme => ({

@@ -54,11 +54,11 @@ export const fullRenderedComponent = {
       Component: Profile,
       location: "none",
       description: "Renders Profile"
-    },
-    {
-      Component: UploadModal,
-      location: "none",
-      description: "Renders UploadModal"
     }
+    // {
+    //   Component: UploadModal,
+    //   location: "none",
+    //   description: "Renders UploadModal"
+    // }
   ]
 };

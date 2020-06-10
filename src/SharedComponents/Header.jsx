@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/new-logo.jpg";
-import MessageIcon from "@material-ui/icons/Message";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -88,7 +87,6 @@ function Header(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-  const [rc2, setRc2] = useState(false);
   const history = useHistory();
 
   const logout = () => {
@@ -237,11 +235,11 @@ function Header(props) {
               <MenuItem component={Link} to="/dashboard/profile">
                 <AccountCircleIcon />
               </MenuItem>
-              
-                <MenuItem component={Link} to="/account-settings">
-                  Account Settings
-                </MenuItem>
-              
+
+              <MenuItem component={Link} to="/account-settings">
+                Account Settings
+              </MenuItem>
+
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </Toolbar>

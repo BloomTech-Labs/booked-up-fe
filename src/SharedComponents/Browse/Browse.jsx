@@ -6,12 +6,12 @@ import {
   Button,
   Select,
   MenuItem,
-  FormControl,
+  FormControl
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
 
@@ -127,28 +127,28 @@ function Browse(props) {
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
-  
+
   const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
       .then(res => {
-        console.log(res)
-        setWorks(res.data)
+        console.log(res);
+        setWorks(res.data);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }, [])
+        console.log(err);
+      });
+  }, []);
 
   const handleSearch = e => {
     e.preventDefault();
@@ -237,11 +237,14 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={<button className={classes.prev} data-testid='new-left'>&#10094;</button>}
+            arrowLeft={
+              <button className={classes.prev} data-testid="new-left">
+                &#10094;
+              </button>
+            }
             arrowRight={<button className={classes.next}>&#10095;</button>}
             addArrowClickHandler
             infinite
-            
           >
             {works.map((cl, i) => (
               <div
@@ -259,19 +262,14 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
-            arrowLeft={
-              <button className={classes.prev}>
-                &#10094;
-              </button>
-            }
+            arrowLeft={<button className={classes.prev}>&#10094;</button>}
             arrowRight={
-              <button className={classes.next} data-testid='pop-right'>
+              <button className={classes.next} data-testid="pop-right">
                 &#10095;
               </button>
             }
             addArrowClickHandler
             infinite
-            
           >
             {works.map((cl, i) => (
               <div
@@ -308,7 +306,7 @@ function Browse(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-        <OpenWorkModal work={selWork}/>
+          <OpenWorkModal work={selWork} />
         </div>
       </Modal>
       <div className={classes.bottomMargin}></div>
@@ -318,12 +316,9 @@ function Browse(props) {
 
 const mapStateToProps = state => {
   return {
-      user: state.user,
-      isLogged: state.isLogged,
-  }
-}
+    user: state.user,
+    isLogged: state.isLogged
+  };
+};
 
-export default connect (
-  mapStateToProps,
-  {}
-)(Browse)
+export default connect(mapStateToProps, {})(Browse);
