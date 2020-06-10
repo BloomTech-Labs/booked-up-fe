@@ -36,7 +36,7 @@ function OpenWorkModal(props) {
     useEffect(() => {
       console.log(props.contentLibrary)
       props.contentLibrary.map(cl => {
-        if(cl.user_id == props.work.id) (
+        if(cl.author_content_id == props.work.id) (
           setFav(true)
         )
       })

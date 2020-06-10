@@ -95,7 +95,7 @@ function reducer(state = initialState, action) {
     case SET_CONTENT: {
       return {
         ...state,
-        contentLibrary: [...state.contentLibrary, action.payload]
+        contentLibrary: action.payload
       }
     }
     case DEL_WORK : {
