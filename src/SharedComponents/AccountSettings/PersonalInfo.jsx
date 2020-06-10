@@ -97,15 +97,6 @@ function PersonalInfo(props) {
              </input>
              </Grid>
              <Grid className={classes.formInfo} item xs={3} >
-            <p >Display Name</p>
-            <input className={classes.item}
-            type="text"
-             name="displayName"
-             value={formValue.displayName}
-             onChange={handleChange}>
-             </input>
-             </Grid>
-             <Grid className={classes.formInfo} item xs={3} >
             <p >City</p>
             <input className={classes.item}
             type="text"
@@ -136,7 +127,7 @@ function PersonalInfo(props) {
       </CardContent>
       <Divider />
       <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
+          <Button size="small" onClick={() => {}} >Cancel</Button>
           <Button onClick={(
           ) => {
             onSubmit() }}

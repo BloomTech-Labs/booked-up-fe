@@ -12,6 +12,7 @@ import PersonalInfo from "./PersonalInfo.jsx";
 import ChangeEmail from "./ChangeEmail.jsx";
 import ChangePass from "./ChangePass.jsx";
 import DeleteAccount from "./DeleteAccount.jsx";
+import ChangeDisplayName from "./ChangeDisplayName";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -100,7 +101,11 @@ function Settings(props) {
       case "/settings/change-password":
         setComponent(<ChangePass />);
         break;
-
+      
+      case "/settings/change-displayName":
+        setComponent(<ChangeDisplayName />);
+        break;
+      
       case "/settings/delete-account":
         setComponent(<DeleteAccount />);
         break;
@@ -148,12 +153,9 @@ function Settings(props) {
                 primary="Change Email"
                 
               />
-            </ListItem>
-            
-          )}
-  
-          
-          {props.user.userType.toLowerCase().includes("author") && (
+            </ListItem>           
+          )}         
+          {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
               to="/settings/change-password"
@@ -164,8 +166,19 @@ function Settings(props) {
               <ListItemText primary="Change Password"  />
             </ListItem>
           )}
+          {!props.user.userType.toLowerCase().includes("admin") && (
+            <ListItem
+              component={Link}
+              to="/settings/change-displayName"
+              className={classes.listItem}
+              data-testid="sidebar-works"
+              onClick={() => setComponent(<ChangeDisplayName />)}
+            >
+              <ListItemText primary="Change Display Name"  />
+            </ListItem>
+          )}
 
-        {props.user.userType.toLowerCase().includes("author") && (
+        {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
               to="/settings/delete-account"
@@ -176,6 +189,8 @@ function Settings(props) {
               <ListItemText primary="Delete Account"  />
             </ListItem>
           )}
+
+
         </List>
         <Divider />
       </Drawer>
@@ -188,7 +203,6 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     userAccounts: state.userAccounts,
-    currentWork: state.currentWork
   };
 };
 

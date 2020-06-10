@@ -80,7 +80,7 @@ function reducer(state = initialState, action) {
     }
 */
     case EDIT_USER: {
-      return {...state, userAccount: action.payload}
+      return {...state, user: action.payload}
     }
 
     case UPLOAD_CONTENT: {

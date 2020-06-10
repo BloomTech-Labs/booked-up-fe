@@ -49,7 +49,7 @@ function ChangeEmail(props)  {
         ...props.user
     });
 
-    const  handleChange= (e) => {
+    const  handleChange = (e) => {
         e.preventDefault()
         setEmailValue({
             ...emailValue,

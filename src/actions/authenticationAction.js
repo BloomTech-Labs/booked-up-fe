@@ -44,6 +44,7 @@ export const adminLogon = (data, props) => dispatch => {
     .then(res => {
       const decoded = jwt_decode(res.data.token);
       localStorage.setItem("token", res.data.token);
+      console.log(res.data)
       dispatch({
         type: ADMIN_LOGON,
         payload: {
