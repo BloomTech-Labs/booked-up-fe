@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { setWork } from "../../actions/authorAction";
 import { connect } from "react-redux";
-
+import { setContent } from "../../actions/fanAction"
 const useStyles = makeStyles(theme => ({
     paper: {
       position: "absolute",
@@ -25,12 +25,28 @@ const useStyles = makeStyles(theme => ({
 
 function OpenWorkModal(props) {
     const classes = useStyles();
+    const [fav, setFav] = useState(false)
+    const handleFavClick = () => {
+      let user = props.user.id
+      let work = props.work.id
+      props.setContent(user, work)
+      setFav(true)
+    }
 
-
+    useEffect(() => {
+      console.log(props.contentLibrary)
+      props.contentLibrary.map(cl => {
+        if(cl.user_id == props.work.id) (
+          setFav(true)
+        )
+      })
+      }, [props.work])
     const handleReadClick = () => {
         props.setWork(props.work)
         window.location.replace(`/dashboard/book/`)
+        
       };
+
     return(
         <Card className={classes.paper}>
       <CardHeader title={<Typography variant="h5">{props.work.title}</Typography>} />
@@ -49,9 +65,12 @@ function OpenWorkModal(props) {
               <p>{props.work.description}</p>
 
             </Grid>
-            <Button variant="contained" color="secondary">
+            {fav === false && (<Button variant="contained" color="secondary" onClick={handleFavClick}>
               Add to Favorites
-            </Button>
+            </Button>)}
+            {fav === true && (<Button variant="contained" disabled color="secondary">
+            &#10004; Added to Favorites
+          </Button>)}
             <Button variant="contained" color="secondary" onClick={handleReadClick}>
               Read Now
             </Button>
@@ -66,9 +85,10 @@ const mapStateToProps = state => {
     return {
       user: state.user,
       isLogged: state.isLogged,
-      currentWork: state.currentWork
+      currentWork: state.currentWork,
+      contentLibrary: state.contentLibrary
     };
   };
   
-  export default connect(mapStateToProps, { setWork })(OpenWorkModal);
+  export default connect(mapStateToProps, { setWork, setContent })(OpenWorkModal);
   

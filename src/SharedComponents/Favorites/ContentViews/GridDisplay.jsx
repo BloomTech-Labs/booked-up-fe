@@ -46,7 +46,7 @@ export default function GridDisplay(props) {
   const [works] = useState(props.contentWorks);
   const classes = useStyles();
   useEffect(() => {
-    console.log(props.authorWorks)
+    console.log(works)
   }, [])
   return (
     <Grid container className={classes.grid} spacing={2}>

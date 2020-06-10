@@ -7,7 +7,7 @@ import {
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
-
+import { SET_CONTENT } from "../actions/fanAction"
 const initialState = {
   user: {
     id: "",
@@ -91,6 +91,12 @@ function reducer(state = initialState, action) {
         isLoading: false,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+    case SET_CONTENT: {
+      return {
+        ...state,
+        contentLibrary: [...state.contentLibrary, action.payload]
+      }
     }
     case DEL_WORK : {
       return {
