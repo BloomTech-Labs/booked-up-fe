@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Comment from "./Comment.jsx"
 function CommentsView(props) {
+  const [comments, setComments] = useState(props.comments)
+
+  useEffect(() => {
+    console.log(props.comments)
+  }, [])
+
     return (
-        <Grid container alignItems="center">
-          {props.comments.map((item) => (
-            <Comment comment={item} />
-          ))}
-        </Grid>
+        <>
+        </>
     )
 }
 
