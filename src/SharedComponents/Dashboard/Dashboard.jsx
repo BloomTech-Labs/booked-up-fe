@@ -5,6 +5,7 @@ import { Users } from "../../Admin/Users";
 import Drawer from "@material-ui/core/Drawer";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Profile from "../../Author/Profile/Profile.jsx";
+import Favorites from "../Favorites/Favorites.jsx";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -92,7 +93,7 @@ function Dashboard(props) {
         break;
 
       case "/dashboard/favorites/":
-        setComponent(<p>Favorites</p>);
+        setComponent(<Favorites />);
         break;
 
       case "/dashboard/my-works/":
@@ -125,15 +126,26 @@ function Dashboard(props) {
         <Divider />
         <List>
           {!props.user.userType.toLowerCase().includes("admin") && (
-            <ListItem
-              component={Link}
-              to="/dashboard/"
-              className={classes.listItem}
-              data-testid="sidebar-browse"
-              onClick={() => setComponent(<Browse />)}
-            >
-              <ListItemText primary="Browse" />
-            </ListItem>
+            <>
+              <ListItem
+                component={Link}
+                to="/dashboard/"
+                className={classes.listItem}
+                data-testid="sidebar-browse"
+                onClick={() => setComponent(<Browse />)}
+              >
+                <ListItemText primary="Browse" />
+              </ListItem>
+              <ListItem
+                component={Link}
+                to="/dashboard/favorites"
+                className={classes.listItem}
+                data-testid="sidebar-favorites"
+                onClick={() => setComponent(<Favorites />)}
+              >
+                <ListItemText primary="Favorites" />
+              </ListItem>
+            </>
           )}
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
