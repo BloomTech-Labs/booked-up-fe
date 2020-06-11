@@ -52,12 +52,6 @@ function OpenWorkModal(props) {
             {fav === true && (<Button variant="contained" disabled color="secondary">
             &#10004; Added to Favorites
           </Button>)}
-            <Button variant="contained" color="secondary" onClick={handleReadClick}>
-              Read Now
-            </Button>
-          <Button variant="contained" color="secondary">
-            Add to Favorites
-          </Button>
           <Button
             variant="contained"
             color="secondary"
