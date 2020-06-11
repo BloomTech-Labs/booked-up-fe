@@ -30,6 +30,7 @@ const initialState = {
   contentLibrary: [],
   authorContent: [],
   userAccounts: [],
+  comments: [],
   currentWork: {}
 };
 
