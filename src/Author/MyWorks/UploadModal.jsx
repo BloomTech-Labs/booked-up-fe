@@ -25,11 +25,12 @@ function UploadModal(props) {
   });
 
   useEffect(() => {
+    console.log(props.dev)
     setUploadWork({
       ...uploadWork,
       user_id: props.user.id
     });
-  }, [props.user.id, uploadWork]);
+  }, []);
 
   const onSubmit = e => {
     var file = work.body[0];
@@ -113,7 +114,8 @@ const mapStateToProps = state => {
     user: state.user,
     isLogged: state.isLogged,
     isLoading: state.isLoading,
-    authorContent: state.authorContent
+    authorContent: state.authorContent,
+    dev: state.dev
   };
 };
 
