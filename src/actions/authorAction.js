@@ -96,5 +96,4 @@ export const delContent = (work) => dispatch => {
     .catch(err => {
       console.log(err)
     }) 
-  
 }

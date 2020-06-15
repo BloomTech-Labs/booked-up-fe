@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const SET_CONTENT = "SET_CONTENT";
 export const ADD_COMMENT = "ADD_COMMENT";
 
+
 export const setContent = (user, work) => dispatch => {
   let data = {
     user_id: user,
