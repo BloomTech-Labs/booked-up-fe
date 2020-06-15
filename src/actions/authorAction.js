@@ -80,13 +80,21 @@ export const setWork = data => dispatch => {
 
 export const delContent = (work) => dispatch => { 
   axiosWithAuth()
-    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.img_public_id}`)
     .then(res => {
-      dispatch({ type: DEL_WORK, payload: work.id})
-        console.log(res)
-        window.location.reload();
+      axiosWithAuth()
+        .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
+        .then(res => {
+          dispatch({ type: DEL_WORK, payload: work.id})
+            console.log(res)
+            window.location.reload();
+        })
+        .catch(err => {
+          console.log(err)
+        }) 
     })
     .catch(err => {
       console.log(err)
     }) 
+  
 }
