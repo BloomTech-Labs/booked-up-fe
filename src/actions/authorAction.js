@@ -80,7 +80,7 @@ export const setWork = data => dispatch => {
 
 export const delContent = (work) => dispatch => { 
   axiosWithAuth()
-    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}`)
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
     .then(res => {
       dispatch({ type: DEL_WORK, payload: work.id})
         console.log(res)
