@@ -44,5 +44,12 @@ export const addComment = (data) => dispatch => {
 }
 
 export const getComments = (data) => dispatch => {
-
+  axiosWithAuth()
+    .get(`https://bookedup-pt9.herokuapp.com/api/comments/${data}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
