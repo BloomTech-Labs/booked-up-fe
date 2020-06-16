@@ -11,6 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import BookedUpLogo from "../assets/new-logo.jpg";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import MessageIcon from "@material-ui/icons/Message";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../actions/authenticationAction";
@@ -177,16 +178,12 @@ function Header(props) {
                     to="/dashboard/"
                     label="Dashboard"
                   />
-                  {/* // {rc2 === true && (
-
                 <Tab
                 className={classes.tab}
                 component={Link}
                 to="/messages"
                 label={<MessageIcon/>}
               />
-              
-              )} */}
                   <Tab
                     aria-owns={anchorEl ? "account-menu" : undefined}
                     aria-haspopup={anchorEl ? "true" : undefined}

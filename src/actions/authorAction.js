@@ -42,10 +42,10 @@ export const uploadContent = (
       })
       .then(res => {
         console.log(res)
-        var submitData = {
+        submitData = {
           ...submitData,
           img_url: res.data.secure_url,
-          img_public_id: res.data.public_id
+          // img_public_id: res.data.public_id
         }
         axiosWithAuth()
         .post(

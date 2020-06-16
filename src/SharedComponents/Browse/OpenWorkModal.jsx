@@ -10,6 +10,7 @@ import { setWork } from "../../actions/authorAction";
 import { connect } from "react-redux";
 import { setContent } from "../../actions/fanAction"
 import { sharedPaperStyles } from "../materialUIShared";
+import { genres } from "../../utils/genres.js";
 
 function OpenWorkModal(props) {
   const classes = sharedPaperStyles();

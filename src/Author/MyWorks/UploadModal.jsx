@@ -5,15 +5,15 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
-import { Button } from "@material-ui/core";
+import { Button, FormControl, Select, MenuItem } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
-
+import { genres } from "../../utils/genres.js";
 function UploadModal(props) {
   const classes = sharedPaperStyles();
-  const [work, setWork] = useState({ title: "", body: [], image: [], description: "" });
+  const [work, setWork] = useState({ title: "", body: [], image: [], description: "", genre: "" });
   const [uploadWork, setUploadWork] = useState({
     title: "",
     img_url: "",
@@ -86,6 +86,23 @@ function UploadModal(props) {
                 }}
               />
             </Grid>
+            <Grid item xs={6}>
+              Genre
+            </Grid>
+            <Grid item xs={6}>
+            <FormControl className={classes.formControl}>
+          <Select
+            labelId="search-filter-label"
+            id="search-filter"
+            value={work.genre}
+            onChange={handleChange}
+          >
+            {genres.map(genre => (
+              <MenuItem value={genre}>{genre}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        </Grid>
             <Grid item xs={6}>
               <p>Title</p>
             </Grid>
