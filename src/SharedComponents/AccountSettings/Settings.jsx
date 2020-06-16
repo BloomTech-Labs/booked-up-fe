@@ -12,7 +12,13 @@ import PersonalInfo from "./PersonalInfo.jsx";
 import ChangeEmail from "./ChangeEmail.jsx";
 import ChangePass from "./ChangePass.jsx";
 import DeleteAccount from "./DeleteAccount.jsx";
+import MainSetting from "./setting.jsx"
 import ChangeDisplayName from "./ChangeDisplayName";
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -28,7 +34,6 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "4.7em",
     width: "15%",
     boxShadow: "0.1rem 0.3rem 0.8rem 0.05rem",
-    hieght: "50px"
   },
   title: {
     padding: "1%",
@@ -68,8 +73,17 @@ const useStyles = makeStyles(theme => ({
     
   },
   listItem: {
-    color: "whitesmoke", 
-  }
+    color: "black", 
+    backgroundColor: "whitesmoke",
+  },
+  column: {
+    flexBasis: '33.33%',
+    display: "flex",
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    margin: "10%"
+  },
 }));
 
 function Settings(props) {
@@ -81,7 +95,7 @@ function Settings(props) {
     if (props.user.userType.toLowerCase().includes("admin")) {
       setComponent(<Users userAccounts={props.userAccounts} />);
     } else {
-      setComponent(<PersonalInfo/>);
+      setComponent(<MainSetting/>);
     }
   }, []);
   useEffect(() => {
@@ -90,8 +104,12 @@ function Settings(props) {
         if (props.user.userType.toLowerCase().includes("admin")) {
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
-          setComponent(<PersonalInfo />);
+          setComponent(<MainSetting />);
         }
+        break;
+
+      case "/settings/change-personalinformation":
+          setComponent(<PersonalInfo/>);
         break;
 
       case "/settings/change-email":
@@ -126,13 +144,24 @@ function Settings(props) {
         anchor="left"
         data-testid="sidebar"
       >
+    <ExpansionPanel>
+    <ExpansionPanelSummary
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls="panel1c-content"
+      id="panel1c-header"
+    >
+      <div className={classes.column}>
+        <SettingsIcon style={{ fontSize: 40 }}/>
+        <Typography className={classes.heading}>Settings</Typography>
+      </div>
+    </ExpansionPanelSummary>
         <div className={classes.toolbar} />
         <Divider />
         <List>
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
-              to="/settings"
+              to="/settings/change-personalinformation"
               className={classes.listItem}
               data-testid="sidebar-browse"
               onClick={() => setComponent(<PersonalInfo />)}
@@ -193,6 +222,7 @@ function Settings(props) {
 
         </List>
         <Divider />
+        </ExpansionPanel>
       </Drawer>
       <div className={classes.content}>{component}</div>
     </div>

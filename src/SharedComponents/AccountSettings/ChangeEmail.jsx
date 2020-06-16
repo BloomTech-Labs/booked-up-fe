@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        marginBottom: "0%",
+        marginBottom: "8%",
         width: "90%",
         marginLeft: "10%",
     },

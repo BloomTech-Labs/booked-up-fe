@@ -15,7 +15,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../actions/authenticationAction";
-import Settings from "./AccountSettings/Settings.jsx"
 
 function ElevationScroll(props) {
   const { children } = props;

@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUpForm} />
-          <Route
+          <PrivateRoute 
             path="/settings" 
             component={Settings} />
           <IndexRoute  exact path="/index.html"  />

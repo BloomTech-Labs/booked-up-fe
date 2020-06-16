@@ -42,7 +42,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-let editing = false
 
 function PersonalInfo(props) {
   const classes = useStyles();
@@ -63,8 +62,6 @@ function PersonalInfo(props) {
     const onSubmit =() => {
      props.EditAccount(formValue)
     }
-
-//console.log(props.user)
 
   return (
     <Card className={classes.root}>
@@ -127,7 +124,7 @@ function PersonalInfo(props) {
       </CardContent>
       <Divider />
       <ExpansionPanelActions>
-          <Button size="small" onClick={() => {}} >Cancel</Button>
+          <Button size="small" onClick={() => {  window.history.back(); }} >Cancel</Button>
           <Button onClick={(
           ) => {
             onSubmit() }}
