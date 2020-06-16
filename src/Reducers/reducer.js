@@ -106,7 +106,6 @@ function reducer(state = initialState, action) {
         comments: [...state.comments, action.payload]
       }
     }
-
     case DEL_WORK : {
       return {
         ...state,

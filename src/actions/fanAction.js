@@ -53,5 +53,4 @@ export const getComments = (data) => dispatch => {
     .catch(err => {
       console.log(err)
     })
-
 }
