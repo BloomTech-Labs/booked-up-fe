@@ -29,11 +29,10 @@ export const uploadContent = (
     .then(res => {
       console.log(res)
       var submitData = {
-        user_id: uploadWork.user_id,
         content_url: res.data.secure_url,
         public_id: res.data.public_id,
         title: work.title,
-        description: work.description
+        description: work.description,
       };
       axios({
         url: cloudinary.URL,
@@ -47,15 +46,16 @@ export const uploadContent = (
           img_url: res.data.secure_url,
           img_public_id: res.data.public_id
         }
+        console.log(submitData)
         axiosWithAuth()
         .post(
-          `https://bookedup-pt9.herokuapp.com/api/author-content/${submitData.user_id}`,
+          `https://bookedup-pt9.herokuapp.com/api/author-content/${uploadWork.user_id}`,
           submitData
         )
         .then(res => {
           console.log(res);
-          dispatch({ type: UPLOAD_CONTENT, payload: res.data.newContent });
-          window.location.reload();
+          dispatch({ type: UPLOAD_CONTENT, payload: res.data.content[0] });
+          // window.location.reload();
         })
         .catch(err => {
           dispatch({ type: TASK_FAIL, payload: err.message })

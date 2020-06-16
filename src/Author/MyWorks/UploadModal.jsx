@@ -11,6 +11,8 @@ import { connect } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
 import { genres } from "../../utils/genres.js";
+import ImagePlaceholder from "../../assets/image-placeholder.png";
+
 function UploadModal(props) {
   const classes = sharedPaperStyles();
   const [work, setWork] = useState({
