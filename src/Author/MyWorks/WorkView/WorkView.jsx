@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
+import AddComment from "../Comments/AddComment.jsx";
+import CommentsView from "../Comments/CommentsView.jsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -46,6 +48,8 @@ function Workview(props) {
           className={classes.pageContent}
         />
       </Document>
+      <AddComment />
+      <CommentsView />
     </div>
   );
 }

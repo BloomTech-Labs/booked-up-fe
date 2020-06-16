@@ -13,9 +13,10 @@ import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
 
 function UploadModal(props) {
   const classes = sharedPaperStyles();
-  const [work, setWork] = useState({ title: "", body: [], description: "" });
+  const [work, setWork] = useState({ title: "", body: [], image: [], description: "" });
   const [uploadWork, setUploadWork] = useState({
     title: "",
+    img_url: "",
     content_url: "",
     user_id: 0
   });
@@ -25,20 +26,25 @@ function UploadModal(props) {
   });
 
   useEffect(() => {
+    console.log(props.dev)
     setUploadWork({
       ...uploadWork,
       user_id: props.user.id
     });
-  }, [props.user.id, uploadWork]);
+  }, []);
 
   const onSubmit = e => {
     var file = work.body[0];
     var formData = new FormData();
+    var imgFile = work.image[0];
+    var imgFormData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
+    imgFormData.append("file", imgFile);
+    imgFormData.append("upload_preset", cloudinary.preset)
     e.preventDefault();
     props.taskStart();
-    props.uploadContent(props, formData, cloudinary, uploadWork, work);
+    props.uploadContent(props, formData, imgFormData, cloudinary, uploadWork, work);
   };
 
   const handleChange = e => {
@@ -54,6 +60,19 @@ function UploadModal(props) {
       <CardContent>
         <form onSubmit={onSubmit}>
           <Grid container alignItems="center">
+          <Grid item xs={6}>
+              <p>Cover Art</p>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                id="work-button-preview-file"
+                onChange={e => {
+                  setWork({ ...work, image: [...e.target.files] });
+                }}
+              />
+            </Grid>
             <Grid item xs={6}>
               <p>Upload your work</p>
             </Grid>
@@ -113,7 +132,8 @@ const mapStateToProps = state => {
     user: state.user,
     isLogged: state.isLogged,
     isLoading: state.isLoading,
-    authorContent: state.authorContent
+    authorContent: state.authorContent,
+    dev: state.dev
   };
 };
 
