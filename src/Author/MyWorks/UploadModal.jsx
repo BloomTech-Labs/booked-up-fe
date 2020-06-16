@@ -13,7 +13,13 @@ import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
 import { genres } from "../../utils/genres.js";
 function UploadModal(props) {
   const classes = sharedPaperStyles();
-  const [work, setWork] = useState({ title: "", body: [], image: [], description: "", genre: "" });
+  const [work, setWork] = useState({
+    title: "",
+    body: [],
+    image: [],
+    description: "",
+    genre: ""
+  });
   const [uploadWork, setUploadWork] = useState({
     title: "",
     img_url: "",
@@ -26,7 +32,7 @@ function UploadModal(props) {
   });
 
   useEffect(() => {
-    console.log(props.dev)
+    console.log(props.dev);
     setUploadWork({
       ...uploadWork,
       user_id: props.user.id
@@ -41,10 +47,17 @@ function UploadModal(props) {
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
     imgFormData.append("file", imgFile);
-    imgFormData.append("upload_preset", cloudinary.preset)
+    imgFormData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
     props.taskStart();
-    props.uploadContent(props, formData, imgFormData, cloudinary, uploadWork, work);
+    props.uploadContent(
+      props,
+      formData,
+      imgFormData,
+      cloudinary,
+      uploadWork,
+      work
+    );
   };
 
   const handleChange = e => {
@@ -60,7 +73,7 @@ function UploadModal(props) {
       <CardContent>
         <form onSubmit={onSubmit}>
           <Grid container alignItems="center">
-          <Grid item xs={6}>
+            <Grid item xs={6}>
               <p>Cover Art</p>
             </Grid>
             <Grid item xs={6}>
@@ -90,19 +103,20 @@ function UploadModal(props) {
               Genre
             </Grid>
             <Grid item xs={6}>
-            <FormControl className={classes.formControl}>
-          <Select
-            labelId="search-filter-label"
-            id="search-filter"
-            value={work.genre}
-            onChange={handleChange}
-          >
-            {genres.map(genre => (
-              <MenuItem value={genre}>{genre}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        </Grid>
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="add-genre-label"
+                  id="add_genre"
+                  name="genre"
+                  value={work.genre}
+                  onChange={handleChange}
+                >
+                  {genres.map(genre => (
+                    <MenuItem value={genre}>{genre}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid item xs={6}>
               <p>Title</p>
             </Grid>

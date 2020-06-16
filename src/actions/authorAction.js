@@ -45,11 +45,11 @@ export const uploadContent = (
         submitData = {
           ...submitData,
           img_url: res.data.secure_url,
-          // img_public_id: res.data.public_id
+          img_public_id: res.data.public_id
         }
         axiosWithAuth()
         .post(
-          "https://bookedup-pt9.herokuapp.com/api/author-content",
+          `https://bookedup-pt9.herokuapp.com/api/author-content/${submitData.user_id}`,
           submitData
         )
         .then(res => {
