@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -16,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
+import { connect } from "react-redux";
 const drawerWidth = 165;
 
 const useStyles = makeStyles((theme) => ({
@@ -57,37 +58,39 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
-  export default function MessageView(props) {
+  function MessageView(props) {
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-  
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [availableMessages, setAvailableMessages] = useState([])
+    const [currentMessage, setCurrentMessage] = useState({content: ""})
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
-  
+    const handleOpen = (message) => {
+        setCurrentMessage(message)
+    }
+    useEffect(() => {
+        if(props.messages) (
+            setAvailableMessages(props.messages)
+        )
+        else (
+            setAvailableMessages(["There are no current messages"])
+        )
+    }, [])
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {availableMessages.map((text, index) => (
+            <ListItem button key={text} onClick={() => handleOpen(text)}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </div>
     );
   
@@ -145,9 +148,19 @@ const useStyles = makeStyles((theme) => ({
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-              <MessageContent />
+              <MessageContent message = {currentMessage}/>
         </main>
       </div>
     );
   }
+  
+
+  const mapStateToProps = state => {
+    return {
+      user: state.user,
+      isLogged: state.isLogged
+    };
+  };
+  
+  export default connect(mapStateToProps, {})(MessageView);
   
