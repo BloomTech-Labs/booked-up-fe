@@ -14,6 +14,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
+import ImagePlaceholder from "../../assets/image-placeholder.png";
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -68,11 +69,12 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "3em"
   },
   resultsContainer: {
-    width: "95%",
+    width: "65%",
     margin: "auto"
   },
   placeholderImage: {
     position: "relative",
+    backgroundSize: "100% 100%",
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
@@ -138,7 +140,21 @@ function Browse(props) {
     setOpen(false);
   };
 
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return {
+        backgroundImage: `url("${work.img_url}")`
+      }
+    }
+    else {
+      return {
+        backgroundImage: `url("${ImagePlaceholder}")`
+      }
+    }
+  }
+
   useEffect(() => {
+    console.log(props.contentLibrary)
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
       .then(res => {
@@ -169,9 +185,9 @@ function Browse(props) {
         if (filter === "all") {
           return (
             work.title.toLowerCase().includes(value.toLowerCase()) ||
-            work.description.toLowerCase().includes(value.toLowerCase()) ||
-            /*work.genre.toLowerCase().includes(value.toLowerCase()) ||*/
-            work.author.toLowerCase().includes(value.toLowerCase())
+            work.description.toLowerCase().includes(value.toLowerCase())
+            // work.Genres.toLowerCase().includes(value.toLowerCase())
+            // work.author.toLowerCase().includes(value.toLowerCase())
           );
         } else {
           return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
@@ -222,6 +238,7 @@ function Browse(props) {
         {works.map((cl, i) => (
           <div
             key={i}
+            style={imageSet(cl)}
             className={classes.placeholderImage}
             onClick={() => (setSelWork(cl), setOpen(true))}
           >
@@ -248,6 +265,7 @@ function Browse(props) {
           >
             {works.map((cl, i) => (
               <div
+                style={imageSet(cl)}
                 key={i}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
@@ -274,6 +292,7 @@ function Browse(props) {
             {works.map((cl, i) => (
               <div
                 key={i}
+                style={imageSet(cl)}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
               >
@@ -290,6 +309,7 @@ function Browse(props) {
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
               <div
+                style={imageSet(cl)}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
               >
@@ -317,7 +337,8 @@ function Browse(props) {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    isLogged: state.isLogged
+    isLogged: state.isLogged,
+    contentLibrary: state.contentLibrary
   };
 };
 

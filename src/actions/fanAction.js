@@ -11,7 +11,7 @@ export const setContent = (user, work) => dispatch => {
   }
   console.log(data)
   axiosWithAuth()
-    .post(`https://bookedup-pt9.herokuapp.com/api/content-library`, data)
+    .post(`https://bookedup-pt9.herokuapp.com/api/content-library/${user}`, data)
     .then(res => {
       console.log(res)
       axiosWithAuth()
@@ -20,8 +20,9 @@ export const setContent = (user, work) => dispatch => {
           console.log(res)
           dispatch({
             type: SET_CONTENT,
-            payload: res.data.ContentLibrary
+            payload: res.data.contentGenre
           })
+          window.location.reload();
         })
         .catch(err => {
           console.log(err)

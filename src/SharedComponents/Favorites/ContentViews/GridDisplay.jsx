@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ReadingButtons from "../ReadingButtons";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
+import ImagePlaceholder from "../../../assets/image-placeholder.png";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   placeholderImage: {
     position: "relative",
+    backgroundSize: "100% 100%",
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
@@ -48,12 +50,25 @@ export default function GridDisplay(props) {
   useEffect(() => {
     console.log(works)
   }, [])
+
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return {
+        backgroundImage: `url("${work.img_url}")`
+      }
+    }
+    else {
+      return {
+        backgroundImage: `url("${ImagePlaceholder}")`
+      }
+    }
+  }
+
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
           <Grid item xs={2} key={index} className={classes.gridItem}>
-            <div className={classes.placeholderImage}>
-              Placeholder Image
+            <div style={imageSet(work)} className={classes.placeholderImage}>
               <div className={classes.authorOverlay}>{work.title}</div>
             </div>
             <ReadingButtons work={work} />

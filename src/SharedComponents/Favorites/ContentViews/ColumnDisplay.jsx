@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ReadingButtons from "../ReadingButtons";
+import ImagePlaceholder from "../../../assets/image-placeholder.png";
+
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -20,13 +22,15 @@ const useStyles = makeStyles(theme => ({
   },
   placeholderImage: {
     position: "relative",
+    backgroundSize: "100% 100%",
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
     height: "100px",
     padding: "2px",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "15%"
   },
   authorOverlay: {
     position: "absolute",
@@ -55,12 +59,25 @@ export default function ColumnDisplay(props) {
   const [works] = useState(props.contentWorks);
   const classes = useStyles();
 
+
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return {
+        backgroundImage: `url("${work.img_url}")`
+      }
+    }
+    else {
+      return {
+        backgroundImage: `url("${ImagePlaceholder}")`
+      }
+    }
+  }
+
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
           <Grid item xs={12} key={index} className={classes.gridItem}>
-            <div className={classes.placeholderImage}>
-              Placeholder Image
+            <div style={imageSet(work)} className={classes.placeholderImage}>
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
                 {work.author}
               </Grid>

@@ -12,9 +12,8 @@ import ListItem from "@material-ui/core/ListItem";
 import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
-import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx"
-import { getUsers } from "../../actions/adminAction"
-
+import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
+import { getUsers } from "../../actions/adminAction.js";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -62,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: "3%",
     width: "80%",
     marginLeft: "15%",
-    marginBottom: "15%"
+    marginBottom: "15%",
+    minHeight: "30em"
   },
   listItem: {
     color: "white"
@@ -73,40 +73,39 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value] = useState(0);
   const [component, setComponent] = useState();
-    
   useEffect(() => {
     switch (window.location.pathname) {
-      case "/dashboard/":
+      case "/dashboard":
         if (props.user.userType.toLowerCase().includes("admin")) {
-          props.getUsers();
+          props.getUsers()
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
           setComponent(<Browse />);
         }
         break;
 
-      case "/dashboard/profile/":
+      case "/dashboard/profile":
         setComponent(<Profile />);
         break;
 
-      case "/dashboard/favorites/":
+      case "/dashboard/favorites":
         setComponent(<Favorites />);
         break;
 
-      case "/dashboard/my-works/":
+      case "/dashboard/my-works":
         setComponent(<MyWorks />);
         break;
 
-      case "/dashboard/messages/":
+      case "/dashboard/messages":
         setComponent(<p>My Messages</p>);
         break;
-      case "/dashboard/book/":
+      case "/dashboard/book":
         setComponent(<WorkView />);
         break;
       default:
         break;
     }
-  }, [value, props.user.userType, props.userAccounts]);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -126,7 +125,7 @@ function Dashboard(props) {
             <>
               <ListItem
                 component={Link}
-                to="/dashboard/"
+                to="/dashboard"
                 className={classes.listItem}
                 data-testid="sidebar-browse"
                 onClick={() => setComponent(<Browse />)}
@@ -147,7 +146,7 @@ function Dashboard(props) {
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
-              to="/dashboard/profile/"
+              to="/dashboard/profile"
               className={classes.listItem}
               data-testid="sidebar-profile"
               value={<Profile />}
@@ -160,7 +159,7 @@ function Dashboard(props) {
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
-              to="/dashboard/my-works/"
+              to="/dashboard/my-works"
               className={classes.listItem}
               data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}
@@ -184,4 +183,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUsers })(Dashboard);
+export default connect(mapStateToProps, {getUsers})(Dashboard);
+
