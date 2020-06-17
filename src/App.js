@@ -9,9 +9,7 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
-import IndexRoute from "./utils/IndexRoute.jsx";
 import Settings from "./SharedComponents/AccountSettings/Settings.jsx";
-
 import MessageView from "./SharedComponents/Messages/MessageView.jsx"
 
 function App() {
