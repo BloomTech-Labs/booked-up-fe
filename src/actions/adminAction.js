@@ -7,6 +7,7 @@ export const getUsers = data => dispatch => {
   axiosWithAuth()
     .get("https://bookedup-pt9.herokuapp.com/api/users")
     .then(res => {
+      console.log(res.data)
       dispatch({ type: GET_USERS, payload: res.data });
     })
     .catch(err => console.log(err.message));

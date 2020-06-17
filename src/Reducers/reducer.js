@@ -7,8 +7,7 @@ import {
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { UPLOAD_CONTENT, SET_WORK } from "../actions/authorAction";
-import { EDIT_USER } from "../actions/userAction";
-import { DELETE_USER } from "../actions/userAction";
+import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
 
 const initialState = {
   user: {
@@ -82,6 +81,10 @@ function reducer(state = initialState, action) {
 
     case EDIT_USER: {
       return {...state, user: action.payload}
+    }
+
+    case EDIT_EMAIL: {
+      return {...state, userAccounts: action.payload}
     }
 
     case UPLOAD_CONTENT: {
