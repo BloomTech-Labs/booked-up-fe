@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ReadingButtons from "../ReadingButtons";
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
 
+
 const useStyles = makeStyles(theme => ({
   grid: {
     display: "flex",
@@ -58,6 +59,7 @@ export default function ColumnDisplay(props) {
   const [works] = useState(props.contentWorks);
   const classes = useStyles();
 
+
   const imageSet = (work) => {
     if(work.img_url) {
       return {
@@ -70,6 +72,7 @@ export default function ColumnDisplay(props) {
       }
     }
   }
+
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (

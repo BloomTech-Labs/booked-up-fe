@@ -13,6 +13,7 @@ import { sharedPaperStyles } from "../materialUIShared";
 import { genres } from "../../utils/genres.js";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
 
+
 const useModalStyles = makeStyles(theme => ({
   image: {
     position: "relative",

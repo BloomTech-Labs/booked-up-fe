@@ -75,6 +75,32 @@ function UploadModal(props) {
       <CardContent>
         <form onSubmit={onSubmit}>
           <Grid container alignItems="center">
+          <Grid item xs={6}>
+              <p>Cover Art</p>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                id="work-button-preview-file"
+                onChange={e => {
+                  setWork({ ...work, image: [...e.target.files] });
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <p>Cover Art</p>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                id="work-button-preview-file"
+                onChange={e => {
+                  setWork({ ...work, image: [...e.target.files] });
+                }}
+              />
+            </Grid>
             <Grid item xs={6}>
               <p>Cover Art</p>
             </Grid>

@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ReadingButtons from "../ReadingButtons";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
+
 const useStyles = makeStyles(theme => ({
   grid: {
     flexDirection: "row",
@@ -49,6 +50,7 @@ export default function GridDisplay(props) {
   useEffect(() => {
     console.log(works)
   }, [])
+
   const imageSet = (work) => {
     if(work.img_url) {
       return {
@@ -61,6 +63,7 @@ export default function GridDisplay(props) {
       }
     }
   }
+
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
