@@ -5,7 +5,7 @@ export const GET_USERS = "GET_USERS";
 
 export const getUsers = data => dispatch => {
   axiosWithAuth()
-    .get("https://bookedup-pt9.herokuapp.com/api/users")
+    .get("https://bookedup-pt9.herokuapp.com/api/users/")
     .then(res => {
       dispatch({ type: GET_USERS, payload: res.data });
     })

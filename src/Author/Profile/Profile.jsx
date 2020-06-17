@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginBottom: "20%"
+    marginBottom: "20%",
   },
   title: {
     borderBottom: "1px solid black",

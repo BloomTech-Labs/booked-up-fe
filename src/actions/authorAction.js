@@ -7,6 +7,7 @@ export const SET_WORK = "SET_WORK";
 export const TASK_START = "TASK_START";
 export const TASK_FAIL = "TASK_FAIL";
 export const DEL_WORK = "DEL_WORK"
+export const GET_MESSAGES = "GET_MESSAGES"
 
 export const taskStart = () => dispatch => {
   dispatch({
@@ -64,7 +65,7 @@ export const uploadContent = (
                       type: UPLOAD_CONTENT,
                       payload: res.data.content[0]
                     });
-                    // window.location.reload();
+                    window.location.reload();
                   })
                   .catch(err => {
                     dispatch({
@@ -90,7 +91,7 @@ export const uploadContent = (
             type: UPLOAD_CONTENT,
             payload: res.data.content[0]
           });
-          // window.location.reload();
+          window.location.reload();
         })
         .catch(err => {
           dispatch({
@@ -137,6 +138,15 @@ export const delContent = (work) => dispatch => {
     .catch(err => {
       console.log(err)
     })
+  }
+  export const getMessages = (data) => dispatch => {
+    axiosWithAuth()
+      .get(`https://bookedup-pt9.herokuapp.com/api/message/${data.id}/inbox`)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
-
-}

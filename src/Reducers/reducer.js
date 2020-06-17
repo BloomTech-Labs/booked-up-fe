@@ -6,8 +6,9 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
+
 
 const initialState = {
   user: {
@@ -31,6 +32,7 @@ const initialState = {
   contentLibrary: [],
   authorContent: [],
   userAccounts: [],
+  messages: [],
   comments: [],
   currentWork: {}
 };
