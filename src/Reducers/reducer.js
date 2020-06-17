@@ -9,7 +9,6 @@ import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
 
-
 const initialState = {
   user: {
     id: "",

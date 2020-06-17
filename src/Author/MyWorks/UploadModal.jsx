@@ -5,15 +5,23 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
-import { Button } from "@material-ui/core";
+import { Button, FormControl, Select, MenuItem } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
+import { genres } from "../../utils/genres.js";
+import ImagePlaceholder from "../../assets/image-placeholder.png";
 
 function UploadModal(props) {
   const classes = sharedPaperStyles();
-  const [work, setWork] = useState({ title: "", body: [], image: [], description: "" });
+  const [work, setWork] = useState({
+    title: "",
+    body: [],
+    image: [],
+    description: "",
+    genre: ""
+  });
   const [uploadWork, setUploadWork] = useState({
     title: "",
     img_url: "",
@@ -26,7 +34,7 @@ function UploadModal(props) {
   });
 
   useEffect(() => {
-    console.log(props.dev)
+    console.log(props.dev);
     setUploadWork({
       ...uploadWork,
       user_id: props.user.id
@@ -41,10 +49,17 @@ function UploadModal(props) {
     formData.append("file", file);
     formData.append("upload_preset", cloudinary.preset);
     imgFormData.append("file", imgFile);
-    imgFormData.append("upload_preset", cloudinary.preset)
+    imgFormData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
     props.taskStart();
-    props.uploadContent(props, formData, imgFormData, cloudinary, uploadWork, work);
+    props.uploadContent(
+      props,
+      formData,
+      imgFormData,
+      cloudinary,
+      uploadWork,
+      work
+    );
   };
 
   const handleChange = e => {
@@ -74,6 +89,19 @@ function UploadModal(props) {
               />
             </Grid>
             <Grid item xs={6}>
+              <p>Cover Art</p>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                id="work-button-preview-file"
+                onChange={e => {
+                  setWork({ ...work, image: [...e.target.files] });
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
               <p>Upload your work</p>
             </Grid>
             <Grid item xs={6}>
@@ -85,6 +113,24 @@ function UploadModal(props) {
                   setWork({ ...work, body: [...e.target.files] });
                 }}
               />
+            </Grid>
+            <Grid item xs={6}>
+              Genre
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl className={classes.formControl}>
+                <Select
+                  labelId="add-genre-label"
+                  id="add_genre"
+                  name="genre"
+                  value={work.genre}
+                  onChange={handleChange}
+                >
+                  {genres.map(genre => (
+                    <MenuItem value={genre}>{genre}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={6}>
               <p>Title</p>
