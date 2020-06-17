@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ReadingButtons from "../ReadingButtons";
+import ImagePlaceholder from "../../../assets/image-placeholder.png";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -49,12 +50,23 @@ export default function RowDisplay(props) {
   const [works] = useState(props.contentWorks);
   const classes = useStyles();
 
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return {
+        backgroundImage: `url("${work.img_url}")`
+      }
+    }
+    else {
+      return {
+        backgroundImage: `url("${ImagePlaceholder}")`
+      }
+    }
+  }
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
           <Grid item xs={2} key={index} className={classes.gridItem}>
-            <div className={classes.placeholderImage}>
-              Placeholder Image
+            <div style={imageSet(work)} className={classes.placeholderImage}>
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
             <div className={classes.title}>{work.title}</div>

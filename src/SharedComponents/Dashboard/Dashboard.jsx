@@ -76,7 +76,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     switch (window.location.pathname) {
-      case "/dashboard/":
+      case "/dashboard":
         if (props.user.userType.toLowerCase().includes("admin")) {
           props.getUsers()
           setComponent(<Users userAccounts={props.userAccounts} />);
@@ -85,22 +85,22 @@ function Dashboard(props) {
         }
         break;
 
-      case "/dashboard/profile/":
+      case "/dashboard/profile":
         setComponent(<Profile />);
         break;
 
-      case "/dashboard/favorites/":
+      case "/dashboard/favorites":
         setComponent(<Favorites />);
         break;
 
-      case "/dashboard/my-works/":
+      case "/dashboard/my-works":
         setComponent(<MyWorks />);
         break;
 
-      case "/dashboard/messages/":
+      case "/dashboard/messages":
         setComponent(<p>My Messages</p>);
         break;
-      case "/dashboard/book/":
+      case "/dashboard/book":
         setComponent(<WorkView />);
         break;
       default:
@@ -126,7 +126,7 @@ function Dashboard(props) {
             <>
               <ListItem
                 component={Link}
-                to="/dashboard/"
+                to="/dashboard"
                 className={classes.listItem}
                 data-testid="sidebar-browse"
                 onClick={() => setComponent(<Browse />)}
@@ -147,7 +147,7 @@ function Dashboard(props) {
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
-              to="/dashboard/profile/"
+              to="/dashboard/profile"
               className={classes.listItem}
               data-testid="sidebar-profile"
               value={<Profile />}
@@ -160,7 +160,7 @@ function Dashboard(props) {
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
-              to="/dashboard/my-works/"
+              to="/dashboard/my-works"
               className={classes.listItem}
               data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}

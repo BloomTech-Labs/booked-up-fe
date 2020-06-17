@@ -154,6 +154,7 @@ function Browse(props) {
   }
 
   useEffect(() => {
+    console.log(props.contentLibrary)
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
       .then(res => {
@@ -336,7 +337,8 @@ function Browse(props) {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    isLogged: state.isLogged
+    isLogged: state.isLogged,
+    contentLibrary: state.contentLibrary
   };
 };
 

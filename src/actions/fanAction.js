@@ -19,8 +19,9 @@ export const setContent = (user, work) => dispatch => {
           console.log(res)
           dispatch({
             type: SET_CONTENT,
-            payload: res.data.ContentGenre
+            payload: res.data.contentGenre
           })
+          window.location.reload();
         })
         .catch(err => {
           console.log(err)

@@ -229,7 +229,7 @@ function Header(props) {
               onClose={handleClose}
               // elevation={0}
             >
-              <MenuItem component={Link} to="/dashboard/profile/">
+              <MenuItem component={Link} to="/dashboard/profile">
                 <AccountCircleIcon />
               </MenuItem>
 

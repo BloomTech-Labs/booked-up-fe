@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     height: "100px",
     padding: "2px",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "15%"
   },
   authorOverlay: {
     position: "absolute",
@@ -73,7 +74,6 @@ export default function ColumnDisplay(props) {
       {works.map((work, index) => (
           <Grid item xs={12} key={index} className={classes.gridItem}>
             <div style={imageSet(work)} className={classes.placeholderImage}>
-              Placeholder Image
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
                 {work.author}
               </Grid>
