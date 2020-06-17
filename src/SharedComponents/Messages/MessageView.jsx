@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [availableMessages, setAvailableMessages] = useState([])
-    const [currentMessage, setCurrentMessage] = useState({content: ""})
+    const [currentMessage, setCurrentMessage] = useState({body: ""})
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };

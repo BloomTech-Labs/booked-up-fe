@@ -5,8 +5,9 @@ export default function MessageContent(props) {
 
     return (
         <>
+        <Typography variant="h3">{props.message.subject}</Typography>
         <Typography paragraph>
-            {props.message.content}
+            {props.message.body}
           </Typography>
           </>
     )
