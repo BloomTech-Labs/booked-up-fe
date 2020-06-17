@@ -6,6 +6,10 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
+
+import { UPLOAD_CONTENT, SET_WORK } from "../actions/authorAction";
+import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
 
@@ -82,6 +86,20 @@ function reducer(state = initialState, action) {
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
     }
+
+
+    case DELETE_USER: {
+      return { ...state, userAccounts: action.payload };
+    }
+
+    case EDIT_USER: {
+      return {...state, user: action.payload}
+    }
+
+    case EDIT_EMAIL: {
+      return {...state, userAccounts: action.payload}
+    }
+
     case TASK_START: {
       return {
         ...state,
@@ -89,6 +107,7 @@ function reducer(state = initialState, action) {
         isLoading: true
       }
     }
+
     case UPLOAD_CONTENT: {
       return {
         ...state,

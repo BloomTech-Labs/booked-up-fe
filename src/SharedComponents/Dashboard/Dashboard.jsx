@@ -73,7 +73,6 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value] = useState(0);
   const [component, setComponent] = useState();
-
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
@@ -185,3 +184,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {getUsers})(Dashboard);
+
