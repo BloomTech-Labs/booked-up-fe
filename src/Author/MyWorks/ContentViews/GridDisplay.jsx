@@ -69,9 +69,8 @@ export default function GridDisplay(props) {
       {works.map((work, index) => (
         <Grid item xs={2} key={index} className={classes.gridItem}>
           <div style={imageSet(work)} className={classes.placeholderImage}>
-            
-            Placeholder Image
-            <div className={classes.authorOverlay}>{work.title}</div>
+            {work.title}
+            <div className={classes.authorOverlay}>{work.author}</div>
           </div>
           <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
         </Grid>

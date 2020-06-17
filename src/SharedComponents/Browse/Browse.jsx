@@ -14,6 +14,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
+import ImagePlaceholder from "../../assets/image-placeholder.png";
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -73,6 +74,7 @@ const useStyles = makeStyles(theme => ({
   },
   placeholderImage: {
     position: "relative",
+    backgroundSize: "100% 100%",
     backgroundColor: "grey",
     textAlign: "center",
     color: "white",
@@ -137,6 +139,19 @@ function Browse(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return {
+        backgroundImage: `url("${work.img_url}")`
+      }
+    }
+    else {
+      return {
+        backgroundImage: `url("${ImagePlaceholder}")`
+      }
+    }
+  }
 
   useEffect(() => {
     axiosWithAuth()
@@ -222,6 +237,7 @@ function Browse(props) {
         {works.map((cl, i) => (
           <div
             key={i}
+            style={imageSet(cl)}
             className={classes.placeholderImage}
             onClick={() => (setSelWork(cl), setOpen(true))}
           >
@@ -248,6 +264,7 @@ function Browse(props) {
           >
             {works.map((cl, i) => (
               <div
+                style={imageSet(cl)}
                 key={i}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
@@ -274,6 +291,7 @@ function Browse(props) {
             {works.map((cl, i) => (
               <div
                 key={i}
+                style={imageSet(cl)}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
               >
@@ -290,6 +308,7 @@ function Browse(props) {
           {filteredWork.map((cl, i) => (
             <div key={i} className={classes.results}>
               <div
+                style={imageSet(cl)}
                 className={classes.placeholderImage}
                 onClick={() => (setSelWork(cl), setOpen(true))}
               >

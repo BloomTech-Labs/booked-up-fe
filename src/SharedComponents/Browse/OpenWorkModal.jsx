@@ -11,9 +11,22 @@ import { connect } from "react-redux";
 import { setContent } from "../../actions/fanAction"
 import { sharedPaperStyles } from "../materialUIShared";
 import { genres } from "../../utils/genres.js";
+import ImagePlaceholder from "../../assets/image-placeholder.png";
 
+const useModalStyles = makeStyles(theme => ({
+  image: {
+    position: "relative",
+    backgroundSize: "100% 100%",
+    width: "100%",
+    marginBottom: "2%"
+  },
+  button: {
+    marginLeft: "6%"
+  }
+})) 
 function OpenWorkModal(props) {
   const classes = sharedPaperStyles();
+  const modalClasses = useModalStyles();
   const [fav, setFav] = useState(false)
     const handleFavClick = () => {
       let user = props.user.id
@@ -34,6 +47,18 @@ function OpenWorkModal(props) {
     props.setWork(props.work);
     window.location.replace(`/dashboard/book/`);
   };
+  const imageSet = (work) => {
+    if(work.img_url) {
+      return (
+        work.img_url
+      )
+    }
+    else {
+      return (
+        ImagePlaceholder
+      )
+    }
+  }
   return (
     <Card className={classes.paper}>
       <CardHeader
@@ -44,18 +69,22 @@ function OpenWorkModal(props) {
           <Grid item xs={6}>
             <p>Author</p>
           </Grid>
-          <Grid item xs={6}>
-            <p>Image</p>
+          <Grid item xs={12}>
+            <img src={imageSet(props.work)} className={modalClasses.image}/>
           </Grid>
-            {fav === false && (<Button variant="contained" color="secondary" onClick={handleFavClick}>
+          <Grid item xs={12}>
+            <p>{props.work.description}</p>
+          </Grid>
+            {fav === false && (<Button variant="contained" className={modalClasses.button} color="secondary" onClick={handleFavClick}>
               Add to Favorites
             </Button>)}
-            {fav === true && (<Button variant="contained" disabled color="secondary">
+            {fav === true && (<Button variant="contained" className={modalClasses.button} disabled color="secondary">
             &#10004; Added to Favorites
           </Button>)}
           <Button
             variant="contained"
             color="secondary"
+            className={modalClasses.button}
             onClick={handleReadClick}
           >
             Read Now
