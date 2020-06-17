@@ -306,7 +306,7 @@ function Browse(props) {
         aria-describedby="simple-modal-description"
       >
         <div>
-          <OpenWorkModal work={selWork} />
+        <OpenWorkModal work={selWork} handleClose={handleClose}/>
         </div>
       </Modal>
       <div className={classes.bottomMargin}></div>

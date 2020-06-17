@@ -19,6 +19,14 @@ import {
   CLEAR_FILTERED_DATA,
   CLEAR_SORTED_DATA
 } from "../actions/sharedAction";
+import {
+  UPLOAD_CONTENT,
+  SET_WORK,
+  TASK_START,
+  TASK_FAIL,
+  DEL_WORK
+} from "../actions/authorAction";
+import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction";
 
 const initialState = {
   user: {
@@ -44,7 +52,9 @@ const initialState = {
   userAccounts: [],
   currentWork: {},
   filteredData: [],
-  sortedData: []
+  sortedData: [],
+  comments: [],
+  currentWork: {}
 };
 
 function reducer(state = initialState, action) {
@@ -104,6 +114,18 @@ function reducer(state = initialState, action) {
         ...state,
         isLoading: false,
         authorContent: [...state.authorContent, action.payload]
+      };
+    }
+    case SET_CONTENT: {
+      return {
+        ...state,
+        contentLibrary: action.payload
+      };
+    }
+    case ADD_COMMENT: {
+      return {
+        ...state,
+        comments: [...state.comments, action.payload]
       };
     }
     case DEL_WORK: {

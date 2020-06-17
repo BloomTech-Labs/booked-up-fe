@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,7 +6,9 @@ import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined"
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import { Link } from "react-router-dom";
+import Modal from '@material-ui/core/Modal';
+import Popper from '@material-ui/core/Popper';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import { setWork, delContent } from "../../actions/authorAction";
 import { connect } from "react-redux";
 
@@ -26,37 +28,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function EditingButtons(props) {
+function ReadingButtons(props) {
   const handleClick = () => {
-    props.setWork(props.work);
-    window.location.replace(`/dashboard/book/`);
-  };
+      props.setWork(props.work)
+      window.location.replace(`/dashboard/book/`)
+    };
   const classes = useStyles();
   return (
     <>
-      <ButtonGroup className={classes.buttonGroup}>
-        <Tooltip title="Open Book" onClick={handleClick}>
-          <IconButton className={classes.button}>
-            <ImportContactsOutlinedIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Edit Properties">
-          <IconButton className={classes.button}>
-            <EditOutlinedIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip
-          title="Delete Book"
-          onClick={() => (props.setWork(props.work), props.handleDelOpen())}
-        >
-          <IconButton className={classes.button}>
-            <DeleteForeverOutlinedIcon />
-          </IconButton>
-        </Tooltip>
-      </ButtonGroup>
-    </>
+    <ButtonGroup className={classes.buttonGroup}>
+      <Tooltip title="Open Book" onClick={handleClick}>
+        <IconButton className={classes.button}>
+          <ImportContactsOutlinedIcon />
+        </IconButton>
+      </Tooltip>
+    </ButtonGroup>
+  </>
   );
 }
+
 
 const mapStateToProps = state => {
   return {
@@ -66,6 +56,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setWork, delContent })(
-  EditingButtons
-);
+export default connect(mapStateToProps, { setWork })(ReadingButtons);
