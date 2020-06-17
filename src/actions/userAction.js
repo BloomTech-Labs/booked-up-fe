@@ -1,6 +1,4 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 export const EDIT_USER = "EDIT_USER";
 export const DELETE_USER = "DELETE_USER";
@@ -45,10 +43,15 @@ export const DeleteUser = (data) => dispatch => {
 export const EditEmail = (data) => dispatch => {
   console.log(data)
 
+  let userEmail =  {
+    email:data.email,
+  }
+
     axiosWithAuth()
-      .delete(`https://bookedup-pt9.herokuapp.com/api/users/${data.id}/email`)
+      .patch(`https://bookedup-pt9.herokuapp.com/api/users/${data.id}/email`, userEmail)
       .then(res => {
-        dispatch({ type: EDIT_EMAIL, payload: data });        
+        dispatch({ type: EDIT_EMAIL, payload: data });
+        window.location.reload()       
       })
       .catch(err => console.log(err.message));
 };

@@ -12,7 +12,7 @@ import PersonalInfo from "./PersonalInfo.jsx";
 import ChangeEmail from "./ChangeEmail.jsx";
 import ChangePass from "./ChangePass.jsx";
 import DeleteAccount from "./DeleteAccount.jsx";
-import MainSetting from "./setting.jsx"
+import MainSetting from "./Setting.jsx"
 import ChangeDisplayName from "./ChangeDisplayName";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -90,14 +90,7 @@ function Settings(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState();
-  
-  useEffect(() => {
-    if (props.user.userType.toLowerCase().includes("admin")) {
-      setComponent(<Users userAccounts={props.userAccounts} />);
-    } else {
-      setComponent(<MainSetting/>);
-    }
-  }, []);
+
   useEffect(() => {
     switch (window.location.pathname) {
       case "/settings":
@@ -105,6 +98,7 @@ function Settings(props) {
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
           setComponent(<MainSetting />);
+
         }
         break;
 
@@ -218,8 +212,6 @@ function Settings(props) {
               <ListItemText primary="Delete Account"  />
             </ListItem>
           )}
-
-
         </List>
         <Divider />
         </ExpansionPanel>

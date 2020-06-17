@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import { EditEmail } from "../../actions/userAction"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -57,7 +58,9 @@ function ChangeEmail(props)  {
         })
     }
 
-
+  const onSubmit = () => {
+    props.EditEmail(emailValue)
+  }
 
     return (
       <Card className={classes.root}>
@@ -85,8 +88,10 @@ function ChangeEmail(props)  {
       </CardContent>
       <Divider />
       <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
-          <Button size="small">Save</Button>
+          <Button onClick={() => {  window.history.back(); }} size="small">Cancel</Button>
+          <Button onClick={(
+          ) => {
+            onSubmit() }}size="small">Save</Button>
       </ExpansionPanelActions>
     </Card>
   );
@@ -101,5 +106,5 @@ const mapStateToProps = state => {
   
   export default connect (
     mapStateToProps,
-    {}
+    {EditEmail}
 )(ChangeEmail)

@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
       marginBottom: "12%",
       width: "80%",
       marginLeft: "10%",
-      padding: "6%"
   },
   title: {
     borderBottom: "1px solid black",

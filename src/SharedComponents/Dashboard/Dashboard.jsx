@@ -71,16 +71,7 @@ function Dashboard(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [component, setComponent] = useState();
-  /*
-  useEffect(() => {
-    if (props.user.userType.toLowerCase().includes("admin")) {
-      props.getUsers();
-      setComponent(<Users userAccounts={props.userAccounts} />);
-    } else {
-      setComponent(<Browse />);
-    }
-  }, []);
-  */
+
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/":
