@@ -59,6 +59,13 @@ export default function SortDialog(props) {
           >
             Close
           </Button>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={() => props.handleSortClear(null)}
+          >
+            Clear
+          </Button>
         </div>
       </List>
     </Dialog>

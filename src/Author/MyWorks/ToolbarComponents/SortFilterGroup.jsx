@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setSortedData, clearSortedData } from "../../../actions/sharedAction";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -39,6 +41,10 @@ const SortFilterGroup = props => {
 
   const handleFilterClose = value => {
     setFilterClicked(false);
+  };
+
+  const handleSortClear = value => {
+    setSortClicked(false);
   };
 
   const handleSortClose = value => {
@@ -150,4 +156,12 @@ const SortFilterGroup = props => {
   );
 };
 
-export default SortFilterGroup;
+const mapStateToProps = state => {
+  return {
+    sortedData: state.sortedData
+  };
+};
+
+export default connect(mapStateToProps, { setSortedData, clearSortedData })(
+  SortFilterGroup
+);

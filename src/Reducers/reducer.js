@@ -6,7 +6,19 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK } from "../actions/authorAction";
+import {
+  UPLOAD_CONTENT,
+  SET_WORK,
+  TASK_START,
+  TASK_FAIL,
+  DEL_WORK
+} from "../actions/authorAction";
+import {
+  SET_FILTERED_DATA,
+  SET_SORTED_DATA,
+  CLEAR_FILTERED_DATA,
+  CLEAR_SORTED_DATA
+} from "../actions/sharedAction";
 
 const initialState = {
   user: {
@@ -30,7 +42,9 @@ const initialState = {
   contentLibrary: [],
   authorContent: [],
   userAccounts: [],
-  currentWork: {}
+  currentWork: {},
+  filteredData: [],
+  sortedData: []
 };
 
 function reducer(state = initialState, action) {
@@ -83,7 +97,7 @@ function reducer(state = initialState, action) {
         ...state,
         error: "",
         isLoading: true
-      }
+      };
     }
     case UPLOAD_CONTENT: {
       return {
@@ -92,27 +106,40 @@ function reducer(state = initialState, action) {
         authorContent: [...state.authorContent, action.payload]
       };
     }
-    case DEL_WORK : {
+    case DEL_WORK: {
       return {
         ...state,
-        authorContent: state.authorContent.filter((work) => {
-          return work.id !== action.payload
+        authorContent: state.authorContent.filter(work => {
+          return work.id !== action.payload;
         })
-      }
+      };
     }
     case TASK_FAIL: {
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
-      }
+        isLoading: false
+      };
     }
 
     case SET_WORK: {
       return {
         ...state,
         currentWork: action.payload
-      }
+      };
+    }
+
+    case SET_FILTERED_DATA: {
+      return { ...state, filteredData: action.payload };
+    }
+    case SET_SORTED_DATA: {
+      return { ...state, sortedData: action.payload };
+    }
+    case CLEAR_FILTERED_DATA: {
+      return { ...state, filteredData: [] };
+    }
+    case CLEAR_SORTED_DATA: {
+      return { ...state, sortedData: [] };
     }
     default: {
       return state;
