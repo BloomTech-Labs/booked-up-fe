@@ -59,7 +59,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: "3%",
     width: "80%",
     marginLeft: "15%",
-    marginBottom: "15%"
+    marginBottom: "15%",
+    minHeight: "30em"
   },
   listItem: {
     color: "white"
