@@ -15,10 +15,10 @@ export default function DateRange(props) {
   const [selectedStartDate, setSelectedStartDate] = useState(Date.now());
   const [selectedEndDate, setSelectedEndDate] = useState(Date.now());
 
-  const handleStartDateChange = value => {
+  const handleStartChange = value => {
     setSelectedStartDate(value);
   };
-  const handleEndDateChange = value => {
+  const handleEndChange = value => {
     setSelectedEndDate(value);
   };
 
@@ -30,13 +30,13 @@ export default function DateRange(props) {
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
-          format="MM/dd/yyy"
+          format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-start-inline"
           label="Start Date"
           value={selectedStartDate}
           className={classes.datePicker}
-          onChange={handleStartDateChange}
+          onChange={handleStartChange}
           KeyboardButtonProps={{
             "aria-label": "change date"
           }}
@@ -44,13 +44,13 @@ export default function DateRange(props) {
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
-          format="MM/dd/yyy"
+          format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-end-inline"
           label="End Date"
           value={selectedEndDate}
           className={classes.datePicker}
-          onChange={handleEndDateChange}
+          onChange={props.handleEndDateChange}
           KeyboardButtonProps={{
             "aria-label": "change date"
           }}

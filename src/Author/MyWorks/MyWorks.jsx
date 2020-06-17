@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridDisplay from "./ContentViews/GridDisplay";
 import RowDisplay from "./ContentViews/RowDisplay";
@@ -20,10 +20,18 @@ function MyWorks(props) {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [delOpen, setDelOpen] = useState(false);
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+  // const useForceUpdate = () => {
+  //   const [, setIt] = useState(false);
+  //   return () => setIt(it => !it);
+  // };
 
   const applySortedData = data => {
     console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
     setWorks(data);
+    //const useForceUpdate = () => useState()[1];
+    forceUpdate();
   };
 
   const setView = selected => {

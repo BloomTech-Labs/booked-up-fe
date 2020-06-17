@@ -119,7 +119,9 @@ const SortFilterGroup = props => {
       {filterClicked === true && (
         <div data-testid="filter-dialog">
           <FilterDialog
+            works={props.works}
             handleFilterClose={handleFilterClose}
+            applySortedData={props.applySortedData}
             filterClicked={filterClicked}
           />
         </div>
