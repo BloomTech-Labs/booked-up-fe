@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardHeader from "@material-ui/core/CardHeader";
-import { Button } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { Document, Page } from "react-pdf";
-import axios from "axios";
-import { pdfjs } from 'react-pdf';
+import { pdfjs } from "react-pdf";
+import AddComment from "../Comments/AddComment.jsx";
+import CommentsView from "../Comments/CommentsView.jsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -26,32 +20,36 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   pageContent: {
-      width: "90em",
+    width: "90em"
   }
 }));
 
 function Workview(props) {
   const classes = useStyles();
-  const [pages, setPages] = useState({numPages: null, pageNum: 1})
-  const [link, setLink] = useState()
+  const [pages, setPages] = useState({ numPages: null, pageNum: 1 });
 
- 
   const loadSuccess = ({ numPages }) => {
     setPages({
-        ...pages,
+      ...pages,
       numPages
     });
-    
   };
   return (
     <div className={classes.paper}>
       <Typography variant="h5">{props.work.title}</Typography>
-      
-      <p>Page {pages.pageNum} of {pages.numPages}</p>
-        <Document file={props.work.content_url} onLoadSuccess={loadSuccess}>
-            <Page width={1400} pageNumber={pages.pageNum} className={classes.pageContent}/>
-        </Document>
-     
+
+      <p>
+        Page {pages.pageNum} of {pages.numPages}
+      </p>
+      <Document file={props.work.content_url} onLoadSuccess={loadSuccess}>
+        <Page
+          width={1400}
+          pageNumber={pages.pageNum}
+          className={classes.pageContent}
+        />
+      </Document>
+      <AddComment />
+      <CommentsView />
     </div>
   );
 }

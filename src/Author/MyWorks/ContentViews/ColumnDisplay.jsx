@@ -56,31 +56,27 @@ export default function ColumnDisplay(props) {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      data-testid="column-display"
-      className={classes.grid}
-      spacing={2}
-    >
+    <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
-        <Grid item xs={12} key={index} className={classes.gridItem}>
-          <div className={classes.placeholderImage}>
-            Placeholder Image
-            <Grid item xs={6} sm={3} className={classes.authorOverlay}>
-              {work.author}
+          <Grid item xs={12} key={index} className={classes.gridItem}>
+            <div className={classes.placeholderImage}>
+              Placeholder Image
+              <Grid item xs={6} sm={3} className={classes.authorOverlay}>
+                {work.author}
+              </Grid>
+            </div>
+            <Grid item xs={6} sm={3} className={classes.title}>
+              {work.title}
             </Grid>
-          </div>
-          <Grid item xs={6} sm={3} className={classes.title}>
-            {work.title}
+            <Grid item xs={6} sm={3} className={classes.genre}>
+              {work.genre}
+            </Grid>
+            <Grid item xs={6} sm={3} className={classes.description}>
+              {work.description}
+            </Grid>
+            <EditingButtons book={work.content_url} handleDelOpen={props.handleDelOpen}/>
           </Grid>
-          <Grid item xs={6} sm={3} className={classes.genre}>
-            {work.genre}
-          </Grid>
-          <Grid item xs={6} sm={3} className={classes.description}>
-            {work.description}
-          </Grid>
-          <EditingButtons book={work.content_url} />
-        </Grid>
+        
       ))}
     </Grid>
   );

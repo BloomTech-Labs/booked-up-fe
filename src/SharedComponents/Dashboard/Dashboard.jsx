@@ -5,6 +5,7 @@ import { Users } from "../../Admin/Users";
 import Drawer from "@material-ui/core/Drawer";
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Profile from "../../Author/Profile/Profile.jsx";
+import Favorites from "../Favorites/Favorites.jsx";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,6 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
 import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx"
 import { getUsers } from "../../actions/adminAction"
+
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -69,9 +71,9 @@ const useStyles = makeStyles(theme => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value] = useState(0);
   const [component, setComponent] = useState();
-
+    
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/":
@@ -83,28 +85,28 @@ function Dashboard(props) {
         }
         break;
 
-      case "/dashboard/profile":
+      case "/dashboard/profile/":
         setComponent(<Profile />);
         break;
 
-      case "/dashboard/favorites":
-        setComponent(<p>Favorites</p>);
+      case "/dashboard/favorites/":
+        setComponent(<Favorites />);
         break;
 
-      case "/dashboard/my-works":
+      case "/dashboard/my-works/":
         setComponent(<MyWorks />);
         break;
 
-      case "/dashboard/messages":
+      case "/dashboard/messages/":
         setComponent(<p>My Messages</p>);
         break;
-      case "/dashboard/book":
+      case "/dashboard/book/":
         setComponent(<WorkView />);
         break;
       default:
         break;
     }
-  }, [value]);
+  }, [value, props.user.userType, props.userAccounts]);
 
   return (
     <div className={classes.container}>
@@ -121,43 +123,49 @@ function Dashboard(props) {
         <Divider />
         <List>
           {!props.user.userType.toLowerCase().includes("admin") && (
-            <ListItem
-              component={Link}
-              to="/dashboard"
-              className={classes.listItem}
-              data-testid="sidebar-browse"
-              onClick={() => setComponent(<Browse />)}
-            >
-              <ListItemText primary="Browse"  />
-            </ListItem>
+            <>
+              <ListItem
+                component={Link}
+                to="/dashboard/"
+                className={classes.listItem}
+                data-testid="sidebar-browse"
+                onClick={() => setComponent(<Browse />)}
+              >
+                <ListItemText primary="Browse" />
+              </ListItem>
+              <ListItem
+                component={Link}
+                to="/dashboard/favorites"
+                className={classes.listItem}
+                data-testid="sidebar-favorites"
+                onClick={() => setComponent(<Favorites />)}
+              >
+                <ListItemText primary="Favorites" />
+              </ListItem>
+            </>
           )}
           {!props.user.userType.toLowerCase().includes("admin") && (
             <ListItem
               component={Link}
-              to="/dashboard/profile"
+              to="/dashboard/profile/"
               className={classes.listItem}
               data-testid="sidebar-profile"
               value={<Profile />}
               onClick={() => setComponent(<Profile />)}
             >
-              <ListItemText
-                primary="My Profile"
-                
-              />
+              <ListItemText primary="My Profile" />
             </ListItem>
-            
           )}
-  
-          
+
           {props.user.userType.toLowerCase().includes("author") && (
             <ListItem
               component={Link}
-              to="/dashboard/my-works"
+              to="/dashboard/my-works/"
               className={classes.listItem}
               data-testid="sidebar-works"
               onClick={() => setComponent(<MyWorks />)}
             >
-              <ListItemText primary="My Works"  />
+              <ListItemText primary="My Works" />
             </ListItem>
           )}
         </List>

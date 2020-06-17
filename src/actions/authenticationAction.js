@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { TASK_FAIL } from "./authorAction";
 
 export const CREATE_ACCOUNT = "CREATE_AUTHOR_ACCOUNT";
 export const CREATE_AGENT_ACCOUNT = "CREATE_AGENT_ACCOUNT";
@@ -16,7 +17,9 @@ export const createAccount = (data, props) => dispatch => {
       props.history.push("/login");
       //loadState();
     })
-    .catch(err => console.log(err.message));
+    .catch(err => {
+      dispatch({ type: TASK_FAIL, payload: err.message })
+      console.log(err.message)});
 };
 
 export const userLogon = (data, props) => dispatch => {
@@ -32,7 +35,9 @@ export const userLogon = (data, props) => dispatch => {
 
       //loadState();
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({ type: TASK_FAIL, payload: err.message })
+      console.log(err)});
 };
 
 export const adminLogon = (data, props) => dispatch => {
