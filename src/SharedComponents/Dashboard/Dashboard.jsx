@@ -13,6 +13,8 @@ import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
 import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
+import { getUsers } from "../../actions/adminAction.js";
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -73,16 +75,10 @@ function Dashboard(props) {
   const [component, setComponent] = useState();
 
   useEffect(() => {
-    if (props.user.userType.toLowerCase().includes("admin")) {
-      setComponent(<Users userAccounts={props.userAccounts} />);
-    } else {
-      setComponent(<Browse />);
-    }
-  }, [props.user.userType, props.userAccounts]);
-  useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard/":
         if (props.user.userType.toLowerCase().includes("admin")) {
+          props.getUsers()
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
           setComponent(<Browse />);
@@ -110,7 +106,7 @@ function Dashboard(props) {
       default:
         break;
     }
-  }, [value, props.user.userType, props.userAccounts]);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -188,4 +184,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps, {getUsers})(Dashboard);

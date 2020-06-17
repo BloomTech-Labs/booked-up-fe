@@ -18,11 +18,14 @@ const useStyles = makeStyles(theme => ({
   },
   placeholderImage: {
     position: "relative",
-    backgroundColor: "grey",
+    backgroundSize: "100% 100%",
     textAlign: "center",
     color: "white",
     height: "100px",
     padding: "2px"
+  },
+  image: {
+    height: "100px"
   },
   authorOverlay: {
     position: "absolute",
@@ -51,7 +54,8 @@ export default function GridDisplay(props) {
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
         <Grid item xs={2} key={index} className={classes.gridItem}>
-          <div className={classes.placeholderImage}>
+          <div style={{backgroundImage: `url("${work.img_url}")`}} className={classes.placeholderImage}>
+            
             Placeholder Image
             <div className={classes.authorOverlay}>{work.title}</div>
           </div>
