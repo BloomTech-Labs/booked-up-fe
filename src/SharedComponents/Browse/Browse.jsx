@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "3em"
   },
   resultsContainer: {
-    width: "95%",
+    width: "65%",
     margin: "auto"
   },
   placeholderImage: {
@@ -185,9 +185,9 @@ function Browse(props) {
         if (filter === "all") {
           return (
             work.title.toLowerCase().includes(value.toLowerCase()) ||
-            work.description.toLowerCase().includes(value.toLowerCase()) ||
-            /*work.genre.toLowerCase().includes(value.toLowerCase()) ||*/
-            work.author.toLowerCase().includes(value.toLowerCase())
+            work.description.toLowerCase().includes(value.toLowerCase())
+            // work.Genres.toLowerCase().includes(value.toLowerCase())
+            // work.author.toLowerCase().includes(value.toLowerCase())
           );
         } else {
           return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
