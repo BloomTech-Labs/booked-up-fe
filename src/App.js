@@ -9,17 +9,18 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
-
+import MessageView from "./SharedComponents/Messages/MessageView.jsx"
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
         <Switch>
-          <PrivateRoute path="/dashboard/" component={Dashboard} />
-          <Route exact path="/login/" component={LoginForm} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/signup/" component={SignUpForm} />
+          <Route exact path="/signup" component={SignUpForm} />
+          <PrivateRoute path="/messages" component={MessageView} />
         </Switch>
         <Footer />
       </BrowserRouter>

@@ -5,7 +5,7 @@ import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   footerContainer: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   footer: {
     backgroundColor: theme.palette.secondary.dark,

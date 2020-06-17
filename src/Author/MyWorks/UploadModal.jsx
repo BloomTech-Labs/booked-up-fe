@@ -102,6 +102,19 @@ function UploadModal(props) {
               />
             </Grid>
             <Grid item xs={6}>
+              <p>Cover Art</p>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                id="work-button-preview-file"
+                onChange={e => {
+                  setWork({ ...work, image: [...e.target.files] });
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
               <p>Upload your work</p>
             </Grid>
             <Grid item xs={6}>

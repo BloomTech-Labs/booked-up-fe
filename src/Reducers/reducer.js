@@ -11,14 +11,9 @@ import {
   SET_WORK,
   TASK_START,
   TASK_FAIL,
-  DEL_WORK
+  DEL_WORK,
+  GET_MESSAGES
 } from "../actions/authorAction";
-import {
-  SET_FILTERED_DATA,
-  SET_SORTED_DATA,
-  CLEAR_FILTERED_DATA,
-  CLEAR_SORTED_DATA
-} from "../actions/sharedAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction";
 
 const initialState = {
@@ -46,6 +41,7 @@ const initialState = {
   currentWork: {},
   filteredData: [],
   sortedData: [],
+  messages: [],
   comments: [],
   currentWork: {}
 };
