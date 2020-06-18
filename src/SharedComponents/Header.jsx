@@ -175,7 +175,7 @@ function Header(props) {
                   <Tab
                     className={classes.tab}
                     component={Link}
-                    to="/dashboard/"
+                    to="/dashboard"
                     label="Dashboard"
                   />
                 <Tab
