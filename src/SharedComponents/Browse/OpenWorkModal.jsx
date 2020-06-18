@@ -45,7 +45,7 @@ function OpenWorkModal(props) {
       }, [props.work])
   const handleReadClick = () => {
     props.setWork(props.work);
-    window.location.replace(`/dashboard/book/`);
+    window.location.replace(`/dashboard/book`);
   };
   const imageSet = (work) => {
     if(work.img_url) {

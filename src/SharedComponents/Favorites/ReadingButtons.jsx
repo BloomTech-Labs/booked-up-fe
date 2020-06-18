@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 function ReadingButtons(props) {
   const handleClick = () => {
       props.setWork(props.work)
-      window.location.replace(`/dashboard/book/`)
+      window.location.replace(`/dashboard/book`)
     };
   const classes = useStyles();
   return (
