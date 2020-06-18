@@ -46,16 +46,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DisplayGrid(props) {
-  console.log("NL: DisplayGrid.jsx: DisplayGrid: props.works: ", props.works);
+  const classes = useStyles();
   console.log(
-    "NL: DisplayGrid.jsx: DisplayGrid: props.sortFilteredData: ",
+    "NL: DisplayGrid.jsx: DisplayGrid: Line 50: props.works: ",
+    props.works
+  );
+  console.log(
+    "NL: DisplayGrid.jsx: DisplayGrid: Line 50: props.sortFilteredData: ",
     props.sortFilteredData
   );
   console.log(
-    "NL: DisplayGrid.jsx: DisplayGrid: props.sortFilteredCleared: ",
+    "NL: DisplayGrid.jsx: DisplayGrid: Line 50: props.sortFilteredCleared: ",
     props.sortFilteredCleared
   );
-  const classes = useStyles();
   return (
     <Grid container className={classes.grid} spacing={2}>
       {(props.sortFilteredCleared || props.sortFilteredCleared === undefined) &&
@@ -72,7 +75,7 @@ function DisplayGrid(props) {
           </Grid>
         ))}
       {(props.sortFilteredCleared === false ||
-        props.sortFilteredCleared === undefined) &&
+        props.sortFilteredCleared !== undefined) &&
         props.sortFilteredData.map((work, index) => (
           <Grid item xs={2} key={index} className={classes.gridItem}>
             <div

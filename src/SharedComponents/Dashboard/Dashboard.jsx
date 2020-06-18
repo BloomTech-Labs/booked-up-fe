@@ -78,7 +78,7 @@ function Dashboard(props) {
     switch (window.location.pathname) {
       case "/dashboard":
         if (props.user.userType.toLowerCase().includes("admin")) {
-          props.getUsers()
+          props.getUsers();
           setComponent(<Users userAccounts={props.userAccounts} />);
         } else {
           setComponent(<Browse />);
@@ -117,7 +117,7 @@ function Dashboard(props) {
           paper: classes.drawerPaper
         }}
         anchor="left"
-        data-testid="sidebar"
+        data-testid="main-sidebar"
       >
         <div className={classes.toolbar} />
         <Divider />
@@ -184,4 +184,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getUsers})(Dashboard);
+export default connect(mapStateToProps, { getUsers })(Dashboard);

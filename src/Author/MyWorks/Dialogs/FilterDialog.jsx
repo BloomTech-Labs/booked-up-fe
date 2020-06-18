@@ -38,17 +38,12 @@ export default function FilterDialog(props) {
   };
   const handleStartDateChange = value => {
     setDate(value);
-    console.log("NL: FilterDialog.jsx: handleStartDateChange: title: ", date);
-    console.log("Inside handleStartDateChange");
   };
   const handleEndDateChange = e => {
     setDate(e.target.value);
-    console.log("NL: FilterDialog.jsx: handleEndDateChange: title: ", date);
   };
   const handleGenreChange = e => {
     setGenre(e);
-    console.log("NL: FilterDialog.jsx: handleGenreChange: title: ", genre);
-    console.log("Inside handleGenreChange");
   };
 
   const handleFilterSubmit = () => {
@@ -64,11 +59,10 @@ export default function FilterDialog(props) {
     //     return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
     //   }
     // })
-    const sortedData = props.works.filter(work => {
-      return work.title.toLowerCase().includes(title.toLowerCase());
-    });
-    console.log("NL: FilterDialog.jsx: handleFilterSubmit: work: ", sortedData);
-    props.applySortedData(sortedData);
+    //const localFilteredData = props.works.filter(work => {
+    //return work.title.toLowerCase().includes(title.toLowerCase());
+    // });
+    //props.applySortedData(sortedData);
   };
 
   return (

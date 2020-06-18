@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { setSortedData, clearSortedData } from "../../../actions/sharedAction";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -31,6 +29,11 @@ const SortFilterGroup = props => {
   const [filterClicked, setFilterClicked] = useState(false);
   const classes = useStyles();
 
+  console.log(
+    "NL: SortFilterGroup: SortFilterGroup: Line 35: props.works: ",
+    props.works
+  );
+
   const handleSort = () => {
     setSortClicked(true);
   };
@@ -39,104 +42,115 @@ const SortFilterGroup = props => {
     setFilterClicked(true);
   };
 
-  const handleFilterClose = value => {
-    setFilterClicked(false);
-  };
+  // const handleFilterClose = value => {
+  //   setFilterClicked(false);
+  // };
 
-  const handleSortClear = value => {
-    setSortClicked(false);
-    clearSortedData();
-  };
+  // const handleSortClear = value => {
+  //   setSortClicked(false);
+  //   console.log(
+  //     "NL: SortFilterGroup: handleSortClear: Line 48: props.works: ",
+  //     props.works
+  //   );
+  //   console.log(
+  //     "NL: SortFilterGroup: handleSortClear: Line 50: props.sortedData: ",
+  //     props.sortedData
+  //   );
 
-  const handleSortClose = value => {
-    setSortClicked(false);
+  //   clearSortedData();
+  // };
 
-    let sortedData = props.works;
+  // const handleSortClose = value => {
+  //   setSortClicked(false);
 
-    if (value !== null) {
-      switch (value) {
-        case "Title: A to Z": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.title < b.title) return -1;
-            else if (a.title > b.title) return 1;
-            return 0;
-          });
-          break;
-        }
-        case "Title: Z to A": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.title < b.title) return 1;
-            else if (a.title > b.title) return -1;
-            return 0;
-          });
-          break;
-        }
-        case "Author: A to Z": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.author < b.author) return -1;
-            else if (a.author > b.author) return 1;
-            return 0;
-          });
-          break;
-        }
-        case "Author: Z to A": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.author < b.author) return 1;
-            else if (a.author > b.author) return -1;
-            return 0;
-          });
-          break;
-        }
-        case "Genre: A to Z": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.genre < b.genre) return -1;
-            else if (a.genre > b.genre) return 1;
-            return 0;
-          });
-          break;
-        }
-        case "Genre: Z to A": {
-          sortedData = props.works.sort(function(a, b) {
-            if (a.genre < b.genre) return 1;
-            else if (a.genre > b.genre) return -1;
-            return 0;
-          });
-          break;
-        }
-        case "Popularity": {
-          break;
-        }
-        default:
-          break;
-      }
-      setSortedData(sortedData);
-      console.log(
-        "NL: SortFilterGroup: handleSortClose: sortedData: ",
-        sortedData
-      );
-    }
-  };
+  //   let localSortedData = [];
+  //   let localFullData = _.cloneDeep(props.works);
+  //   console.log(
+  //     "NL: SortFilterGroup: handleSortClose: Line 65: props.works: ",
+  //     props.works
+  //   );
+  //   console.log(
+  //     "NL: SortFilterGroup: handleSortClose: Line 60: localSortedData: ",
+  //     localSortedData
+  //   );
+
+  //   if (value !== null) {
+  //     switch (value) {
+  //       case "Title: A to Z": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.title < b.title) return -1;
+  //           else if (a.title > b.title) return 1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Title: Z to A": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.title < b.title) return 1;
+  //           else if (a.title > b.title) return -1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Author: A to Z": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.author < b.author) return -1;
+  //           else if (a.author > b.author) return 1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Author: Z to A": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.author < b.author) return 1;
+  //           else if (a.author > b.author) return -1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Genre: A to Z": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.genre < b.genre) return -1;
+  //           else if (a.genre > b.genre) return 1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Genre: Z to A": {
+  //         localSortedData = localFullData.sort(function(a, b) {
+  //           if (a.genre < b.genre) return 1;
+  //           else if (a.genre > b.genre) return -1;
+  //           return 0;
+  //         });
+  //         break;
+  //       }
+  //       case "Popularity": {
+  //         break;
+  //       }
+  //       default:
+  //         break;
+  //     }
+  //     console.log(
+  //       "NL: SortFilterGroup: handleSortClose: Line 130: props.works: ",
+  //       props.works
+  //     );
+  //     console.log(
+  //       "NL: SortFilterGroup: handleSortClose: Line 118: localSortedData: ",
+  //       localSortedData
+  //     );
+  //     setSortedData(localSortedData);
+  //   }
+  // };
 
   return (
     <>
-      {sortClicked === true && (
-        <div data-testid="sort-dialog">
-          <SortDialog
-            handleSortClose={handleSortClose}
-            handleSortClear={handleSortClear}
-            sortClicked={sortClicked}
-          />
-        </div>
-      )}
-      {filterClicked === true && (
-        <div data-testid="filter-dialog">
-          <FilterDialog
-            works={props.works}
-            handleFilterClose={handleFilterClose}
-            filterClicked={filterClicked}
-          />
-        </div>
-      )}
+      <div data-testid="sort-dialog">
+        <SortDialog sortClicked={sortClicked} />
+      </div>
+
+      <div data-testid="filter-dialog">
+        <FilterDialog />
+      </div>
       <ButtonGroup data-testid="sort-filter-button-group">
         <Tooltip title="Sort">
           <IconButton
@@ -161,13 +175,15 @@ const SortFilterGroup = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    works: state.authorContent,
-    sortedData: state.sortFilteredData
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     works: state.authorContent,
+//     sortedData: state.sortFilteredData
+//   };
+// };
 
-export default connect(mapStateToProps, { setSortedData, clearSortedData })(
-  SortFilterGroup
-);
+// export default connect(mapStateToProps, { setSortedData, clearSortedData })(
+//   SortFilterGroup
+// );
+
+export default SortFilterGroup;

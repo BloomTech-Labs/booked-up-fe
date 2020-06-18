@@ -33,6 +33,12 @@ function MyWorks(props) {
     setDelOpen(false);
   };
 
+  console.log(
+    "NL: MyWorks.jsx: MyWorks: Line 36: Line 36: props.authorContent: ",
+    props.authorContent
+  );
+  console.log("NL: MyWorks.jsx: MyWorks: Line 37: Line 36: works: ", works);
+
   const classes = useStyles();
 
   return (
