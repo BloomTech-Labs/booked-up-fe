@@ -16,6 +16,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
+import MessageSend from './MessageSend.jsx';
+
 import { connect } from "react-redux";
 const drawerWidth = 165;
 
@@ -148,7 +150,8 @@ const useStyles = makeStyles((theme) => ({
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-              <MessageContent message = {currentMessage}/>
+              {props.currentWork ? (<MessageSend currentWork={props.currentWork}/>
+              ) : (<MessageContent message = {currentMessage}/>)}
         </main>
       </div>
     );
@@ -158,7 +161,8 @@ const useStyles = makeStyles((theme) => ({
   const mapStateToProps = state => {
     return {
       user: state.user,
-      isLogged: state.isLogged
+      isLogged: state.isLogged,
+      currentWork: state.currentWork
     };
   };
   

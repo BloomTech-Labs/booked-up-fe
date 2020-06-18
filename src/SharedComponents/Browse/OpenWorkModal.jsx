@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import { setWork } from "../../actions/authorAction";
 import { connect } from "react-redux";
 import { setContent } from "../../actions/fanAction"
+import { getUser } from "../../actions/agentAction"
 import { sharedPaperStyles } from "../materialUIShared";
 import { genres } from "../../utils/genres.js";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
@@ -47,6 +48,10 @@ function OpenWorkModal(props) {
     props.setWork(props.work);
     window.location.replace(`/dashboard/book`);
   };
+  const handleSendMessage = () => {
+    props.setWork(props.work)
+    window.location.replace(`/messages`)
+  };
   const imageSet = (work) => {
     if(work.img_url) {
       return (
@@ -68,6 +73,16 @@ function OpenWorkModal(props) {
         <Grid container alignItems="center">
           <Grid item xs={6}>
             <p>Author</p>
+          </Grid>
+          <Grid item xs={6}>
+        <Button
+            variant="contained"
+            color="secondary"
+            className={modalClasses.button}
+            onClick={handleSendMessage}
+          >
+            Message Author
+          </Button>
           </Grid>
           <Grid item xs={12}>
             <img src={imageSet(props.work)} className={modalClasses.image}/>
@@ -104,5 +119,5 @@ const mapStateToProps = state => {
     };
   };
   
-  export default connect(mapStateToProps, { setWork, setContent })(OpenWorkModal);
+  export default connect(mapStateToProps, { setWork, setContent, getUser })(OpenWorkModal);
   
