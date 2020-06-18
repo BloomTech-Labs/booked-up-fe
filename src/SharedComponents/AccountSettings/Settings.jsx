@@ -12,7 +12,7 @@ import PersonalInfo from "./PersonalInfo.jsx";
 import ChangeEmail from "./ChangeEmail.jsx";
 import ChangePass from "./ChangePass.jsx";
 import DeleteAccount from "./DeleteAccount.jsx";
-import MainSetting from "./Setting.jsx"
+import MainSetting from "./setting.jsx"
 import ChangeDisplayName from "./ChangeDisplayName";
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
