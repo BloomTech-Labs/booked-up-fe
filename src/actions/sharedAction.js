@@ -9,9 +9,9 @@ export const setFilteredData = data => dispatch => {
 export const setSortedData = data => dispatch => {
   dispatch({ type: SET_SORTED_DATA, payload: data });
 };
-export const clearFilteredData = data => dispatch => {
+export const clearFilteredData = () => dispatch => {
   dispatch({ type: CLEAR_FILTERED_DATA });
 };
-export const clearSortedData = data => dispatch => {
+export const clearSortedData = () => dispatch => {
   dispatch({ type: CLEAR_SORTED_DATA });
 };

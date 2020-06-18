@@ -15,6 +15,12 @@ import {
   GET_MESSAGES
 } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction";
+import {
+  SET_FILTERED_DATA,
+  SET_SORTED_DATA,
+  CLEAR_FILTERED_DATA,
+  CLEAR_SORTED_DATA
+} from "../actions/sharedAction";
 
 const initialState = {
   user: {
@@ -39,10 +45,10 @@ const initialState = {
   authorContent: [],
   userAccounts: [],
   currentWork: {},
-  filteredData: [],
-  sortedData: [],
+  sortFilteredData: [],
   messages: [],
   comments: [],
+  sortFilteredCleared: true,
   currentWork: {}
 };
 
@@ -141,16 +147,24 @@ function reducer(state = initialState, action) {
     }
 
     case SET_FILTERED_DATA: {
-      return { ...state, filteredData: action.payload };
+      return {
+        ...state,
+        sortFilteredData: action.payload,
+        sortFilteredCleared: false
+      };
     }
     case SET_SORTED_DATA: {
-      return { ...state, sortedData: action.payload };
+      return {
+        ...state,
+        sortFilteredData: action.payload,
+        sortFilteredCleared: false
+      };
     }
     case CLEAR_FILTERED_DATA: {
-      return { ...state, filteredData: [] };
+      return { ...state, sortFilteredData: [], sortFilteredCleared: true };
     }
     case CLEAR_SORTED_DATA: {
-      return { ...state, sortedData: [] };
+      return { ...state, sortFilteredData: [], sortFilteredCleared: true };
     }
     default: {
       return state;

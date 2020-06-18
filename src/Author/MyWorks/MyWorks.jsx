@@ -20,35 +20,6 @@ function MyWorks(props) {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [delOpen, setDelOpen] = useState(false);
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-
-  // Decide to apply sorted, filtered or all works
-  useEffect(
-    () => {
-      if (props.sortedData === undefined || props.sortedData.length === 0) {
-        setWorks(props.authorContent);
-      } else {
-        setWorks(props.sortedData);
-      }
-
-      if (props.filteredData === undefined || props.sortedData.length === 0) {
-        setWorks(props.authorContent);
-      } else {
-        setWorks(props.filteredData);
-      }
-    },
-    props.filteredData,
-    props.sortedData,
-    props.authorContent
-  );
-
-  console.log("NL: MyWorks.jsx: MyWorks: Sorted: ", props.sortedData);
-  console.log("NL: MyWorks.jsx: MyWorks: Filtered: ", props.filteredData);
-
-  const applySortedData = data => {
-    console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
-    setWorks(data);
-  };
 
   const setView = selected => {
     setSelected(selected);
@@ -66,11 +37,7 @@ function MyWorks(props) {
 
   return (
     <>
-      <FullToolbar
-        works={props.authorContent}
-        applySortedData={applySortedData}
-        setView={setView}
-      />
+      <FullToolbar works={props.authorContent} setView={setView} />
       <Modal
         open={delOpen}
         onClose={handleDelClose}
@@ -80,14 +47,10 @@ function MyWorks(props) {
         <DeleteWorkModal work={props.currentWork} close={handleDelClose} />
       </Modal>
       <div className={classes.contentArea}>
-        {selected === "grid" && (
-          <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
-        )}
-        {selected === "row" && (
-          <RowDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
-        )}
+        {selected === "grid" && <GridDisplay handleDelOpen={handleDelOpen} />}
+        {selected === "row" && <RowDisplay handleDelOpen={handleDelOpen} />}
         {selected === "column" && (
-          <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
+          <ColumnDisplay handleDelOpen={handleDelOpen} />
         )}
       </div>
     </>
@@ -99,9 +62,7 @@ const mapStateToProps = state => {
     user: state.user,
     isLogged: state.isLogged,
     authorContent: state.authorContent,
-    currentWork: state.currentWork,
-    sortedData: state.sortedData,
-    filteredData: state.filteredData
+    currentWork: state.currentWork
   };
 };
 

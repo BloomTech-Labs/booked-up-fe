@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import DisplayGrid from "./DisplayGrid";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
@@ -45,36 +47,37 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function GridDisplay(props) {
-  const [works] = useState(props.authorWorks);
+function GridDisplay(props) {
+  const [works, setWorks] = useState(props.works);
+  const [isFull, setIsFull] = useState(true);
   const classes = useStyles();
   useEffect(() => {
-    console.log(props.authorWorks);
-  }, [props.authorWorks]);
+    if (props.sortFilteredCleared) {
+      setIsFull(true);
+    }
+  }, [props.works]);
 
-  const imageSet = (work) => {
-    if(work.img_url) {
+  const imageSet = work => {
+    if (work.img_url) {
       return {
         backgroundImage: `url("${work.img_url}")`
-      }
-    }
-    else {
+      };
+    } else {
       return {
         backgroundImage: `url("${ImagePlaceholder}")`
-      }
+      };
     }
-  }
-  return (
-    <Grid container className={classes.grid} spacing={2}>
-      {works.map((work, index) => (
-        <Grid item xs={2} key={index} className={classes.gridItem}>
-          <div style={imageSet(work)} className={classes.placeholderImage}>
-            {work.title}
-            <div className={classes.authorOverlay}>{work.author}</div>
-          </div>
-          <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
-        </Grid>
-      ))}
-    </Grid>
-  );
+  };
+
+  return <DisplayGrid imageSet={imageSet} />;
 }
+
+const mapStateToProps = state => {
+  return {
+    works: state.authorContent,
+    sortFilteredData: state.sortFilteredData,
+    sortFilteredCleared: state.sortClear
+  };
+};
+
+export default connect(mapStateToProps, {})(GridDisplay);

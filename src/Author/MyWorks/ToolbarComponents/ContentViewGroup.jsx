@@ -88,11 +88,6 @@ const ContentViewGroup = props => {
           </Tooltip>
         </ToggleButtonGroup>
       </div>
-      {/* <div className={classes.contentArea}>
-        {selected === "grid" && <GridDisplay authorWorks={props.works} />}
-        {selected === "row" && <RowDisplay authorWorks={props.works} />}
-        {selected === "column" && <ColumnDisplay authorWorks={props.works} />}
-      </div> */}
     </>
   );
 };

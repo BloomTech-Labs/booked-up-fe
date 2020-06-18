@@ -45,6 +45,7 @@ const SortFilterGroup = props => {
 
   const handleSortClear = value => {
     setSortClicked(false);
+    clearSortedData();
   };
 
   const handleSortClose = value => {
@@ -108,7 +109,11 @@ const SortFilterGroup = props => {
         default:
           break;
       }
-      props.applySortedData(sortedData);
+      setSortedData(sortedData);
+      console.log(
+        "NL: SortFilterGroup: handleSortClose: sortedData: ",
+        sortedData
+      );
     }
   };
 
@@ -118,6 +123,7 @@ const SortFilterGroup = props => {
         <div data-testid="sort-dialog">
           <SortDialog
             handleSortClose={handleSortClose}
+            handleSortClear={handleSortClear}
             sortClicked={sortClicked}
           />
         </div>
@@ -127,7 +133,6 @@ const SortFilterGroup = props => {
           <FilterDialog
             works={props.works}
             handleFilterClose={handleFilterClose}
-            applySortedData={props.applySortedData}
             filterClicked={filterClicked}
           />
         </div>
@@ -158,7 +163,8 @@ const SortFilterGroup = props => {
 
 const mapStateToProps = state => {
   return {
-    sortedData: state.sortedData
+    works: state.authorContent,
+    sortedData: state.sortFilteredData
   };
 };
 

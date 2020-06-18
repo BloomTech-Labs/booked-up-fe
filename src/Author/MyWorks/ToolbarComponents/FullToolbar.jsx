@@ -11,11 +11,8 @@ const FullToolbar = props => {
   return (
     <div className={classes.toolbar} data-testid="toolbar">
       <UploadContentGroup />
-      <ContentViewGroup works={props.works} setView={props.setView} />
-      <SortFilterGroup
-        works={props.works}
-        applySortedData={props.applySortedData}
-      />
+      <ContentViewGroup setView={props.setView} />
+      <SortFilterGroup />
       <SearchGroup />
     </div>
   );
