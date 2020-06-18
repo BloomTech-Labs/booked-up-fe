@@ -15,12 +15,6 @@ import {
   GET_MESSAGES
 } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction";
-import {
-  SET_FILTERED_DATA,
-  SET_SORTED_DATA,
-  CLEAR_FILTERED_DATA,
-  CLEAR_SORTED_DATA
-} from "../actions/sharedAction";
 
 const initialState = {
   user: {
@@ -144,75 +138,6 @@ function reducer(state = initialState, action) {
         ...state,
         currentWork: action.payload
       };
-    }
-
-    case SET_FILTERED_DATA: {
-      console.log(
-        "NL: reducer.js: SET_FILTERED_DATA: Line 150: sortFilteredCleared",
-        state.sortFilteredCleared
-      );
-      console.log(
-        "NL: reducer.js: SET_FILTERED_DATA: Line 151: sortFilteredData",
-        state.sortFilteredData
-      );
-      console.log(
-        "NL: reducer.js: SET_FILTERED_DATA: Line 152: AuthorContent",
-        state.authorContent
-      );
-      return {
-        ...state,
-        sortFilteredData: action.payload,
-        sortFilteredCleared: false
-      };
-    }
-    case SET_SORTED_DATA: {
-      console.log(
-        "NL: reducer.js: SET_SORTED_DATA: Line 160: sortFilteredCleared",
-        state.sortFilteredCleared
-      );
-      console.log(
-        "NL: reducer.js: SET_SORTED_DATA: Line 161: sortFilteredData",
-        state.sortFilteredData
-      );
-      console.log(
-        "NL: reducer.js: SET_SORTED_DATA: Line 162: AuthorContent",
-        state.authorContent
-      );
-      return {
-        ...state,
-        sortFilteredData: action.payload,
-        sortFilteredCleared: false
-      };
-    }
-    case CLEAR_FILTERED_DATA: {
-      console.log(
-        "NL: reducer.js: CLEAR_FILTERED_DATA: Line 170: sortFilteredCleared",
-        state.sortFilteredCleared
-      );
-      console.log(
-        "NL: reducer.js: CLEAR_FILTERED_DATA: Line 171: sortFilteredData",
-        state.sortFilteredData
-      );
-      console.log(
-        "NL: reducer.js: CLEAR_FILTERED_DATA: Line 172: AuthorContent",
-        state.authorContent
-      );
-      return { ...state, sortFilteredData: [], sortFilteredCleared: true };
-    }
-    case CLEAR_SORTED_DATA: {
-      console.log(
-        "NL: reducer.js: CLEAR_SORTED_DATA: Line 176: sortFilteredCleared",
-        state.sortFilteredCleared
-      );
-      console.log(
-        "NL: reducer.js: CLEAR_SORTED_DATA: Line 177: sortFilteredData",
-        state.sortFilteredData
-      );
-      console.log(
-        "NL: reducer.js: CLEAR_SORTED_DATA: Line 178: AuthorContent",
-        state.authorContent
-      );
-      return { ...state, sortFilteredData: [], sortFilteredCleared: true };
     }
     default: {
       return state;

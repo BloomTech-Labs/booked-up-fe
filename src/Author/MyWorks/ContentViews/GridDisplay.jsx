@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DisplayGrid from "./DisplayGrid";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -48,14 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GridDisplay(props) {
-  const [works, setWorks] = useState(props.works);
-  const [isFull, setIsFull] = useState(true);
   const classes = useStyles();
-  useEffect(() => {
-    if (props.sortFilteredCleared) {
-      setIsFull(true);
-    }
-  }, [props.works]);
 
   const imageSet = work => {
     if (work.img_url) {
@@ -69,14 +61,37 @@ function GridDisplay(props) {
     }
   };
 
-  return <DisplayGrid imageSet={imageSet} />;
+  return (
+    <Grid container className={classes.grid} spacing={2}>
+      {props.isFull &&
+        props.works.map((work, index) => (
+          <Grid item xs={2} key={index} className={classes.gridItem}>
+            <div style={imageSet(work)} className={classes.placeholderImage}>
+              {work.title}
+              <div className={classes.authorOverlay}>{work.author}</div>
+            </div>
+            <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
+          </Grid>
+        ))}
+      {!props.isFull &&
+        props.sortFilteredData.map((work, index) => (
+          <Grid item xs={2} key={index} className={classes.gridItem}>
+            <div style={imageSet(work)} className={classes.placeholderImage}>
+              {work.title}
+              <div className={classes.authorOverlay}>{work.author}</div>
+            </div>
+            <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
+          </Grid>
+        ))}
+    </Grid>
+  );
 }
 
 const mapStateToProps = state => {
   return {
-    works: state.authorContent,
-    sortFilteredData: state.sortFilteredData,
-    sortFilteredCleared: state.sortClear
+    works: state.authorContent
+    // sortFilteredData: state.sortFilteredData,
+    // sortFilteredCleared: state.sortFilteredCleared
   };
 };
 

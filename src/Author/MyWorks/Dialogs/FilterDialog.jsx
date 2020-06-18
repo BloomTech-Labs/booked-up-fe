@@ -24,12 +24,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function FilterDialog(props) {
+  const [filterClicked, setFilterClicked] = useState(props.filterClicked);
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState([]);
 
   const classes = useStyles();
+
+  const handleFilterClear = () => {
+    setFilterClicked(false);
+    props.clearSortedData();
+  };
+
+  const handleFilterClose = () => {
+    setFilterClicked(false);
+  };
+
   const handleTitleSearchChange = e => {
     setTitle(e.target.value);
   };
@@ -59,17 +70,17 @@ export default function FilterDialog(props) {
     //     return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
     //   }
     // })
-    //const localFilteredData = props.works.filter(work => {
-    //return work.title.toLowerCase().includes(title.toLowerCase());
-    // });
-    //props.applySortedData(sortedData);
+    const localFilteredData = props.works.filter(work => {
+      return work.title.toLowerCase().includes(title.toLowerCase());
+    });
+    props.applySortedData(localFilteredData);
   };
 
   return (
     <Dialog
       onClose={props.handleFilterClose}
       aria-labelledby="filter-dialog-title"
-      open={props.filterClicked}
+      open={filterClicked}
     >
       <DialogTitle id="sort-dialog-title">Filter Options</DialogTitle>
       <TitleSearch handleTitleSearchChange={handleTitleSearchChange} />
@@ -83,16 +94,23 @@ export default function FilterDialog(props) {
         <Button
           variant="contained"
           className={classes.button}
-          onClick={() => props.handleFilterClose(null)}
+          onClick={() => handleFilterClose(null)}
         >
           Close
         </Button>
         <Button
           variant="contained"
           className={classes.button}
-          onClick={() => (props.handleFilterClose(null), handleFilterSubmit())}
+          onClick={() => (handleFilterClose(null), handleFilterSubmit())}
         >
           Submit
+        </Button>
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={() => handleFilterClear(null)}
+        >
+          Clear
         </Button>
       </div>
     </Dialog>

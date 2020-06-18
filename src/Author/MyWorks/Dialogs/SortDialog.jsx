@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import _ from "lodash";
-import { setSortedData, clearSortedData } from "../../../actions/sharedAction";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -24,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SortDialog(props) {
+export default function SortDialog(props) {
   const options = [
     "Title: A to Z",
     "Title: Z to A",
@@ -38,48 +36,21 @@ function SortDialog(props) {
   const [sortClicked, setSortClicked] = useState(props.sortClicked);
   const classes = useStyles();
 
-  console.log(
-    "NL: SortFilterGroup.jsx: SortFilterGroup: handleSort: Line 38: sortClicked: ",
-    sortClicked
-  );
-
-  // const handleSort = () => {
-  //   setSortClicked(true);
-  // };
-
-  const handleSortClear = value => {
+  const handleSortClear = () => {
     setSortClicked(false);
-    console.log(
-      "NL: SortFilterGroup: handleSortClear: Line 48: props.works: ",
-      props.works
-    );
-    console.log(
-      "NL: SortFilterGroup: handleSortClear: Line 50: props.sortedData: ",
-      props.sortedData
-    );
-
-    clearSortedData();
+    props.clearSortedData();
   };
 
   const handleListItemClick = value => {
-    props.handleSortClose(value);
+    handleSortClose(value);
   };
 
   const handleSortClose = value => {
     setSortClicked(false);
 
-    let localSortedData = [];
-    let localFullData = _.cloneDeep(props.works);
-    console.log(
-      "NL: SortFilterGroup: handleSortClose: Line 65: props.works: ",
-      props.works
-    );
-    console.log(
-      "NL: SortFilterGroup: handleSortClose: Line 60: localSortedData: ",
-      localSortedData
-    );
-
     if (value !== null) {
+      let localSortedData = [];
+      let localFullData = _.cloneDeep(props.works);
       switch (value) {
         case "Title: A to Z": {
           localSortedData = localFullData.sort(function(a, b) {
@@ -143,57 +114,40 @@ function SortDialog(props) {
         "NL: SortFilterGroup: handleSortClose: Line 118: localSortedData: ",
         localSortedData
       );
-      setSortedData(localSortedData);
+      props.applySortedData(localSortedData);
     }
   };
 
   return (
-    <>
-      {sortClicked && (
-        <div>
-          <Dialog
-            onClose={handleSortClose}
-            aria-labelledby="sort-dialog-title"
-            open={sortClicked}
+    <Dialog
+      onClose={handleSortClose}
+      aria-labelledby="sort-dialog-title"
+      open={sortClicked}
+    >
+      <DialogTitle id="sort-dialog-title">Sort Options</DialogTitle>
+      <List>
+        {options.map(option => (
+          <ListItem button onClick={() => handleListItemClick(option)}>
+            <ListItemText primary={option} />
+          </ListItem>
+        ))}
+        <div className={classes.buttonGroup}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={() => handleSortClose(null)}
           >
-            <DialogTitle id="sort-dialog-title">Sort Options</DialogTitle>
-            <List>
-              {options.map(option => (
-                <ListItem button onClick={() => handleListItemClick(option)}>
-                  <ListItemText primary={option} />
-                </ListItem>
-              ))}
-              <div className={classes.buttonGroup}>
-                <Button
-                  variant="contained"
-                  className={classes.button}
-                  onClick={() => handleSortClose(null)}
-                >
-                  Close
-                </Button>
-                <Button
-                  variant="contained"
-                  className={classes.button}
-                  onClick={() => handleSortClear(null)}
-                >
-                  Clear
-                </Button>
-              </div>
-            </List>
-          </Dialog>
+            Close
+          </Button>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={() => handleSortClear(null)}
+          >
+            Clear
+          </Button>
         </div>
-      )}
-    </>
+      </List>
+    </Dialog>
   );
 }
-
-const mapStateToProps = state => {
-  return {
-    works: state.authorContent,
-    sortedData: state.sortFilteredData
-  };
-};
-
-export default connect(mapStateToProps, { setSortedData, clearSortedData })(
-  SortDialog
-);

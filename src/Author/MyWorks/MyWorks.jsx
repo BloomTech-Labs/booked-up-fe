@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridDisplay from "./ContentViews/GridDisplay";
 import RowDisplay from "./ContentViews/RowDisplay";
@@ -17,9 +17,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function MyWorks(props) {
-  const [works, setWorks] = useState(props.authorContent);
+  const [sortedWorks, setSortedWorks] = useState([]);
   const [selected, setSelected] = useState("grid");
   const [delOpen, setDelOpen] = useState(false);
+  const [isFull, setIsFull] = useState(true);
+
+  const applySortedData = data => {
+    if (data.length === 0 || data === undefined) {
+      setIsFull(true);
+    } else {
+      setIsFull(false);
+      setSortedWorks(data);
+    }
+  };
+
+  const clearSortedData = () => {
+    setIsFull(true);
+    setSortedWorks([]);
+  };
 
   const setView = selected => {
     setSelected(selected);
@@ -33,17 +48,16 @@ function MyWorks(props) {
     setDelOpen(false);
   };
 
-  console.log(
-    "NL: MyWorks.jsx: MyWorks: Line 36: Line 36: props.authorContent: ",
-    props.authorContent
-  );
-  console.log("NL: MyWorks.jsx: MyWorks: Line 37: Line 36: works: ", works);
-
   const classes = useStyles();
 
   return (
     <>
-      <FullToolbar works={props.authorContent} setView={setView} />
+      <FullToolbar
+        applySortedData={applySortedData}
+        setView={setView}
+        works={props.works}
+        clearSortedData={clearSortedData}
+      />
       <Modal
         open={delOpen}
         onClose={handleDelClose}
@@ -53,7 +67,13 @@ function MyWorks(props) {
         <DeleteWorkModal work={props.currentWork} close={handleDelClose} />
       </Modal>
       <div className={classes.contentArea}>
-        {selected === "grid" && <GridDisplay handleDelOpen={handleDelOpen} />}
+        {selected === "grid" && (
+          <GridDisplay
+            handleDelOpen={handleDelOpen}
+            isFull={isFull}
+            sortFilteredData={sortedWorks}
+          />
+        )}
         {selected === "row" && <RowDisplay handleDelOpen={handleDelOpen} />}
         {selected === "column" && (
           <ColumnDisplay handleDelOpen={handleDelOpen} />
@@ -65,9 +85,7 @@ function MyWorks(props) {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    isLogged: state.isLogged,
-    authorContent: state.authorContent,
+    works: state.authorContent,
     currentWork: state.currentWork
   };
 };
