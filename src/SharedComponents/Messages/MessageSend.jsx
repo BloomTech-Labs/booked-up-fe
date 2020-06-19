@@ -27,6 +27,7 @@ function MessageSend(props) {
     }, [])
 
     const handleChange = e => {
+        console.log(props.selectedUser)
         e.preventDefault();
         setMessage({
             ...message,
@@ -38,17 +39,19 @@ function MessageSend(props) {
         e.preventDefault()
         console.log(props.currentWork)
         console.log(message)
+        console.log(props.selectedUser)
         let sendingMessage = {
             subject: message.subject,
             body: message.body,
             sender_id: props.user.id,
-            recipient_id: props.currentWork.user_id
+            recipient_id: props.currentWork.user_id,
+            recipient: props.selectedUser.display_name
         }
         props.sendMessage(sendingMessage)
     }
     return(
         <form onSubmit={handleSubmit}> 
-            <Typography variant="h4">Re: {props.currentWork.title}</Typography>
+            <Typography variant="h4">To: {props.selectedUser.display_name}</Typography>
             <TextField
           id="message-subject"
           variant="outlined"
@@ -76,6 +79,7 @@ const mapStateToProps = state => {
     return {
       user: state.user,
       isLogged: state.isLogged,
+      selectedUser: state.selectedUser
     };
   };
   

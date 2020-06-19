@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
 import MessageSend from './MessageSend.jsx';
-
+import { getMessages } from "../../actions/authorAction.js";
 import { connect } from "react-redux";
 const drawerWidth = 165;
 
@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
         setCurrentMessage(message)
     }
     useEffect(() => {
+      props.getMessages(props.user.id)
         if(props.messages) (
             setAvailableMessages(props.messages)
         )
@@ -81,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
             setAvailableMessages(["There are no current messages"])
         )
     }, [])
+
     const drawer = (
       <div>
         <div className={classes.toolbar} />
@@ -88,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
         <List>
           {availableMessages.map((text, index) => (
             <ListItem button key={text} onClick={() => handleOpen(text)}>
-              <ListItemText primary={text} />
+              <ListItemText primary={text.subject} />
             </ListItem>
           ))}
         </List>
@@ -162,9 +164,10 @@ const useStyles = makeStyles((theme) => ({
     return {
       user: state.user,
       isLogged: state.isLogged,
-      currentWork: state.currentWork
+      currentWork: state.currentWork,
+      messages: state.messages
     };
   };
   
-  export default connect(mapStateToProps, {})(MessageView);
+  export default connect(mapStateToProps, { getMessages })(MessageView);
   

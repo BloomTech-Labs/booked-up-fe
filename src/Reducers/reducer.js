@@ -9,7 +9,7 @@ import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
-
+import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
 
 const initialState = {
   user: {
@@ -35,7 +35,8 @@ const initialState = {
   userAccounts: [],
   messages: [],
   comments: [],
-  currentWork: {}
+  currentWork: {},
+  selectedUser: {}
 };
 
 function reducer(state = initialState, action) {
@@ -97,6 +98,12 @@ function reducer(state = initialState, action) {
       return {...state, userAccounts: action.payload}
     }
 
+    case GET_USER: {
+      return {
+        ...state,
+        selectedUser: action.payload
+      }
+    }
     case TASK_START: {
       return {
         ...state,
@@ -104,7 +111,12 @@ function reducer(state = initialState, action) {
         isLoading: true
       }
     }
-
+    case GET_MESSAGES: {
+      return {
+        ...state,
+        messages: action.payload
+      }
+    }
     case UPLOAD_CONTENT: {
       return {
         ...state,

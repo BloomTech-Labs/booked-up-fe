@@ -119,10 +119,7 @@ export const setWork = data => dispatch => {
 
 export const delContent = (work) => dispatch => {
   axiosWithAuth()
-    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.img_public_id}`)
-    .then(res => {
-      axiosWithAuth()
-        .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}/${work.img_public_id}`)
         .then(res => {
           dispatch({
             type: DEL_WORK,
@@ -132,18 +129,15 @@ export const delContent = (work) => dispatch => {
           window.location.reload();
         })
         .catch(err => {
-          console.log(err)
+          console.log(err.message)
         })
-    })
-    .catch(err => {
-      console.log(err)
-    })
   }
   export const getMessages = (data) => dispatch => {
     axiosWithAuth()
-      .get(`https://bookedup-pt9.herokuapp.com/api/message/${data.id}/inbox`)
+      .get(`https://bookedup-pt9.herokuapp.com/api/message/${data}/inbox`)
       .then(res => {
         console.log(res)
+        dispatch({type: GET_MESSAGES, payload: res.data.Messages})
       })
       .catch(err => {
         console.log(err)
