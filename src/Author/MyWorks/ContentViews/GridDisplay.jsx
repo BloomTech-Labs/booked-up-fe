@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function GridDisplay(props) {
+export default function GridDisplay(props) {
   const classes = useStyles();
 
   const imageSet = work => {
@@ -87,12 +87,12 @@ function GridDisplay(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    works: state.authorContent
-    // sortFilteredData: state.sortFilteredData,
-    // sortFilteredCleared: state.sortFilteredCleared
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     works: state.authorContent
+//     // sortFilteredData: state.sortFilteredData,
+//     // sortFilteredCleared: state.sortFilteredCleared
+//   };
+// };
 
-export default connect(mapStateToProps, {})(GridDisplay);
+// export default connect(mapStateToProps, {})(GridDisplay);

@@ -70,13 +70,26 @@ function MyWorks(props) {
         {selected === "grid" && (
           <GridDisplay
             handleDelOpen={handleDelOpen}
+            works={props.works}
             isFull={isFull}
             sortFilteredData={sortedWorks}
           />
         )}
-        {selected === "row" && <RowDisplay handleDelOpen={handleDelOpen} />}
+        {selected === "row" && (
+          <RowDisplay
+            handleDelOpen={handleDelOpen}
+            works={props.works}
+            isFull={isFull}
+            sortFilteredData={sortedWorks}
+          />
+        )}
         {selected === "column" && (
-          <ColumnDisplay handleDelOpen={handleDelOpen} />
+          <ColumnDisplay
+            handleDelOpen={handleDelOpen}
+            works={props.works}
+            isFull={isFull}
+            sortFilteredData={sortedWorks}
+          />
         )}
       </div>
     </>

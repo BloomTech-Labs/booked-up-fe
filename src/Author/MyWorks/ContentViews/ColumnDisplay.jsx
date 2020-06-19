@@ -54,24 +54,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ColumnDisplay(props) {
-  const [works] = useState(props.authorWorks);
   const classes = useStyles();
 
-  const imageSet = (work) => {
-    if(work.img_url) {
+  const imageSet = work => {
+    if (work.img_url) {
       return {
         backgroundImage: `url("${work.img_url}")`
-      }
-    }
-    else {
+      };
+    } else {
       return {
         backgroundImage: `url("${ImagePlaceholder}")`
-      }
+      };
     }
-  }
+  };
   return (
     <Grid container className={classes.grid} spacing={2}>
-      {works.map((work, index) => (
+      {props.isFull &&
+        props.works.map((work, index) => (
           <Grid item xs={12} key={index} className={classes.gridItem}>
             <div style={imageSet(work)} className={classes.placeholderImage}>
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
@@ -87,10 +86,35 @@ export default function ColumnDisplay(props) {
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
             </Grid>
-            <EditingButtons book={work.content_url} handleDelOpen={props.handleDelOpen}/>
+            <EditingButtons
+              book={work.content_url}
+              handleDelOpen={props.handleDelOpen}
+            />
           </Grid>
-        
-      ))}
+        ))}
+      {!props.isFull &&
+        props.sortFilteredData.map((work, index) => (
+          <Grid item xs={12} key={index} className={classes.gridItem}>
+            <div style={imageSet(work)} className={classes.placeholderImage}>
+              <Grid item xs={6} sm={3} className={classes.authorOverlay}>
+                {work.author}
+              </Grid>
+            </div>
+            <Grid item xs={6} sm={3} className={classes.title}>
+              {work.title}
+            </Grid>
+            <Grid item xs={6} sm={3} className={classes.genre}>
+              {work.genre}
+            </Grid>
+            <Grid item xs={6} sm={3} className={classes.description}>
+              {work.description}
+            </Grid>
+            <EditingButtons
+              book={work.content_url}
+              handleDelOpen={props.handleDelOpen}
+            />
+          </Grid>
+        ))}
     </Grid>
   );
 }
