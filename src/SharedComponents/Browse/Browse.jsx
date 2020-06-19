@@ -131,6 +131,7 @@ function Browse(props) {
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
   const [newWorks, setNewWorks] = useState([{}])
+  const [alphWorks, setAlphWorks] = useState([{}])
 
   const [open, setOpen] = useState(false);
 
@@ -165,6 +166,7 @@ function Browse(props) {
         console.log(res);
         setWorks(res.data);
         setNewWorks(res.data)
+        setAlphWorks(res.data)
       })
       .catch(err => {
         console.log(err);
@@ -280,7 +282,7 @@ function Browse(props) {
             ))}
           </Carousel>
 
-          <h2 className={classes.title}>Most Popular</h2>
+          <h2 className={classes.title}>A-Z</h2>
 
           <Carousel
             className={classes.worksContainer}
@@ -294,7 +296,7 @@ function Browse(props) {
             addArrowClickHandler
             infinite
           >
-            {works.map((cl, i) => (
+            {alphWorks.sort((x, y) => x.title > y.title ? 1 : -1).map((cl, i) => (
               <div
                 key={i}
                 style={imageSet(cl)}
