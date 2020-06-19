@@ -76,6 +76,15 @@ function reducer(state = initialState, action) {
         isLogged: false
       };
     }
+    
+    case SEND_MESSAGE: {
+      return {
+        ...state,
+        isLoading: false,
+        currentWork: {},
+        selectedUser: {}
+      };
+    }
 
     case SET_ADMIN: {
       return { ...state, isAdmin: action.payload.data };

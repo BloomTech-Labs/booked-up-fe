@@ -58,7 +58,6 @@ export const EditEmail = (data) => dispatch => {
 };
 
 export const removeSelWork = () => dispatch => {
-  console.log("hello")
   dispatch({type: REM_SEL_WORK})
 }
 

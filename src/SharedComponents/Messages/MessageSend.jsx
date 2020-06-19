@@ -4,7 +4,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { getUser, sendMessage } from "../../actions/agentAction.js";
+import { taskStart } from "../../actions/authorAction.js";
 import { Button } from "@material-ui/core";
+import { ClipLoader } from "react-spinners";
 
 const useStyles = makeStyles((theme) => ({
     message: {
@@ -20,7 +22,6 @@ function MessageSend(props) {
     const classes = useStyles();
     const [user, setUser] = useState({})
     const [message, setMessage] = useState({subject: "", body: ""})
-
     useEffect(() => {
         console.log(props.currentWork)
         props.getUser(props.currentWork.user_id)
@@ -37,9 +38,7 @@ function MessageSend(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(props.currentWork)
-        console.log(message)
-        console.log(props.selectedUser)
+        props.taskStart();
         let sendingMessage = {
             subject: message.subject,
             body: message.body,
@@ -70,7 +69,11 @@ function MessageSend(props) {
           className={classes.message}
           onChange={handleChange}
         />
-        <Button type="submit" className={classes.button}>Send</Button>
+        <div><Button type="submit" className={classes.button}>Send</Button>
+        {props.isLoading === true && (
+               <ClipLoader size={20} loading={props.isLoading} />
+              )}
+        </div>
         </form>
     )
 }
@@ -79,9 +82,11 @@ const mapStateToProps = state => {
     return {
       user: state.user,
       isLogged: state.isLogged,
-      selectedUser: state.selectedUser
+      selectedUser: state.selectedUser,
+      error: state.error,
+      isLoading: state.isLoading
     };
   };
   
-  export default connect(mapStateToProps, { getUser, sendMessage })(MessageSend);
+  export default connect(mapStateToProps, { getUser, sendMessage, taskStart })(MessageSend);
   

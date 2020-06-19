@@ -26,7 +26,8 @@ export const sendMessage = data => dispatch => {
   axiosWithAuth()
     .post(`https://bookedup-pt9.herokuapp.com/api/message/${data.sender_id}`, submitData)
     .then(res => {
-      console.log(res)
+      dispatch({type: SEND_MESSAGE});
+      window.location.replace('/messages');
     })
     .catch(err => {
       console.log(err)
