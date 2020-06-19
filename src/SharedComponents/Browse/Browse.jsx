@@ -83,6 +83,16 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     border: "1px solid black"
   },
+  featuredPlaceholderImage: {
+    position: "relative",
+    backgroundSize: "100% 100%",
+    backgroundColor: "grey",
+    textAlign: "center",
+    color: "white",
+    height: "15em",
+    width: "100%",
+    border: "1px solid black"
+  },
   prev: {
     cursor: "pointer",
     position: "absolute",
@@ -134,7 +144,6 @@ function Browse(props) {
   const [alphWorks, setAlphWorks] = useState([{}])
   const [featWorks, setFeatWorks] = useState([{}])
   const [open, setOpen] = useState(false);
-
   // const handleOpen = () => {
   //   setOpen(true);
   // };
@@ -247,10 +256,10 @@ function Browse(props) {
           <div
             key={i}
             style={imageSet(cl)}
-            className={classes.placeholderImage}
+            className={classes.featuredPlaceholderImage}
             onClick={() => (setSelWork(cl), setOpen(true))}
           >
-            <RenderWork cl={cl} i={i} />
+            <RenderWork cl={cl} i={i} feat={true}/>
           </div>
         ))}
       </Carousel>
