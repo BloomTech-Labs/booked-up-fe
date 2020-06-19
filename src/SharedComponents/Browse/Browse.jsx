@@ -132,7 +132,7 @@ function Browse(props) {
   const [filteredWork, setFilteredWork] = useState();
   const [newWorks, setNewWorks] = useState([{}])
   const [alphWorks, setAlphWorks] = useState([{}])
-
+  const [featWorks, setFeatWorks] = useState([{}])
   const [open, setOpen] = useState(false);
 
   // const handleOpen = () => {
@@ -167,6 +167,7 @@ function Browse(props) {
         setWorks(res.data);
         setNewWorks(res.data)
         setAlphWorks(res.data)
+        setFeatWorks(res.data)
       })
       .catch(err => {
         console.log(err);
@@ -242,7 +243,7 @@ function Browse(props) {
         dots
         className={classes.featuredContainer}
       >
-        {works.map((cl, i) => (
+        {featWorks.sort((x, y) => .5 - Math.random()).slice(0,5).map((cl, i) => (
           <div
             key={i}
             style={imageSet(cl)}
