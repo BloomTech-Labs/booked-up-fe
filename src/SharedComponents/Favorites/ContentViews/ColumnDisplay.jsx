@@ -91,7 +91,10 @@ export default function ColumnDisplay(props) {
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
             </Grid>
-            <ReadingButtons book={work.content_url} />
+            {props.openButton == true && (
+                <ReadingButtons book={work.content_url} />
+            )}
+            
           </Grid>
         
       ))}

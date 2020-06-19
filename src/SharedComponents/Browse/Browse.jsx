@@ -15,6 +15,7 @@ import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
+import ColumnDisplay from "../Favorites/ContentViews/ColumnDisplay.jsx";
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -129,12 +130,15 @@ function Browse(props) {
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
+  const [newWorks, setNewWorks] = useState([{}])
 
   const [open, setOpen] = useState(false);
 
   // const handleOpen = () => {
   //   setOpen(true);
   // };
+
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -160,6 +164,7 @@ function Browse(props) {
       .then(res => {
         console.log(res);
         setWorks(res.data);
+        setNewWorks(res.data)
       })
       .catch(err => {
         console.log(err);
@@ -263,7 +268,7 @@ function Browse(props) {
             addArrowClickHandler
             infinite
           >
-            {works.map((cl, i) => (
+            {newWorks.sort((x, y) => x.created_at > y.created_at ? 1 : -1).map((cl, i) => (
               <div
                 style={imageSet(cl)}
                 key={i}
@@ -306,17 +311,7 @@ function Browse(props) {
       {filteredWork && (
         <div className={classes.resultsContainer}>
           <h2 className={classes.title}>Search Results</h2>
-          {filteredWork.map((cl, i) => (
-            <div key={i} className={classes.results}>
-              <div
-                style={imageSet(cl)}
-                className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
-              >
-                <RenderWork cl={cl} i={i} />
-              </div>
-            </div>
-          ))}
+          <ColumnDisplay contentWorks={filteredWork} openButton={false}/>
         </div>
       )}
       <Modal

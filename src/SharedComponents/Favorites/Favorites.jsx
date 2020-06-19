@@ -53,7 +53,7 @@ function Favorites(props) {
       <div className={classes.contentArea}>
         {selected === "grid" && <GridDisplay contentWorks={works} />}
         {selected === "row" && <RowDisplay contentWorks={works} />}
-        {selected === "column" && <ColumnDisplay contentWorks={works} />}
+        {selected === "column" && <ColumnDisplay contentWorks={works} openButton={true} />}
       </div>
     </>
   );
