@@ -93,6 +93,8 @@ function Header(props) {
   const history = useHistory();
 
   const logout = () => {
+    setAnchorEl(null);
+    setOpen(false);
     localStorage.clear();
     props.userLogout();
     history.push("/");
