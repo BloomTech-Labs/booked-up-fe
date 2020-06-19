@@ -9,7 +9,9 @@ import Dashboard from "./SharedComponents/Dashboard/Dashboard.jsx";
 import Home from "./LandingPage/Home";
 import LoginForm from "./SharedComponents/LoginForm";
 import SignUpForm from "./SharedComponents/SignUpForm";
+import Settings from "./SharedComponents/AccountSettings/Settings.jsx";
 import MessageView from "./SharedComponents/Messages/MessageView.jsx"
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -20,7 +22,11 @@ function App() {
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUpForm} />
+          <PrivateRoute 
+            path="/settings" 
+            component={Settings} />
           <PrivateRoute path="/messages" component={MessageView} />
+
         </Switch>
         <Footer />
       </BrowserRouter>

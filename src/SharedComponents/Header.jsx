@@ -175,7 +175,7 @@ function Header(props) {
                   <Tab
                     className={classes.tab}
                     component={Link}
-                    to="/dashboard/"
+                    to="/dashboard"
                     label="Dashboard"
                   />
                 <Tab
@@ -232,10 +232,10 @@ function Header(props) {
               <MenuItem component={Link} to="/dashboard/profile">
                 <AccountCircleIcon />
               </MenuItem>
-
-              <MenuItem component={Link} to="/account-settings">
-                Account Settings
-              </MenuItem>
+              
+                <MenuItem component={Link} to="/settings">
+                  Account Settings
+                </MenuItem>            
 
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>

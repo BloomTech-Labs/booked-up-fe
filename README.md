@@ -4,19 +4,13 @@ Code Climate Badge
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7102654cee73af9a6e2/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/booked-up-fe/maintainability)
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+#  Booked Up
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+You can find the deployed project at [BookedUp.net](https://bookedup.net).
 
-# 1️⃣ Booked Up
+## Contributors
 
-1️⃣ You can find the deployed project at [BookedUp.net](bookedup.net).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
 |                                       [Christian Auld](https://github.com/)                                        |                                       [Daniel Cruz](https://github.com/)                                        |                                       [Mohammad Shafi Masoumi](https://github.com/)                                        |                                       [Derek Glynn](https://github.com/)                                        |                                       [Nathan Loveless](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -27,7 +21,6 @@ Code Climate Badge
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 
 
@@ -35,21 +28,21 @@ Code Climate Badge
 
 ## Project Overview
 
-1️⃣ Labs PT9 [Trello Board](https://trello.com/b/wIkEvDjX/labspt9-booked-up)
+ Labs PT9 [Trello Board](https://trello.com/b/wIkEvDjX/labspt9-booked-up)
 
-1️⃣ [Product Canvas](https://www.notion.so/Vision-Problem-Objectives-fe806f460861498d92169d4a28a8cbe6)
+ [Product Canvas](https://www.notion.so/Vision-Problem-Objectives-fe806f460861498d92169d4a28a8cbe6)
 
 Booked up is an easy and user-friendly place for agents and authors to connect - a way for authors to post their work, a way for literary agents to leave feedback, and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to agents.
 
 
-### 4️⃣ Key Features
+###  Key Features
 
 -    Cloudinary image and pdf upload
 -    Convenient access to authors works
 -    Ability to favorite works
 -    Easy and anonymous connections between author and agent
 
-## 1️⃣ Tech Stack
+##  Tech Stack
 
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -85,17 +78,17 @@ We chose this framework because
 
 # APIs
 
-## 3️⃣ Cloudinary
+##  Cloudinary
 
 Cloudinary is an image management platform that uses REST API and has multiple integration options. Cloudinary can be managed both from the front end and/or the backend. Uploading is done through HTTPS.
 
 
-# 4️⃣ Testing
+#  Testing
 
 ## Jest
     -   Jest is a JavaScript Testing Framework with a focus on simplicity. It works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!
 
-# 5️⃣ Installation Instructions
+#  Installation Instructions
 
 -   Fork and Clone
 -   run NPM install for required dependencies

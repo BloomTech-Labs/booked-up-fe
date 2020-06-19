@@ -61,8 +61,12 @@ function Profile(props) {
           </Grid>
           <Grid item xs={6}>
             <p className={classes.lastName}>Last Name: {props.user.lastName}</p>
+
+            </Grid>
+           <Grid item xs={2}>
           </Grid>
-          {/* <Grid item xs={2}>
+           <Grid item xs={2}>
+
           <p className={classes.item}>City: {props.user.city}</p>
           </Grid>
           <Grid item xs={2}>
@@ -70,7 +74,7 @@ function Profile(props) {
           </Grid>
           <Grid item xs={2}>
           <p className={classes.item}>Country: {props.user.country}</p>
-          </Grid> */}
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

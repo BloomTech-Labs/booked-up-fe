@@ -6,6 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
+import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
 import {
   UPLOAD_CONTENT,
   SET_WORK,
@@ -91,6 +92,19 @@ function reducer(state = initialState, action) {
     case GET_USERS: {
       return { ...state, userAccounts: action.payload };
     }
+
+    case DELETE_USER: {
+      return { ...state, userAccounts: action.payload };
+    }
+
+    case EDIT_USER: {
+      return { ...state, user: action.payload };
+    }
+
+    case EDIT_EMAIL: {
+      return { ...state, userAccounts: action.payload };
+    }
+
     case TASK_START: {
       return {
         ...state,
@@ -98,6 +112,7 @@ function reducer(state = initialState, action) {
         isLoading: true
       };
     }
+
     case UPLOAD_CONTENT: {
       return {
         ...state,
