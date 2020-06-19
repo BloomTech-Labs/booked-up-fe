@@ -20,6 +20,17 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "space-between"
   },
+  selGridItem: {
+    border: "1px solid black",
+    margin: "10px",
+    borderRadius: "5px",
+    backgroundColor: "#c3c5ef",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    cursor: "pointer"
+  },
   placeholderImage: {
     position: "relative",
     backgroundSize: "100% 100%",
@@ -73,10 +84,16 @@ export default function ColumnDisplay(props) {
     }
   }
 
+  const handleOpen = (work) => {
+    if(props.setSelWork) {
+      props.setSelWork(work);
+      props.setOpen(true)
+    }
+  }
   return (
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
-          <Grid item xs={12} key={index} className={classes.gridItem}>
+          <Grid item xs={12} key={index} className={props.setSelWork ? classes.selGridItem : classes.gridItem} onClick={() => handleOpen(work)}>
             <div style={imageSet(work)} className={classes.placeholderImage}>
               <Grid item xs={6} sm={3} className={classes.authorOverlay}>
                 {work.author}

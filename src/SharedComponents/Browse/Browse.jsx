@@ -314,7 +314,7 @@ function Browse(props) {
       {filteredWork && (
         <div className={classes.resultsContainer}>
           <h2 className={classes.title}>Search Results</h2>
-          <ColumnDisplay contentWorks={filteredWork} openButton={false}/>
+          <ColumnDisplay contentWorks={filteredWork} openButton={false} setSelWork={setSelWork} setOpen = {setOpen}/>
         </div>
       )}
       <Modal
