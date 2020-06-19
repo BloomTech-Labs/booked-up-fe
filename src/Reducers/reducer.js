@@ -6,7 +6,7 @@ import {
 } from "../actions/authenticationAction";
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
-import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
+import { EDIT_USER, EDIT_EMAIL, DELETE_USER, REM_SEL_WORK } from "../actions/userAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
 import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
@@ -144,6 +144,15 @@ function reducer(state = initialState, action) {
         })
       }
     }
+
+    case REM_SEL_WORK : {
+      return {
+        ...state,
+        currentWork: {},
+        selectedUser: {}
+      }
+    }
+
     case TASK_FAIL: {
       return {
         ...state,

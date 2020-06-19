@@ -9,6 +9,7 @@ export const TASK_FAIL = "TASK_FAIL";
 export const DEL_WORK = "DEL_WORK"
 export const GET_MESSAGES = "GET_MESSAGES"
 
+
 export const taskStart = () => dispatch => {
   dispatch({
     type: TASK_START
@@ -143,4 +144,6 @@ export const delContent = (work) => dispatch => {
         console.log(err)
       })
   }
+
+  
 

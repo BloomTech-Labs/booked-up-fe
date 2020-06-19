@@ -14,6 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Browse from "../Browse/Browse.jsx";
 import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
 import { getUsers } from "../../actions/adminAction.js";
+import { removeSelWork } from "../../actions/userAction.js";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -128,7 +129,7 @@ function Dashboard(props) {
                 to="/dashboard"
                 className={classes.listItem}
                 data-testid="sidebar-browse"
-                onClick={() => setComponent(<Browse />)}
+                onClick={() => {setComponent(<Browse />); props.removeSelWork()}}
               >
                 <ListItemText primary="Browse" />
               </ListItem>
@@ -137,7 +138,7 @@ function Dashboard(props) {
                 to="/dashboard/favorites"
                 className={classes.listItem}
                 data-testid="sidebar-favorites"
-                onClick={() => setComponent(<Favorites />)}
+                onClick={() => {setComponent(<Favorites />); props.removeSelWork()}}
               >
                 <ListItemText primary="Favorites" />
               </ListItem>
@@ -150,7 +151,7 @@ function Dashboard(props) {
               className={classes.listItem}
               data-testid="sidebar-profile"
               value={<Profile />}
-              onClick={() => setComponent(<Profile />)}
+              onClick={() => {setComponent(<Profile />); props.removeSelWork()}}
             >
               <ListItemText primary="My Profile" />
             </ListItem>
@@ -162,7 +163,7 @@ function Dashboard(props) {
               to="/dashboard/my-works"
               className={classes.listItem}
               data-testid="sidebar-works"
-              onClick={() => setComponent(<MyWorks />)}
+              onClick={() => {setComponent(<MyWorks />); props.removeSelWork()}}
             >
               <ListItemText primary="My Works" />
             </ListItem>
@@ -183,5 +184,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getUsers})(Dashboard);
+export default connect(mapStateToProps, { getUsers, removeSelWork })(Dashboard);
 

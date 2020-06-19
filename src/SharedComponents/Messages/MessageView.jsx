@@ -19,6 +19,8 @@ import MessageContent from "./MessageContent.jsx";
 import MessageSend from './MessageSend.jsx';
 import { getMessages } from "../../actions/authorAction.js";
 import { connect } from "react-redux";
+import { removeSelWork } from "../../actions/userAction.js";
+
 const drawerWidth = 165;
 
 const useStyles = makeStyles((theme) => ({
@@ -66,13 +68,15 @@ const useStyles = makeStyles((theme) => ({
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [availableMessages, setAvailableMessages] = useState([])
-    const [currentMessage, setCurrentMessage] = useState({body: ""})
+    const [currentMessage, setCurrentMessage] = useState({})
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
     const handleOpen = (message) => {
+        props.removeSelWork()
         setCurrentMessage(message)
     }
+
     useEffect(() => {
       props.getMessages(props.user.id)
         if(props.messages) (
@@ -152,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-              {props.currentWork ? (<MessageSend currentWork={props.currentWork}/>
+              {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
               ) : (<MessageContent message = {currentMessage}/>)}
         </main>
       </div>
@@ -169,5 +173,5 @@ const useStyles = makeStyles((theme) => ({
     };
   };
   
-  export default connect(mapStateToProps, { getMessages })(MessageView);
+  export default connect(mapStateToProps, { getMessages, removeSelWork })(MessageView);
   

@@ -15,6 +15,8 @@ import MessageIcon from "@material-ui/icons/Message";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../actions/authenticationAction";
+import { useEffect } from "react";
+import { removeSelWork } from "../actions/userAction";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -109,43 +111,9 @@ function Header(props) {
     setOpen(false);
   };
 
-  // useEffect(() => {
-  //   switch (window.location.pathname) {
-  //     case "/":
-  //       if (value !== 0) {
-  //         setValue(0);
-  //       }
-  //       break;
-
-  //     case "/browse":
-  //       if (value !== 1) {
-  //         setValue(1);
-  //       }
-  //       break;
-
-  //     case "/dashboard":
-  //       if (value !== 0) {
-  //         setValue(0);
-  //       }
-  //       break;
-
-  //     // case "/messages":
-  //     //   if (value !== 3) {
-  //     //     setValue(3);
-  //     //   }
-  //     //   break;
-
-  //     // case "/account-settings":
-  //     //   if (value !== 4) {
-  //     //     setValue(4);
-  //     //   }
-  //     //   break;
-
-  //     default:
-  //       break;
-  //   }
-  // }, [value]);
-
+  const handleRemove = e => {
+    props.removeSelWork()
+  }
   return (
     <>
       <ElevationScroll>
@@ -156,6 +124,7 @@ function Header(props) {
               to="/"
               className={classes.logoContainer}
               disableRipple
+              onClick={handleRemove}
             >
               <img
                 alt="Booked Up Logo"
@@ -177,12 +146,14 @@ function Header(props) {
                     component={Link}
                     to="/dashboard"
                     label="Dashboard"
+                    onClick={handleRemove}
                   />
                 <Tab
                 className={classes.tab}
                 component={Link}
                 to="/messages"
                 label={<MessageIcon/>}
+                onClick={handleRemove}
               />
                   <Tab
                     aria-owns={anchorEl ? "account-menu" : undefined}
@@ -229,11 +200,11 @@ function Header(props) {
               onClose={handleClose}
               // elevation={0}
             >
-              <MenuItem component={Link} to="/dashboard/profile">
+              <MenuItem component={Link} to="/dashboard/profile" onClick={handleRemove}>
                 <AccountCircleIcon />
               </MenuItem>
               
-                <MenuItem component={Link} to="/settings">
+                <MenuItem component={Link} to="/settings" onClick={handleRemove}>
                   Account Settings
                 </MenuItem>            
 
@@ -254,4 +225,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { userLogout })(Header);
+export default connect(mapStateToProps, { userLogout, removeSelWork })(Header);
