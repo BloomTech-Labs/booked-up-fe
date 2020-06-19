@@ -114,6 +114,8 @@ function Header(props) {
   };
 
   const handleRemove = e => {
+    setAnchorEl(null);
+    setOpen(false);
     props.removeSelWork()
   }
   return (
