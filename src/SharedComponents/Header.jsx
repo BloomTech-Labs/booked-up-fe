@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "25px"
   },
   loggedTab: {
-    marginRight: "15em"
+    marginRight: "5em"
   },
   button: {
     ...theme.typography.estimate,
