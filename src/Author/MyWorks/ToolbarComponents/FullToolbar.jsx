@@ -31,7 +31,11 @@ const FullToolbar = props => {
         applySortedData={props.applySortedData}
         clearSortedData={props.clearSortedData}
       />
-      <SearchGroup />
+      <SearchGroup
+        works={props.works}
+        applySortedData={props.applySortedData}
+        clearSortedData={props.clearSortedData}
+      />
     </div>
   );
 };
