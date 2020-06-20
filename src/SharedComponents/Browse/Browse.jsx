@@ -17,6 +17,7 @@ import RenderWork from "./RenderWork.jsx";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
 import ColumnDisplay from "../Favorites/ContentViews/ColumnDisplay.jsx";
 import { removeSelWork } from "../../actions/userAction";
+import { getUser } from "../../actions/agentAction";
 const useStyles = makeStyles(theme => ({
   searchContainer: {
     padding: "1%",
@@ -196,6 +197,11 @@ function Browse(props) {
     console.log(filter);
   };
 
+  const handleOpen = work => {
+    props.getUser(work.user_id);
+    setSelWork(work)
+    setOpen(true)
+  }
   const handleSubmit = e => {
     e.preventDefault();
     setFilteredWork(
@@ -258,7 +264,7 @@ function Browse(props) {
             key={i}
             style={imageSet(cl)}
             className={classes.featuredPlaceholderImage}
-            onClick={() => (setSelWork(cl), setOpen(true))}
+            onClick={() => handleOpen(cl)}
           >
             <RenderWork cl={cl} i={i} feat={true}/>
           </div>
@@ -286,7 +292,7 @@ function Browse(props) {
                 style={imageSet(cl)}
                 key={i}
                 className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
+                onClick={() => handleOpen(cl)}
               >
                 <RenderWork cl={cl} i={i} />
               </div>
@@ -312,7 +318,7 @@ function Browse(props) {
                 key={i}
                 style={imageSet(cl)}
                 className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
+                onClick={() => handleOpen(cl)}
               >
                 <RenderWork cl={cl} i={i} />
               </div>
@@ -350,4 +356,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { removeSelWork })(Browse);
+export default connect(mapStateToProps, { removeSelWork, getUser })(Browse);

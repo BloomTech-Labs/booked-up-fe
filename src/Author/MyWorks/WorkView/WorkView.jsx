@@ -60,6 +60,7 @@ function Workview(props) {
   return (
     <div className={classes.paper}>
       <Typography variant="h5">{props.work.title}</Typography>
+      <p>{props.name}</p>
       <div className={classes.buttons}>
         {pages.pageNum != 1 ? (
           <Button variant="contained" color="secondary" onClick={prevPage} className={classes.button}>
@@ -100,7 +101,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     isLogged: state.isLogged,
-    work: state.currentWork
+    work: state.currentWork,
+    name: state.selectedUser.display_name
   };
 };
 
