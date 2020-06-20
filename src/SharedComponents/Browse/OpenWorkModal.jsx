@@ -75,14 +75,14 @@ function OpenWorkModal(props) {
             <p>Author</p>
           </Grid>
           <Grid item xs={6}>
-        <Button
+        {props.user.userType == "agent" && (<Button
             variant="contained"
             color="secondary"
             className={modalClasses.button}
             onClick={handleSendMessage}
           >
             Message Author
-          </Button>
+          </Button>)}
           </Grid>
           <Grid item xs={12}>
             <img src={imageSet(props.work)} className={modalClasses.image}/>
