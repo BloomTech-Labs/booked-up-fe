@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     border: "1px solid black",
     height: "13.5%",
     width: "11em"
-  }
+  },
 }));
 
 function Header(props) {
@@ -205,8 +205,8 @@ function Header(props) {
               onClose={handleClose}
               // elevation={0}
             >
-              <MenuItem component={Link} to="/dashboard/profile" onClick={handleRemove}>
-                <AccountCircleIcon />
+              <MenuItem component={Link} to="/dashboard/profile" onClick={handleRemove} className={classes.profile}>
+                <AccountCircleIcon style={{marginRight:"10%"}}/> {props.user.displayName}
               </MenuItem>
               
                 <MenuItem component={Link} to="/settings" onClick={handleRemove}>

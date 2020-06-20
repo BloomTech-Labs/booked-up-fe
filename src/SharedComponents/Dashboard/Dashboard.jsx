@@ -106,7 +106,7 @@ function Dashboard(props) {
       default:
         break;
     }
-  }, []);
+  }, [window.location.pathname]);
 
   return (
     <div className={classes.container}>
