@@ -16,7 +16,7 @@ import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
 import ColumnDisplay from "../Favorites/ContentViews/ColumnDisplay.jsx";
-
+import { removeSelWork } from "../../actions/userAction";
 const useStyles = makeStyles(theme => ({
   searchContainer: {
     padding: "1%",
@@ -151,6 +151,7 @@ function Browse(props) {
   
 
   const handleClose = () => {
+    props.removeSelWork()
     setOpen(false);
   };
 
@@ -349,4 +350,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(Browse);
+export default connect(mapStateToProps, { removeSelWork })(Browse);
