@@ -96,10 +96,7 @@ function Dashboard(props) {
       case "/dashboard/my-works":
         setComponent(<MyWorks />);
         break;
-
-      case "/dashboard/messages":
-        setComponent(<p>My Messages</p>);
-        break;
+        
       case "/dashboard/book":
         setComponent(<WorkView />);
         break;
