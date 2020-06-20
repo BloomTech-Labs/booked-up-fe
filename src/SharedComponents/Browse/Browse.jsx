@@ -280,7 +280,7 @@ function Browse(props) {
             addArrowClickHandler
             infinite
           >
-            {newWorks.sort((x, y) => x.created_at > y.created_at ? 1 : -1).map((cl, i) => (
+            {newWorks.sort((x, y) => x.created_at < y.created_at ? 1 : -1).map((cl, i) => (
               <div
                 style={imageSet(cl)}
                 key={i}
