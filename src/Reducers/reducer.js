@@ -7,7 +7,7 @@ import {
 
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { EDIT_USER, EDIT_EMAIL, DELETE_USER, REM_SEL_WORK } from "../actions/userAction";
-import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES, EDIT_CONTENT, REMOVE_DATA } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT, REMOVE_CONTENT } from "../actions/fanAction"
 import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
 
@@ -132,6 +132,21 @@ function reducer(state = initialState, action) {
         isLoading: false,
         authorContent: [...state.authorContent, action.payload]
       };
+    }
+    case REMOVE_DATA: {
+      return {
+        ...state,
+        authorContent: state.authorContent.filter((work) => {
+          return work.id !== action.payload
+        })
+      }
+    }
+    case EDIT_CONTENT: {
+      return {
+        ...state,
+        isLoading: false,
+        authorContent: [...state.authorContent, action.payload.content[0]]
+      }
     }
     case SET_CONTENT: {
       return {

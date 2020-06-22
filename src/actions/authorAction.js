@@ -3,12 +3,13 @@ import {
   axiosWithAuth
 } from "../utils/axiosWithAuth";
 export const UPLOAD_CONTENT = "UPLOAD_CONTENT";
+export const EDIT_CONTENT = "EDIT_CONTENT"
 export const SET_WORK = "SET_WORK";
 export const TASK_START = "TASK_START";
 export const TASK_FAIL = "TASK_FAIL";
 export const DEL_WORK = "DEL_WORK"
 export const GET_MESSAGES = "GET_MESSAGES"
-
+export const REMOVE_DATA = "REMOVE_DATA"
 
 export const taskStart = () => dispatch => {
   dispatch({
@@ -109,7 +110,34 @@ export const uploadContent = (
 };
 
 
-
+export const editContent = data => dispatch => {
+  let submitData = {
+    title: data.title,
+    description: data.description,
+    fantasy: true
+  }
+  axiosWithAuth()
+    .patch(`https://bookedup-pt9.herokuapp.com/api/author-content/${data.user_id}/${data.id}`, submitData)
+    .then(res => {
+      dispatch({
+        type: REMOVE_DATA,
+        payload: data.id
+      });
+      console.log(res)
+      dispatch({
+        type: EDIT_CONTENT,
+        payload: res.data
+      });
+      window.location.reload();
+    })
+    .catch(err => {
+      dispatch({
+        type: TASK_FAIL,
+        payload: err.message
+      })
+      console.log(err)
+    })
+}
 export const setWork = data => dispatch => {
   console.log(data)
   dispatch({

@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     body: {
         border: "1px solid grey",
         height: "30em",
-        padding: "1%"
+        padding: "1%",
+        borderRadius: "5px"
     }
   }));
 export default function MessageContent(props) {

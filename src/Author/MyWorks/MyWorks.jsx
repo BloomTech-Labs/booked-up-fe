@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import FullToolbar from "./ToolbarComponents/FullToolbar";
 import DeleteWorkModal from "./DeleteWorkModal.jsx";
 import Modal from "@material-ui/core/Modal";
+import EditModal from "./EditModal.jsx";
 
 const useStyles = makeStyles(theme => ({
   contentArea: {
@@ -20,6 +21,7 @@ function MyWorks(props) {
   const [works, setWorks] = useState(props.authorContent);
   const [selected, setSelected] = useState("grid");
   const [delOpen, setDelOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   const applySortedData = data => {
     console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
@@ -38,6 +40,13 @@ function MyWorks(props) {
     setDelOpen(false);
   };
 
+  const handleEditOpen = () => {
+    setEditOpen(true);
+  };
+
+  const handleEditClose = () => {
+    setEditOpen(false);
+  };
   const classes = useStyles();
 
   return (
@@ -48,22 +57,30 @@ function MyWorks(props) {
         setView={setView}
       />
       <Modal
+        open={editOpen}
+        onClose={handleEditClose}
+        aria-labelledby="edit-modal-title"
+        aria-describedby="edit-modal-description"
+      >
+        <EditModal work={props.currentWork} edit={handleEditClose} />
+      </Modal>
+      <Modal
         open={delOpen}
         onClose={handleDelClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby="delete-modal-title"
+        aria-describedby="delete-modal-description"
       >
         <DeleteWorkModal work={props.currentWork} close={handleDelClose} />
       </Modal>
       <div className={classes.contentArea}>
         {selected === "grid" && (
-          <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
+          <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
         )}
         {selected === "row" && (
-          <RowDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
+          <RowDisplay authorWorks={works} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
         )}
         {selected === "column" && (
-          <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen} />
+          <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
         )}
       </div>
     </>
