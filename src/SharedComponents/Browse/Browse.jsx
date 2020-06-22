@@ -203,6 +203,7 @@ function Browse(props) {
     setOpen(true)
   }
   const handleSubmit = e => {
+    
     e.preventDefault();
     setFilteredWork(
       works.filter(work => {

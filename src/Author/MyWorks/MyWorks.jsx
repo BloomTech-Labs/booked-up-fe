@@ -22,10 +22,30 @@ function MyWorks(props) {
   const [selected, setSelected] = useState("grid");
   const [delOpen, setDelOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [filteredWork, setFilteredWork] = useState();
+  const [value, setValue] = useState("");
 
   const applySortedData = data => {
     console.log("NL: MyWorks.jsx: applySortedData: data: ", data);
     setWorks(data);
+  };
+  const handleSearch = e => {
+    e.preventDefault();
+    setValue(e.target.value);
+    console.log(value);
+  };
+  const handleSubmit = e => {
+    console.log(value)
+    e.preventDefault();
+    console.log(props.contentLibrary)
+    setFilteredWork(
+      props.authorContent.filter(work => {
+            return (work.title.toLowerCase().includes(value.toLowerCase()) ||
+            work.description.toLowerCase().includes(value.toLowerCase()))
+            // work.Genres.toLowerCase().includes(value.toLowerCase())
+            // work.author.toLowerCase().includes(value.toLowerCase())
+      }))
+    console.log(filteredWork);
   };
 
   const setView = selected => {
@@ -55,6 +75,7 @@ function MyWorks(props) {
         works={props.authorContent}
         applySortedData={applySortedData}
         setView={setView}
+        handleSearch={handleSearch} handleSubmit={handleSubmit} value={props.value}
       />
       <Modal
         open={editOpen}
@@ -72,7 +93,7 @@ function MyWorks(props) {
       >
         <DeleteWorkModal work={props.currentWork} close={handleDelClose} />
       </Modal>
-      <div className={classes.contentArea}>
+      {!filteredWork && (<div className={classes.contentArea}>
         {selected === "grid" && (
           <GridDisplay authorWorks={works} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
         )}
@@ -82,7 +103,13 @@ function MyWorks(props) {
         {selected === "column" && (
           <ColumnDisplay authorWorks={works} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
         )}
-      </div>
+      </div>)}
+      {filteredWork && (
+        <div className={classes.resultsContainer}>
+          <h2 className={classes.title}>Search Results</h2>
+          <ColumnDisplay authorWorks={filteredWork} handleDelOpen={handleDelOpen} handleEditOpen={handleEditOpen} />
+        </div>
+      )}
     </>
   );
 }

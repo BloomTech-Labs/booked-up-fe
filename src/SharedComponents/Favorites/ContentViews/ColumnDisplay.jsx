@@ -109,7 +109,7 @@ export default function ColumnDisplay(props) {
               {work.description}
             </Grid>
             {props.openButton == true && (
-                <ReadingButtons book={work.content_url} handleRemOpen={props.handleRemOpen}/>
+                <ReadingButtons book={work.content_url} handleRemOpen={props.handleRemOpen} work={work}/>
             )}
             
           </Grid>
