@@ -8,14 +8,6 @@ const useStyles = makeStyles(theme => ({
   authorAdd: {}
 }));
 
-const children = [
-  "Nathan Loveless",
-  "Christian Auld",
-  "Daniel Cruz",
-  "Derrek Glen",
-  "Shafi Masoumi"
-];
-
 export default function TitleSearch(props) {
   const classes = useStyles();
 
@@ -29,13 +21,7 @@ export default function TitleSearch(props) {
         onChange={props.handleAuthorSearchChange}
       />
       <div className={classes.authorResults}></div>
-      <div className={classes.authorAdd}>
-        <div>
-          {children.map(child => (
-            <div>{child}</div>
-          ))}
-        </div>
-      </div>
+      <div className={classes.authorAdd}></div>
     </>
   );
 }

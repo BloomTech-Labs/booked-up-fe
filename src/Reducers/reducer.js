@@ -58,6 +58,10 @@ function reducer(state = initialState, action) {
     }
 
     case USER_LOGON: {
+      console.log(
+        "NL: reducer.js: USER_LOGON: action.payload.AuthorContent: ",
+        action.payload.AuthorContent
+      );
       return {
         ...state,
         user: action.payload.User,

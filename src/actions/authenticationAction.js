@@ -18,8 +18,9 @@ export const createAccount = (data, props) => dispatch => {
       //loadState();
     })
     .catch(err => {
-      dispatch({ type: TASK_FAIL, payload: err.message })
-      console.log(err.message)});
+      dispatch({ type: TASK_FAIL, payload: err.message });
+      console.log(err.message);
+    });
 };
 
 export const userLogon = (data, props) => dispatch => {
@@ -29,6 +30,11 @@ export const userLogon = (data, props) => dispatch => {
       password: data.password
     })
     .then(res => {
+      console.log(
+        "NL: authenticationAction.js: userLogon: res.data: ",
+        res.data
+      );
+      console.log("NL: authenticationAction: res.data: ", res.data);
       localStorage.setItem("token", res.data.Token);
       dispatch({ type: USER_LOGON, payload: res.data });
       props.history.push("/dashboard");
@@ -36,8 +42,9 @@ export const userLogon = (data, props) => dispatch => {
       //loadState();
     })
     .catch(err => {
-      dispatch({ type: TASK_FAIL, payload: err.message })
-      console.log(err)});
+      dispatch({ type: TASK_FAIL, payload: err.message });
+      console.log(err);
+    });
 };
 
 export const adminLogon = (data, props) => dispatch => {
@@ -49,7 +56,7 @@ export const adminLogon = (data, props) => dispatch => {
     .then(res => {
       const decoded = jwt_decode(res.data.token);
       localStorage.setItem("token", res.data.token);
-      console.log(res.data)
+      console.log(res.data);
       dispatch({
         type: ADMIN_LOGON,
         payload: {

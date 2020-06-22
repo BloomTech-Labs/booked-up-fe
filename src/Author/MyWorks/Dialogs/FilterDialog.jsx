@@ -43,9 +43,17 @@ export default function FilterDialog(props) {
 
   const handleTitleSearchChange = e => {
     setTitle(e.target.value);
+    console.log(
+      "NL: FilterDialog.jsx: handleTitleSearchChange: title: ",
+      title
+    );
   };
   const handleAuthorSearchChange = e => {
     setAuthor(e.target.value);
+    console.log(
+      "NL: FilterDialog.jsx: handleAuthorSearchChange: author: ",
+      author
+    );
   };
   const handleStartDateChange = value => {
     setDate(value);
@@ -73,7 +81,11 @@ export default function FilterDialog(props) {
     const localFilteredData = props.works.filter(work => {
       return work.title.toLowerCase().includes(title.toLowerCase());
     });
-    props.applySortedData(localFilteredData);
+
+    localFilteredData = localFilteredData.filter(work => {
+      return work.author.toLowerCase().includes(author.toLowerCase());
+    });
+    props.applySortedData(authorFilteredData);
   };
 
   return (

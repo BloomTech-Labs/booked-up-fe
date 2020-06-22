@@ -2,152 +2,147 @@ export const genreData = {
   state: [
     {
       FriendlyName: "Biography",
-      Id: "Biography",
+      id: "biography",
       checked: false
     },
     {
       FriendlyName: "Classic",
-      Id: "Classic",
+      id: "classic",
       checked: false
     },
     {
       FriendlyName: "Comics/graphic novel",
-      Id: "Comicsgraphicnovel",
+      id: "ComicsGraphicNovel",
       checked: false
     },
     {
       FriendlyName: "Contemporary",
-      Id: "Contemporary",
+      id: "contemporary",
       checked: false
     },
     {
       FriendlyName: "Crime/detective",
-      Id: "Crimedetective",
+      id: "crimeDetective",
       checked: false
     },
     {
       FriendlyName: "Fable",
-      Id: "Fable",
+      id: "fable",
       checked: false
     },
     {
       FriendlyName: "Fairy tale",
-      Id: "Fairytale",
-      checked: false
-    },
-    {
-      FriendlyName: "Fairy tale",
-      Id: "Fairytale",
+      id: "fairyTale",
       checked: false
     },
     {
       FriendlyName: "Fan fiction",
-      Id: "Fanfiction",
+      id: "fanFiction",
       checked: false
     },
     {
       FriendlyName: "Fantasy",
-      Id: "Fantasy",
+      id: "fantasy",
       checked: false
     },
     {
       FriendlyName: "Folktale",
-      Id: "Folktale",
+      id: "folktale",
       checked: false
     },
     {
       FriendlyName: "Historical fiction",
-      Id: "Historicalfiction",
+      id: "historicalFiction",
       checked: false
     },
     {
       FriendlyName: "Horror",
-      Id: "Horror",
+      id: "horror",
       checked: false
     },
     {
       FriendlyName: "Humor",
-      Id: "Humor",
+      id: "humor",
       checked: false
     },
     {
       FriendlyName: "Legend",
-      Id: "Legend",
+      id: "legend",
       checked: false
     },
     {
       FriendlyName: "Magical realism",
-      Id: "Magicalrealism",
+      id: "magicalRealism",
       checked: false
     },
     {
       FriendlyName: "Meta fiction",
-      Id: "Metafiction",
+      id: "metaFiction",
       checked: false
     },
     {
       FriendlyName: "Mystery",
-      Id: "Mystery",
+      id: "mystery",
       checked: false
     },
     {
       FriendlyName: "Mythology",
-      Id: "Mythology",
+      id: "mythology",
       checked: false
     },
     {
       FriendlyName: "Mythopoeia",
-      Id: "Mythopoeia",
+      id: "mythopoeia",
       checked: false
     },
     {
       FriendlyName: "Picture book",
-      Id: "Picturebook",
+      id: "pictureBook",
       checked: false
     },
     {
       FriendlyName: "Realistic fiction",
-      Id: "Realisticfiction",
+      id: "realisticFiction",
       checked: false
     },
     {
       FriendlyName: "Romance",
-      Id: "Romance",
+      id: "romance",
       checked: false
     },
     {
       FriendlyName: "Science Fiction",
-      Id: "ScienceFiction",
+      id: "scienceFiction",
       checked: false
     },
     {
       FriendlyName: "Short Story",
-      Id: "ShortStory",
+      id: "shortStory",
       checked: false
     },
     {
       FriendlyName: "Suspense/thriller",
-      Id: "Suspensethriller",
+      id: "suspenseThriller",
       checked: false
     },
     {
       FriendlyName: "Swashbuckler",
-      Id: "Swashbuckler",
+      id: "Swashbuckler",
       checked: false
     },
     {
       FriendlyName: "Tall tale",
-      Id: "Talltale",
+      id: "tallTale",
       checked: false
     },
     {
       FriendlyName: "Theological fiction",
-      Id: "Theologicalfiction",
+      id: "theologicalFiction",
       checked: false
     },
     {
       FriendlyName: "Western",
-      Id: "Western",
+      id: "Western",
       checked: false
     }
   ]

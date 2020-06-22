@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
+import genreFetch from "../../../utils/genreFetch";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -60,6 +61,7 @@ export default function RowDisplay(props) {
       };
     }
   };
+
   return (
     <Grid container className={classes.grid} spacing={2}>
       {props.isFull &&
@@ -69,7 +71,7 @@ export default function RowDisplay(props) {
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
             <div className={classes.title}>{work.title}</div>
-            <div className={classes.genre}>{work.genre}</div>
+            <div className={classes.genre}>{genreFetch(work.genres)}</div>
             <div className={classes.description}>{work.description}</div>
             <EditingButtons
               book={work.content_url}
@@ -84,7 +86,7 @@ export default function RowDisplay(props) {
               <div className={classes.authorOverlay}>{work.author}</div>
             </div>
             <div className={classes.title}>{work.title}</div>
-            <div className={classes.genre}>{work.genre}</div>
+            <div className={classes.genre}>{genreFetch(work.genres)}</div>
             <div className={classes.description}>{work.description}</div>
             <EditingButtons
               book={work.content_url}

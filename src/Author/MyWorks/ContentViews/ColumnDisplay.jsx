@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import EditingButtons from "../EditingButtons";
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
+import genreFetch from "../../../utils/genreFetch";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -81,7 +82,7 @@ export default function ColumnDisplay(props) {
               {work.title}
             </Grid>
             <Grid item xs={6} sm={3} className={classes.genre}>
-              {work.genre}
+              {genreFetch(work.genres)}
             </Grid>
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}
@@ -104,7 +105,7 @@ export default function ColumnDisplay(props) {
               {work.title}
             </Grid>
             <Grid item xs={6} sm={3} className={classes.genre}>
-              {work.genre}
+              {genreFetch(work.genres)}
             </Grid>
             <Grid item xs={6} sm={3} className={classes.description}>
               {work.description}

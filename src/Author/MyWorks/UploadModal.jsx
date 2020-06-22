@@ -5,13 +5,21 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
-import { Button, FormControl, Select, MenuItem } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  Select,
+  MenuItem,
+  FormControlLabel,
+  Checkbox,
+  FormGroup
+} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
-import { genres } from "../../utils/genres.js";
-import ImagePlaceholder from "../../assets/image-placeholder.png";
+import { genreData } from "../../genre.js";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 function UploadModal(props) {
   const classes = sharedPaperStyles();
@@ -19,8 +27,7 @@ function UploadModal(props) {
     title: "",
     body: [],
     image: [],
-    description: "",
-    genre: ""
+    description: ""
   });
   const [uploadWork, setUploadWork] = useState({
     title: "",
@@ -32,6 +39,12 @@ function UploadModal(props) {
     URL: "https://api.cloudinary.com/v1_1/dzmxxuygs/upload",
     preset: "gcwzl9u1"
   });
+  const [genres, setGenres] = useState(genreData.state);
+  const [selectedGenre, setSelectedGenre] = useState([]);
+
+  const handleGenreChange = (e, values) => {
+    setSelectedGenre(values);
+  };
 
   useEffect(() => {
     console.log(props.dev);
@@ -42,6 +55,7 @@ function UploadModal(props) {
   }, []);
 
   const onSubmit = e => {
+    e.preventDefault();
     var file = work.body[0];
     var formData = new FormData();
     var imgFile = work.image[0];
@@ -50,8 +64,13 @@ function UploadModal(props) {
     formData.append("upload_preset", cloudinary.preset);
     imgFormData.append("file", imgFile);
     imgFormData.append("upload_preset", cloudinary.preset);
-    e.preventDefault();
+
     props.taskStart();
+    uploadWork["genres"] = selectedGenre;
+    console.log(
+      "NL: UploadModal.jsx: UploadModal: onSubmit: uploadWork: ",
+      uploadWork
+    );
     props.uploadContent(
       props,
       formData,
@@ -106,17 +125,29 @@ function UploadModal(props) {
             </Grid>
             <Grid item xs={6}>
               <FormControl className={classes.formControl}>
-                <Select
-                  labelId="add-genre-label"
-                  id="add_genre"
-                  name="genre"
-                  value={work.genre}
-                  onChange={handleChange}
-                >
-                  {genres.map(genre => (
-                    <MenuItem value={genre}>{genre}</MenuItem>
-                  ))}
-                </Select>
+                <Autocomplete
+                  multiple
+                  id="checkboxes-genre"
+                  options={genres}
+                  onChange={handleGenreChange}
+                  disableCloseOnSelect
+                  getOptionLabel={option => option.FriendlyName}
+                  renderOption={(option, { selected }) => (
+                    <React.Fragment>
+                      <Checkbox checked={selected} />
+                      {option.FriendlyName}
+                    </React.Fragment>
+                  )}
+                  style={{ width: 225 }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label="Genres"
+                      placeholder=""
+                    />
+                  )}
+                />
               </FormControl>
             </Grid>
             <Grid item xs={6}>
