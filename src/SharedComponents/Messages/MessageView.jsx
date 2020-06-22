@@ -18,6 +18,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
 import MessageSend from './MessageSend.jsx';
 import { getMessages } from "../../actions/authorAction.js";
+
 import { connect } from "react-redux";
 import { removeSelWork } from "../../actions/userAction.js";
 import { getUser } from "../../actions/agentAction.js";
@@ -171,8 +172,7 @@ const useStyles = makeStyles((theme) => ({
           </Hidden>
         </nav>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
-          
+          <div className={classes.toolbar} />         
               {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
               ) : reply.sender_id ? (<MessageSend currentWork={reply} type={"reply"}/>) : (<MessageContent message = {currentMessage} handleReplyMessage={handleReplyMessage} user={props.selectedUser}/>)}
         </main>

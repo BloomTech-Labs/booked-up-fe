@@ -84,6 +84,16 @@ function OpenWorkModal(props) {
             Message Author
           </Button>) : null}
           </Grid>
+          <Grid item xs={6}>
+        <Button
+            variant="contained"
+            color="secondary"
+            className={modalClasses.button}
+            onClick={handleSendMessage}
+          >
+            Message Author
+          </Button>
+          </Grid>
           <Grid item xs={12}>
             <img src={imageSet(props.work)} className={modalClasses.image}/>
           </Grid>

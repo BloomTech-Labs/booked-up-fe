@@ -8,6 +8,7 @@ import { taskStart } from "../../actions/authorAction.js";
 import { Button } from "@material-ui/core";
 import { ClipLoader } from "react-spinners";
 
+
 const useStyles = makeStyles((theme) => ({
     message: {
         width: "100%", 
@@ -22,6 +23,7 @@ function MessageSend(props) {
     const classes = useStyles();
     const [user, setUser] = useState({})
     const [message, setMessage] = useState({subject: "", body: ""})
+
     useEffect(() => {
         if(props.type === "reply") {
             setMessage({...message, subject: props.currentWork.subject})
@@ -31,7 +33,6 @@ function MessageSend(props) {
     }, [])
 
     const handleChange = e => {
-        
         e.preventDefault();
         setMessage({
             ...message,
