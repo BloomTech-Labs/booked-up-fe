@@ -81,8 +81,8 @@ const useStyles = makeStyles(theme => ({
   },
   menuTab: {
     border: "1px solid black",
-    height: "13.5%",
-    width: "11em"
+    height: "15%",
+    width: "12em"
   },
 }));
 
