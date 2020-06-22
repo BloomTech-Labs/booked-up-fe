@@ -2,7 +2,7 @@ import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const SET_CONTENT = "SET_CONTENT";
 export const ADD_COMMENT = "ADD_COMMENT";
-
+export const REMOVE_CONTENT = "REMOVE_CONTENT"
 
 export const setContent = (user, work) => dispatch => {
   let data = {
@@ -27,6 +27,19 @@ export const setContent = (user, work) => dispatch => {
         .catch(err => {
           console.log(err)
         })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const removeContent = data => dispatch => {
+  axiosWithAuth()
+    .delete(`https://bookedup-pt9.herokuapp.com/api/content-library/${data.id}/${data.contentId}`)
+    .then(res => {
+      console.log(res)
+      dispatch({type: REMOVE_CONTENT, payload: data.contentId })
+      window.location.reload();
     })
     .catch(err => {
       console.log(err)

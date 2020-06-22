@@ -9,8 +9,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Modal from '@material-ui/core/Modal';
 import Popper from '@material-ui/core/Popper';
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { setWork, delContent } from "../../actions/authorAction";
+import { setWork } from "../../actions/authorAction";
 import { connect } from "react-redux";
+import { removeContent } from "../../actions/fanAction";
 
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
@@ -22,6 +23,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px"
   },
   button: {
+    marginRight: "7%",
+    marginLeft: "7%",
     "&:hover": {
       backgroundColor: "transparent"
     }
@@ -33,6 +36,14 @@ function ReadingButtons(props) {
       props.setWork(props.work)
       window.location.replace(`/dashboard/book`)
     };
+  
+  const handleRemove = () => {
+    let data = {
+      id: props.user.id,
+      contentId: props.work.id
+    }
+    props.removeContent(data)
+    }
   const classes = useStyles();
   return (
     <>
@@ -42,6 +53,14 @@ function ReadingButtons(props) {
           <ImportContactsOutlinedIcon />
         </IconButton>
       </Tooltip>
+      <Tooltip
+          title="Remove Book"
+          onClick={handleRemove}
+        >
+          <IconButton className={classes.button}>
+            <DeleteForeverOutlinedIcon />
+          </IconButton>
+        </Tooltip>
     </ButtonGroup>
   </>
   );
@@ -56,4 +75,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setWork })(ReadingButtons);
+export default connect(mapStateToProps, { setWork, removeContent })(ReadingButtons);

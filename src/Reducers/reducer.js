@@ -8,7 +8,7 @@ import {
 import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
 import { EDIT_USER, EDIT_EMAIL, DELETE_USER, REM_SEL_WORK } from "../actions/userAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
-import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
+import { SET_CONTENT, ADD_COMMENT, REMOVE_CONTENT } from "../actions/fanAction"
 import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
 
 const initialState = {
@@ -137,6 +137,14 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         contentLibrary: action.payload
+      }
+    }
+    case REMOVE_CONTENT: {
+      return {
+        ...state,
+        contentLibrary: state.contentLibrary.filter((work) => {
+          return work.id !== action.payload
+        })
       }
     }
     case ADD_COMMENT: {
