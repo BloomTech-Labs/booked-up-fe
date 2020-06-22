@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { delContent, taskStart } from "../../actions/authorAction";
+import React, { useState, useEffect } from "react";
+import { delContent, taskStart, delContentNoImg } from "../../actions/authorAction";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -14,7 +14,12 @@ function UploadModal(props) {
 
   const onDel = e => {
     props.taskStart();
-    props.delContent(work);
+    if(work.img_public_id) {
+      props.delContent(work);
+    }
+    else {
+      props.delContentNoImg(work)
+    }
   };
 
   return (
@@ -54,4 +59,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { delContent, taskStart })(UploadModal);
+export default connect(mapStateToProps, { delContent, taskStart, delContentNoImg })(UploadModal);

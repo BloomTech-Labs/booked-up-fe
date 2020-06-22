@@ -162,6 +162,24 @@ export const delContent = (work) => dispatch => {
           console.log(err.message)
         })
   }
+
+  export const delContentNoImg = (work) => dispatch => {
+    console.log(work)
+    axiosWithAuth()
+      .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
+          .then(res => {
+            dispatch({
+              type: DEL_WORK,
+              payload: work.id
+            })
+            console.log(res)
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log(err.message)
+          })
+    }
+
   export const getMessages = (data) => dispatch => {
     axiosWithAuth()
       .get(`https://bookedup-pt9.herokuapp.com/api/message/${data}/inbox`)
