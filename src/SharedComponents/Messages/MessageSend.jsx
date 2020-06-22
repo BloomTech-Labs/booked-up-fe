@@ -23,12 +23,15 @@ function MessageSend(props) {
     const [user, setUser] = useState({})
     const [message, setMessage] = useState({subject: "", body: ""})
     useEffect(() => {
+        if(props.type === "reply") {
+            setMessage({...message, subject: props.currentWork.subject})
+        }
         console.log(props.currentWork)
         props.getUser(props.currentWork.user_id)
     }, [])
 
     const handleChange = e => {
-        console.log(props.selectedUser)
+        
         e.preventDefault();
         setMessage({
             ...message,
@@ -39,18 +42,33 @@ function MessageSend(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.taskStart();
-        let sendingMessage = {
-            subject: message.subject,
-            body: message.body,
-            sender_id: props.user.id,
-            recipient_id: props.currentWork.user_id,
-            recipient: props.selectedUser.display_name
+        if(props.type === "reply") {
+            let sendingMessage = {
+                subject: message.subject,
+                body: message.body,
+                sender_id: props.user.id,
+                recipient_id: props.currentWork.user_id,
+                recipient: props.selectedUser.display_name,
+                linking_id: props.currentWork.id
+            }
+            console.log(sendingMessage)
+            props.sendMessage(sendingMessage)
+         } else {
+            let sendingMessage = {
+                subject: message.subject,
+                body: message.body,
+                sender_id: props.user.id,
+                recipient_id: props.currentWork.user_id,
+                recipient: props.selectedUser.display_name
+            }
+            console.log(sendingMessage)
+            props.sendMessage(sendingMessage)
         }
-        props.sendMessage(sendingMessage)
+        
     }
     return(
         <form onSubmit={handleSubmit}> 
-            <Typography variant="h4">To: {props.selectedUser.display_name}</Typography>
+            <Typography variant="h5">To: {props.selectedUser.display_name}</Typography>
             <TextField
           id="message-subject"
           variant="outlined"

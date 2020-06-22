@@ -13,6 +13,11 @@ const useStyles = makeStyles(theme => ({
         height: "2em",
         marginTop: ".5%",
         marginBottom: "1%"
+    },
+    body: {
+        border: "1px solid grey",
+        height: "30em",
+        padding: "1%"
     }
   }));
 export default function MessageContent(props) {
@@ -25,11 +30,11 @@ export default function MessageContent(props) {
             </Typography>
         <Typography variant="h5">Subject: {props.message.subject}</Typography>
         <Button variant="contained"
-                    color="secondary" className={classes.button}>Reply</Button></div>)}
+                    color="secondary" className={classes.button} onClick={() => props.handleReplyMessage(props.message)}>Reply</Button></div>)}
         
-        <Typography paragraph>
+        {props.message.body && (<Typography paragraph className={classes.body}>
             {props.message.body}
-          </Typography>
+          </Typography>)}
           </>
     )
 }

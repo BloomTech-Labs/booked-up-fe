@@ -71,15 +71,27 @@ const useStyles = makeStyles((theme) => ({
     const [mobileOpen, setMobileOpen] = useState(false);
     const [availableMessages, setAvailableMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState({})
+    const [reply, setReply] = useState({})
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
     const handleOpen = (message) => {
         console.log(message)
+        setReply({})
         props.removeSelWork()
         setCurrentMessage(message)
         props.getUser(message.sender_id)
     }
+
+    const handleReplyMessage = (message) => {
+      setReply({
+        subject: `Re: ${message.subject}`,
+        sender_id: props.user.id,
+        user_id: props.selectedUser.id,
+        recipient: props.selectedUser.display_name,
+        linking_id: message.id
+      })
+    };
 
     useEffect(() => {
       props.getMessages(props.user.id)
@@ -162,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
           <div className={classes.toolbar} />
           
               {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
-              ) : (<MessageContent message = {currentMessage} user={props.selectedUser}/>)}
+              ) : reply.sender_id ? (<MessageSend currentWork={reply} type={"reply"}/>) : (<MessageContent message = {currentMessage} handleReplyMessage={handleReplyMessage} user={props.selectedUser}/>)}
         </main>
       </div>
     );

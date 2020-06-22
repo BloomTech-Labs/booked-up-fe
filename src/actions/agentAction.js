@@ -16,15 +16,8 @@ export const getUser = data => dispatch => {
 };
 
 export const sendMessage = data => dispatch => {
-  let submitData = {
-    subject: data.subject,
-    body: data.body,
-    recipient: data.recipient,
-    recipient_id: data.recipient_id,
-
-}
   axiosWithAuth()
-    .post(`https://bookedup-pt9.herokuapp.com/api/message/${data.sender_id}`, submitData)
+    .post(`https://bookedup-pt9.herokuapp.com/api/message/${data.sender_id}`, data)
     .then(res => {
       dispatch({type: SEND_MESSAGE});
       window.location.replace('/messages');
