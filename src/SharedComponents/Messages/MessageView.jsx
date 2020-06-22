@@ -20,6 +20,8 @@ import MessageSend from './MessageSend.jsx';
 import { getMessages } from "../../actions/authorAction.js";
 import { connect } from "react-redux";
 import { removeSelWork } from "../../actions/userAction.js";
+import { getUser } from "../../actions/agentAction.js";
+import { Button } from "@material-ui/core";
 
 const drawerWidth = 165;
 
@@ -73,8 +75,10 @@ const useStyles = makeStyles((theme) => ({
       setMobileOpen(!mobileOpen);
     };
     const handleOpen = (message) => {
+        console.log(message)
         props.removeSelWork()
         setCurrentMessage(message)
+        props.getUser(message.sender_id)
     }
 
     useEffect(() => {
@@ -93,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
         <Divider />
         <List>
           {availableMessages.map((text, index) => (
-            <ListItem button key={text} onClick={() => handleOpen(text)}>
+            <ListItem button key={index} onClick={() => handleOpen(text)}>
               <ListItemText primary={text.subject} />
             </ListItem>
           ))}
@@ -156,8 +160,9 @@ const useStyles = makeStyles((theme) => ({
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          
               {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
-              ) : (<MessageContent message = {currentMessage}/>)}
+              ) : (<MessageContent message = {currentMessage} user={props.selectedUser}/>)}
         </main>
       </div>
     );
@@ -169,9 +174,10 @@ const useStyles = makeStyles((theme) => ({
       user: state.user,
       isLogged: state.isLogged,
       currentWork: state.currentWork,
-      messages: state.messages
+      messages: state.messages,
+      selectedUser: state.selectedUser
     };
   };
   
-  export default connect(mapStateToProps, { getMessages, removeSelWork })(MessageView);
+  export default connect(mapStateToProps, { getMessages, removeSelWork, getUser })(MessageView);
   
