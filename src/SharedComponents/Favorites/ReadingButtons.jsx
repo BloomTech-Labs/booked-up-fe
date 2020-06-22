@@ -9,7 +9,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Modal from '@material-ui/core/Modal';
 import Popper from '@material-ui/core/Popper';
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { setWork } from "../../actions/authorAction";
+import { setWork, taskStart } from "../../actions/authorAction";
 import { connect } from "react-redux";
 import { removeContent } from "../../actions/fanAction";
 
@@ -37,13 +37,7 @@ function ReadingButtons(props) {
       window.location.replace(`/dashboard/book`)
     };
   
-  const handleRemove = () => {
-    let data = {
-      id: props.user.id,
-      contentId: props.work.id
-    }
-    props.removeContent(data)
-    }
+  
   const classes = useStyles();
   return (
     <>
@@ -55,7 +49,7 @@ function ReadingButtons(props) {
       </Tooltip>
       <Tooltip
           title="Remove Book"
-          onClick={handleRemove}
+          onClick={() => (props.setWork(props.work), props.handleRemOpen())}
         >
           <IconButton className={classes.button}>
             <DeleteForeverOutlinedIcon />
@@ -75,4 +69,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setWork, removeContent })(ReadingButtons);
+export default connect(mapStateToProps, { setWork, removeContent, taskStart })(ReadingButtons);

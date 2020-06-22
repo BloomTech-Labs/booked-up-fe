@@ -142,6 +142,7 @@ function reducer(state = initialState, action) {
     case REMOVE_CONTENT: {
       return {
         ...state,
+        isLoading: false,
         contentLibrary: state.contentLibrary.filter((work) => {
           return work.id !== action.payload
         })
@@ -156,6 +157,7 @@ function reducer(state = initialState, action) {
     case DEL_WORK : {
       return {
         ...state,
+        isLoading: false,
         authorContent: state.authorContent.filter((work) => {
           return work.id !== action.payload
         })

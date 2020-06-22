@@ -71,7 +71,7 @@ export default function GridDisplay(props) {
             <div style={imageSet(work)} className={classes.placeholderImage}>
               <div className={classes.authorOverlay}>{work.title}</div>
             </div>
-            <ReadingButtons work={work} />
+            <ReadingButtons work={work} handleRemOpen={props.handleRemOpen}/>
           </Grid>
       ))}
     </Grid>
