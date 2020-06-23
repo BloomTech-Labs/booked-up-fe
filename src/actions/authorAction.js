@@ -153,7 +153,7 @@ export const delContent = (work) => dispatch => {
         .then(res => {
           dispatch({
             type: DEL_WORK,
-            payload: work.id
+            payload: work.author_content_id
           })
           console.log(res)
           window.location.reload();
