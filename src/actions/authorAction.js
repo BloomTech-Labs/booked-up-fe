@@ -149,7 +149,7 @@ export const setWork = data => dispatch => {
 export const delContent = (work) => dispatch => {
   console.log(work)
   axiosWithAuth()
-    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}/${work.img_public_id}`)
+    .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.author_content_id}/${work.public_id}/${work.img_public_id}`)
         .then(res => {
           dispatch({
             type: DEL_WORK,
