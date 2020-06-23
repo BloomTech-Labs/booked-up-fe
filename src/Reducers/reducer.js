@@ -159,7 +159,7 @@ function reducer(state = initialState, action) {
         ...state,
         isLoading: false,
         contentLibrary: state.contentLibrary.filter((work) => {
-          return work.id !== action.payload
+          return work.author_content_id !== action.payload
         })
       }
     }

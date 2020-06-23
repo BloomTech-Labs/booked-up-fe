@@ -32,14 +32,16 @@ function OpenWorkModal(props) {
   const [fav, setFav] = useState(false)
     const handleFavClick = () => {
       let user = props.user.id
-      let work = props.work.id
+      let work = props.work.author_content_id
       props.setContent(user, work)
       setFav(true)
     }
 
     useEffect(() => {
+      console.log(props.work.author_content_id)
       props.contentLibrary.map(cl => {
-        if(cl.id == props.work.id) (
+        console.log(cl.id)
+        if(cl.id == props.work.author_content_id) (
           setFav(true)
         )
       })
