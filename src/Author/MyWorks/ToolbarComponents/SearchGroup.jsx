@@ -13,21 +13,31 @@ const useStyles = makeStyles(theme => ({
   searchBar: {
     marginLeft: "10px",
     marginBottom: "5px"
+  },
+  button: {
+    backgroundColor: theme.palette.secondary.light,
+    border: "none"
   }
 }));
 
-const SearchGroup = () => {
+const SearchGroup = (props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.searchGroup}>
-      <SearchOutlinedIcon />
+    <div >
+      <form onSubmit={props.handleSubmit} className={classes.searchGroup}>
+        <button type="submit" className={classes.button} onClick={props.handleSubmit}><SearchOutlinedIcon /></button>
+      
       <TextField
         id="search"
         className={classes.searchBar}
         label="Search"
+        type="search"
+        value={props.value}
         data-testid="work-search"
+        onChange={props.handleSearch}
       />
+      </form>
     </div>
   );
 };

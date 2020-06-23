@@ -5,10 +5,12 @@ import {
   USER_LOGOUT
 } from "../actions/authenticationAction";
 
+
 import { GET_USERS, SET_ADMIN, ADMIN_DEL_USER } from "../actions/adminAction";
-import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
-import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
-import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
+import { EDIT_USER, EDIT_EMAIL, DELETE_USER, REM_SEL_WORK } from "../actions/userAction";
+import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES, EDIT_CONTENT, REMOVE_DATA } from "../actions/authorAction";
+import { SET_CONTENT, ADD_COMMENT, REMOVE_CONTENT } from "../actions/fanAction"
+import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
 
 
 const initialState = {
@@ -35,7 +37,8 @@ const initialState = {
   userAccounts: [],
   messages: [],
   comments: [],
-  currentWork: {}
+  currentWork: {},
+  selectedUser: {}
 };
 
 function reducer(state = initialState, action) {
@@ -75,6 +78,15 @@ function reducer(state = initialState, action) {
         isLogged: false
       };
     }
+    
+    case SEND_MESSAGE: {
+      return {
+        ...state,
+        isLoading: false,
+        currentWork: {},
+        selectedUser: {}
+      };
+    }
 
     case SET_ADMIN: {
       return { ...state, isAdmin: action.payload.data };
@@ -97,6 +109,12 @@ function reducer(state = initialState, action) {
       return {...state, userAccounts: action.payload}
     }
 
+    case GET_USER: {
+      return {
+        ...state,
+        selectedUser: action.payload
+      }
+    }
     case TASK_START: {
       return {
         ...state,
@@ -104,7 +122,12 @@ function reducer(state = initialState, action) {
         isLoading: true
       }
     }
-
+    case GET_MESSAGES: {
+      return {
+        ...state,
+        messages: action.payload
+      }
+    }
     case UPLOAD_CONTENT: {
       return {
         ...state,
@@ -112,10 +135,34 @@ function reducer(state = initialState, action) {
         authorContent: [...state.authorContent, action.payload]
       };
     }
+    case REMOVE_DATA: {
+      return {
+        ...state,
+        authorContent: state.authorContent.filter((work) => {
+          return work.id !== action.payload
+        })
+      }
+    }
+    case EDIT_CONTENT: {
+      return {
+        ...state,
+        isLoading: false,
+        authorContent: [...state.authorContent, action.payload.content[0]]
+      }
+    }
     case SET_CONTENT: {
       return {
         ...state,
         contentLibrary: action.payload
+      }
+    }
+    case REMOVE_CONTENT: {
+      return {
+        ...state,
+        isLoading: false,
+        contentLibrary: state.contentLibrary.filter((work) => {
+          return work.author_content_id !== action.payload
+        })
       }
     }
     case ADD_COMMENT: {
@@ -127,11 +174,13 @@ function reducer(state = initialState, action) {
     case DEL_WORK : {
       return {
         ...state,
+        isLoading: false,
         authorContent: state.authorContent.filter((work) => {
-          return work.id !== action.payload
+          return work.author_content_id !== action.payload
         })
       }
     }
+
 
     case ADMIN_DEL_USER : {
       return {
@@ -139,6 +188,13 @@ function reducer(state = initialState, action) {
         userAccounts: state.userAccounts.filter((user) => {
            return user.id !== action.payload[0]
         })
+
+    case REM_SEL_WORK : {
+      return {
+        ...state,
+        currentWork: {},
+        selectedUser: {}
+
       }
     }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
 export default function MainPost(props) {
   const classes = useStyles();
   const { post } = props;
-
+  const scrollRef = useRef();
+  const scroll = () => scrollRef.current.scrollIntoView({ behavior: "smooth" })
   return (
     <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
       {/* Increase the priority of the hero background image */}
@@ -60,7 +61,7 @@ export default function MainPost(props) {
             <Typography variant="h6" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="#">
+            <Link variant="subtitle1" onClick={scroll} ref={scrollRef}>
               {post.linkText}
             </Link>
           </div>

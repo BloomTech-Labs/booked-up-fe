@@ -4,7 +4,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { getUser, sendMessage } from "../../actions/agentAction.js";
+import { taskStart } from "../../actions/authorAction.js";
 import { Button } from "@material-ui/core";
+import { ClipLoader } from "react-spinners";
+
 
 const useStyles = makeStyles((theme) => ({
     message: {
@@ -22,8 +25,11 @@ function MessageSend(props) {
     const [message, setMessage] = useState({subject: "", body: ""})
 
     useEffect(() => {
+        if(props.type === "reply") {
+            setMessage({...message, subject: props.currentWork.subject})
+        }
         console.log(props.currentWork)
-        props.getUser(props.currentWork.user_id)
+        props.getUser(props.currentWork.id)
     }, [])
 
     const handleChange = e => {
@@ -36,19 +42,35 @@ function MessageSend(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
+        props.taskStart();
         console.log(props.currentWork)
-        console.log(message)
-        let sendingMessage = {
-            subject: message.subject,
-            body: message.body,
-            sender_id: props.user.id,
-            recipient_id: props.currentWork.user_id
+        if(props.type === "reply") {
+            let sendingMessage = {
+                subject: message.subject,
+                body: message.body,
+                sender_id: props.user.id,
+                recipient_id: props.currentWork.user_id,
+                recipient: props.selectedUser.display_name,
+                linking_id: props.currentWork.id
+            }
+            console.log(sendingMessage)
+            props.sendMessage(sendingMessage)
+         } else {
+            let sendingMessage = {
+                subject: message.subject,
+                body: message.body,
+                sender_id: props.user.id,
+                recipient_id: props.currentWork.id,
+                recipient: props.selectedUser.display_name
+            }
+            console.log(sendingMessage)
+            props.sendMessage(sendingMessage)
         }
-        props.sendMessage(sendingMessage)
+        
     }
     return(
         <form onSubmit={handleSubmit}> 
-            <Typography variant="h4">Re: {props.currentWork.title}</Typography>
+            <Typography variant="h5">To: {props.selectedUser.display_name}</Typography>
             <TextField
           id="message-subject"
           variant="outlined"
@@ -67,7 +89,11 @@ function MessageSend(props) {
           className={classes.message}
           onChange={handleChange}
         />
-        <Button type="submit" className={classes.button}>Send</Button>
+        <div><Button type="submit" className={classes.button}>Send</Button>
+        {props.isLoading === true && (
+               <ClipLoader size={20} loading={props.isLoading} />
+              )}
+        </div>
         </form>
     )
 }
@@ -76,8 +102,11 @@ const mapStateToProps = state => {
     return {
       user: state.user,
       isLogged: state.isLogged,
+      selectedUser: state.selectedUser,
+      error: state.error,
+      isLoading: state.isLoading
     };
   };
   
-  export default connect(mapStateToProps, { getUser, sendMessage })(MessageSend);
+  export default connect(mapStateToProps, { getUser, sendMessage, taskStart })(MessageSend);
   

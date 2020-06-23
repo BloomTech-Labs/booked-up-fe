@@ -15,7 +15,9 @@ import Modal from "@material-ui/core/Modal";
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
-
+import ColumnDisplay from "../Favorites/ContentViews/ColumnDisplay.jsx";
+import { removeSelWork } from "../../actions/userAction";
+import { getUser } from "../../actions/agentAction";
 const useStyles = makeStyles(theme => ({
   searchContainer: {
     padding: "1%",
@@ -82,6 +84,16 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     border: "1px solid black"
   },
+  featuredPlaceholderImage: {
+    position: "relative",
+    backgroundSize: "100% 100%",
+    backgroundColor: "grey",
+    textAlign: "center",
+    color: "white",
+    height: "15em",
+    width: "100%",
+    border: "1px solid black"
+  },
   prev: {
     cursor: "pointer",
     position: "absolute",
@@ -129,14 +141,18 @@ function Browse(props) {
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
   const [filteredWork, setFilteredWork] = useState();
-
+  const [newWorks, setNewWorks] = useState([{}])
+  const [alphWorks, setAlphWorks] = useState([{}])
+  const [featWorks, setFeatWorks] = useState([{}])
   const [open, setOpen] = useState(false);
-
   // const handleOpen = () => {
   //   setOpen(true);
   // };
 
+  
+
   const handleClose = () => {
+    props.removeSelWork()
     setOpen(false);
   };
 
@@ -160,6 +176,9 @@ function Browse(props) {
       .then(res => {
         console.log(res);
         setWorks(res.data);
+        setNewWorks(res.data)
+        setAlphWorks(res.data)
+        setFeatWorks(res.data)
       })
       .catch(err => {
         console.log(err);
@@ -178,7 +197,13 @@ function Browse(props) {
     console.log(filter);
   };
 
+  const handleOpen = work => {
+    props.getUser(work.user_id);
+    setSelWork(work)
+    setOpen(true)
+  }
   const handleSubmit = e => {
+    
     e.preventDefault();
     setFilteredWork(
       works.filter(work => {
@@ -235,14 +260,14 @@ function Browse(props) {
         dots
         className={classes.featuredContainer}
       >
-        {works.map((cl, i) => (
+        {featWorks.sort((x, y) => .5 - Math.random()).slice(0,5).map((cl, i) => (
           <div
             key={i}
             style={imageSet(cl)}
-            className={classes.placeholderImage}
-            onClick={() => (setSelWork(cl), setOpen(true))}
+            className={classes.featuredPlaceholderImage}
+            onClick={() => handleOpen(cl)}
           >
-            <RenderWork cl={cl} i={i} />
+            <RenderWork cl={cl} i={i} feat={true}/>
           </div>
         ))}
       </Carousel>
@@ -263,19 +288,19 @@ function Browse(props) {
             addArrowClickHandler
             infinite
           >
-            {works.map((cl, i) => (
+            {newWorks.sort((x, y) => x.created_at < y.created_at ? 1 : -1).map((cl, i) => (
               <div
                 style={imageSet(cl)}
                 key={i}
                 className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
+                onClick={() => handleOpen(cl)}
               >
                 <RenderWork cl={cl} i={i} />
               </div>
             ))}
           </Carousel>
 
-          <h2 className={classes.title}>Most Popular</h2>
+          <h2 className={classes.title}>A-Z</h2>
 
           <Carousel
             className={classes.worksContainer}
@@ -289,12 +314,12 @@ function Browse(props) {
             addArrowClickHandler
             infinite
           >
-            {works.map((cl, i) => (
+            {alphWorks.sort((x, y) => x.title > y.title ? 1 : -1).map((cl, i) => (
               <div
                 key={i}
                 style={imageSet(cl)}
                 className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
+                onClick={() => handleOpen(cl)}
               >
                 <RenderWork cl={cl} i={i} />
               </div>
@@ -306,17 +331,7 @@ function Browse(props) {
       {filteredWork && (
         <div className={classes.resultsContainer}>
           <h2 className={classes.title}>Search Results</h2>
-          {filteredWork.map((cl, i) => (
-            <div key={i} className={classes.results}>
-              <div
-                style={imageSet(cl)}
-                className={classes.placeholderImage}
-                onClick={() => (setSelWork(cl), setOpen(true))}
-              >
-                <RenderWork cl={cl} i={i} />
-              </div>
-            </div>
-          ))}
+          <ColumnDisplay contentWorks={filteredWork} openButton={false} setSelWork={setSelWork} setOpen = {setOpen}/>
         </div>
       )}
       <Modal
@@ -342,4 +357,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(Browse);
+export default connect(mapStateToProps, { removeSelWork, getUser })(Browse);
