@@ -4,8 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
-import AddComment from "../Comments/AddComment.jsx";
-import CommentsView from "../Comments/CommentsView.jsx";
+import Button from "@material-ui/core/Button";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -21,6 +20,16 @@ const useStyles = makeStyles(theme => ({
   },
   pageContent: {
     width: "90em"
+  },
+  buttons: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: "25em",
+    marginTop: "3%"
+  },
+  button: {
+    height: "2.5em"
   }
 }));
 
@@ -34,13 +43,49 @@ function Workview(props) {
       numPages
     });
   };
+
+  const prevPage = () => {
+    setPages({
+      ...pages,
+      pageNum: pages.pageNum - 1
+    });
+  };
+
+  const nextPage = () => {
+    setPages({
+      ...pages,
+      pageNum: pages.pageNum + 1
+    });
+  };
   return (
     <div className={classes.paper}>
       <Typography variant="h5">{props.work.title}</Typography>
+      <p>{props.name}</p>
+      <div className={classes.buttons}>
+        {pages.pageNum != 1 ? (
+          <Button variant="contained" color="secondary" onClick={prevPage} className={classes.button}>
+            Previous
+          </Button>
+        ) : (
+          <Button variant="contained" color="secondary" disabled className={classes.button}>
+            Previous
+          </Button>
+        )}
 
-      <p>
-        Page {pages.pageNum} of {pages.numPages}
-      </p>
+        <p>
+          Page {pages.pageNum} of {pages.numPages}
+        </p>
+        {pages.pageNum != pages.numPages ? (
+          <Button variant="contained" color="secondary" onClick={nextPage} className={classes.button}>
+            Next
+          </Button>
+        ) : (
+          <Button variant="contained" color="secondary" disabled className={classes.button}>
+            Next
+          </Button>
+        )}
+      </div>
+
       <Document file={props.work.content_url} onLoadSuccess={loadSuccess}>
         <Page
           width={1400}
@@ -48,8 +93,6 @@ function Workview(props) {
           className={classes.pageContent}
         />
       </Document>
-      <AddComment />
-      <CommentsView />
     </div>
   );
 }
@@ -58,7 +101,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     isLogged: state.isLogged,
-    work: state.currentWork
+    work: state.currentWork,
+    name: state.selectedUser.display_name
   };
 };
 

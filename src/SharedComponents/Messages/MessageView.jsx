@@ -17,8 +17,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
 import MessageSend from './MessageSend.jsx';
+import { getMessages } from "../../actions/authorAction.js";
 
 import { connect } from "react-redux";
+import { removeSelWork } from "../../actions/userAction.js";
+import { getUser } from "../../actions/agentAction.js";
+import { Button } from "@material-ui/core";
+
 const drawerWidth = 165;
 
 const useStyles = makeStyles((theme) => ({
@@ -66,14 +71,31 @@ const useStyles = makeStyles((theme) => ({
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [availableMessages, setAvailableMessages] = useState([])
-    const [currentMessage, setCurrentMessage] = useState({body: ""})
+    const [currentMessage, setCurrentMessage] = useState({})
+    const [reply, setReply] = useState({})
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
     const handleOpen = (message) => {
+        console.log(message)
+        setReply({})
+        props.removeSelWork()
         setCurrentMessage(message)
+        props.getUser(message.sender_id)
     }
+
+    const handleReplyMessage = (message) => {
+      setReply({
+        subject: `Re: ${message.subject}`,
+        sender_id: props.user.id,
+        user_id: props.selectedUser.id,
+        recipient: props.selectedUser.display_name,
+        linking_id: message.id
+      })
+    };
+
     useEffect(() => {
+      props.getMessages(props.user.id)
         if(props.messages) (
             setAvailableMessages(props.messages)
         )
@@ -81,14 +103,15 @@ const useStyles = makeStyles((theme) => ({
             setAvailableMessages(["There are no current messages"])
         )
     }, [])
+
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
         <List>
           {availableMessages.map((text, index) => (
-            <ListItem button key={text} onClick={() => handleOpen(text)}>
-              <ListItemText primary={text} />
+            <ListItem button key={index} onClick={() => handleOpen(text)}>
+              <ListItemText primary={text.subject} />
             </ListItem>
           ))}
         </List>
@@ -149,9 +172,9 @@ const useStyles = makeStyles((theme) => ({
           </Hidden>
         </nav>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
-              {props.currentWork ? (<MessageSend currentWork={props.currentWork}/>
-              ) : (<MessageContent message = {currentMessage}/>)}
+          <div className={classes.toolbar} />         
+              {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
+              ) : reply.sender_id ? (<MessageSend currentWork={reply} type={"reply"}/>) : (<MessageContent message = {currentMessage} handleReplyMessage={handleReplyMessage} user={props.selectedUser}/>)}
         </main>
       </div>
     );
@@ -162,9 +185,11 @@ const useStyles = makeStyles((theme) => ({
     return {
       user: state.user,
       isLogged: state.isLogged,
-      currentWork: state.currentWork
+      currentWork: state.currentWork,
+      messages: state.messages,
+      selectedUser: state.selectedUser
     };
   };
   
-  export default connect(mapStateToProps, {})(MessageView);
+  export default connect(mapStateToProps, { getMessages, removeSelWork, getUser })(MessageView);
   

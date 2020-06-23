@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -117,14 +117,17 @@ const sidebar = {
 
 export default function HomePage(props) {
   const classes = useStyles();
+  
+
+  
   const { description, social, title } = sidebar;
   return (
     <Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <main className={classes.main}>
+        <main className={classes.main} >
           <MainPost post={mainPost} />
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" gutterBottom >
            
               </Typography>
           <Grid container spacing={4}>
@@ -135,7 +138,7 @@ export default function HomePage(props) {
 
           <Grid container spacing={5} className={classes.mainGrid} >
             <Grid item xs={10} md={6}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom >
                 Vision
               </Typography>
               <Divider />             
@@ -153,27 +156,15 @@ export default function HomePage(props) {
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Paper elevation={0} className={classes.sidebarAboutBox}>
+              <Paper elevation={0} className={classes.sidebarAboutBox} >
                 <Typography variant="h6" gutterBottom>
                   {title}
                 </Typography>
                 <Typography>{description}</Typography>
               </Paper>
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                Social
-             </Typography>
-              {social.map((network) => (
-                <Link display="block" variant="body1" href="#" color="secondary" key={network.id}>
-                  <Grid container direction="row" spacing={1} alignItems="center">
-                    <Grid item className={classes.social}>
-                      <network.icon />
-                    </Grid>
-                    <Grid item>{network.name}</Grid>
-                  </Grid>
-                </Link>
-              ))}
             </Grid>
           </Grid>
+          <div ></div>
         </main>
       </Container>
     </Fragment>

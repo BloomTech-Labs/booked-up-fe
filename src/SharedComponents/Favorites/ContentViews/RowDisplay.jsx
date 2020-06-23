@@ -75,7 +75,7 @@ export default function RowDisplay(props) {
             <div className={classes.title}>{work.title}</div>
             <div className={classes.genre}>{work.genre}</div>
             <div className={classes.description}>{work.description}</div>
-            <ReadingButtons book={work.content_url} />
+            <ReadingButtons book={work.content_url} handleRemOpen={props.handleRemOpen}/>
           </Grid>
       ))}
     </Grid>

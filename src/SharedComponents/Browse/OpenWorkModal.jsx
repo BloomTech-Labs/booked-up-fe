@@ -72,7 +72,17 @@ function OpenWorkModal(props) {
       <CardContent>
         <Grid container alignItems="center">
           <Grid item xs={6}>
-            <p>Author</p>
+  <p>by {props.selectedUser.display_name}</p>
+          </Grid>
+          <Grid item xs={6}>
+        {(props.user.userType === "agent") || (props.user.userType === "admin") ? (<Button
+            variant="contained"
+            color="secondary"
+            className={modalClasses.button}
+            onClick={handleSendMessage}
+          >
+            Message Author
+          </Button>) : null}
           </Grid>
           <Grid item xs={6}>
         <Button
@@ -115,7 +125,8 @@ const mapStateToProps = state => {
       user: state.user,
       isLogged: state.isLogged,
       currentWork: state.currentWork,
-      contentLibrary: state.contentLibrary
+      contentLibrary: state.contentLibrary,
+      selectedUser: state.selectedUser
     };
   };
   

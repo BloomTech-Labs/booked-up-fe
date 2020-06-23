@@ -47,7 +47,6 @@ export default function Footer(props) {
       <footer className={classes.footerContaier}>
         <Toolbar className={classes.toolBar}>
           <BottomNavigation showLabels className={classes.navContainer}>
-            <BottomNavigationAction label="Support" className={classes.nav} />;
             <BottomNavigationAction label="Browse" className={classes.nav} />
             <BottomNavigationAction label="Support" className={classes.nav} />
             <BottomNavigationAction

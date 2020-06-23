@@ -72,7 +72,7 @@ export default function GridDisplay(props) {
             {work.title}
             <div className={classes.authorOverlay}>{work.author}</div>
           </div>
-          <EditingButtons work={work} handleDelOpen={props.handleDelOpen} />
+          <EditingButtons work={work} handleEditOpen={props.handleEditOpen} handleDelOpen={props.handleDelOpen} />
         </Grid>
       ))}
     </Grid>

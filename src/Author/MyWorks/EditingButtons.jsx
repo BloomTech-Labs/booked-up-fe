@@ -40,7 +40,7 @@ function EditingButtons(props) {
             <ImportContactsOutlinedIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Edit Properties">
+        <Tooltip title="Edit Properties" onClick={() => (props.setWork(props.work), props.handleEditOpen())}>
           <IconButton className={classes.button}>
             <EditOutlinedIcon />
           </IconButton>

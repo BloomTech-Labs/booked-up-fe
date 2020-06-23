@@ -16,7 +16,7 @@ const FullToolbar = props => {
         works={props.works}
         applySortedData={props.applySortedData}
       />
-      <SearchGroup />
+      <SearchGroup handleSearch={props.handleSearch} handleSubmit={props.handleSubmit} value={props.value}/>
     </div>
   );
 };

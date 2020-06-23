@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const EDIT_USER = "EDIT_USER";
 export const DELETE_USER = "DELETE_USER";
 export const EDIT_EMAIL = "EDIT_EMAIL";
+export const REM_SEL_WORK = "REM_SEL_WORK"
 
 export const EditAccount = (data) => dispatch => {
 
@@ -55,3 +56,8 @@ export const EditEmail = (data) => dispatch => {
       })
       .catch(err => console.log(err.message));
 };
+
+export const removeSelWork = () => dispatch => {
+  dispatch({type: REM_SEL_WORK})
+}
+

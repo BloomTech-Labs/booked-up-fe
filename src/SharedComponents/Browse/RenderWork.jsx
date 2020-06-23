@@ -17,6 +17,21 @@ const useStyles = makeStyles(theme => ({
       border: "1px dashed white"
     }
   },
+  featWorks: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "black",
+    alignItems: "center",
+    border: "1px solid black",
+    width: "100%",
+    height: "15em",
+    opacity: "0",
+    "&:hover": {
+      transparency: "0%",
+      opacity: ".5",
+      border: "1px dashed white"
+    }
+  },
   work: {
     width: "90%",
     margin: "auto"
@@ -26,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 export const RenderWork = props => {
   const classes = useStyles();
   return (
-    <div key={props.i} className={classes.works}>
+    <div key={props.i} className={props.feat ? classes.featWorks : classes.works}>
       <p className={classes.work}>{props.cl.title}</p>
       <p className={classes.work}>{props.cl.description}</p>
       <p className={classes.work}>{props.cl.author}</p>
