@@ -188,7 +188,9 @@ function reducer(state = initialState, action) {
         userAccounts: state.userAccounts.filter((user) => {
            return user.id !== action.payload[0]
         })
-
+      }
+    }
+      
     case REM_SEL_WORK : {
       return {
         ...state,
