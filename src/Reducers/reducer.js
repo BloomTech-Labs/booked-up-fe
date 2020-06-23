@@ -5,11 +5,13 @@ import {
   USER_LOGOUT
 } from "../actions/authenticationAction";
 
-import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
+
+import { GET_USERS, SET_ADMIN, ADMIN_DEL_USER } from "../actions/adminAction";
 import { EDIT_USER, EDIT_EMAIL, DELETE_USER, REM_SEL_WORK } from "../actions/userAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES, EDIT_CONTENT, REMOVE_DATA } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT, REMOVE_CONTENT } from "../actions/fanAction"
 import { GET_USER, SEND_MESSAGE } from "../actions/agentAction";
+
 
 const initialState = {
   user: {
@@ -179,11 +181,20 @@ function reducer(state = initialState, action) {
       }
     }
 
+
+    case ADMIN_DEL_USER : {
+      return {
+        ...state, 
+        userAccounts: state.userAccounts.filter((user) => {
+           return user.id !== action.payload[0]
+        })
+
     case REM_SEL_WORK : {
       return {
         ...state,
         currentWork: {},
         selectedUser: {}
+
       }
     }
 
