@@ -14,6 +14,7 @@ function UploadModal(props) {
   const [work] = useState(props.work);
 
   const handleRemove = () => {
+    console.log(props.work)
     props.taskStart();
     let data = {
       id: props.user.id,
