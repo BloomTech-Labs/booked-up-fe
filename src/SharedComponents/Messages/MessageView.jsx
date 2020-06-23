@@ -172,8 +172,9 @@ const useStyles = makeStyles((theme) => ({
           </Hidden>
         </nav>
         <main className={classes.content}>
-          <div className={classes.toolbar} />         
-              {props.currentWork.id ? (<MessageSend currentWork={props.currentWork}/>
+          <div className={classes.toolbar} />
+          
+              {props.currentWork.author_content_id ? (<MessageSend currentWork={props.currentWork}/>
               ) : reply.sender_id ? (<MessageSend currentWork={reply} type={"reply"}/>) : (<MessageContent message = {currentMessage} handleReplyMessage={handleReplyMessage} user={props.selectedUser}/>)}
         </main>
       </div>

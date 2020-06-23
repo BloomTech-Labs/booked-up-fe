@@ -13,6 +13,7 @@ function UploadModal(props) {
   const [work] = useState(props.work);
 
   const onDel = e => {
+    console.log(work)
     props.taskStart();
     if(work.img_public_id) {
       props.delContent(work);

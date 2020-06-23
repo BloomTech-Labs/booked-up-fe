@@ -29,7 +29,7 @@ function MessageSend(props) {
             setMessage({...message, subject: props.currentWork.subject})
         }
         console.log(props.currentWork)
-        props.getUser(props.currentWork.user_id)
+        props.getUser(props.currentWork.id)
     }, [])
 
     const handleChange = e => {
@@ -43,6 +43,7 @@ function MessageSend(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.taskStart();
+        console.log(props.currentWork)
         if(props.type === "reply") {
             let sendingMessage = {
                 subject: message.subject,
@@ -59,7 +60,7 @@ function MessageSend(props) {
                 subject: message.subject,
                 body: message.body,
                 sender_id: props.user.id,
-                recipient_id: props.currentWork.user_id,
+                recipient_id: props.currentWork.id,
                 recipient: props.selectedUser.display_name
             }
             console.log(sendingMessage)

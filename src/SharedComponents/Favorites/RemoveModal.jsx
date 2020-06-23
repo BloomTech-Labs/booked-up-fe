@@ -17,7 +17,7 @@ function UploadModal(props) {
     props.taskStart();
     let data = {
       id: props.user.id,
-      contentId: props.work.id
+      contentId: props.work.author_content_id
     }
     props.removeContent(data)
     }
