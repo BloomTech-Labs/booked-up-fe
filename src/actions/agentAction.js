@@ -26,4 +26,3 @@ export const sendMessage = data => dispatch => {
       console.log(err)
     })
 }
-
