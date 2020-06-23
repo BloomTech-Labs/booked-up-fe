@@ -7,6 +7,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import _ from "lodash";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
@@ -28,7 +30,7 @@ export default function FilterDialog(props) {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [genre, setGenre] = useState([]);
+  const [localGenres, setLocalGenres] = useState([]);
 
   const classes = useStyles();
 
@@ -61,8 +63,12 @@ export default function FilterDialog(props) {
   const handleEndDateChange = e => {
     setDate(e.target.value);
   };
-  const handleGenreChange = e => {
-    setGenre(e);
+  const handleGenreChange = (e, values) => {
+    setLocalGenres(values);
+    console.log(
+      "NL: FilterDialog.jsx: handleGenreChange: genres: ",
+      localGenres
+    );
   };
 
   const handleFilterSubmit = () => {
@@ -78,14 +84,62 @@ export default function FilterDialog(props) {
     //     return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
     //   }
     // })
-    const localFilteredData = props.works.filter(work => {
-      return work.title.toLowerCase().includes(title.toLowerCase());
-    });
 
-    localFilteredData = localFilteredData.filter(work => {
-      return work.author.toLowerCase().includes(author.toLowerCase());
-    });
-    props.applySortedData(authorFilteredData);
+    let localFilteredData = [];
+    let tempFilteredData = [];
+    if (title !== undefined && title !== "") {
+      console.log(
+        "NL: FilterDialog.jsx: handleFilterSubmit: Inside title if(): "
+      );
+      localFilteredData = props.works.filter(work => {
+        return work.title.toLowerCase().includes(title.toLowerCase());
+      });
+    }
+
+    if (author !== undefined && author !== "") {
+      console.log(
+        "NL: FilterDialog.jsx: handleFilterSubmit: Inside author if(): "
+      );
+      localFilteredData = props.works.filter(work => {
+        console.log(work.firstName, " ", work.lastName);
+        return (
+          work.firstName.toLowerCase().includes(author.toLowerCase()) ||
+          work.lastName.toLowerCase().includes(author.toLowerCase())
+        );
+      });
+    }
+
+    // This is very ugly right now, I don't want to even look at it,
+    // but I ran out of time
+    for (let i = 0; i < props.works.length; ++i) {
+      if (
+        props.works[i].genres !== undefined ||
+        props.works[i].genres.length !== 0
+      ) {
+        for (let j = 0; j < props.works[i].genres.length; ++j) {
+          if (localGenres !== undefined) {
+            for (let k = 0; k < localGenres.length; ++k) {
+              if (
+                props.works[i].genres[j].toLowerCase() ===
+                localGenres[k].FriendlyName.toLowerCase()
+              ) {
+                localFilteredData = [...localFilteredData, props.works[i]];
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Get distinct objects
+    const uniqueSet = new Set(localFilteredData);
+    const backToArray = [...uniqueSet];
+
+    console.log(
+      "NL: FilterDialog.jsx: handleFilterSubmit: localFilteredData: ",
+      uniqueSet
+    );
+    props.applySortedData(backToArray);
   };
 
   return (
