@@ -174,7 +174,7 @@ function reducer(state = initialState, action) {
         ...state,
         isLoading: false,
         authorContent: state.authorContent.filter((work) => {
-          return work.id !== action.payload
+          return work.author_content_id !== action.payload
         })
       }
     }
