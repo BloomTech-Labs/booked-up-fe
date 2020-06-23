@@ -5,7 +5,7 @@ import {
   USER_LOGOUT
 } from "../actions/authenticationAction";
 
-import { GET_USERS, SET_ADMIN } from "../actions/adminAction";
+import { GET_USERS, SET_ADMIN, ADMIN_DEL_USER } from "../actions/adminAction";
 import { EDIT_USER, EDIT_EMAIL, DELETE_USER } from "../actions/userAction";
 import { UPLOAD_CONTENT, SET_WORK, TASK_START, TASK_FAIL, DEL_WORK, GET_MESSAGES } from "../actions/authorAction";
 import { SET_CONTENT, ADD_COMMENT } from "../actions/fanAction"
@@ -132,6 +132,16 @@ function reducer(state = initialState, action) {
         })
       }
     }
+
+    case ADMIN_DEL_USER : {
+      return {
+        ...state, 
+        userAccounts: state.userAccounts.filter((user) => {
+           return user.id !== action.payload[0]
+        })
+      }
+    }
+
     case TASK_FAIL: {
       return {
         ...state,

@@ -12,7 +12,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import { connect } from "react-redux";
+import { AdminDeleteUser } from "../actions/adminAction";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -59,26 +60,30 @@ const useStyles = makeStyles(theme => ({
 function UsersDisplay(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [AdminUserDelete, setAdminUserDelete] = useState({
+    ...props.user
+  })
+  const [curentUser, setCurentUser ] = useState()
 
   let userArray = [];
   props.userAccounts.map(user => {
     return (userArray = [...userArray, Object.values(user)]);
   });
-  /*
-  const handleClick = () => {
-    props.setWork(props.work);
-    window.location.replace(`/dashboard/book`);
-  };
-  */
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (user) => {
     setOpen(true);
+    setCurentUser(user)
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const onSubmit = (user) => {
+    console.log(user)
+    props.AdminDeleteUser(user)
+  }
+  
   console.log(userArray);
 
   return (
@@ -99,7 +104,7 @@ function UsersDisplay(props) {
               </Tooltip>
               <Tooltip
                 title="Delete User Account"
-                onClick={handleClickOpen}
+                onClick={() => handleClickOpen(user)}
               >
                 <Button
                   variant="contained"
@@ -126,7 +131,8 @@ function UsersDisplay(props) {
                   <Button onClick={handleClose} color="secondary">
                     No
                   </Button>
-                  <Button onClick={() => {
+                  <Button onClick={() => { 
+                 onSubmit(curentUser); 
                   }} color="secondary" autoFocus>
                     Yes
                   </Button>
@@ -140,4 +146,14 @@ function UsersDisplay(props) {
   );
 };
 
-export default UsersDisplay;
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isLogged: state.isLogged,
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  {AdminDeleteUser}
+)(UsersDisplay)
