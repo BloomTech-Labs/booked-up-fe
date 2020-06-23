@@ -84,27 +84,20 @@ export default function FilterDialog(props) {
     //     return work[`${filter}`].toLowerCase().includes(value.toLowerCase());
     //   }
     // })
-
+    console.log(props.works);
     let localFilteredData = [];
-    let tempFilteredData = [];
     if (title !== undefined && title !== "") {
-      console.log(
-        "NL: FilterDialog.jsx: handleFilterSubmit: Inside title if(): "
-      );
       localFilteredData = props.works.filter(work => {
         return work.title.toLowerCase().includes(title.toLowerCase());
       });
     }
 
     if (author !== undefined && author !== "") {
-      console.log(
-        "NL: FilterDialog.jsx: handleFilterSubmit: Inside author if(): "
-      );
-      localFilteredData = props.works.filter(work => {
-        console.log(work.firstName, " ", work.lastName);
+      localFilteredData = localFilteredData.filter(work => {
+        console.log(work.first_name, " ", work.last_name);
         return (
-          work.firstName.toLowerCase().includes(author.toLowerCase()) ||
-          work.lastName.toLowerCase().includes(author.toLowerCase())
+          work.first_name.toLowerCase().includes(author.toLowerCase()) ||
+          work.last_name.toLowerCase().includes(author.toLowerCase())
         );
       });
     }
@@ -131,13 +124,13 @@ export default function FilterDialog(props) {
       }
     }
 
-    // Get distinct objects
+    // Get distinct objects.
     const uniqueSet = new Set(localFilteredData);
     const backToArray = [...uniqueSet];
 
     console.log(
       "NL: FilterDialog.jsx: handleFilterSubmit: localFilteredData: ",
-      uniqueSet
+      backToArray
     );
     props.applySortedData(backToArray);
   };

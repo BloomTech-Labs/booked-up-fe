@@ -23,7 +23,7 @@ function MyWorks(props) {
   const [isFull, setIsFull] = useState(true);
 
   const applySortedData = data => {
-    if (data.length === 0 || data === undefined) {
+    if (data === undefined) {
       setIsFull(true);
     } else {
       setIsFull(false);
