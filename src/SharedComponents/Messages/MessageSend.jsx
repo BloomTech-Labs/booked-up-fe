@@ -59,7 +59,7 @@ function MessageSend(props) {
                 subject: message.subject,
                 body: message.body,
                 sender_id: props.user.id,
-                recipient_id: props.currentWork.id,
+                recipient_id: props.currentWork.user_id,
                 recipient: props.selectedUser.display_name
             }
             console.log(sendingMessage)
