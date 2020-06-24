@@ -8,7 +8,7 @@ export const getUser = data => dispatch => {
     .get(`https://bookedup-pt9.herokuapp.com/api/users/${data}`)
     .then(res => {
       console.log(res)
-      dispatch({type: GET_USER, payload: res.data.user})
+      dispatch({type: GET_USER, payload: res.data.User})
     })
     .catch(err => {
       console.log(err.message)
