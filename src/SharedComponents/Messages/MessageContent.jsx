@@ -27,7 +27,7 @@ export default function MessageContent(props) {
         <>
         {props.message.subject && (<div className={classes.headContainer}>
         <Typography variant="h5" >
-              From: {props.user.display_name}
+              
             </Typography>
         <Typography variant="h5">Subject: {props.message.subject}</Typography>
         <Button variant="contained"
