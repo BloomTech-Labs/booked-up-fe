@@ -9,6 +9,10 @@ Code Climate Badge
 
 You can find the deployed project at [BookedUp.net](https://bookedup.net).
 
+## Documentation
+
+See [Backend Documentation](https://github.com/Lambda-School-Labs/booked-up-be/blob/master/README.md) for details on the backend of our project.
+
 ## Contributors
 
 
@@ -136,6 +140,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
-## Documentation
 
-See [Backend Documentation](https://github.com/Lambda-School-Labs/booked-up-be/blob/master/README.md) for details on the backend of our project.
