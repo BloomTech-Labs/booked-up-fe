@@ -96,6 +96,7 @@ Cloudinary is an image management platform that uses REST API and has multiple i
 
 -   Fork and Clone
 -   run NPM install for required dependencies
+-   Currently runs on production database
 
 ## Other Scripts
 
