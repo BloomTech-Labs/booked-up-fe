@@ -4,8 +4,7 @@ Code Climate Badge
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7102654cee73af9a6e2/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/booked-up-fe/maintainability)
 
-
-#  Booked Up
+# Booked Up
 
 You can find the deployed project at [BookedUp.net](https://bookedup.net).
 
@@ -16,48 +15,44 @@ See [Backend Documentation](https://github.com/Lambda-School-Labs/booked-up-be/b
 ## Contributors
 
 
-|                                       [Christian Auld](https://github.com/)                                        |                                       [Daniel Cruz](https://github.com/)                                        |                                       [Mohammad Shafi Masoumi](https://github.com/)                                        |                                       [Derek Glynn](https://github.com/wolfwood87)                                        |                                       [Nathan Loveless](https://github.com/)                                        |
+|                                       [Christian Auld](https://github.com/cauld19)                                        |                                       [Daniel Cruz](https://github.com/)                                        |                                       [Mohammad Shafi Masoumi](https://github.com/)                                        |                                       [Derek Glynn](https://github.com/wolfwood87)                                        |                                       [Nathan Loveless](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars0.githubusercontent.com/u/52811884?s=400&u=926f9ebd56b68e5be070d94be4199b4afa4a9dbe&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars3.githubusercontent.com/u/48306976?s=460&u=f8746fdb660c8f2aea575bd6995e48e2a534f477&v=4" width = "200" />](https://github.com/wolfwood87)                       |                      [<img src="https://avatars2.githubusercontent.com/u/51862134?s=400&u=8fafe29cd257fef63b7b0f3d1682e6eea17f1bec&v=4" width = "200" />](https://github.com/)                       |
+|                      [<img src="https://avatars1.githubusercontent.com/u/50849710?s=400&u=5b809cdc42daa555eb49b00ace39bbb5bcaa6dd7&v=4" width = "200" />](https://github.com/cauld19)                       |                      [<img src="https://avatars0.githubusercontent.com/u/52811884?s=400&u=926f9ebd56b68e5be070d94be4199b4afa4a9dbe&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars3.githubusercontent.com/u/48306976?s=460&u=f8746fdb660c8f2aea575bd6995e48e2a534f477&v=4" width = "200" />](https://github.com/wolfwood87)                       |                      [<img src="https://avatars2.githubusercontent.com/u/51862134?s=400&u=8fafe29cd257fef63b7b0f3d1682e6eea17f1bec&v=4" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/danielcruz1)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wolfwood87)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/nathan-loveless)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danielpcruz) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/derek-glynn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nathanloveless/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/christian-auld) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danielpcruz) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/derek-glynn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nathanloveless/) |
 
 <br>
 <br>
-
-
-
-
-
 
 ## Project Overview
 
- Labs PT9 [Trello Board](https://trello.com/b/wIkEvDjX/labspt9-booked-up)
+Labs PT9 [Trello Board](https://trello.com/b/wIkEvDjX/labspt9-booked-up)
 
- [Product Canvas](https://www.notion.so/Vision-Problem-Objectives-fe806f460861498d92169d4a28a8cbe6)
+[Product Canvas](https://www.notion.so/Vision-Problem-Objectives-fe806f460861498d92169d4a28a8cbe6)
 
 Booked up is an easy and user-friendly place for agents and authors to connect - a way for authors to post their work, a way for literary agents to leave feedback, and a one-stop location for all things connected to submitting, reviewing and communicating about written works from new authors to agents.
 
+### Key Features
 
-###  Key Features
+- Cloudinary image and pdf upload
+- Convenient access to authors works
+- Ability to favorite works
+- Easy and anonymous connections between author and agent
 
--    Cloudinary image and pdf upload
--    Convenient access to authors works
--    Ability to favorite works
--    Easy and anonymous connections between author and agent
-
-##  Tech Stack
+## Tech Stack
 
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 ### Front end built using:
 
 #### ReactJS
 
 We chose this framework because
--   Familiar with React
--   Component system makes maintenance and debugging easier
--   Very active library community
+
+- Familiar with React
+- Component system makes maintenance and debugging easier
+- Very active library community
 
 #### axios
 
@@ -73,33 +68,29 @@ We chose this framework because
 
 #### [Back end](https://github.com/Lambda-School-Labs/booked-up-be) built using:
 
-
--    Node.js
--    Postgresql
--    Express
-
-
+- Node.js
+- Postgresql
+- Express
 
 # APIs
 
-##  Cloudinary
+## Cloudinary
 
 Cloudinary is an image management platform that uses REST API and has multiple integration options. Cloudinary can be managed both from the front end and/or the backend. Uploading is done through HTTPS.
 
-
-#  Testing
+# Testing
 
 ## Jest
+
     -   Jest is a JavaScript Testing Framework with a focus on simplicity. It works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!
 
-#  Installation Instructions
+# Installation Instructions
 
--   Fork and Clone
--   run NPM install for required dependencies
--   Currently runs on production database
+- Fork and Clone
+- run NPM install for required dependencies
+- Currently runs on production database
 
 ## Other Scripts
-
 
     * build - creates a build of the application
     * start - starts the production server after a build is created
@@ -112,12 +103,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -140,5 +132,3 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
-
-
