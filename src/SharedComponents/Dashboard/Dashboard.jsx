@@ -43,16 +43,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
     marginTop: "5em",
+    marginBottom: "5em",
     backgroundColor: theme.palette.secondary.main
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
@@ -85,11 +86,15 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   content: {
-    marginTop: "3%",
+    marginTop: "25%",
     width: "80%",
-    marginLeft: "15%",
     marginBottom: "15%",
-    minHeight: "30em"
+    minHeight: "30em",
+    flexGrow: 1,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: "17vw",
+      marginTop: "3%"
+    },
   },
   listItem: {
     color: "white"
@@ -199,7 +204,7 @@ function Dashboard(props) {
   return (
     <div className={classes.container}>
         <CssBaseline />
-        <Hidden smUp implementation="css">
+        <Hidden mdUp implementation="css">
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <IconButton
@@ -215,7 +220,7 @@ function Dashboard(props) {
         </AppBar>
         </Hidden>
         <nav className={classes.drawer} aria-label="mailbox folders">
-          <Hidden smUp implementation="css">
+          <Hidden mdUp implementation="css">
             <Drawer
               container={container}
               variant="temporary"
@@ -232,7 +237,7 @@ function Dashboard(props) {
               {dashboardDrawer}
             </Drawer>
           </Hidden>
-          <Hidden xsDown implementation="css">
+          <Hidden smDown implementation="css">
             <Drawer
               classes={{
                 paper: classes.drawerPaper,
