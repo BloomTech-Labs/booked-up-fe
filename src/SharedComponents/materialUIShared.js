@@ -9,7 +9,7 @@ export const sharedToolbarStyles = makeStyles(theme => ({
     marginRight: "auto",
     marginTop: "2px",
     marginBottom: "2px",
-    width: "80vw",
+    width: "95%",
     border: `2px solid ${theme.palette.secondary.dark}`,
     borderRadius: "10px"
   }
