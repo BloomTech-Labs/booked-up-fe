@@ -15,10 +15,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     backgroundColor: theme.palette.secondary.light,
     margin: theme.spacing(2, 0),
-    marginLeft: "2px",
-    marginRight: "2px",
-    marginTop: "2px",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginBottom: "2px",
+    width: "90%",
     border: `2px solid ${theme.palette.secondary.dark}`,
     borderRadius: "10px"
   },

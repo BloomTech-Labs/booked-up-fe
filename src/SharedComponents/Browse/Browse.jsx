@@ -8,7 +8,7 @@ import {
   MenuItem,
   FormControl
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import Modal from "@material-ui/core/Modal";
@@ -136,6 +136,7 @@ const useStyles = makeStyles(theme => ({
 
 function Browse(props) {
   const classes = useStyles();
+  const theme = useTheme();
   const [works, setWorks] = useState([{}]);
   const [selWork, setSelWork] = useState({});
   const [filter, setFilter] = useState("all");
@@ -170,6 +171,7 @@ function Browse(props) {
   }
 
   useEffect(() => {
+    console.log(theme.breakpoints)
     console.log(props.contentLibrary)
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
@@ -251,7 +253,6 @@ function Browse(props) {
         </Button>
       </div>
       <h2 className={classes.title}>Featured</h2>
-
       <Carousel
         autoPlay={10000}
         animationSpeed={2000}
@@ -279,6 +280,16 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
+            breakpoints={{
+              600: {
+                slidesPerPage: 1,
+                arrows: false
+              },
+              960: {
+                slidesPerPage: 3,
+                arrows: false
+              }
+            }}
             arrowLeft={
               <button className={classes.prev} data-testid="new-left">
                 &#10094;
@@ -305,6 +316,16 @@ function Browse(props) {
           <Carousel
             className={classes.worksContainer}
             slidesPerPage={5}
+            breakpoints={{
+              600: {
+                slidesPerPage: 1,
+                arrows: false
+              },
+              960: {
+                slidesPerPage: 3,
+                arrows: false
+              }
+            }}
             arrowLeft={<button className={classes.prev}>&#10094;</button>}
             arrowRight={
               <button className={classes.next} data-testid="pop-right">

@@ -86,14 +86,18 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   content: {
-    marginTop: "25%",
+    marginTop: "17vw",
     width: "80%",
-    marginBottom: "15%",
+    marginBottom: "50%",
     minHeight: "30em",
     flexGrow: 1,
     [theme.breakpoints.up('md')]: {
       marginLeft: "17vw",
+      marginBottom: "35%",
       marginTop: "3%"
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginBottom: "24%",
     },
   },
   listItem: {
