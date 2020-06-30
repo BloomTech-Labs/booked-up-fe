@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+//redux imports
+import { connect } from "react-redux";
+//component imports
+import RemoveModal from "./RemoveModal.jsx";
 import ContentViewGroup from "../../Author/MyWorks/ToolbarComponents/ContentViewGroup";
 import SortFilterGroup from "../../Author/MyWorks/ToolbarComponents/SortFilterGroup";
 import SearchGroup from "../../Author/MyWorks/ToolbarComponents/SearchGroup";
 import GridDisplay from "./ContentViews/GridDisplay";
 import RowDisplay from "./ContentViews/RowDisplay";
 import ColumnDisplay from "./ContentViews/ColumnDisplay";
-import { connect } from "react-redux";
-import RemoveModal from "./RemoveModal.jsx";
-import Modal from "@material-ui/core/Modal";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   toolbar: {
     display: "flex",
@@ -35,16 +39,15 @@ function Favorites(props) {
   const [remOpen, setRemOpen] = useState(false);
   const [filteredWork, setFilteredWork] = useState();
   const [value, setValue] = useState("");
-
+  
   const handleSearch = e => {
     e.preventDefault();
     setValue(e.target.value);
-    console.log(value);
   };
+
   const handleSubmit = e => {
-    console.log(value)
+    //search goes through favorites and find works that match
     e.preventDefault();
-    console.log(props.contentLibrary)
     setFilteredWork(
       props.contentLibrary.filter(work => {
             return (work.title.toLowerCase().includes(value.toLowerCase()) ||
@@ -52,7 +55,6 @@ function Favorites(props) {
             // work.Genres.toLowerCase().includes(value.toLowerCase())
             // work.author.toLowerCase().includes(value.toLowerCase())
       }))
-    console.log(filteredWork);
   };
 
   const applySortedData = data => {
@@ -72,6 +74,7 @@ function Favorites(props) {
     setRemOpen(false);
   };
   return (
+    /*Displays works saved to favorites with toolbar that sorts and an option to read or remove from favorites */
     <>
       <div className={classes.toolbar} data-testid="toolbar">
         <ContentViewGroup works={props.works} setView={setView} />

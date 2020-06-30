@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import Modal from '@material-ui/core/Modal';
-import Popper from '@material-ui/core/Popper';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+//redux and action imports
 import { setWork, taskStart } from "../../actions/authorAction";
 import { connect } from "react-redux";
 import { removeContent } from "../../actions/fanAction";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
     display: "flex",
@@ -40,6 +39,7 @@ function ReadingButtons(props) {
   
   const classes = useStyles();
   return (
+    /*You can open the book which directs to workview component,  or remove book from favorites which opens the removemodal */
     <>
     <ButtonGroup className={classes.buttonGroup}>
       <Tooltip title="Open Book" onClick={handleClick}>

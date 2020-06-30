@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
+//material ui imports
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MessageContent from "./MessageContent.jsx";
 import MessageSend from './MessageSend.jsx';
+//redux and action imports
 import { getMessages } from "../../actions/authorAction.js";
-
 import { connect } from "react-redux";
 import { removeSelWork } from "../../actions/userAction.js";
 import { getUser } from "../../actions/agentAction.js";
-import { Button } from "@material-ui/core";
 
+//component styles
 const drawerWidth = 165;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
       minHeight: '58em'
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: drawerWidth,
         flexShrink: 0,
       },
     },
     appBar: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
       },
@@ -47,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
       marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         display: 'none',
       },
     },
@@ -73,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
     const [availableMessages, setAvailableMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState({})
     const [reply, setReply] = useState({})
+    //opens drawer for mobile view of messages
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
@@ -102,8 +101,9 @@ const useStyles = makeStyles((theme) => ({
         else (
             setAvailableMessages(["There are no current messages"])
         )
-    }, [])
+    }, [props.messages])
 
+    //the different message subjects in the drawer. Displays differently when in tablet or mobile view.
     const drawer = (
       <div>
         <div className={classes.toolbar} />
@@ -123,6 +123,7 @@ const useStyles = makeStyles((theme) => ({
   
     return (
       <div className={classes.root}>
+        {/* Mobile drawer for opening available messages */}
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
@@ -140,9 +141,9 @@ const useStyles = makeStyles((theme) => ({
             </Typography>
           </Toolbar>
         </AppBar>
-        <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
+        <nav className={classes.drawer} aria-label="messages sent/received">
+          {/* Desktop messages */}
+          <Hidden mdUp implementation="css">
             <Drawer
               container={container}
               variant="temporary"
@@ -159,7 +160,8 @@ const useStyles = makeStyles((theme) => ({
               {drawer}
             </Drawer>
           </Hidden>
-          <Hidden xsDown implementation="css">
+          {/* Mobile messages */}
+          <Hidden smDown implementation="css">
             <Drawer
               classes={{
                 paper: classes.drawerPaper,

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
+//material ui imports
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from "@material-ui/core";
+//redux and action imports
 import { connect } from "react-redux";
 import { getUser, sendMessage } from "../../actions/agentAction.js";
 import { taskStart } from "../../actions/authorAction.js";
-import { Button } from "@material-ui/core";
+//loading spinner import
 import { ClipLoader } from "react-spinners";
 
-
+//component styles
 const useStyles = makeStyles((theme) => ({
     message: {
         width: "100%", 
@@ -24,11 +27,11 @@ function MessageSend(props) {
     const [user, setUser] = useState({})
     const [message, setMessage] = useState({subject: "", body: ""})
 
+    /*checks if message being sent is a reply and if so sets the current subject to the current work so subject displays as Re: MessageSubject*/
     useEffect(() => {
         if(props.type === "reply") {
             setMessage({...message, subject: props.currentWork.subject})
         }
-        console.log(props.currentWork)
         props.getUser(props.currentWork.id)
     }, [])
 
@@ -52,6 +55,7 @@ function MessageSend(props) {
                 recipient_id: props.currentWork.user_id,
                 recipient: props.selectedUser.display_name,
                 linking_id: props.currentWork.id
+                //linkingid meant to allow for conversation threads
             }
             console.log(sendingMessage)
             props.sendMessage(sendingMessage)

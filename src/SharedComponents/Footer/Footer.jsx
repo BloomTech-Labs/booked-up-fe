@@ -1,8 +1,10 @@
 import React from "react";
+//material ui imports
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   footerContainer: {
     marginBottom: 0,

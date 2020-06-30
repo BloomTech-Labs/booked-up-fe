@@ -214,6 +214,7 @@ function Dashboard(props) {
 
   return (
     <div className={classes.container}>
+        {/* Mobile drawer for opening dashboard */}
         <CssBaseline />
         <Hidden mdUp implementation="css">
         <AppBar position="fixed" className={classes.appBar}>
@@ -230,7 +231,8 @@ function Dashboard(props) {
           </Toolbar>
         </AppBar>
         </Hidden>
-        <nav className={classes.drawer} aria-label="mailbox folders">
+        <nav className={classes.drawer} aria-label="dashboard-options">
+        {/* Desktop dashboard */}
           <Hidden mdUp implementation="css">
             <Drawer
               container={container}
@@ -248,6 +250,7 @@ function Dashboard(props) {
               {dashboardDrawer}
             </Drawer>
           </Hidden>
+          {/* Mobile dashboard */}
           <Hidden smDown implementation="css">
             <Drawer
               classes={{
