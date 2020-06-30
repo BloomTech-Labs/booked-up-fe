@@ -12,6 +12,7 @@ export const GET_MESSAGES = "GET_MESSAGES"
 export const REMOVE_DATA = "REMOVE_DATA"
 
 export const taskStart = () => dispatch => {
+  //sets state to loading for spinners
   dispatch({
     type: TASK_START
   })
@@ -25,6 +26,7 @@ export const uploadContent = (
     uploadWork,
     work
   ) => dispatch => {
+    /*data includes secure_url, public_id, title, description (optional), img_url(optional), and img_public_id(optional). Action posts to cloudinary and then checks if there's a cover image and if so also posts that to cloudinary before posting the data to backend. */
     axios({
         url: cloudinary.URL,
         method: "POST",
@@ -111,6 +113,7 @@ export const uploadContent = (
 
 
 export const editContent = data => dispatch => {
+  /*data includes title and description. Currently just posts fantasy as true as genres haven't been made functional on front end yet. */
   let submitData = {
     title: data.title,
     description: data.description,
@@ -139,7 +142,7 @@ export const editContent = data => dispatch => {
     })
 }
 export const setWork = data => dispatch => {
-  console.log(data)
+  //sets work as currentWork which is used both for reading works and messaging.
   dispatch({
     type: SET_WORK,
     payload: data
@@ -147,7 +150,7 @@ export const setWork = data => dispatch => {
 };
 
 export const delContent = (work) => dispatch => {
-  console.log(work)
+  /*data includes author_content_id, public_id, and img_public_id. This action is used for deleting works that have cover images */
   axiosWithAuth()
     .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.author_content_id}/${work.public_id}/${work.img_public_id}`)
         .then(res => {
@@ -164,7 +167,7 @@ export const delContent = (work) => dispatch => {
   }
 
   export const delContentNoImg = (work) => dispatch => {
-    console.log(work)
+    /*data includes author_content_id and public_id. This action is used for deleting works that have no cover images */
     axiosWithAuth()
       .delete(`https://bookedup-pt9.herokuapp.com/api/author-content/${work.id}/${work.public_id}`)
           .then(res => {
@@ -181,6 +184,7 @@ export const delContent = (work) => dispatch => {
     }
 
   export const getMessages = (data) => dispatch => {
+    //data is user.id
     axiosWithAuth()
       .get(`https://bookedup-pt9.herokuapp.com/api/message/${data}/inbox`)
       .then(res => {
