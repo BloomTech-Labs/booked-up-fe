@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     textAlign: "middle",
-    marginLeft: "100px"
+    marginLeft: "1vw"
   },
   searchBar: {
     marginLeft: "10px",

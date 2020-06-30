@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import { Users } from "../../Admin/Users";
 import Drawer from "@material-ui/core/Drawer";
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import MyWorks from "../../Author/MyWorks/MyWorks";
 import Profile from "../../Author/Profile/Profile.jsx";
 import Favorites from "../Favorites/Favorites.jsx";
@@ -16,6 +23,8 @@ import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
 import { getUsers } from "../../actions/adminAction.js";
 import { removeSelWork } from "../../actions/userAction.js";
 
+const drawerWidth = 165;
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -26,9 +35,27 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.light,
     color: "white",
     borderRight: "1px solid black",
-    marginTop: "4.34em",
+    marginTop: "5em",
     marginBottom: "4.33em",
-    width: "10em"
+    [theme.breakpoints.up('md')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+    marginTop: "5em",
+    marginBottom: "5em",
+    backgroundColor: theme.palette.secondary.main
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
   title: {
     padding: "1%",
@@ -59,11 +86,19 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   content: {
-    marginTop: "3%",
+    marginTop: "17vw",
     width: "80%",
-    marginLeft: "15%",
-    marginBottom: "15%",
-    minHeight: "30em"
+    marginBottom: "50%",
+    minHeight: "30em",
+    flexGrow: 1,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: "17vw",
+      marginBottom: "35%",
+      marginTop: "3%"
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginBottom: "24%",
+    },
   },
   listItem: {
     color: "white"
@@ -71,9 +106,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Dashboard(props) {
+  const { dashWindow } = props;
   const classes = useStyles();
   const [value] = useState(0);
   const [component, setComponent] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [reply, setReply] = useState({})
+  const theme = useTheme();
+
+  const handleDrawerToggle = () => {
+      setMobileOpen(!mobileOpen);
+    };
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
@@ -105,20 +148,11 @@ function Dashboard(props) {
     }
   }, [window.location.pathname]);
 
-  return (
-    <div className={classes.container}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-        anchor="left"
-        data-testid="sidebar"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
+  const dashboardDrawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider />
+      <List>
           {!props.user.userType.toLowerCase().includes("admin") && (
             <>
               <ListItem
@@ -166,8 +200,59 @@ function Dashboard(props) {
             </ListItem>
           )}
         </List>
-        <Divider />
-      </Drawer>
+      <Divider />
+    </div>
+  );
+  const container = dashWindow !== undefined ? () => dashWindow().document.body : undefined;
+
+  return (
+    <div className={classes.container}>
+        <CssBaseline />
+        <Hidden mdUp implementation="css">
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        </Hidden>
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          <Hidden mdUp implementation="css">
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true, 
+              }}
+            >
+              {dashboardDrawer}
+            </Drawer>
+          </Hidden>
+          <Hidden smDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant="permanent"
+              open
+            >
+              {dashboardDrawer}
+            </Drawer>
+          </Hidden>
+        </nav>
       <div className={classes.content}>{component}</div>
     </div>
   );

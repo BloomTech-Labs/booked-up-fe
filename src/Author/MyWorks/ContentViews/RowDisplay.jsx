@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
     border: "1px solid black",
     margin: "10px",
     borderRadius: "5px",
-    backgroundColor: "#c3c5ef"
+    backgroundColor: "#c3c5ef",
+    minWidth: "200px"
   },
   placeholderImage: {
     position: "relative",
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     color: "white",
     height: "100px",
+    width: "100%",
     padding: "2px"
   },
   authorOverlay: {

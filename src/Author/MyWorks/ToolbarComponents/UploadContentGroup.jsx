@@ -8,7 +8,7 @@ import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles(theme => ({
   leftToolbarButton: {
-    marginRight: "25px"
+    marginRight: "2vw"
   },
   iconButton: {
     "&:hover": {

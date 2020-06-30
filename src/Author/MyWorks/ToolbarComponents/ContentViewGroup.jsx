@@ -18,12 +18,12 @@ const useStyles = makeStyles(theme => ({
   },
   rightToolbarButtonGroup: {
     backgroundColor: theme.palette.secondary.light,
-    marginRight: "25px",
+    marginRight: "1vw",
     paddingTop: "2px"
   },
   rightButtonGroup: {
     backgroundColor: theme.palette.secondary.light,
-    marginRight: "25px"
+    marginRight: "1vw"
   }
 }));
 

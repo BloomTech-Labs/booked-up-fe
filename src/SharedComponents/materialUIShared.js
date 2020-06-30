@@ -5,10 +5,11 @@ export const sharedToolbarStyles = makeStyles(theme => ({
     display: "flex",
     backgroundColor: theme.palette.secondary.light,
     margin: theme.spacing(2, 0),
-    marginLeft: "2px",
-    marginRight: "2px",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: "2px",
     marginBottom: "2px",
+    width: "95%",
     border: `2px solid ${theme.palette.secondary.dark}`,
     borderRadius: "10px"
   }

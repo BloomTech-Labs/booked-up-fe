@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    minWidth: "350px"
   },
   placeholderImage: {
     position: "relative",
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     padding: "2px",
     display: "flex",
     justifyContent: "center",
-    width: "15%"
+    minWidth: "100px"
   },
   authorOverlay: {
     position: "absolute",
