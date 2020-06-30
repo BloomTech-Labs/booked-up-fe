@@ -25,8 +25,8 @@ import { connect } from "react-redux";
 import { getUsers } from "../../actions/adminAction.js";
 import { removeSelWork } from "../../actions/userAction.js";
 
-
 //component styles
+
 const drawerWidth = 165;
 
 const useStyles = makeStyles(theme => ({
@@ -121,8 +121,10 @@ function Dashboard(props) {
   const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
+
   
   //checks the pathname and sets the appropriate component 
+
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
@@ -154,7 +156,9 @@ function Dashboard(props) {
     }
   }, [window.location.pathname]);
 
+
   //the different links in the dashboard. Displays differently when in tablet or mobile view.
+
   const dashboardDrawer = (
     <div>
       <div className={classes.toolbar} />
@@ -215,6 +219,7 @@ function Dashboard(props) {
   return (
     <div className={classes.container}>
         {/* Mobile drawer for opening dashboard */}
+
         <CssBaseline />
         <Hidden mdUp implementation="css">
         <AppBar position="fixed" className={classes.appBar}>
@@ -233,6 +238,7 @@ function Dashboard(props) {
         </Hidden>
         <nav className={classes.drawer} aria-label="dashboard-options">
         {/* Desktop dashboard */}
+
           <Hidden mdUp implementation="css">
             <Drawer
               container={container}
