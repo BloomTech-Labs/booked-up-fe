@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+//component imports
 import ReadingButtons from "../ReadingButtons";
-import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
+//asset imports
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   grid: {
     flexDirection: "row",
@@ -48,10 +51,8 @@ const useStyles = makeStyles(theme => ({
 export default function GridDisplay(props) {
   const [works] = useState(props.contentWorks);
   const classes = useStyles();
-  useEffect(() => {
-    console.log(works)
-  }, [])
-
+  
+  /*Makes the background image either the image uploaded by the author or a placeholder image*/
   const imageSet = (work) => {
     if(work.img_url) {
       return {
@@ -66,6 +67,7 @@ export default function GridDisplay(props) {
   }
 
   return (
+    /* Maps through the works that were passed as props and places them in a grid format*/
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
           <Grid item xs={2} key={index} className={classes.gridItem}>

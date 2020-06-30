@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+//component imports
 import EditingButtons from "../EditingButtons";
+//asset imports
 import ImagePlaceholder from "../../../assets/image-placeholder.png";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   grid: {
     display: "flex",
@@ -51,6 +55,7 @@ const useStyles = makeStyles(theme => ({
 export default function RowDisplay(props) {
   const [works] = useState(props.authorWorks);
   const classes = useStyles();
+  /*Makes the background image either the image uploaded by the author or a placeholder image*/
   const imageSet = (work) => {
     if(work.img_url) {
       return {
@@ -64,6 +69,7 @@ export default function RowDisplay(props) {
     }
   }
   return (
+    /* Maps through the works that were passed as props and places them in a row format*/
     <Grid container className={classes.grid} spacing={2}>
       {works.map((work, index) => (
           <Grid item xs={2} key={index} className={classes.gridItem}>

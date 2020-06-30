@@ -1,4 +1,5 @@
 import React from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,10 +7,11 @@ import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined"
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import ImportContactsOutlinedIcon from "@material-ui/icons/ImportContactsOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import { Link } from "react-router-dom";
+//redux and action imports
 import { setWork, delContent } from "../../actions/authorAction";
 import { connect } from "react-redux";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
     display: "flex",
@@ -33,6 +35,7 @@ function EditingButtons(props) {
   };
   const classes = useStyles();
   return (
+    /*You can open the book which directs to workview component, edit properties which opens the editmodal, or delete book which opens the deleteworkmodal */
     <>
       <ButtonGroup className={classes.buttonGroup}>
         <Tooltip title="Open Book" onClick={handleClick}>

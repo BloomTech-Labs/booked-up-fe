@@ -5,6 +5,7 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_CONTENT = "REMOVE_CONTENT"
 
 export const setContent = (user, work) => dispatch => {
+  //data sends user_id and author_content_id. Adds work to favorites
   let data = {
     user_id: user,
     author_content_id: work
@@ -34,35 +35,13 @@ export const setContent = (user, work) => dispatch => {
 }
 
 export const removeContent = data => dispatch => {
+  //data includes user_id and author_content_id. Removes work from favorites
   axiosWithAuth()
     .delete(`https://bookedup-pt9.herokuapp.com/api/content-library/${data.id}/${data.contentId}`)
     .then(res => {
       console.log(res)
       dispatch({type: REMOVE_CONTENT, payload: data.contentId })
       window.location.reload();
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
-
-export const addComment = (data) => dispatch => {
-  axiosWithAuth()
-    .post("https://bookedup-pt9.herokuapp.com/api/comments/", data)
-    .then(res => {
-      console.log(res)
-      dispatch({ type: ADD_COMMENT, payload: res.data.newComments})
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
-
-export const getComments = (data) => dispatch => {
-  axiosWithAuth()
-    .get(`https://bookedup-pt9.herokuapp.com/api/comments/${data}`)
-    .then(res => {
-      console.log(res)
     })
     .catch(err => {
       console.log(err)

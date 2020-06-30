@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { editContent, taskStart } from "../../actions/authorAction";
+//material ui imports
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,9 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import { Button, FormControl, Select, MenuItem } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { connect } from "react-redux";
-import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
+//redux and action imports
+import { connect } from "react-redux";
+import { editContent, taskStart } from "../../actions/authorAction";
+//spinner import
+import { ClipLoader } from "react-spinners";
+//utilities imports
 import { genres } from "../../utils/genres.js";
 
 function EditModal(props) {
@@ -19,13 +23,11 @@ function EditModal(props) {
     user_id: 0,
     title: "",
     description: "",
-    "fantasy": true
+    "fantasy": true /*at the current time, genres haven't been completely worked out on the front end but are a required part of editing a work*/
   });
   
-
+  //defaults work on open to current work being edited so you don't have to reedit all information
   useEffect(() => {
-    console.log(props.dev);
-    console.log(props.authorContent)
     setWork({
       ...work,
       id: props.currentWork.id,
@@ -49,6 +51,7 @@ function EditModal(props) {
     console.log(work);
   };
   return (
+    /*Edit modal currently only allows to edit title and description of work. Genre doesn't currently work and defaults to fantasy. */
     <Card className={classes.paper}>
       <CardHeader title={<Typography variant="h5">Edit Book</Typography>} />
       <CardContent>

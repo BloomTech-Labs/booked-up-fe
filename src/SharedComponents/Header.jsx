@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//material ui imports
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -9,16 +10,17 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import BookedUpLogo from "../assets/new-logo.jpg";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MessageIcon from "@material-ui/icons/Message";
+//asset imports
+import BookedUpLogo from "../assets/new-logo.jpg";
+//redux or action imports
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogout } from "../actions/authenticationAction";
-import { useEffect } from "react";
 import { removeSelWork } from "../actions/userAction";
 
-
+//elevates app bar on scroll
 function ElevationScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -30,7 +32,7 @@ function ElevationScroll(props) {
     elevation: trigger ? 4 : 0
   });
 }
-
+//component styles
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     marginBottom: "4em"
@@ -121,6 +123,7 @@ function Header(props) {
     props.removeSelWork()
   }
   return (
+    /* Menu features a logo that brings user to home, login, signup, and a home button if not signed in, and a dashboard, messages, and account button that brings up account options if signed in*/
     <>
       <ElevationScroll>
         <AppBar position="fixed">

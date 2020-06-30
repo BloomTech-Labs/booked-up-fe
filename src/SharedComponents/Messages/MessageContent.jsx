@@ -1,9 +1,12 @@
-import React, {useEffect} from "react";
+import React from "react";
+//material ui imports
 import Typography from "@material-ui/core/Typography"
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+//redux import
 import { connect } from "react-redux";
 
+//component styles
 const useStyles = makeStyles(theme => ({
     headContainer: {
         borderBottom: "1px solid black",
@@ -24,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function MessageContent(props) {
     const classes = useStyles();
     return (
+        /*Content of message received. Props received are message, handlereplymessage, and user. Currently experiencing problem receiving user data but originally typography contains `From: ${props.user.display_name}` */
         <>
         {props.message.subject && (<div className={classes.headContainer}>
         <Typography variant="h5" >

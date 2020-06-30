@@ -18,12 +18,16 @@ export const sharedToolbarStyles = makeStyles(theme => ({
 export const sharedPaperStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
-    left: "35%",
+    left: "10%",
     top: "20%",
-    width: 400,
+    width: "400px",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
+    [theme.breakpoints.up("md")]: {
+      left: "35%",
+      width: "500px"
+    }
   }
 }));

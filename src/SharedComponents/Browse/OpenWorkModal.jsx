@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//material ui styles
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -6,15 +7,17 @@ import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import { sharedPaperStyles } from "../materialUIShared";
+//redux and action imports
 import { setWork } from "../../actions/authorAction";
 import { connect } from "react-redux";
 import { setContent } from "../../actions/fanAction"
 import { getUser } from "../../actions/agentAction"
-import { sharedPaperStyles } from "../materialUIShared";
+//utility and asset imports
 import { genres } from "../../utils/genres.js";
 import ImagePlaceholder from "../../assets/image-placeholder.png";
 
-
+//component styles
 const useModalStyles = makeStyles(theme => ({
   image: {
     position: "relative",
@@ -30,17 +33,16 @@ function OpenWorkModal(props) {
   const classes = sharedPaperStyles();
   const modalClasses = useModalStyles();
   const [fav, setFav] = useState(false)
-    const handleFavClick = () => {
+  
+  const handleFavClick = () => {
       let user = props.user.id
       let work = props.work.author_content_id
       props.setContent(user, work)
       setFav(true)
     }
-
-    useEffect(() => {
-      console.log(props.work.author_content_id)
+    //checks if work is already in your favorites and disables button if it is
+  useEffect(() => {
       props.contentLibrary.map(cl => {
-        console.log(cl.id)
         if(cl.id == props.work.author_content_id) (
           setFav(true)
         )
@@ -54,6 +56,7 @@ function OpenWorkModal(props) {
     props.setWork(props.work)
     window.location.replace(`/messages`)
   };
+  /*Makes the background image either the image uploaded by the author or a placeholder image*/
   const imageSet = (work) => {
     if(work.img_url) {
       return (
@@ -67,6 +70,7 @@ function OpenWorkModal(props) {
     }
   }
   return (
+    /*Displays title, author, cover art, and allows the chance to add to favorites, read, or message author if the usertype is agent. Message author sets the user as selecteduser and the work as currentwork and redirects to messagesend component.*/
     <Card className={classes.paper}>
       <CardHeader
         title={<Typography variant="h5">{props.work.title}</Typography>}

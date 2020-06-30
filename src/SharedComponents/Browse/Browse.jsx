@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "@brainhubeu/react-carousel";
+//material ui imports
 import "@brainhubeu/react-carousel/lib/style.css";
 import {
   TextField,
@@ -9,15 +10,21 @@ import {
   FormControl
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { connect } from "react-redux";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
 import Modal from "@material-ui/core/Modal";
+//component imports
 import OpenWorkModal from "./OpenWorkModal.jsx";
 import RenderWork from "./RenderWork.jsx";
-import ImagePlaceholder from "../../assets/image-placeholder.png";
 import ColumnDisplay from "../Favorites/ContentViews/ColumnDisplay.jsx";
+//asset imports
+import ImagePlaceholder from "../../assets/image-placeholder.png";
+//redux and action imports
+import { connect } from "react-redux";
 import { removeSelWork } from "../../actions/userAction";
 import { getUser } from "../../actions/agentAction";
+//utility imports
+import { axiosWithAuth } from "../../utils/axiosWithAuth.jsx";
+
+//component styles
 const useStyles = makeStyles(theme => ({
   searchContainer: {
     padding: "1%",
@@ -141,14 +148,13 @@ function Browse(props) {
   const [selWork, setSelWork] = useState({});
   const [filter, setFilter] = useState("all");
   const [value, setValue] = useState("");
+  /*alternate states for work data made because they will be sorted without impacting other works*/
   const [filteredWork, setFilteredWork] = useState();
   const [newWorks, setNewWorks] = useState([{}])
   const [alphWorks, setAlphWorks] = useState([{}])
   const [featWorks, setFeatWorks] = useState([{}])
   const [open, setOpen] = useState(false);
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
+  
 
   
 
@@ -157,6 +163,7 @@ function Browse(props) {
     setOpen(false);
   };
 
+  /*Makes the background image either the image uploaded by the author or a placeholder image*/
   const imageSet = (work) => {
     if(work.img_url) {
       return {
@@ -170,13 +177,11 @@ function Browse(props) {
     }
   }
 
+  /* useEffect gets all author content and sets work states according to data*/
   useEffect(() => {
-    console.log(theme.breakpoints)
-    console.log(props.contentLibrary)
     axiosWithAuth()
       .get("https://bookedup-pt9.herokuapp.com/api/author-content")
       .then(res => {
-        console.log(res);
         setWorks(res.data);
         setNewWorks(res.data)
         setAlphWorks(res.data)
@@ -192,20 +197,20 @@ function Browse(props) {
     setValue(e.target.value);
     console.log(value);
   };
-
+  //changes if search is based on title or description or a combination
   const handleChange = e => {
     e.preventDefault();
     setFilter(e.target.value);
     console.log(filter);
   };
-
+  //opens modal to read work
   const handleOpen = work => {
     props.getUser(work.user_id);
     setSelWork(work)
     setOpen(true)
   }
   const handleSubmit = e => {
-    
+    //goes through works and finds ones that match search
     e.preventDefault();
     setFilteredWork(
       works.filter(work => {
@@ -225,6 +230,7 @@ function Browse(props) {
   };
   return (
     <>
+    {/* Search  bar */}
       <div className={classes.searchContainer}>
         <TextField
           id="standard-search"
@@ -252,6 +258,7 @@ function Browse(props) {
           Go
         </Button>
       </div>
+      {/* Featured Carousel. Displays 5 random works */}
       <h2 className={classes.title}>Featured</h2>
       <Carousel
         autoPlay={10000}
@@ -272,7 +279,7 @@ function Browse(props) {
           </div>
         ))}
       </Carousel>
-
+      {/* New releases carousel. Displays works by when they were created */}
       {!filteredWork && (
         <div>
           <h2 className={classes.title}>New Releases</h2>
@@ -310,7 +317,7 @@ function Browse(props) {
               </div>
             ))}
           </Carousel>
-
+          {/* A-Z carousel. Displays works alphabetically */}
           <h2 className={classes.title}>A-Z</h2>
 
           <Carousel
@@ -348,7 +355,7 @@ function Browse(props) {
           </Carousel>
         </div>
       )}
-
+      {/* Searched works */}
       {filteredWork && (
         <div className={classes.resultsContainer}>
           <h2 className={classes.title}>Search Results</h2>

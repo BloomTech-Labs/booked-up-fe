@@ -10,6 +10,7 @@ You can find the deployed project at [BookedUp.net](https://bookedup.net).
 
 ## Documentation
 
+
 See [Backend Documentation](https://github.com/Lambda-School-Labs/booked-up-be/blob/master/README.md) for details on the backend of our project.
 
 ## Contributors
