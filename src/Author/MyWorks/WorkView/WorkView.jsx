@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+//redux imports
 import { connect } from "react-redux";
+//pdf reader imports
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
-import Button from "@material-ui/core/Button";
+
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
+//component styles
 const useStyles = makeStyles(theme => ({
   paper: {
     margin: 0,
@@ -37,6 +42,7 @@ function Workview(props) {
   const classes = useStyles();
   const [pages, setPages] = useState({ numPages: null, pageNum: 1 });
 
+  //when the file is loaded it sets the number of total pages
   const loadSuccess = ({ numPages }) => {
     setPages({
       ...pages,
@@ -44,6 +50,7 @@ function Workview(props) {
     });
   };
 
+  //prev/next page button functions
   const prevPage = () => {
     setPages({
       ...pages,
@@ -58,6 +65,7 @@ function Workview(props) {
     });
   };
   return (
+    /* Once the user chooses the work to read, it sets the currentwork in state and redirects here where they can read that work. Displays title, author, page buttons, and work */
     <div className={classes.paper}>
       <Typography variant="h5">{props.work.title}</Typography>
       <p>{props.name}</p>

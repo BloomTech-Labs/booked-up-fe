@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-import { Users } from "../../Admin/Users";
+//material ui imports
+import { makeStyles, useTheme } from "@material-ui/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import MyWorks from "../../Author/MyWorks/MyWorks";
-import Profile from "../../Author/Profile/Profile.jsx";
-import Favorites from "../Favorites/Favorites.jsx";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import { connect } from "react-redux";
 import ListItemText from "@material-ui/core/ListItemText";
+import CssBaseline from '@material-ui/core/CssBaseline';
+//component imports
+import { Users } from "../../Admin/Users";
+import MyWorks from "../../Author/MyWorks/MyWorks";
+import Profile from "../../Author/Profile/Profile.jsx";
 import Browse from "../Browse/Browse.jsx";
 import WorkView from "../../Author/MyWorks/WorkView/WorkView.jsx";
+import Favorites from "../Favorites/Favorites.jsx";
+//redux and action imports
+import { connect } from "react-redux";
 import { getUsers } from "../../actions/adminAction.js";
 import { removeSelWork } from "../../actions/userAction.js";
 
+
+//component styles
 const drawerWidth = 165;
 
 const useStyles = makeStyles(theme => ({
@@ -117,6 +121,8 @@ function Dashboard(props) {
   const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
+  
+  //checks the pathname and sets the appropriate component 
   useEffect(() => {
     switch (window.location.pathname) {
       case "/dashboard":
@@ -148,6 +154,7 @@ function Dashboard(props) {
     }
   }, [window.location.pathname]);
 
+  //the different links in the dashboard. Displays differently when in tablet or mobile view.
   const dashboardDrawer = (
     <div>
       <div className={classes.toolbar} />

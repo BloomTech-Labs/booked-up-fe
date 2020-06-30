@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { uploadContent, taskStart } from "../../actions/authorAction";
+//material ui imports
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,11 +7,15 @@ import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import { Button, FormControl, Select, MenuItem } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { connect } from "react-redux";
-import { ClipLoader } from "react-spinners";
 import { sharedPaperStyles } from "../../SharedComponents/materialUIShared";
+//redux and action imports
+import { connect } from "react-redux";
+import { uploadContent, taskStart } from "../../actions/authorAction";
+//spinner import
+import { ClipLoader } from "react-spinners";
+//utilities imports
 import { genres } from "../../utils/genres.js";
-import ImagePlaceholder from "../../assets/image-placeholder.png";
+
 
 function UploadModal(props) {
   const classes = sharedPaperStyles();
@@ -28,13 +32,14 @@ function UploadModal(props) {
     content_url: "",
     user_id: 0
   });
+  //cloudinary presets
   const [cloudinary] = useState({
     URL: "https://api.cloudinary.com/v1_1/dzmxxuygs/upload",
     preset: "gcwzl9u1"
   });
 
+  //sets the user id of upload work
   useEffect(() => {
-    console.log(props.dev);
     setUploadWork({
       ...uploadWork,
       user_id: props.user.id
@@ -42,6 +47,7 @@ function UploadModal(props) {
   }, []);
 
   const onSubmit = e => {
+    //attaches file and cover image to forms as part of cloudinary file to be uploaded
     var file = work.body[0];
     var formData = new FormData();
     var imgFile = work.image[0];
@@ -51,6 +57,7 @@ function UploadModal(props) {
     imgFormData.append("file", imgFile);
     imgFormData.append("upload_preset", cloudinary.preset);
     e.preventDefault();
+    //calls action to upload to cloudinary and add url to backend
     props.taskStart();
     props.uploadContent(
       props,
@@ -70,6 +77,7 @@ function UploadModal(props) {
     console.log(work);
   };
   return (
+    /*Upload work asks for cover art(img file), work(pdf file), title, and description. Genre doesn't currently work on front end. Work file and title are required. */
     <Card className={classes.paper}>
       <CardHeader title={<Typography variant="h5">New Book</Typography>} />
       <CardContent>

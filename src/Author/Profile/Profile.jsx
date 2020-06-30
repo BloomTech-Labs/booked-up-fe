@@ -1,4 +1,5 @@
 import React from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -6,8 +7,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
+//redux imports
 import { connect } from "react-redux";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: "20%",
@@ -39,6 +42,7 @@ function Profile(props) {
   const classes = useStyles();
 
   return (
+    /*Profile for displaying data. Profile data is edited in account settings. */
     <Card className={classes.root}>
       <CardHeader
         avatar={

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   works: {
     display: "flex",
@@ -40,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 
 export const RenderWork = props => {
   const classes = useStyles();
+  //displays title description and author that's been passed in for browse component
   return (
     <div key={props.i} className={props.feat ? classes.featWorks : classes.works}>
       <p className={classes.work}>{props.cl.title}</p>

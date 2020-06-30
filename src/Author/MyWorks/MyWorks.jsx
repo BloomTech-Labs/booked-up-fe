@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+//material ui imports
 import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+//component imports
 import GridDisplay from "./ContentViews/GridDisplay";
 import RowDisplay from "./ContentViews/RowDisplay";
 import ColumnDisplay from "./ContentViews/ColumnDisplay";
-import { connect } from "react-redux";
 import FullToolbar from "./ToolbarComponents/FullToolbar";
 import DeleteWorkModal from "./DeleteWorkModal.jsx";
-import Modal from "@material-ui/core/Modal";
 import EditModal from "./EditModal.jsx";
+//redux imports
+import { connect } from "react-redux";
 
+//component styles
 const useStyles = makeStyles(theme => ({
   contentArea: {
     marginTop: "35px",
